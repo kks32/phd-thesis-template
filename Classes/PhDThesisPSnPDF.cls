@@ -17,17 +17,17 @@
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{book}}%
 \ProcessOptions\relax%
 \ifx\pdfoutput\undefined%
-   \LoadClass[dvips, a4paper,11pt,fleqn,openright]{book}%
+   \LoadClass[dvips,fleqn,openright]{book}%
 \else%
-   \LoadClass[pdftex, a4paper,11pt,fleqn,openright]{book}%
+   \LoadClass[pdftex,fleqn,openright]{book}%
 \fi%
 \else
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}%
 \ProcessOptions\relax%
 \ifx\pdfoutput\undefined%
-  \LoadClass[dvips, a4paper]{report123}%
+  \LoadClass[dvips, a4paper]{report}%
 \else%
-   \LoadClass[pdftex, a4paper]{report123}%
+   \LoadClass[pdftex, a4paper]{report}%
 \fi%
 \fi
 
@@ -50,8 +50,8 @@
 \usepackage{algpseudocode} % Algorithmicx package support for algorithms and pseudocode
 
 
-% Conditonal Statements
-\usepackage{ifthen}   % Used in LaTeX Class files for conditional statments
+% Conditional Statements
+\usepackage{ifthen}   % Used in LaTeX Class files for conditional statements
 \usepackage{ifpdf}    % Check for pdfLaTeX
 
 
