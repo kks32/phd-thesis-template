@@ -150,6 +150,7 @@
 \fancyhead[LO]{\bfseries\rightmark}
 \fancyhead[LE,RO]{\bfseries\thepage}
 \fancyhead[RE]{\bfseries\leftmark}
+\fancyfoot{}
 \renewcommand{\headrulewidth}{0.5pt}
 \renewcommand{\footrulewidth}{0pt}
 \addtolength{\headheight}{0.5pt}
@@ -341,4 +342,3 @@
   \renewcommand{\thepage}{\roman{page}}}
 {\newpage\renewcommand{\thepage}{\arabic{page}}}
 %{\newpage\renewcommand{\thepage}{\arabic{page}}\setcounter{page}{1}}
-
