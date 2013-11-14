@@ -1,0 +1,119 @@
+\documentclass[twoside]{Classes/PhDThesisPSnPDF}
+
+%Enable Print or Online version for appropriate referencing styles and links (comment line below to use Online version)
+%\PrintVersion
+
+
+% PDF Metadata
+\ifpdf
+    \pdfinfo { /Title  (Multiscale Modelling of Granular Flows)
+               /Creator (TeX)
+               /Producer (pdfTeX)
+               /Author (Krishna Kumar, kks32@cam.ac.uk)
+               /CreationDate (D:20131113000000) 
+               /ModDate (D:20131113121606)
+               /Subject (GeoMechanics)
+               /Keywords (Material Point Method, Lattice Boltzmann, Multiscale, Multiphase, Granular Flows)}
+    \pdfcatalog { /PageMode (/UseOutlines)
+                  /OpenAction (fitbh)  }
+\fi
+
+
+% Preamble 
+% Define a new 'leo' style for the url package that will use a smaller font.
+\makeatletter
+\def\url@leostyle{%
+  \@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\small\ttfamily}}}
+\makeatother
+\urlstyle{leo}
+
+
+% Clear Header Style on the Last Empty Odd pages
+\makeatletter
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else%
+	\hbox{}%
+	\thispagestyle{empty}%              % Empty header styles
+	\newpage%
+	\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother
+
+% ***************************** Title ******************************************** %
+% PhD Thesis Title, Author, Degree, etc
+\title{Multiscale Modelling of Granular Flows} 
+\author{Krishna Kumar}
+\collegeordept{Department of Engineering}
+\university{University of Cambridge}
+\crest{\includegraphics[width=0.25\textwidth]{Figs/University_Crest}}
+%\renewcommand{\submittedtext}{change the default text here if needed}
+\degree{Doctor of Philosophy}
+\degreedate{Yet to be decided} 
+
+%Set spacing
+\onehalfspace
+
+%start
+\begin{document}
+
+%**************************Front Matter********************************************* %
+
+\frontmatter
+
+\begin{titlepage}
+
+\maketitle
+
+\end{titlepage}
+
+\include{Dedication/dedication}
+\include{Declaration/declaration}
+\include{Acknowledgement/acknowledgement}
+\include{Abstract/abstract}
+
+%*************** Adding TOC and List of Figures *********************************** %
+% To hide sections from appearing in TOC add \tochide\section{Section name} 
+\newcommand{\nocontentsline}[3]{}
+\newcommand{\tochide}[2]{\bgroup\let\addcontentsline=\nocontentsline#1{#2}\egroup}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+% To restrict the length of the figure caption in List of figures use:
+% \caption[Caption that you want to appear in TOC]{Actual caption of the figure}
+% \section[short]{title}
+
+\tableofcontents
+
+\listoffigures
+
+\listoftables 
+
+\makenomenclature
+%******************************Main Matter******************************************* %
+\mainmatter
+
+\include{Chapter1/chapter1}
+\include{Chapter2/chapter2}
+\include{Chapter3/chapter3}
+%\include{Chapter4/chapter4}
+%\include{Chapter5/chapter5}
+%\include{Chapter6/chapter6}
+%\include{Chapter7/chapter7}
+
+%****************************Back Matter********************************************** %
+\backmatter
+\appendix
+\include{Appendix1/appendix1}
+\include{Appendix2/appendix2}
+
+%*******************************Bibliography******************************************%
+
+\begin{spacing}{0.9}
+\bibliographystyle{plainnat}
+\renewcommand{\bibname}{References} % changes default name Bibliography to References
+\cleardoublepage
+\bibliography{References/References}
+\end{spacing}
+%************************************************************************************* %
+
+
+
+\end{document}
+
