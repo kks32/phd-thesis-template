@@ -38,9 +38,6 @@
 \def\pdfshellescape{1}
 \usepackage{a4wide} % A4 Wide paper
 \usepackage{lscape} % Supports Landscape Layout
-\if@twoside \usepackage[hmarginratio=3:2]{geometry} %Two sided margin 
-\else \usepackage[hmarginratio=1:1]{geometry} % Single side margin
-\fi
 \usepackage{setspace} % Define line spacing in para
 \usepackage{fancyhdr} % Define custom header
 \usepackage[perpage]{footmisc} %Range of footnote options 
@@ -66,9 +63,15 @@
 \ifx\PrintVersion\undefined
 % For PDF Online version
 \usepackage[pdftex, plainpages=false, pdfpagelabels, pdfpagelayout=useoutlines, bookmarks, bookmarksopen=true, bookmarksnumbered=true, breaklinks=true, linktocpage, pagebackref=false, colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue, anchorcolor=green, hyperindex=false, hyperfigures]{hyperref}
+\if@twoside \usepackage[hmarginratio=1:1]{geometry} %Two sided margin 
+\else \usepackage[hmarginratio=1:1]{geometry} % Single side margin
+\fi
 \else
 % For Print version
 \usepackage[pdftex, plainpages=false, pdfpagelabels, pdfpagelayout=useoutlines, bookmarks, bookmarksopen=true, bookmarksnumbered=true, breaklinks=true, linktocpage, pagebackref=false, colorlinks=true, linkcolor=black, urlcolor=black, citecolor=black, anchorcolor=black, hyperindex=false, hyperfigures]{hyperref}
+\if@twoside \usepackage[hmarginratio=3:2]{geometry} %Two sided margin 
+\else \usepackage[hmarginratio=3:2]{geometry} % Single side margin
+\fi
 \fi
 \usepackage{url}
 
@@ -169,8 +172,10 @@
 \def\degreedate#1{\gdef\@degreedate{#1}}
 % The full (unabbreviated) name of the degree
 \def\degree#1{\gdef\@degree{#1}}
-% The name of your college or department(eg. Trinity, Pembroke, Maths, Physics)
-\def\collegeordept#1{\gdef\@collegeordept{#1}}
+% The name of your department(eg. Engineering, Maths, Physics)
+\def\dept#1{\gdef\@dept{#1}}
+% The name of your college (eg. King's)
+\def\college#1{\gdef\@college{#1}}
 % The name of your University
 \def\university#1{\gdef\@university{#1}}
 % Defining the crest
@@ -188,23 +193,31 @@
 \renewcommand{\maketitle}{%
 %Can use the line below to remove the blank page after the title page
 %\setcounter{page}{0}  % Sasa Tomic
-\begin{center}
 \begin{singlespace}
+\begin{center}
     { \Huge {\bfseries {\@title}} \par}
 {\large \vspace*{25mm} {{\@crest} \par} \vspace*{20mm}}
     {{\Large \@author} \par}
 {\large \vspace*{1ex}
-    {{\@collegeordept} \par}
+    {{\@dept} \par}
 \vspace*{1ex}
     {{\@university} \par}
 \vspace*{25mm}
     {{\submittedtext} \par}
 \vspace*{1ex}
-    {\it {\@degree} \par}
+    {\it {\@degree} \par} 
 \vspace*{2ex}
-    {\@degreedate}}
-\end{singlespace}
+	{\@degreedate}}
 \end{center}
+%\large
+%\begin{minipage}{0.5\textwidth}
+%\flushleft \@college
+%\end{minipage}
+%\begin{minipage}{0.5\textwidth}
+%\flushleft \@degreedate
+%\end{minipage}
+\end{singlespace}
+
 }
 
 
