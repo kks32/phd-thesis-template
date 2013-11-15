@@ -62,13 +62,13 @@
 \newcommand{\PrintVersion}{}
 \ifx\PrintVersion\undefined
 % For PDF Online version
-\usepackage[pdftex, plainpages=false, pdfpagelabels, pdfpagelayout=useoutlines, bookmarks, bookmarksopen=true, bookmarksnumbered=true, breaklinks=true, linktocpage, pagebackref=false, colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue, anchorcolor=green, hyperindex=false, hyperfigures]{hyperref}
+\usepackage[pdftex, plainpages=false, pdfpagelabels, pdfstartview=FitH, unicode=true, pdftoolbar=true, pdfmenubar=true, pdfpagelayout=useoutlines, bookmarks, bookmarksopen=true, bookmarksnumbered=true, breaklinks=true, linktocpage, pagebackref=false, colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue, anchorcolor=green, hyperindex=false, hyperfigures]{hyperref}
 \if@twoside \usepackage[hmarginratio=1:1]{geometry} %Two sided margin 
 \else \usepackage[hmarginratio=1:1]{geometry} % Single side margin
 \fi
 \else
 % For Print version
-\usepackage[pdftex, plainpages=false, pdfpagelabels, pdfpagelayout=useoutlines, bookmarks, bookmarksopen=true, bookmarksnumbered=true, breaklinks=true, linktocpage, pagebackref=false, colorlinks=true, linkcolor=black, urlcolor=black, citecolor=black, anchorcolor=black, hyperindex=false, hyperfigures]{hyperref}
+\usepackage[pdftex, plainpages=false, pdfpagelabels, pdfstartview=FitH, unicode=true, pdftoolbar=true, pdfmenubar=true, pdfpagelayout=useoutlines, bookmarks, bookmarksopen=true, bookmarksnumbered=true, breaklinks=true, linktocpage, pagebackref=false, colorlinks=true, linkcolor=black, urlcolor=black, citecolor=black, anchorcolor=black, hyperindex=false, hyperfigures]{hyperref}
 \if@twoside \usepackage[hmarginratio=3:2]{geometry} %Two sided margin 
 \else \usepackage[hmarginratio=3:2]{geometry} % Single side margin
 \fi
@@ -112,6 +112,18 @@
 \usepackage{amssymb}
 \usepackage{siunitx}
 
+
+% Setting PDF Meta-Data
+\ifpdf
+\AtBeginDocument{
+  \hypersetup{
+    pdftitle = {\@title},
+    pdfauthor = {\@author},
+    pdfsubject={\@subject},
+    pdfkeywords={\@keywords}
+  }
+}
+\fi
 
 %***************** To copy ligatures and Fonts ********************* %
 \usepackage{textcomp}
@@ -191,6 +203,11 @@
 \def\university#1{\gdef\@university{#1}}
 % Defining the crest
 \def\crest#1{\gdef\@crest{#1}}
+% Defining the Subject
+\def\subject#1{\gdef\@subject{#1}}
+% Defining the Keywords
+\def\keywords#1{\gdef\@keywords{#1}}
+
 
 
 % These macros define an environment for front matter that is always 
