@@ -75,6 +75,9 @@
 \fi
 \usepackage{url}
 
+\def\url@leostyle{%
+  \@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\small\ttfamily}}}
+\urlstyle{leo}
 
 % Graphics and Figures
 \usepackage[usenames, dvipsnames]{color} 
@@ -112,6 +115,20 @@
 \usepackage{amssymb}
 \usepackage{siunitx}
 
+%To copy ligatures and Fonts 
+\usepackage{textcomp}
+\usepackage[ansinew]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{libertine}
+\input{glyphtounicode}
+\pdfglyphtounicode{f_f}{FB00}
+\pdfglyphtounicode{f_f_i}{FB03}
+\pdfglyphtounicode{f_f_l}{FB04}
+\pdfglyphtounicode{f_i}{FB01}
+\pdfgentounicode=1
+
+
+%******************************************************* %
 
 % Setting PDF Meta-Data
 \ifpdf
@@ -125,18 +142,16 @@
 }
 \fi
 
-%***************** To copy ligatures and Fonts ********************* %
-\usepackage{textcomp}
-\usepackage[ansinew]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{libertine}
-\input{glyphtounicode}
-\pdfglyphtounicode{f_f}{FB00}
-\pdfglyphtounicode{f_f_i}{FB03}
-\pdfglyphtounicode{f_f_l}{FB04}
-\pdfglyphtounicode{f_i}{FB01}
-\pdfgentounicode=1
-%******************************************************* %
+% Clear Header Style on the Last Empty Odd pages
+%\makeatletter
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else%
+	\hbox{}%
+	\thispagestyle{empty}%              % Empty header styles
+	\newpage%
+	\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+%\makeatother
+
+
 
 
 % Nomenclature

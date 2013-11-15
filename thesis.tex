@@ -2,27 +2,7 @@
 
 %Enable Print or Online version for appropriate referencing styles and links, and page layout support for both oneside and twoside layout especially for binding (comment line below to use Online version)
 
-%\PrintVersion
-
-
-% Preamble 
-% Define a new 'leo' style for the url package that will use a smaller font.
-\makeatletter
-\def\url@leostyle{%
-  \@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\small\ttfamily}}}
-\makeatother
-\urlstyle{leo}
-
-
-% Clear Header Style on the Last Empty Odd pages
-\makeatletter
-\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else%
-	\hbox{}%
-	\thispagestyle{empty}%              % Empty header styles
-	\newpage%
-	\if@twocolumn\hbox{}\newpage\fi\fi\fi}
-\makeatother
-
+\PrintVersion
 
 % ***************************** Title ******************************************** %
 % PhD Thesis Title, Author, Degree, etc
@@ -35,17 +15,15 @@
 \degree{Doctor of Philosophy}
 \college{King's College}
 \degreedate{Yet to be decided} 
-\subject{GeoMechanics}
-\keywords{{Material Point Method} {Lattice Boltzmann} {Multi-scale} {Multiphase} {Granular Flows}}
+\subject{GeoMechanics} %To fill PDF metadata
+\keywords{{Material Point Method} {Lattice Boltzmann} {Multi-scale} {Multiphase} {Granular Flows}} %To fill PDF metadata
 
 
 %Set spacing
 \onehalfspace
 
-%start
-\begin{document}
-
 %**************************Front Matter********************************************* %
+\begin{document}
 
 \frontmatter
 
