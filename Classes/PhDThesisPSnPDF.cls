@@ -37,25 +37,22 @@
 \ProcessOptions\relax
 \if@printmode
 	\usepackage{hyperref}
-	\message{This is the print version}
-	\hypersetup{plainpages=false, pdfstartview=FitH, unicode=true, pdftoolbar=true, pdfmenubar=true, pdfpagelayout=useoutlines, bookmarksopen=true, bookmarksnumbered=true, breaklinks=true, linktocpage, colorlinks=true, linkcolor=black, urlcolor=black, citecolor=black, anchorcolor=black}
-	\if@twoside \usepackage[hmarginratio=3:2]{geometry} %Two sided margin 
-	\else \usepackage[hmarginratio=3:2]{geometry} % Single side margin
+	% For Print version
+	\hypersetup{plainpages=false, pdfstartview=FitV, unicode=true, pdftoolbar=true, pdfmenubar=true, pdfpagelayout=useoutlines, bookmarksopen=true, bookmarksnumbered=true, breaklinks=true, linktocpage, colorlinks=true, linkcolor=black, urlcolor=black, citecolor=black, anchorcolor=black}
+	\if@twoside \usepackage[hmarginratio=3:2]{geometry} % Odd and Even side Margin staggering for binding
+	\else \usepackage[hmarginratio=3:2]{geometry} % Single side print margin for binding
 	\fi
 \else
 	\usepackage{hyperref}
-	\message{This is the online version}
-	\hypersetup{plainpages=false, pdfstartview=FitH, unicode=true, pdftoolbar=true, pdfmenubar=true, pdfpagelayout=useoutlines, bookmarksopen=true, bookmarksnumbered=true, breaklinks=true, linktocpage, colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue, anchorcolor=green}
-	\if@twoside \usepackage[hmarginratio=1:1]{geometry} %Two sided margin 
-	\else \usepackage[hmarginratio=1:1]{geometry} % Single side margin
-	\fi
+	% For PDF Online version
+	\hypersetup{plainpages=false, pdfstartview=FitV, unicode=true, pdftoolbar=true, pdfmenubar=true, pdfpagelayout=useoutlines, bookmarksopen=true, bookmarksnumbered=true, breaklinks=true, linktocpage, colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue, anchorcolor=green}
+	\usepackage[hmarginratio=1:1]{geometry} % No Margin staggering on Odd and Even side 
 \fi
 %--------------------- packages -------------------------------
 
 % Layout, Formatting and Headers
 
 \def\pdfshellescape{1}
-\usepackage{a4wide} % A4 Wide paper
 \usepackage{lscape} % Supports Landscape Layout
 \usepackage{setspace} % Define line spacing in para
 \usepackage{fancyhdr} % Define custom header
@@ -103,9 +100,7 @@
 
 % Captions and Hyperreferncing / URL
 \usepackage[figurename=Fig.,labelsep=space,tableposition=top]{caption} % Caption styling
-
 \usepackage{url}
-
 \def\url@leostyle{%
   \@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\small\ttfamily}}}
 \urlstyle{leo}
@@ -132,8 +127,6 @@
 \pdfglyphtounicode{f_f_l}{FB04}
 \pdfglyphtounicode{f_i}{FB01}
 \pdfgentounicode=1
-
-
 
 
 
