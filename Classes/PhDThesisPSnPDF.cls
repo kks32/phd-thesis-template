@@ -148,12 +148,23 @@
 
 % Custom Header with Chapter Number, Page Number and Section Numbering
 \pagestyle{fancy}
-\renewcommand{\chaptermark}[1]{\markboth{\thechapter. #1 }{}}
-\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
-\fancyhead[LO]{\bfseries\rightmark}
+% Style 1:
+%\renewcommand{\chaptermark}[1]{\markboth{\thechapter. #1 }{}}
+%\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+%\fancyhead[LO]{\bfseries\rightmark}
+%\fancyhead[LE,RO]{\bfseries\thepage}
+%\fancyhead[RE]{\bfseries\leftmark}
+%\fancyfoot{}
+
+% Style 2:
+\renewcommand{\chaptermark}[1]{\markboth{Chapter \thechapter. #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\fancyhead[LO]{\rightmark}
 \fancyhead[LE,RO]{\bfseries\thepage}
-\fancyhead[RE]{\bfseries\leftmark}
+\fancyhead[RE]{\leftmark}
 \fancyfoot{}
+
+
 \renewcommand{\headrulewidth}{0.5pt}
 \renewcommand{\footrulewidth}{0pt}
 \addtolength{\headheight}{0.5pt}
