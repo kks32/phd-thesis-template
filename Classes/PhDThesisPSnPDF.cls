@@ -50,34 +50,12 @@
 % Conditional Statements
 \usepackage{ifthen}   % Used in LaTeX Class files for conditional statements
 \usepackage{ifpdf}    % Check for pdfLaTeX
-
+\usepackage{etex}
 
 % Table of Contents and Appendix
 \usepackage{tocbibind} % add Bibliography, List of figures and tables to contents
 \usepackage{appendix} % add appendix
 
-
-% Captions and Hyperreferncing / URL
-\usepackage[figurename=Fig.,labelsep=space,tableposition=top]{caption} % Caption styling
-\newcommand{\PrintVersion}{}
-\ifx\PrintVersion\undefined
-% For PDF Online version
-\usepackage[pdftex, plainpages=false, pdfpagelabels, pdfstartview=FitH, unicode=true, pdftoolbar=true, pdfmenubar=true, pdfpagelayout=useoutlines, bookmarks, bookmarksopen=true, bookmarksnumbered=true, breaklinks=true, linktocpage, pagebackref=false, colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue, anchorcolor=green, hyperindex=false, hyperfigures]{hyperref}
-\if@twoside \usepackage[hmarginratio=1:1]{geometry} %Two sided margin 
-\else \usepackage[hmarginratio=1:1]{geometry} % Single side margin
-\fi
-\else
-% For Print version
-\usepackage[pdftex, plainpages=false, pdfpagelabels, pdfstartview=FitH, unicode=true, pdftoolbar=true, pdfmenubar=true, pdfpagelayout=useoutlines, bookmarks, bookmarksopen=true, bookmarksnumbered=true, breaklinks=true, linktocpage, pagebackref=false, colorlinks=true, linkcolor=black, urlcolor=black, citecolor=black, anchorcolor=black, hyperindex=false, hyperfigures]{hyperref}
-\if@twoside \usepackage[hmarginratio=3:2]{geometry} %Two sided margin 
-\else \usepackage[hmarginratio=3:2]{geometry} % Single side margin
-\fi
-\fi
-\usepackage{url}
-
-\def\url@leostyle{%
-  \@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\small\ttfamily}}}
-\urlstyle{leo}
 
 % Graphics and Figures
 \usepackage[usenames, dvipsnames]{color} 
@@ -104,6 +82,15 @@
 \usepackage{tabularx}
 
 
+% Captions and Hyperreferncing / URL
+\usepackage[figurename=Fig.,labelsep=space,tableposition=top]{caption} % Caption styling
+
+\usepackage{url}
+
+\def\url@leostyle{%
+  \@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\small\ttfamily}}}
+\urlstyle{leo}
+
 % Bibliography and References
 \usepackage{cleveref}
 \usepackage[square, sort, numbers, authoryear]{natbib}
@@ -126,6 +113,9 @@
 \pdfglyphtounicode{f_f_l}{FB04}
 \pdfglyphtounicode{f_i}{FB01}
 \pdfgentounicode=1
+
+
+
 
 
 %******************************************************* %

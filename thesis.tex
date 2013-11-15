@@ -2,7 +2,25 @@
 
 %Enable Print or Online version for appropriate referencing styles and links, and page layout support for both oneside and twoside layout especially for binding (comment line below to use Online version)
 
-\PrintVersion
+%\newcommand{\PrintVersion}{}
+
+% *********************** Print/Online Version Layout **************************** %
+
+\ifdefined\PrintVersion
+	\usepackage{hyperref}
+	\message{This is the print version}
+	\hypersetup{plainpages=false, pdfstartview=FitH, unicode=true, pdftoolbar=true, pdfmenubar=true, pdfpagelayout=useoutlines, bookmarksopen=true, bookmarksnumbered=true, breaklinks=true, linktocpage, colorlinks=true, linkcolor=black, urlcolor=black, citecolor=black, anchorcolor=black}
+	\if@twoside \usepackage[hmarginratio=3:2]{geometry} %Two sided margin 
+	\else \usepackage[hmarginratio=3:2]{geometry} % Single side margin
+	\fi
+\else
+	\usepackage{hyperref}
+	\message{This is the online version}
+	\hypersetup{plainpages=false, pdfstartview=FitH, unicode=true, pdftoolbar=true, pdfmenubar=true, pdfpagelayout=useoutlines, bookmarksopen=true, bookmarksnumbered=true, breaklinks=true, linktocpage, colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue, anchorcolor=green}
+	\if@twoside \usepackage[hmarginratio=1:1]{geometry} %Two sided margin 
+	\else \usepackage[hmarginratio=1:1]{geometry} % Single side margin
+	\fi
+\fi
 
 % ***************************** Title ******************************************** %
 % PhD Thesis Title, Author, Degree, etc
