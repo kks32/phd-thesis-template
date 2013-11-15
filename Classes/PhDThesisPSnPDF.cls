@@ -31,6 +31,25 @@
 \fi%
 \fi
 
+% Defines a print mode / online mode to define page-layout and hyperrefering 
+\newif\if@printmode\@printmodefalse
+\DeclareOption{printmode}{\@printmodetrue}
+\ProcessOptions\relax
+\if@printmode
+	\usepackage{hyperref}
+	\message{This is the print version}
+	\hypersetup{plainpages=false, pdfstartview=FitH, unicode=true, pdftoolbar=true, pdfmenubar=true, pdfpagelayout=useoutlines, bookmarksopen=true, bookmarksnumbered=true, breaklinks=true, linktocpage, colorlinks=true, linkcolor=black, urlcolor=black, citecolor=black, anchorcolor=black}
+	\if@twoside \usepackage[hmarginratio=3:2]{geometry} %Two sided margin 
+	\else \usepackage[hmarginratio=3:2]{geometry} % Single side margin
+	\fi
+\else
+	\usepackage{hyperref}
+	\message{This is the online version}
+	\hypersetup{plainpages=false, pdfstartview=FitH, unicode=true, pdftoolbar=true, pdfmenubar=true, pdfpagelayout=useoutlines, bookmarksopen=true, bookmarksnumbered=true, breaklinks=true, linktocpage, colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue, anchorcolor=green}
+	\if@twoside \usepackage[hmarginratio=1:1]{geometry} %Two sided margin 
+	\else \usepackage[hmarginratio=1:1]{geometry} % Single side margin
+	\fi
+\fi
 %--------------------- packages -------------------------------
 
 % Layout, Formatting and Headers
@@ -50,7 +69,7 @@
 % Conditional Statements
 \usepackage{ifthen}   % Used in LaTeX Class files for conditional statements
 \usepackage{ifpdf}    % Check for pdfLaTeX
-\usepackage{etex}
+
 
 % Table of Contents and Appendix
 \usepackage{tocbibind} % add Bibliography, List of figures and tables to contents
