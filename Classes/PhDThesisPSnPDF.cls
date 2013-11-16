@@ -58,7 +58,6 @@
 	\hypersetup{
           plainpages=false, 
           pdfstartview=FitV,
-          unicode=true, 
           pdftoolbar=true, 
           pdfmenubar=true,
           bookmarksopen=true,
@@ -73,9 +72,9 @@
         }
 
 	\if@twoside \RequirePackage[hmarginratio=3:2]{geometry} % Odd and Even side Margin staggering for binding
-        \hypersetup{pdfpagelayout=TwoPageRight}
+	       \hypersetup{pdfpagelayout=TwoPageRight}
 	\else \RequirePackage[hmarginratio=3:2]{geometry} % Single side print margin for binding
-        \hypersetup{pdfpagelayout=OneColumn}
+    	   \hypersetup{pdfpagelayout=OneColumn}
 	\fi
         
 \else
@@ -84,7 +83,6 @@
 	\hypersetup{
           plainpages=false,
           pdfstartview=FitV, 
-          unicode=true,
           pdftoolbar=true, 
           pdfmenubar=true,
           bookmarksopen=true,
@@ -98,11 +96,11 @@
           anchorcolor=green}
 
 	\RequirePackage[hmarginratio=1:1]{geometry} % No Margin staggering on Odd and Even side 
-        \hypersetup{pdfpagelayout=OneColumn}
+    \hypersetup{pdfpagelayout=OneColumn}
 \fi
 
 % index - puts the index at the end of the thesis.
-%
+
 \newif\ifCU@index\CU@indexfalse
 \DeclareOption{index}{\CU@indextrue}
 \ProcessOptions\relax
@@ -193,14 +191,6 @@
 
 
 %******************************************************* %
-%A4 settings
-\ifpdf
-   \pdfpageheight=297mm
-   \pdfpagewidth=210mm
-\else
-   \setlength{\paperheight}{297mm}
-   \setlength{\paperwidth}{210mm}
-\fi
 
 
 % Setting PDF Meta-Data
@@ -273,13 +263,13 @@
 \fancyfoot{}
 
 
-\renewcommand{\headrulewidth}{0.5pt}
-\renewcommand{\footrulewidth}{0pt}
-\addtolength{\headheight}{0.5pt}
-\fancypagestyle{plain}{
-  \fancyhead{}
-  \renewcommand{\headrulewidth}{0pt}
-}
+%\renewcommand{\headrulewidth}{0.5pt}
+%\renewcommand{\footrulewidth}{0pt}
+%\addtolength{\headheight}{0.5pt}
+%\fancypagestyle{plain}{
+%  \fancyhead{}
+%  \renewcommand{\headrulewidth}{0pt}
+%}
 
 
 \newcommand{\submissiontext}{{A thesis submitted for the degree of}}
