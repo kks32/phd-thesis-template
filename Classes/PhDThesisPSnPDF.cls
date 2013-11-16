@@ -201,7 +201,7 @@
 }
 
 
-\newcommand{\submittedtext}{{A thesis submitted for the degree of}}
+\newcommand{\submissiontext}{{A thesis submitted for the degree of}}
 
 
 % These macros are used to declare arguments needed for the
@@ -264,7 +264,7 @@
 \vspace*{1ex}
     {{\@university} \par}
 \vspace*{25mm}
-    {{\submittedtext} \par}
+    {{\submissiontext} \par}
 \vspace*{1ex}
     {\it {\@degree} \par} 
 \vspace*{2ex}
@@ -396,7 +396,7 @@
     {{\@collegeordept} \par}
     {{\@university} \par}
 \vspace*{1ex}
-    {{\it \submittedtext} \par}
+    {{\it \submissiontext} \par}
     {\it {\@degree} \par}
 \vspace*{2ex}
     {\@degreedate}}

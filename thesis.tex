@@ -1,24 +1,45 @@
 \documentclass[a4paper,11pt,twoside,printmode]{Classes/PhDThesisPSnPDF}
-% To enable print mode include [printmode] in the options above to modify page-layout and hyperrefering stlyes
-% \documentclass[a4paper,11pt,twoside,printmode]{Classes/PhDThesisPSnPDF}
+% To enable print mode include [printmode] in the options above
+% This modifies the page-layout (margins) and hyperrefering styles 
 
-% ***************************** Title ******************************************** %
-% PhD Thesis Title, Author, Degree, etc
-\title{Multiscale Modelling of Granular Flows} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Thesis Information & Meta-data
+%% PhD Thesis Title, Author, Degree, etc
+%%
+
+%% The title of the thesis
+\title{Multiscale Modelling of \\
+ Granular Flows} 
+
+%% The full name of the author
 \author{Krishna Kumar}
+
+%% Department (eg. Department of Engineering, Maths, Physics)
 \dept{Department of Engineering}
+
+%% University and Crest
 \university{University of Cambridge}
 \crest{\includegraphics[width=0.25\textwidth]{Figs/University_Crest}}
-%\renewcommand{\submittedtext}{change the default text here if needed}
+
+%% You can redefine the submission text:
+%\renewcommand{\submissiontext}{change the default text here if needed}
+
+%% Full title of the Degree 
 \degree{Doctor of Philosophy}
+ 
+%% College affiliation (optional)
 \college{King's College}
+
+%% Submission date
 \degreedate{Yet to be decided} 
-\subject{GeoMechanics} %To fill PDF metadata
-\keywords{{Material Point Method} {Lattice Boltzmann} {Multi-scale} {Multiphase} {Granular Flows}} %To fill PDF metadata
+
+%% Meta information
+\subject{GeoMechanics}
+\keywords{{Material Point Method} {Lattice Boltzmann} {Multi-scale} {Multiphase} {Granular Flows}} 
 
 
-%Set spacing
-\onehalfspace
+% Uncomment to set spacing as 1.5 line spacing
+% \onehalfspace
 
 %**************************Front Matter********************************************* %
 \begin{document}
@@ -73,8 +94,8 @@
 %*******************************Bibliography******************************************%
 
 \begin{spacing}{0.9}
-%\bibliographystyle{apalike}
-\bibliographystyle{plainnat}
+\bibliographystyle{apalike}
+%\bibliographystyle{plainna}
 \renewcommand{\bibname}{References} % changes default name Bibliography to References
 \cleardoublepage
 \bibliography{References/References}
