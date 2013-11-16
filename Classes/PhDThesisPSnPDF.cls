@@ -145,14 +145,11 @@
 \fi
 
 % Clear Header Style on the Last Empty Odd pages
-%\makeatletter
-\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else%
+\renewcommand{\cleardoublepage}{\clearpage\if@twoside \ifodd\c@page\else%
 	\hbox{}%
-	\thispagestyle{empty}%              % Empty header styles
+	\thispagestyle{empty}  % Empty header styles
 	\newpage%
 	\if@twocolumn\hbox{}\newpage\fi\fi\fi}
-%\makeatother
-
 
 
 
