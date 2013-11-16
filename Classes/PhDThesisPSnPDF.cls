@@ -262,7 +262,7 @@
 \fancyhead[RE]{\leftmark}
 \fancyfoot{}
 
-
+\setlength{\headheight}{14pt}
 %\renewcommand{\headrulewidth}{0.5pt}
 %\renewcommand{\footrulewidth}{0pt}
 %\addtolength{\headheight}{0.5pt}
