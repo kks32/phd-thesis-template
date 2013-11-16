@@ -162,9 +162,11 @@
 \usepackage{libertine}
 \input{glyphtounicode}
 \pdfglyphtounicode{f_f}{FB00}
+\pdfglyphtounicode{f_i}{FB01}
+\pdfglyphtounicode{f_l}{FB02}
 \pdfglyphtounicode{f_f_i}{FB03}
 \pdfglyphtounicode{f_f_l}{FB04}
-\pdfglyphtounicode{f_i}{FB01}
+
 \pdfgentounicode=1
 
 
@@ -298,6 +300,8 @@
        \@restonecolfalse\if@twocolumn\@restonecoltrue\onecolumn
        \else\newpage\fi}
        {\if@restonecol\twocolumn\else\newpage\fi}
+
+
 
 %define title page layout
 \renewcommand{\maketitle}{%
