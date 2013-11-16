@@ -32,6 +32,7 @@ if [ $1 = $clean ]; then
 	rm -f *.out*
 	rm -f *.pdf
 	rm -f *.nlo
+	rm -f *.dvi
 	echo "Cleaning complete!"
 	exit
 elif [ $1 = $compile ]; then

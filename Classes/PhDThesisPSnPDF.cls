@@ -79,6 +79,13 @@
           anchorcolor=green}
 	\RequirePackage[hmarginratio=1:1]{geometry} % No Margin staggering on Odd and Even side 
 \fi
+
+% index - puts the index at the end of the thesis.
+%
+\newif\ifCU@index\CU@indexfalse
+\DeclareOption{index}{\CU@indextrue}
+\ProcessOptions\relax
+
 %--------------------- packages -------------------------------
 
 % Layout, Formatting and Headers
@@ -184,6 +191,17 @@
 	\if@twocolumn\hbox{}\newpage\fi\fi\fi}
 
 
+% Create the index
+\ifCU@index
+    \RequirePackage{makeidx}
+    \makeindex
+    \newcommand{\printthesisindex}{
+        \cleardoublepage
+        \phantomsection
+        \printindex}
+\else
+    \newcommand{\printthesisindex}{}
+\fi
 
 % Nomenclature
 \usepackage{nomencl}

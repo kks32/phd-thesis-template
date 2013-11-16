@@ -14,3 +14,9 @@
 *.d
 *.btmp
 *.fls
+*.dvi
+*.glo
+*.idx
+*.ist
+*.ilg
+*.ind
