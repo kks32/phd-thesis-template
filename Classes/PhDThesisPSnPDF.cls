@@ -38,14 +38,45 @@
 \if@printmode
 	\RequirePackage{hyperref}
 	% For Print version
-	\hypersetup{plainpages=false, pdfstartview=FitV, unicode=true, pdftoolbar=true, pdfmenubar=true, pdfpagelayout=useoutlines, bookmarksopen=true, bookmarksnumbered=true, breaklinks=true, linktocpage, colorlinks=true, linkcolor=black, urlcolor=black, citecolor=black, anchorcolor=black}
+	\hypersetup{
+          plainpages=false, 
+          pdfstartview=FitV,
+          unicode=true, 
+          pdftoolbar=true, 
+          pdfmenubar=true,
+          pdfpagelayout=useoutlines,
+          bookmarksopen=true,
+          bookmarksnumbered=true, 
+          breaklinks=true, 
+          linktocpage, 
+          colorlinks=true, 
+          linkcolor=black,
+          urlcolor=black, 
+          citecolor=black, 
+          anchorcolor=black
+        }
 	\if@twoside \RequirePackage[hmarginratio=3:2]{geometry} % Odd and Even side Margin staggering for binding
 	\else \RequirePackage[hmarginratio=3:2]{geometry} % Single side print margin for binding
 	\fi
 \else
 	\RequirePackage{hyperref}
 	% For PDF Online version
-	\hypersetup{plainpages=false, pdfstartview=FitV, unicode=true, pdftoolbar=true, pdfmenubar=true, pdfpagelayout=useoutlines, bookmarksopen=true, bookmarksnumbered=true, breaklinks=true, linktocpage, colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue, anchorcolor=green}
+	\hypersetup{
+          plainpages=false,
+          pdfstartview=FitV, 
+          unicode=true,
+          pdftoolbar=true, 
+          pdfmenubar=true,
+          pdfpagelayout=useoutlines, 
+          bookmarksopen=true,
+          bookmarksnumbered=true,
+          breaklinks=true,
+          linktocpage, 
+          colorlinks=true, 
+          linkcolor=blue, 
+          urlcolor=blue,
+          citecolor=blue, 
+          anchorcolor=green}
 	\RequirePackage[hmarginratio=1:1]{geometry} % No Margin staggering on Odd and Even side 
 \fi
 %--------------------- packages -------------------------------
