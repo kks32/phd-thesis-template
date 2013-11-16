@@ -36,17 +36,17 @@
 \DeclareOption{printmode}{\@printmodetrue}
 \ProcessOptions\relax
 \if@printmode
-	\usepackage{hyperref}
+	\RequirePackage{hyperref}
 	% For Print version
 	\hypersetup{plainpages=false, pdfstartview=FitV, unicode=true, pdftoolbar=true, pdfmenubar=true, pdfpagelayout=useoutlines, bookmarksopen=true, bookmarksnumbered=true, breaklinks=true, linktocpage, colorlinks=true, linkcolor=black, urlcolor=black, citecolor=black, anchorcolor=black}
-	\if@twoside \usepackage[hmarginratio=3:2]{geometry} % Odd and Even side Margin staggering for binding
-	\else \usepackage[hmarginratio=3:2]{geometry} % Single side print margin for binding
+	\if@twoside \RequirePackage[hmarginratio=3:2]{geometry} % Odd and Even side Margin staggering for binding
+	\else \RequirePackage[hmarginratio=3:2]{geometry} % Single side print margin for binding
 	\fi
 \else
-	\usepackage{hyperref}
+	\RequirePackage{hyperref}
 	% For PDF Online version
 	\hypersetup{plainpages=false, pdfstartview=FitV, unicode=true, pdftoolbar=true, pdfmenubar=true, pdfpagelayout=useoutlines, bookmarksopen=true, bookmarksnumbered=true, breaklinks=true, linktocpage, colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue, anchorcolor=green}
-	\usepackage[hmarginratio=1:1]{geometry} % No Margin staggering on Odd and Even side 
+	\RequirePackage[hmarginratio=1:1]{geometry} % No Margin staggering on Odd and Even side 
 \fi
 %--------------------- packages -------------------------------
 
@@ -64,25 +64,25 @@
 
 
 % Conditional Statements
-\usepackage{ifthen}   % Used in LaTeX Class files for conditional statements
-\usepackage{ifpdf}    % Check for pdfLaTeX
+\RequirePackage{ifthen}   % Used in LaTeX Class files for conditional statements
+\RequirePackage{ifpdf}    % Check for pdfLaTeX
 
 
 % Table of Contents and Appendix
-\usepackage{tocbibind} % add Bibliography, List of figures and tables to contents
-\usepackage{appendix} % add appendix
+\RequirePackage{tocbibind} % add Bibliography, List of figures and tables to contents
+\RequirePackage{appendix} % add appendix
 
 
 % Graphics and Figures
-\usepackage[usenames, dvipsnames]{color} 
-\usepackage{epstopdf} % Convert eps figures to pdf
+\RequirePackage[usenames, dvipsnames]{color} 
+\RequirePackage{epstopdf} % Convert eps figures to pdf
 \ifpdf % Graphicx package for figures
-    \usepackage[pdftex]{graphicx}
+    \RequirePackage[pdftex]{graphicx}
     \DeclareGraphicsExtensions{.png, .jpg, .pdf}
     \pdfcompresslevel=9
 \else
-    %\usepackage{epsfig}
-    \usepackage{graphicx}
+    %\RequirePackage{epsfig}
+    \RequirePackage{graphicx}
     \DeclareGraphicsExtensions{.eps, .ps}
 \fi
 \usepackage{rotating}
@@ -100,7 +100,7 @@
 
 % Captions and Hyperreferncing / URL
 \usepackage[figurename=Fig.,labelsep=space,tableposition=top]{caption} % Caption styling
-\usepackage{url}
+\RequirePackage{url}
 % Redefining urlstyle to use smaller fontsize in References with URLs
 \def\url@leostyle{%
  \@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\small\ttfamily}}}
@@ -118,9 +118,9 @@
 \usepackage{siunitx}
 
 %To copy ligatures and Fonts 
-\usepackage{textcomp}
-\usepackage[ansinew]{inputenc}
-\usepackage[T1]{fontenc}
+\RequirePackage{textcomp}
+\RequirePackage[ansinew]{inputenc}
+\RequirePackage[T1]{fontenc}
 \usepackage{libertine}
 \input{glyphtounicode}
 \pdfglyphtounicode{f_f}{FB00}
