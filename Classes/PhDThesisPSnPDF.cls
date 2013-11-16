@@ -208,22 +208,41 @@
 
 % These macros are used to declare arguments needed for the
 % construction of the title page and other preamble.
+
 % The year and term the degree will be officially conferred
-\def\degreedate#1{\gdef\@degreedate{#1}}
+\newcommand{\@degreedate}{}
+\newcommand{\degreedate}[1]{\renewcommand{\@degreedate}{#1}}
+
 % The full (unabbreviated) name of the degree
-\def\degree#1{\gdef\@degree{#1}}
+\newcommand{\@degree}{}
+\newcommand{\degree}[1]{\renewcommand{\@degree}{#1}}
+
 % The name of your department(eg. Engineering, Maths, Physics)
-\def\dept#1{\gdef\@dept{#1}}
+\newcommand{\@dept}{}
+\newcommand{\dept}[1]{\renewcommand{\@dept}{#1}}
+
 % The name of your college (eg. King's)
-\def\college#1{\gdef\@college{#1}}
+\newcommand{\@college}{}
+\newcommand{\college}[1]{\renewcommand{\@college}{#1}}
+
 % The name of your University
-\def\university#1{\gdef\@university{#1}}
+\newcommand{\@university}{}
+\newcommand{\university}[1]{\renewcommand{\@university}{#1}}
+
 % Defining the crest
-\def\crest#1{\gdef\@crest{#1}}
-% Defining the Subject
-\def\subject#1{\gdef\@subject{#1}}
-% Defining the Keywords
-\def\keywords#1{\gdef\@keywords{#1}}
+\newcommand{\@crest}{}
+\newcommand{\crest}[1]{\renewcommand{\@crest}{#1}}
+
+
+% keywords (These keywords will appear in the PDF meta-information
+% called `pdfkeywords`.)
+\newcommand{\@keywords}{}
+\newcommand{\keywords}[1]{\renewcommand{\@keywords}{#1}}
+
+% subjectline (This subject will appear in the PDF meta-information
+% called `pdfsubject`.)
+\newcommand{\@subject}{}
+\newcommand{\subject}[1]{\renewcommand{\@subject}{#1}}
 
 
 
