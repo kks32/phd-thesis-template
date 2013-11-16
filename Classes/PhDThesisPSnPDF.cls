@@ -6,6 +6,7 @@
 %\NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{PhDThesisPSnPDF}[2013/11/14 version 1.0]
 %-------------------------- initial code -----------------------
+
 \newif\ifCU@bookmode
 \CU@bookmodetrue
 
@@ -17,7 +18,7 @@
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{book}}%
 \ProcessOptions\relax%
 \ifx\pdfoutput\undefined%
-   \LoadClass[dvips,fleqn,openright]{book}%
+   \LoadClass[a4paper,11pt,dvips,fleqn,openright]{book}%
 \else%
    \LoadClass[pdftex,fleqn,openright]{book}%
 \fi%
@@ -30,6 +31,22 @@
    \LoadClass[pdftex, a4paper]{report}%
 \fi%
 \fi
+
+% Set pdfpage and dvips paper sizes. Conditional tests are similar to that
+% of ifpdf.sty. Retain within {} to ensure tested macros are never altered,
+% even if only effect is to set them to \relax.
+% if \pdfoutput is undefined or equal to relax, output a dvips special
+{\@ifundefined{pdfoutput}{\AtBeginDvi{\special{papersize=\paperwidth,\paperheight}}}{%
+% pdfoutput is defined and not equal to \relax
+% check for pdfpageheight existence just in case someone sets pdfoutput
+% under non-pdflatex. If exists, set them regardless of value of \pdfoutput.
+\@ifundefined{pdfpageheight}{\relax}{\global\pdfpagewidth\paperwidth
+\global\pdfpageheight\paperheight}%
+% if using \pdfoutput=0 under pdflatex, send dvips papersize special
+\ifcase\pdfoutput
+\AtBeginDvi{\special{papersize=\paperwidth,\paperheight}}%
+\else
+\fi}}
 
 % Defines a print mode / online mode to define page-layout and hyperrefering 
 \newif\if@printmode\@printmodefalse
@@ -44,7 +61,6 @@
           unicode=true, 
           pdftoolbar=true, 
           pdfmenubar=true,
-          pdfpagelayout=useoutlines,
           bookmarksopen=true,
           bookmarksnumbered=true, 
           breaklinks=true, 
@@ -55,9 +71,13 @@
           citecolor=black, 
           anchorcolor=black
         }
+
 	\if@twoside \RequirePackage[hmarginratio=3:2]{geometry} % Odd and Even side Margin staggering for binding
+        \hypersetup{pdfpagelayout=TwoPageRight}
 	\else \RequirePackage[hmarginratio=3:2]{geometry} % Single side print margin for binding
+        \hypersetup{pdfpagelayout=OneColumn}
 	\fi
+        
 \else
 	\RequirePackage{hyperref}
 	% For PDF Online version
@@ -67,7 +87,6 @@
           unicode=true,
           pdftoolbar=true, 
           pdfmenubar=true,
-          pdfpagelayout=useoutlines, 
           bookmarksopen=true,
           bookmarksnumbered=true,
           breaklinks=true,
@@ -77,7 +96,9 @@
           urlcolor=blue,
           citecolor=blue, 
           anchorcolor=green}
+
 	\RequirePackage[hmarginratio=1:1]{geometry} % No Margin staggering on Odd and Even side 
+        \hypersetup{pdfpagelayout=OneColumn}
 \fi
 
 % index - puts the index at the end of the thesis.
@@ -172,6 +193,15 @@
 
 
 %******************************************************* %
+%A4 settings
+\ifpdf
+   \pdfpageheight=297mm
+   \pdfpagewidth=210mm
+\else
+   \setlength{\paperheight}{297mm}
+   \setlength{\paperwidth}{210mm}
+\fi
+
 
 % Setting PDF Meta-Data
 \ifpdf
