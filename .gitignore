@@ -20,3 +20,5 @@
 *.ist
 *.ilg
 *.ind
+*cookie*
+thesis.ps
