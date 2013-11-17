@@ -39,7 +39,7 @@
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{book}}%
 \ProcessOptions\relax%
 \ifx\pdfoutput\undefined%
-   \LoadClass[a4paper,11pt,dvips,fleqn,openright]{book}%
+   \LoadClass[dvips,fleqn,openright]{book}%
 \else%
    \LoadClass[pdftex,fleqn,openright]{book}%
 \fi%
@@ -228,7 +228,6 @@
 \setlength{\headheight}{14pt}
 %\renewcommand{\headrulewidth}{0.5pt}
 %\renewcommand{\footrulewidth}{0pt}
-%\addtolength{\headheight}{0.5pt}
 \fancypagestyle{plain}{
   \fancyhead{}
   \renewcommand{\headrulewidth}{0pt}
@@ -316,6 +315,8 @@
 % ********************************************************************************
 
 % ********************************** Title Page *********************************
+
+
 \renewcommand{\maketitle}{%
 %Can use the line below to remove the blank page after the title page
 %\setcounter{page}{0}  % Sasa Tomic
@@ -335,6 +336,7 @@
 \vspace*{2ex}
 	{\@degreedate}}
 \end{center}
+
 %\large
 %\begin{minipage}{0.5\textwidth}
 %\flushleft \@college
@@ -352,35 +354,26 @@
 % own page and is set out in verse format.
 
 \newenvironment{dedication}
-{\cleardoublepage
-  \begin{alwayssingle}
-  \pagestyle{empty}
-  \begin{center}
-  \vspace*{1.5cm}
-  {\LARGE }
-  \end{center}
-  \vspace{0.5cm}
-  \begin{quote} \begin{center}}
-{\end{center} \end{quote} \end{alwayssingle}}
+{
+\cleardoublepage
+\vspace*{0.2\textheight}
+\thispagestyle{empty}
+\centering
+}
 
 
 % ******************************** Declaration **********************************
 % The declaration environment puts a large, bold, centered 
-% "Acknowledgements" label at the top of the page. The acknowledgements
+% "Declaration" label at the top of the page. The acknowledgements
 % themselves appear in a quote environment, i.e. tabbed in at both sides, and
 % on its own page.
 
 \newenvironment{declaration}
-{\cleardoublepage
+{
+\cleardoublepage
 \pagestyle{empty}
-\begin{alwayssingle}
-\begin{center}
-\vspace*{1.5cm}
-{\Large \bfseries Declaration}
-\end{center}
-\vspace{0.5cm}
-\begin{quote}}
-{\end{quote}\end{alwayssingle}}
+\chapter*{\centering Declaration}
+}
 
 
 
@@ -404,22 +397,6 @@
 {\end{quote}\end{alwayssingle}}
 
 
-% The acknowledgementslong environment puts a large, bold, centered 
-% "Acknowledgements" label at the top of the page. The acknowledgement itself 
-% does not appears in a quote environment so you can get more in.
-
-\newenvironment{acknowledgementslong}
-{\cleardoublepage
-\pagestyle{empty}
-\begin{alwayssingle}
-\begin{center}
-\vspace*{1.5cm}
-{\Large \bfseries Acknowledgements}
-\end{center}
-\vspace{0.5cm}\begin{quote}}
-{\end{quote}\end{alwayssingle}}
-
-
 % ******************************** Abstract ***********************************
 % The abstract environment puts a large, bold, centered "Abstract" label at
 % the top of the page. The abstract itself appears in a quote environment,
@@ -434,17 +411,6 @@
    \begin{quote}}
 {\end{quote}\end{alwayssingle}}
 
-%The abstractlong environment puts a large, bold, centered "Abstract" label at
-%the top of the page. The abstract itself does not appears in a quote
-%environment so you can get more in.
-
-\newenvironment{abstractslong} {\cleardoublepage \begin{alwayssingle} \pagestyle{empty}
-  \begin{center}
-  \vspace*{1.5cm}
-  {\Large \bfseries  Abstract}
-  \end{center}
-  \vspace{0.5cm} \begin{quote}}
-{\end{quote}\end{alwayssingle}}
 
 
 %The abstractseparate environment is for running of a page with the abstract
