@@ -65,21 +65,22 @@ It also supports some custom options:
 ## Custom Settings
 
 *   The depth of table of contents can be set using: 
-		\setcounter{secnumdepth}{3}
-		\setcounter{tocdepth}{3}
-	a depth of [3] indicates to a level of `\subsubsection` or #.#.#.#. Default set as 2.
+		`\setcounter{secnumdepth}{3}`
+		`\setcounter{tocdepth}{3}`
+    a depth of [3] indicates to a level of `\subsubsection` or #.#.#.#. Default set as 2.
 
 *   To hide sections from appearing in TOC use: `\tochide\section{Section name}` in your TeX files
 
 *   To restrict the length of the figure caption in List of figures use in `preamble.tex`:
-		\caption[Caption that you want to appear in TOC]{Actual caption of the figure}
-		\section[short]{title}
+		`\caption[Caption that you want to appear in TOC]{Actual caption of the figure}`
+		`\section[short]{title}`
 
 *   Define custom caption style for figure and table caption in `preamble.tex` using:
-		\RequirePackage[small,bf,figurename=Fig.,labelsep=space,tableposition=top]{caption}
+		`\RequirePackage[small,bf,figurename=Fig.,labelsep=space,tableposition=top]{caption}`
 
 *   Bibliography with Author-Year Citation in `preamble.tex`:
-		\RequirePackage[round, sort, numbers, authoryear]{natbib}
+		`\RequirePackage[round, sort, numbers, authoryear]{natbib}`
+
 -------------------------------------------------------------------------------
 
 # Troubleshooting
