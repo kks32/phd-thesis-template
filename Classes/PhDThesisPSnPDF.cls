@@ -2,7 +2,7 @@
 %%
 %% Class ``PhD Thesis PSnPDF''
 %%
-%% Version: v0.1
+%% Version: v1.0
 %% Authors: Krishna Kumar
 %% Date: 2013/11/16
 %% Based on: King's LaTeX workshop by Krishna, CUED V1.1 Template by Harish Banderi
@@ -13,8 +13,8 @@
 
 % ******************** Class Identification *********************
 %\NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{PhDThesisPSnPDF}[2013/11/14 version 1.0]
-
+\ProvidesClass{PhDThesisPSnPDF}[2013/11/14 version 1.0 by Krishna Kumar]
+\typeout{https://github.com/kks32/phd-thesis-template/}
 % ***************************************************************
 % ********************** Class Definition ***********************
 
@@ -53,11 +53,11 @@
 
 
 
-% Set pdfpage and dvips paper sizes. Conditional tests are similar to that
-% of ifpdf.sty. Retain within {} to ensure tested macros are never altered,
-% even if only effect is to set them to \relax.
+% ************** Set pdfpage and dvips paper sizes ***************
 % if \pdfoutput is undefined or equal to relax, output a dvips special
-{\@ifundefined{pdfoutput}{\AtBeginDvi{\special{papersize=\paperwidth,\paperheight}}}{%
+\@ifundefined{pdfoutput}{
+  \AtBeginDvi{\special{papersize=\paperwidth,\paperheight}}
+}
 % pdfoutput is defined and not equal to \relax
 % check for pdfpageheight existence just in case someone sets pdfoutput
 % under non-pdflatex. If exists, set them regardless of value of \pdfoutput.
@@ -67,7 +67,8 @@
 \ifcase\pdfoutput
 \AtBeginDvi{\special{papersize=\paperwidth,\paperheight}}%
 \else
-\fi}}
+\fi
+
 
 
 % Defines a print mode / online mode to define page-layout and hyperrefering 
@@ -91,10 +92,14 @@
           anchorcolor=black
         }
 
-	\if@twoside \RequirePackage[hmarginratio=3:2]{geometry} % Odd and Even side Margin staggering for binding
-	       \hypersetup{pdfpagelayout=TwoPageRight}
-	\else \RequirePackage[hmarginratio=3:2]{geometry} % Single side print margin for binding
-    	   \hypersetup{pdfpagelayout=OneColumn}
+	\if@twoside 
+        % Odd and Even side Margin staggering for binding and set viewmode for PDF
+              \RequirePackage[hmarginratio=3:2]{geometry}
+	      \hypersetup{pdfpagelayout=TwoPageRight}
+	\else 
+         % Single side print margin for binding and set view mode for PDF
+              \RequirePackage[hmarginratio=3:2]{geometry}
+    	      \hypersetup{pdfpagelayout=OneColumn}
 	\fi
         
 \else
@@ -114,8 +119,8 @@
           urlcolor=blue,
           citecolor=blue, 
           anchorcolor=green}
-
-	\RequirePackage[hmarginratio=1:1]{geometry} % No Margin staggering on Odd and Even side 
+        % No Margin staggering on Odd and Even side 
+	\RequirePackage[hmarginratio=1:1]{geometry} 
     \hypersetup{pdfpagelayout=OneColumn}
 \fi
 
@@ -125,14 +130,9 @@
 % Layout, Formatting and Headers
 
 \def\pdfshellescape{1}
-\usepackage{lscape} % Supports Landscape Layout
-\usepackage{setspace} % Define line spacing in para
-\usepackage{fancyhdr} % Define custom header
-\usepackage[perpage]{footmisc} %Range of footnote options 
-
-
-% Algorithms and Pseudocode
-\usepackage{algpseudocode} % Algorithmicx package support for algorithms and pseudocode
+\RequirePackage{lscape} % Supports Landscape Layout
+\RequirePackage{setspace} % Define line spacing in para
+\RequirePackage{fancyhdr} % Define custom header
 
 
 % Conditional Statements
@@ -143,7 +143,6 @@
 % Table of Contents and Appendix
 \RequirePackage{tocbibind} % add Bibliography, List of figures and tables to contents
 \RequirePackage{appendix} % add appendix
-
 
 % Graphics and Figures
 \RequirePackage[usenames, dvipsnames]{color} 
@@ -157,43 +156,19 @@
     \RequirePackage{graphicx}
     \DeclareGraphicsExtensions{.eps, .ps}
 \fi
-\usepackage{rotating}
-\usepackage{subfigure}
-\usepackage{wrapfig}
-\usepackage{float}
 
 
-% Table
-\usepackage{longtable}
-\usepackage{multicol}
-\usepackage{multirow}
-\usepackage{tabularx}
-
-
-% Captions and Hyperreferncing / URL
-\usepackage[figurename=Fig.,labelsep=space,tableposition=top]{caption} % Caption styling
+% URL Package and Definition
 \RequirePackage{url}
 % Redefining urlstyle to use smaller fontsize in References with URLs
 \def\url@leostyle{%
  \@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\small\ttfamily}}}
 \urlstyle{leo}
 
-% Bibliography and References
-\usepackage{cleveref}
-\usepackage[square, sort, numbers, authoryear]{natbib}
-
-
-% Math and SI Units
-\usepackage{amsfonts}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{siunitx}
-
 %To copy ligatures and Fonts 
 \RequirePackage{textcomp}
 \RequirePackage[ansinew]{inputenc}
 \RequirePackage[T1]{fontenc}
-\usepackage{libertine}
 \input{glyphtounicode}
 \pdfglyphtounicode{f_f}{FB00}
 \pdfglyphtounicode{f_i}{FB01}
