@@ -309,7 +309,12 @@
        \else\newpage\fi}
        {\if@restonecol\twocolumn\else\newpage\fi}
 
-
+\newcommand{\setsinglecolumn}{
+\if@twocolumn
+   \onecolumn
+\else
+\fi
+}
 
 
 % ********************************************************************************
@@ -358,6 +363,7 @@
 \newenvironment{dedication}
 {
 \cleardoublepage
+\setsinglecolumn
 \vspace*{0.2\textheight}
 \thispagestyle{empty}
 \centering
@@ -372,6 +378,7 @@
 
 \newenvironment{declaration}{
 \cleardoublepage
+\setsinglecolumn
 \chapter*{\centering \Large Declaration}
 \thispagestyle{empty}
 }
@@ -386,6 +393,7 @@
 
 \newenvironment{acknowledgements}{
 \cleardoublepage
+\setsinglecolumn
 \chapter*{\centering \Large Acknowlegements}
 \thispagestyle{empty}
 }
@@ -396,8 +404,9 @@
 % the top of the page. The abstract itself appears in a quote environment,
 % i.e. tabbed in at both sides, and on its own page.
 
-\newenvironment{abstracts} {
-\cleardoublepage 
+\newenvironment{abstract} {
+\cleardoublepage
+\setsinglecolumn 
 \chapter*{\centering \Large Abstract}
 \thispagestyle{empty}
 }
@@ -407,12 +416,12 @@
 %on including title and author etc as required to be handed in separately
 
 \newenvironment{abstractseparate} {\begin{alwayssingle} \pagestyle{empty}
-  \vspace*{-1in}
+%  \vspace*{-1in}
  \begin{center}
     { \Large {\bfseries {\@title}} \par}
     {{\large \vspace*{1ex} \@author} \par}
 {\large \vspace*{1ex}
-    {{\@collegeordept} \par}
+    {{\@dept} \par}
     {{\@university} \par}
 \vspace*{1ex}
     {{\it \submissiontext} \par}
