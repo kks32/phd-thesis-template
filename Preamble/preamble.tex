@@ -10,7 +10,7 @@
 % *********************Captions and Hyperreferncing / URL ***********************
 %% Captions: This makes captions of figures use a boldfaced small font. 
 %\RequirePackage[small,bf]{caption}
-\RequirePackage[small,bf,figurename=Fig.,labelsep=space,tableposition=top]{caption} 
+\RequirePackage[figurename=Fig.,labelsep=space,tableposition=top]{caption} 
 
 
 % ******************************** Footnote ***********************************
@@ -18,10 +18,11 @@
 
 
 % ************************** Graphics and figures *****************************
+% Subfigure (note: this must be included after the `caption` package). 
 %\usepackage{rotating}
-%\usepackage{subfigure}
 %\usepackage{wrapfig}
 %\usepackage{float}
+\usepackage{subfig}
 
 
 % ********************************* Table *************************************
@@ -52,11 +53,6 @@
 \RequirePackage[square, sort, numbers, authoryear]{natbib} %author year
 %\RequirePackage[numbers,sort&compress]{natbib} % numbered citation
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Subfigure (note: this must be included after the `caption` package). 
-%%\
-\usepackage{subfig}
 
 
 % ******************************************************************************
