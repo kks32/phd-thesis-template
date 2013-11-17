@@ -126,6 +126,8 @@
     \hypersetup{pdfpagelayout=OneColumn}
 \fi
 
+
+
 % ******************************************************************************
 % ******************************** Packages ************************************
 % ******************************************************************************
@@ -241,6 +243,7 @@
 	\newpage%
 	\if@twocolumn\hbox{}\newpage\fi\fi\fi}
 
+
 % ********************************* Roman Pages *********************************
 % The romanpages environment set the page numbering to lowercase roman one
 % for the contents and figures lists. It also resets
@@ -250,7 +253,6 @@
   \setcounter{page}{1}
   \renewcommand{\thepage}{\roman{page}}}
 {\newpage\renewcommand{\thepage}{\arabic{page}}}
-
 
 
 
@@ -323,12 +325,12 @@
 \begin{singlespace}
 \begin{center}
     { \Huge {\bfseries {\@title}} \par}
-{\large \vspace*{25mm} {{\@crest} \par} \vspace*{20mm}}
+    {\large \vspace*{25mm} {{\@crest} \par} \vspace*{20mm}}
     {{\Large \@author} \par}
-{\large \vspace*{1ex}
-    {{\@dept} \par}
-\vspace*{1ex}
-    {{\@university} \par}
+    {\large \vspace*{1ex}
+      {{\@dept} \par}
+      \vspace*{1ex}
+              {{\@university} \par}
 \vspace*{25mm}
     {{\submissiontext} \par}
 \vspace*{1ex}
@@ -368,13 +370,11 @@
 % themselves appear in a quote environment, i.e. tabbed in at both sides, and
 % on its own page.
 
-\newenvironment{declaration}
-{
+\newenvironment{declaration}{
 \cleardoublepage
-\chapter*{\centering Declaration}
+\chapter*{\centering \Large Declaration}
 \thispagestyle{empty}
 }
-
 
 
 
@@ -384,17 +384,11 @@
 % themselves appear in a quote environment, i.e. tabbed in at both sides, and
 % on its own page.
 
-\newenvironment{acknowledgements}
-{\cleardoublepage
-\pagestyle{empty}
-\begin{alwayssingle}
-\begin{center}
-\vspace*{1.5cm}
-{\Large \bfseries Acknowledgements}
-\end{center}
-\vspace{0.5cm}
-\begin{quote}}
-{\end{quote}\end{alwayssingle}}
+\newenvironment{acknowledgements}{
+\cleardoublepage
+\chapter*{\centering \Large Acknowlegements}
+\thispagestyle{empty}
+}
 
 
 % ******************************** Abstract ***********************************
@@ -402,15 +396,11 @@
 % the top of the page. The abstract itself appears in a quote environment,
 % i.e. tabbed in at both sides, and on its own page.
 
-\newenvironment{abstracts} {\cleardoublepage \begin{alwayssingle} \pagestyle{empty}
-  \begin{center}
-  \vspace*{1.5cm}
-  {\Large \bfseries  Abstract}
-  \end{center}
-  \vspace{0.5cm}
-   \begin{quote}}
-{\end{quote}\end{alwayssingle}}
-
+\newenvironment{abstracts} {
+\cleardoublepage 
+\chapter*{\centering \Large Abstract}
+\thispagestyle{empty}
+}
 
 
 %The abstractseparate environment is for running of a page with the abstract
