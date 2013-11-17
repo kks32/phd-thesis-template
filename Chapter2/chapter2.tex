@@ -53,3 +53,21 @@ If you have trouble viewing the document please contact Krishna \href{mailto:kks
 
 Etiam elementum tristique lacus, sit amet eleifend nibh eleifend sed \footnote{My footnote goes blah blah blah! \dots}. Maecenas dapibus augue ut urna malesuada, non tempor nibh mollis. Donec sed sem sollicitudin, convallis velit aliquam, tincidunt diam. In eu venenatis lorem. Aliquam non augue porttitor tellus faucibus porta et nec ante. Proin sodales, libero vitae commodo sodales, dolor nisi cursus magna, non tincidunt ipsum nibh eget purus. Nam rutrum tincidunt arcu, tincidunt vulputate mi sagittis id. Proin et nisi nec orci tincidunt auctor et porta elit. Praesent eu dolor ac magna cursus euismod. Integer non dictum nunc.
 
+
+\begin{landscape}
+
+\section*{Subplots}
+I can cite Wall-E (see Fig.~\ref{fig:WallE}) and Minions in despicable me (~\ref{fig:Minnion}) or I can cite the whole figure as (Fig.~\ref{fig:animations})
+
+
+\begin{figure}
+  \centering
+  \subfloat[A Tom and Jerry]{\label{fig:TomJerry}\includegraphics[width=0.3\textwidth]{Chapter2/Figs/TomandJerry.jpg}}                
+  \subfloat[A Wall-E]{\label{fig:WallE}\includegraphics[width=0.3\textwidth]{Chapter2/Figs/WallE.jpg}}
+  \subfloat[A Minion]{\label{fig:Minnion}\includegraphics[width=0.3\textwidth]{Chapter2/Figs/minion.jpg}}
+  \caption{Best Animations}
+  \label{fig:animations}
+\end{figure}
+
+
+\end{landscape}
