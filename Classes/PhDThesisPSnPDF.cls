@@ -371,8 +371,8 @@
 \newenvironment{declaration}
 {
 \cleardoublepage
-\pagestyle{empty}
 \chapter*{\centering Declaration}
+\thispagestyle{empty}
 }
 
 
