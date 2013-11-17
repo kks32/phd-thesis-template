@@ -15,6 +15,8 @@
 %\NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{PhDThesisPSnPDF}[2013/11/14 version 1.0 by Krishna Kumar]
 \typeout{https://github.com/kks32/phd-thesis-template/}
+
+
 % ***************************************************************
 % ********************** Class Definition ***********************
 
@@ -181,8 +183,11 @@
 \pdfglyphtounicode{f_f_l}{FB04}
 \pdfgentounicode=1
 
+% ********************************************************************************
+% **************************** Pre-defined Settings ******************************
+% ********************************************************************************
 
-% ****************************** Setting PDF Meta-Data **************************
+% ***************************** Setting PDF Meta-Data ****************************
 \ifpdf
 \AtBeginDocument{
   \hypersetup{
@@ -194,45 +199,14 @@
 }
 \fi
 
-% ****************Clear Header Style on the Last Empty Odd pages ****************
-\renewcommand{\cleardoublepage}{\clearpage\if@twoside \ifodd\c@page\else%
-	\hbox{}%
-	\thispagestyle{empty}  % Empty header styles
-	\newpage%
-	\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+
+% ***************************** TOC and Hide Sections ***************************
+\newcommand{\nocontentsline}[3]{}
+\newcommand{\tochide}[2]{\bgroup\let\addcontentsline=\nocontentsline#1{#2}\egroup}
 
 
-% ******************************* Create the index ******************************
-\ifCU@index
-    \RequirePackage{makeidx}
-    \makeindex
-    \newcommand{\printthesisindex}{
-        \cleardoublepage
-        \phantomsection
-        \printindex}
-\else
-    \newcommand{\printthesisindex}{}
-\fi
 
-% *********************************** Nomenclature ******************************
-\usepackage{nomencl}
-\makenomenclature
-\renewcommand\nomgroup[1]{%
-  \ifthenelse{\equal{#1}{A}}{%
-   \item[\textbf{Roman Symbols}] }{%             A - Roman
-    \ifthenelse{\equal{#1}{G}}{%
-     \item[\textbf{Greek Symbols}]}{%             G - Greek
-      \ifthenelse{\equal{#1}{R}}{%
-        \item[\textbf{Superscripts}]}{%              R - Superscripts
-          \ifthenelse{\equal{#1}{S}}{%
-           \item[\textbf{Subscripts}]}{{%             S - Subscripts
-	    \ifthenelse{\equal{#1}{X}}{%
-	     \item[\textbf{Other Symbols}]}{{%    X - Other Symbols
-	    \ifthenelse{\equal{#1}{Z}}{%
-	     \item[\textbf{Acronyms}]}%              Z - Acronyms
-              			{{}}}}}}}}}}
-
-
+% ******************************* Header Formatting *****************************
 % Custom Header with Chapter Number, Page Number and Section Numbering
 \pagestyle{fancy}
 % Style 1:
@@ -261,9 +235,29 @@
 }
 
 
-\newcommand{\submissiontext}{{A thesis submitted for the degree of}}
+% **************** Clear Header Style on the Last Empty Odd pages ***************
+\renewcommand{\cleardoublepage}{\clearpage\if@twoside \ifodd\c@page\else%
+	\hbox{}%
+	\thispagestyle{empty}  % Empty header styles
+	\newpage%
+	\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+
+% ********************************* Roman Pages *********************************
+% The romanpages environment set the page numbering to lowercase roman one
+% for the contents and figures lists. It also resets
+% page-numbering for the remainder of the dissertation (arabic, starting at 1).
+
+\newenvironment{romanpages}{
+  \setcounter{page}{1}
+  \renewcommand{\thepage}{\roman{page}}}
+{\newpage\renewcommand{\thepage}{\arabic{page}}}
 
 
+
+
+% *******************************************************************************
+% **************************** Macro Definitions ********************************
+% *******************************************************************************
 % These macros are used to declare arguments needed for the
 % construction of the title page and other preamble.
 
@@ -292,6 +286,10 @@
 \newcommand{\crest}[1]{\renewcommand{\@crest}{#1}}
 
 
+% Submission Text
+\newcommand{\submissiontext}{{A thesis submitted for the degree of}}
+
+
 % keywords (These keywords will appear in the PDF meta-information
 % called `pdfkeywords`.)
 \newcommand{\@keywords}{}
@@ -312,7 +310,12 @@
 
 
 
-%define title page layout
+
+% ********************************************************************************
+% ***************************** Front Matter Layout ******************************
+% ********************************************************************************
+
+% ********************************** Title Page *********************************
 \renewcommand{\maketitle}{%
 %Can use the line below to remove the blank page after the title page
 %\setcounter{page}{0}  % Sasa Tomic
@@ -344,8 +347,7 @@
 }
 
 
-% DEDICATION
-%
+% ********************************* Dedication **********************************
 % The dedication environment makes sure the dedication gets its
 % own page and is set out in verse format.
 
@@ -362,8 +364,7 @@
 {\end{center} \end{quote} \end{alwayssingle}}
 
 
-% DECLARATION
-%
+% ******************************** Declaration **********************************
 % The declaration environment puts a large, bold, centered 
 % "Acknowledgements" label at the top of the page. The acknowledgements
 % themselves appear in a quote environment, i.e. tabbed in at both sides, and
@@ -383,8 +384,8 @@
 
 
 
-% ACKNOWLEDGEMENTS
-%
+
+% ******************************* Acknowlegments *********************************
 % The acknowledgements environment puts a large, bold, centered 
 % "Acknowledgements" label at the top of the page. The acknowledgements
 % themselves appear in a quote environment, i.e. tabbed in at both sides, and
@@ -402,6 +403,7 @@
 \begin{quote}}
 {\end{quote}\end{alwayssingle}}
 
+
 % The acknowledgementslong environment puts a large, bold, centered 
 % "Acknowledgements" label at the top of the page. The acknowledgement itself 
 % does not appears in a quote environment so you can get more in.
@@ -418,12 +420,10 @@
 {\end{quote}\end{alwayssingle}}
 
 
-
-%ABSTRACT
-%
-%The abstract environment puts a large, bold, centered "Abstract" label at
-%the top of the page. The abstract itself appears in a quote environment,
-%i.e. tabbed in at both sides, and on its own page.
+% ******************************** Abstract ***********************************
+% The abstract environment puts a large, bold, centered "Abstract" label at
+% the top of the page. The abstract itself appears in a quote environment,
+% i.e. tabbed in at both sides, and on its own page.
 
 \newenvironment{abstracts} {\cleardoublepage \begin{alwayssingle} \pagestyle{empty}
   \begin{center}
@@ -446,6 +446,7 @@
   \vspace{0.5cm} \begin{quote}}
 {\end{quote}\end{alwayssingle}}
 
+
 %The abstractseparate environment is for running of a page with the abstract
 %on including title and author etc as required to be handed in separately
 
@@ -467,14 +468,33 @@
 
 
 
-%ROMANPAGES
-%
-% The romanpages environment set the page numbering to lowercase roman one
-% for the contents and figures lists. It also resets
-% page-numbering for the remainder of the dissertation (arabic, starting at 1).
+% ******************************** Nomenclature *********************************
+\usepackage{nomencl}
+\makenomenclature
+\renewcommand\nomgroup[1]{%
+  \ifthenelse{\equal{#1}{A}}{%
+   \item[\textbf{Roman Symbols}] }{%             A - Roman
+    \ifthenelse{\equal{#1}{G}}{%
+     \item[\textbf{Greek Symbols}]}{%             G - Greek
+      \ifthenelse{\equal{#1}{R}}{%
+        \item[\textbf{Superscripts}]}{%              R - Superscripts
+          \ifthenelse{\equal{#1}{S}}{%
+           \item[\textbf{Subscripts}]}{{%             S - Subscripts
+	    \ifthenelse{\equal{#1}{X}}{%
+	     \item[\textbf{Other Symbols}]}{{%    X - Other Symbols
+	    \ifthenelse{\equal{#1}{Z}}{%
+	     \item[\textbf{Acronyms}]}%              Z - Acronyms
+              			{{}}}}}}}}}}
 
-\newenvironment{romanpages}{
-  \setcounter{page}{1}
-  \renewcommand{\thepage}{\roman{page}}}
-{\newpage\renewcommand{\thepage}{\arabic{page}}}
 
+% ******************************* Create the index ******************************
+\ifCU@index
+    \RequirePackage{makeidx}
+    \makeindex
+    \newcommand{\printthesisindex}{
+        \cleardoublepage
+        \phantomsection
+        \printindex}
+\else
+    \newcommand{\printthesisindex}{}
+\fi

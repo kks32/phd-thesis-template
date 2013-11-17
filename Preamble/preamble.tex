@@ -1,32 +1,37 @@
+% *****************************************************************************
 % **************************** Custom Packages *********************************
+% *****************************************************************************
 
 
-% Algorithms and Pseudocode
-\usepackage{algpseudocode} % Algorithmicx package support for algorithms and pseudocode
+% ************************** Algorithms and Pseudocode *************************
+%\usepackage{algpseudocode} % Algorithmicx package support for algorithms and pseudocode
 
-% Captions and Hyperreferncing / URL
+
+% *********************Captions and Hyperreferncing / URL ***********************
 %% Captions: This makes captions of figures use a boldfaced small font. 
 %\RequirePackage[small,bf]{caption}
-
-\RequirePackage[small,bf,figurename=Fig.,labelsep=space,tableposition=top]{caption} % Caption styling
-
-\usepackage[perpage]{footmisc} %Range of footnote options 
-
-% Graphics and figures
-\usepackage{rotating}
-\usepackage{subfigure}
-\usepackage{wrapfig}
-\usepackage{float}
+\RequirePackage[small,bf,figurename=Fig.,labelsep=space,tableposition=top]{caption} 
 
 
-% Table
-\usepackage{longtable}
-\usepackage{multicol}
-\usepackage{multirow}
-\usepackage{tabularx}
+% ******************************** Footnote ***********************************
+%\usepackage[perpage]{footmisc} %Range of footnote options 
 
 
-% Math and SI Units
+% ************************** Graphics and figures *****************************
+%\usepackage{rotating}
+%\usepackage{subfigure}
+%\usepackage{wrapfig}
+%\usepackage{float}
+
+
+% ********************************* Table *************************************
+%\usepackage{longtable}
+%\usepackage{multicol}
+%\usepackage{multirow}
+%\usepackage{tabularx}
+
+
+% ****************************** Math and SI Units ****************************
 \usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -34,22 +39,18 @@
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Fonts (like different typewriter fonts etc.)
-%%
+% *****************************************************************************
+% ******************* Fonts (like different typewriter fonts etc.)*************
 %\RequirePackage[scaled=.87]{couriers}
 %\renewcommand\rmdefault{psb}
 \usepackage{libertine}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Bibliography  and References 
-
-\usepackage{cleveref}
-\RequirePackage[square, sort, numbers, authoryear]{natbib}
-%\RequirePackage[numbers,sort&compress]{natbib}
-
-
+% *****************************************************************************
+% *************************** Bibliography  and References ********************
+\usepackage{cleveref} %Referencing without need to explicitly state fig /table
+\RequirePackage[square, sort, numbers, authoryear]{natbib} %author year
+%\RequirePackage[numbers,sort&compress]{natbib} % numbered citation
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -69,10 +70,8 @@
 
 % ********************** Adding TOC and List of Figures ************************
 % To hide sections from appearing in TOC add \tochide\section{Section name} 
-\newcommand{\nocontentsline}[3]{}
-\newcommand{\tochide}[2]{\bgroup\let\addcontentsline=\nocontentsline#1{#2}\egroup}
-\setcounter{secnumdepth}{3}
-\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
 % To restrict the length of the figure caption in List of figures use:
 % \caption[Caption that you want to appear in TOC]{Actual caption of the figure}
 % \section[short]{title}
