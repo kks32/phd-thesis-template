@@ -56,3 +56,23 @@
 %% Subfigure (note: this must be included after the `caption` package). 
 %%\
 %\usepackage{subfig}
+
+
+% ******************************************************************************
+% ************************* User Defined Commands ******************************
+% ******************************************************************************
+
+% Set spacing as 1.5 line spacing for the PhD Thesis
+\onehalfspace
+
+
+
+% ********************** Adding TOC and List of Figures ************************
+% To hide sections from appearing in TOC add \tochide\section{Section name} 
+\newcommand{\nocontentsline}[3]{}
+\newcommand{\tochide}[2]{\bgroup\let\addcontentsline=\nocontentsline#1{#2}\egroup}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+% To restrict the length of the figure caption in List of figures use:
+% \caption[Caption that you want to appear in TOC]{Actual caption of the figure}
+% \section[short]{title}

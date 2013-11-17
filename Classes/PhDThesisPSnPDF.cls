@@ -1,15 +1,15 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%% Class ``PhD Thesis PSnPDF''
-%%
-%% Version: v1.0
-%% Authors: Krishna Kumar
-%% Date: 2013/11/16
-%% Based on: King's LaTeX workshop by Krishna, CUED V1.1 Template by Harish Banderi
-%%           and Alex Ridge's idea to form a unified template
-%% License: GPL V2.0 https://www.gnu.org/licenses/gpl-2.0.html
-%% GitHub Repo: https://github.com/kks32/phd-thesis-template/
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                              %%
+%% Class ``PhD Thesis PSnPDF''                                                  %%
+%%                                                                              %%
+%% Version: v1.0                                                                %%
+%% Authors: Krishna Kumar                                                       %%
+%% Date: 2013/11/16                                                             %%
+%% Based on: King's LaTeX workshop by Krishna, CUED V1.1 Template by H. Banderi %%
+%%           and Alex Ridge's idea to form a unified template                   %%
+%% License: GPL V2.0 https://www.gnu.org/licenses/gpl-2.0.html                  %%
+%% GitHub Repo: https://github.com/kks32/phd-thesis-template/                   %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % ******************** Class Identification *********************
 %\NeedsTeXFormat{LaTeX2e}
@@ -124,48 +124,52 @@
     \hypersetup{pdfpagelayout=OneColumn}
 \fi
 
+% ******************************************************************************
+% ******************************** Packages ************************************
+% ******************************************************************************
 
-% ************************ packages *****************************************
-
-% Layout, Formatting and Headers
+% ******************** Layout, Formatting and Headers **************************
 
 \def\pdfshellescape{1}
-\RequirePackage{lscape} % Supports Landscape Layout
+\RequirePackage{lscape}   % Supports Landscape Layout
 \RequirePackage{setspace} % Define line spacing in para
 \RequirePackage{fancyhdr} % Define custom header
 
 
-% Conditional Statements
+% *************************** Conditional Statements **************************
 \RequirePackage{ifthen}   % Used in LaTeX Class files for conditional statements
 \RequirePackage{ifpdf}    % Check for pdfLaTeX
 
 
-% Table of Contents and Appendix
-\RequirePackage{tocbibind} % add Bibliography, List of figures and tables to contents
-\RequirePackage{appendix} % add appendix
+% *********************** Table of Contents and Appendix************************
+% add Bibliography, List of figures and tables to contents
+\RequirePackage{tocbibind}
+\RequirePackage{appendix}  % add appendix
 
-% Graphics and Figures
+
+% **************************** Graphics and Figures ****************************
 \RequirePackage[usenames, dvipsnames]{color} 
-\RequirePackage{epstopdf} % Convert eps figures to pdf
-\ifpdf % Graphicx package for figures
+% Convert eps figures to pdf
+\RequirePackage{epstopdf} 
+\ifpdf 
     \RequirePackage[pdftex]{graphicx}
     \DeclareGraphicsExtensions{.png, .jpg, .pdf}
     \pdfcompresslevel=9
 \else
-    %\RequirePackage{epsfig}
     \RequirePackage{graphicx}
     \DeclareGraphicsExtensions{.eps, .ps}
 \fi
 
 
-% URL Package and Definition
+% **************************** URL Package and Definition ***********************
 \RequirePackage{url}
 % Redefining urlstyle to use smaller fontsize in References with URLs
 \def\url@leostyle{%
  \@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\small\ttfamily}}}
 \urlstyle{leo}
 
-%To copy ligatures and Fonts 
+
+% *************************** To copy ligatures and Fonts ***********************
 \RequirePackage{textcomp}
 \RequirePackage[ansinew]{inputenc}
 \RequirePackage[T1]{fontenc}
@@ -175,12 +179,10 @@
 \pdfglyphtounicode{f_l}{FB02}
 \pdfglyphtounicode{f_f_i}{FB03}
 \pdfglyphtounicode{f_f_l}{FB04}
-
 \pdfgentounicode=1
 
 
-
-% ******************** Setting PDF Meta-Data *************************
+% ****************************** Setting PDF Meta-Data **************************
 \ifpdf
 \AtBeginDocument{
   \hypersetup{
@@ -192,7 +194,7 @@
 }
 \fi
 
-% ******Clear Header Style on the Last Empty Odd pages ****************
+% ****************Clear Header Style on the Last Empty Odd pages ****************
 \renewcommand{\cleardoublepage}{\clearpage\if@twoside \ifodd\c@page\else%
 	\hbox{}%
 	\thispagestyle{empty}  % Empty header styles
@@ -200,7 +202,7 @@
 	\if@twocolumn\hbox{}\newpage\fi\fi\fi}
 
 
-% *********************** Create the index ****************************
+% ******************************* Create the index ******************************
 \ifCU@index
     \RequirePackage{makeidx}
     \makeindex
@@ -212,7 +214,7 @@
     \newcommand{\printthesisindex}{}
 \fi
 
-% ******************************* Nomenclature ***********************
+% *********************************** Nomenclature ******************************
 \usepackage{nomencl}
 \makenomenclature
 \renewcommand\nomgroup[1]{%
@@ -253,10 +255,10 @@
 %\renewcommand{\headrulewidth}{0.5pt}
 %\renewcommand{\footrulewidth}{0pt}
 %\addtolength{\headheight}{0.5pt}
-%\fancypagestyle{plain}{
-%  \fancyhead{}
-%  \renewcommand{\headrulewidth}{0pt}
-%}
+\fancypagestyle{plain}{
+  \fancyhead{}
+  \renewcommand{\headrulewidth}{0pt}
+}
 
 
 \newcommand{\submissiontext}{{A thesis submitted for the degree of}}
