@@ -1,17 +1,36 @@
-%
-% Based on Krishna Kumar's template, CUEDthesis v1.1
-% and Alex Ridge
-% 
-%-------------------------- identification ---------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Class ``PhD Thesis PSnPDF''
+%%
+%% Version: v0.1
+%% Authors: Krishna Kumar
+%% Date: 2013/11/16
+%% Based on: King's LaTeX workshop by Krishna, CUED V1.1 Template by Harish Banderi
+%%           and Alex Ridge's idea to form a unified template
+%% License: GPL V2.0 https://www.gnu.org/licenses/gpl-2.0.html
+%% GitHub Repo: https://github.com/kks32/phd-thesis-template/
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ******************** Class Identification *********************
 %\NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{PhDThesisPSnPDF}[2013/11/14 version 1.0]
-%-------------------------- initial code -----------------------
+
+% ***************************************************************
+% ********************** Class Definition ***********************
 
 \newif\ifCU@bookmode
 \CU@bookmodetrue
-
 \DeclareOption{report}{\CU@bookmodefalse}
 \DeclareOption{book}{\CU@bookmodetrue}
+
+% ****************** Define a print/online mode ******************
+\newif\if@printmode\@printmodefalse
+\DeclareOption{printmode}{\@printmodetrue}
+
+% ************************** Define index ************************
+\newif\ifCU@index\CU@indexfalse
+\DeclareOption{index}{\CU@indextrue}
+
 \ProcessOptions\relax%
 
 \ifCU@bookmode
@@ -32,6 +51,8 @@
 \fi%
 \fi
 
+
+
 % Set pdfpage and dvips paper sizes. Conditional tests are similar to that
 % of ifpdf.sty. Retain within {} to ensure tested macros are never altered,
 % even if only effect is to set them to \relax.
@@ -48,10 +69,9 @@
 \else
 \fi}}
 
+
 % Defines a print mode / online mode to define page-layout and hyperrefering 
-\newif\if@printmode\@printmodefalse
-\DeclareOption{printmode}{\@printmodetrue}
-\ProcessOptions\relax
+
 \if@printmode
 	\RequirePackage{hyperref}
 	% For Print version
@@ -99,13 +119,8 @@
     \hypersetup{pdfpagelayout=OneColumn}
 \fi
 
-% index - puts the index at the end of the thesis.
 
-\newif\ifCU@index\CU@indexfalse
-\DeclareOption{index}{\CU@indextrue}
-\ProcessOptions\relax
-
-%--------------------- packages -------------------------------
+% ************************ packages *****************************************
 
 % Layout, Formatting and Headers
 
@@ -190,10 +205,7 @@
 
 
 
-%******************************************************* %
-
-
-% Setting PDF Meta-Data
+% ******************** Setting PDF Meta-Data *************************
 \ifpdf
 \AtBeginDocument{
   \hypersetup{
@@ -205,7 +217,7 @@
 }
 \fi
 
-% Clear Header Style on the Last Empty Odd pages
+% ******Clear Header Style on the Last Empty Odd pages ****************
 \renewcommand{\cleardoublepage}{\clearpage\if@twoside \ifodd\c@page\else%
 	\hbox{}%
 	\thispagestyle{empty}  % Empty header styles
@@ -213,7 +225,7 @@
 	\if@twocolumn\hbox{}\newpage\fi\fi\fi}
 
 
-% Create the index
+% *********************** Create the index ****************************
 \ifCU@index
     \RequirePackage{makeidx}
     \makeindex
@@ -225,7 +237,7 @@
     \newcommand{\printthesisindex}{}
 \fi
 
-% Nomenclature
+% ******************************* Nomenclature ***********************
 \usepackage{nomencl}
 \makenomenclature
 \renewcommand\nomgroup[1]{%
