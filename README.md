@@ -130,8 +130,9 @@ You can run the following command:
 
 # Known Issues / Bugs
 
-*   Problem with Title page display on a5paper!
+*   Problem with Title page display on a5paper! - Work in progress
 
+*   Abstract, Acknowlegment and Dedication has extra spacing at the top: needs removal
 
 --------------------------------------------------------------------------------
 
@@ -140,5 +141,4 @@ You can run the following command:
 *   Support custom margins
 
 *   Support non-free fonts! 
-
 
