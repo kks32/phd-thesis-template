@@ -227,6 +227,7 @@
 \fancyhead[RE]{\leftmark}
 \fancyfoot{}
 
+
 \setlength{\headheight}{14pt}
 %\renewcommand{\headrulewidth}{0.5pt}
 %\renewcommand{\footrulewidth}{0pt}
@@ -253,7 +254,6 @@
   \setcounter{page}{1}
   \renewcommand{\thepage}{\roman{page}}}
 {\newpage\renewcommand{\thepage}{\arabic{page}}}
-
 
 
 % *******************************************************************************
@@ -355,20 +355,20 @@
 \end{center}
 \vfill
 \large
-\begin{minipage}{0.45\textwidth}
-\flushleft\@college
+\begin{minipage}{0.49\textwidth}
+\flushleft\hspace*{\oddsidemargin}\@college
 \end{minipage}
-\begin{minipage}{0.45\textwidth}
+\begin{minipage}{0.49\textwidth}
 \flushright \@degreedate
 \end{minipage}
 \end{singlespace}
-\vspace*{0.05\textheight}
+\vspace*{0.02\textheight}
 }
 
 
 % ********************************* Dedication **********************************
 % The dedication environment makes sure the dedication gets its
-% own page and is set out in verse format.
+% own page and is set out in verse format.3
 
 \newenvironment{dedication}
 {
