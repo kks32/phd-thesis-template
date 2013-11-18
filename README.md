@@ -128,8 +128,17 @@ You can run the following command:
 
 --------------------------------------------------------------------------------
 
+# Known Issues / Bugs
+
+*   Problem with Title page display on a5paper!
+
+
+--------------------------------------------------------------------------------
+
 # TODO list
 
 *   Support custom margins
 
 *   Support non-free fonts! 
+
+

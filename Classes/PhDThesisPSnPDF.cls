@@ -322,35 +322,45 @@
 % ********************************************************************************
 
 % ********************************** Title Page *********************************
-
-
-\renewcommand{\maketitle}{%
+\renewcommand{\maketitle}{
 %Can use the line below to remove the blank page after the title page
 %\setcounter{page}{0}  % Sasa Tomic
+
 \begin{singlespace}
 \begin{center}
-    { \Huge {\bfseries {\@title}} \par}
-    {\large \vspace*{25mm} {{\@crest} \par} \vspace*{20mm}}
-    {{\Large \@author} \par}
-    {\large \vspace*{1ex}
-      {{\@dept} \par}
-      \vspace*{1ex}
-              {{\@university} \par}
-\vspace*{25mm}
-    {{\submissiontext} \par}
+% Title
+{\Huge \bfseries{\@title} \par}
+\vspace*{0.125\textheight}
+
+% Crest
+{\@crest \par}
+\vspace*{0.1\textheight}
+
+% Author
+{\Large \bfseries{\@author} \par}
 \vspace*{1ex}
-    {\it {\@degree} \par} 
-\vspace*{2ex}
-	{\@degreedate}}
+
+% Department and University
+{\large \@dept \par}
+\vspace*{1ex}
+{\large \@university \par}
+\vspace*{0.1\textheight}
+
+% Submission Text
+{\submissiontext \par}
+\vspace*{1ex}
+{\it {\@degree} \par} 
+\vspace*{0.15\textheight}
+
 \end{center}
 
-%\large
-%\begin{minipage}{0.5\textwidth}
-%\flushleft \@college
-%\end{minipage}
-%\begin{minipage}{0.5\textwidth}
-%\flushleft \@degreedate
-%\end{minipage}
+\large
+\begin{minipage}{0.45\textwidth}
+\flushleft\@college
+\end{minipage}
+\begin{minipage}{0.45\textwidth}
+\flushright \@degreedate
+\end{minipage}
 \end{singlespace}
 
 }
