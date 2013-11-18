@@ -1,15 +1,12 @@
-\documentclass[a4paper,11pt,twoside,printmode]{Classes/PhDThesisPSnPDF}
-% To enable print mode include [printmode] in the options above
-% This modifies the page-layout (margins) and hyperrefering styles 
+\documentclass[a4paper,11pt,twoside,printmode,index]{Classes/PhDThesisPSnPDF}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Thesis Information & Meta-data
-%% PhD Thesis Title, Author, Degree, etc
-%%
+% ********************************* Preamble **********************************
+% Preamble: Contains packages and user-defined commands and settings
+\input{Preamble/preamble}
 
+% ******************** Thesis Information & Meta-data *************************
 %% The title of the thesis
-\title{Multiscale Modelling of \\
- Granular Flows} 
+\title{Multiscale Modelling of \texorpdfstring{\\}{}Granular Flows} 
 
 %% The full name of the author
 \author{Krishna Kumar}
@@ -38,17 +35,19 @@
 \keywords{{Material Point Method} {Lattice Boltzmann} {Multi-scale} {Multiphase} {Granular Flows}} 
 
 
-% Uncomment to set spacing as 1.5 line spacing
-% \onehalfspace
 
-%**************************Front Matter********************************************* %
+% ********************************Front Matter************************************
 \begin{document}
 
+
 \frontmatter
+
 
 \begin{titlepage}
 
 \maketitle
+
+%\makephdtitle{}
 
 \end{titlepage}
 
@@ -57,15 +56,7 @@
 \include{Acknowledgement/acknowledgement}
 \include{Abstract/abstract}
 
-%*************** Adding TOC and List of Figures *********************************** %
-% To hide sections from appearing in TOC add \tochide\section{Section name} 
-\newcommand{\nocontentsline}[3]{}
-\newcommand{\tochide}[2]{\bgroup\let\addcontentsline=\nocontentsline#1{#2}\egroup}
-\setcounter{secnumdepth}{3}
-\setcounter{tocdepth}{3}
-% To restrict the length of the figure caption in List of figures use:
-% \caption[Caption that you want to appear in TOC]{Actual caption of the figure}
-% \section[short]{title}
+% *********************** Adding TOC and List of Figures *************************
 
 \tableofcontents
 
@@ -74,7 +65,7 @@
 \listoftables 
 
 \makenomenclature
-%******************************Main Matter******************************************* %
+% ***********************************Main Matter***********************************
 \mainmatter
 
 \include{Chapter1/chapter1}
@@ -85,24 +76,25 @@
 %\include{Chapter6/chapter6}
 %\include{Chapter7/chapter7}
 
-%****************************Back Matter********************************************** %
+% ***********************************Back Matter***********************************
 \backmatter
 \appendix
 \include{Appendix1/appendix1}
 \include{Appendix2/appendix2}
 
-%*******************************Bibliography******************************************%
+% ***********************************Bibliography**********************************
 
 \begin{spacing}{0.9}
 \bibliographystyle{apalike}
 %\bibliographystyle{plainna}
-\renewcommand{\bibname}{References} % changes default name Bibliography to References
+\renewcommand{\bibname}{References}% changes default name Bibliography-> References 
 \cleardoublepage
 \bibliography{References/References}
 \end{spacing}
-%************************************************************************************* %
 
 
+% *************************************** Index ***********************************
+\printthesisindex
 
 \end{document}
 

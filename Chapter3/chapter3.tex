@@ -2,32 +2,46 @@
 
 \section{First Section of the Third Chapter}
 \markboth{\MakeUppercase{\thechapter. My Third Chapter }}{\thechapter. My Third Chapter}
-And now I begin my third chapter here ...
+And now I begin my third chapter here \dots
 
-And now to cite some more people~\cite{Rea85,Spi65}
+And now to cite some more people~\citet{Rea85}
 
 \subsection{first subsection in the First Section}
-... and some more 
+\dots and some more 
 
 \subsection{second subsection in the First Section}
-... and some more ...
+\dots and some more \dots
 
 \subsubsection{first subsub section in the second subsection}
-... and some more in the first subsub section otherwise it all looks the same
-doesn't it? well we can add some text to it ...
+\dots and some more in the first subsub section otherwise it all looks the same
+doesn't it? well we can add some text to it \dots
 
 \subsection{third subsection in the First Section}
-... and some more ...
+\dots and some more \dots
 
 \subsubsection{first subsub section in the third subsection}
-... and some more in the first subsub section otherwise it all looks the same
+\dots and some more in the first subsub section otherwise it all looks the same
 doesn't it? well we can add some text to it and some more and some more and
-some more and some more and some more and some more and some more ...
+some more and some more and some more and some more and some more \dots
 
 \subsubsection{second subsub section in the third subsection}
-... and some more in the first subsub section otherwise it all looks the same
-doesn't it? well we can add some text to it ...
+\dots and some more in the first subsub section otherwise it all looks the same
+doesn't it? well we can add some text to it \dots
 
 \section{Second Section of the Third Chapter}
 \markboth{\MakeUppercase{\thechapter. My Third Chapter }}{\thechapter. My Third Chapter}
-and here I write more ...
+and here I write more \dots
+
+Now we can refer to the table using~\cref{t:borders}.
+\begin{table}[h]
+\caption{Table with Borders}
+\centering
+\label{t:borders}
+\begin{tabular}{|l|c| r|}
+
+\hline
+1 & 2 & 3 \\ \hline
+4 & 5 & 6 \\ \hline
+7 & 8 & 9 \\ \hline
+\end{tabular}
+\end{table}

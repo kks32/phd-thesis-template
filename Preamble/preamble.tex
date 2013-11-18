@@ -1,0 +1,73 @@
+% *****************************************************************************
+% **************************** Custom Packages *********************************
+% *****************************************************************************
+
+
+% ************************** Algorithms and Pseudocode *************************
+%\usepackage{algpseudocode} % Algorithmicx package support for algorithms and pseudocode
+
+
+% *********************Captions and Hyperreferncing / URL ***********************
+%% Captions: This makes captions of figures use a boldfaced small font. 
+%\RequirePackage[small,bf]{caption}
+\RequirePackage[figurename=Fig.,labelsep=space,tableposition=top]{caption} 
+
+
+% ******************************** Footnote ***********************************
+%\usepackage[perpage]{footmisc} %Range of footnote options 
+
+
+% ************************** Graphics and figures *****************************
+% Subfigure (note: this must be included after the `caption` package). 
+%\usepackage{rotating}
+%\usepackage{wrapfig}
+%\usepackage{float}
+\usepackage{subfig}
+
+
+% ********************************* Table *************************************
+%\usepackage{longtable}
+%\usepackage{multicol}
+%\usepackage{multirow}
+%\usepackage{tabularx}
+
+
+% ****************************** Math and SI Units ****************************
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{siunitx}
+
+
+
+% *****************************************************************************
+% ******************* Fonts (like different typewriter fonts etc.)*************
+%\RequirePackage[scaled=.87]{couriers}
+%\renewcommand\rmdefault{psb}
+\usepackage{libertine}
+
+
+% *****************************************************************************
+% *************************** Bibliography  and References ********************
+\usepackage{cleveref} %Referencing without need to explicitly state fig /table
+\RequirePackage[square, sort, numbers, authoryear]{natbib} %author year
+%\RequirePackage[numbers,sort&compress]{natbib} % numbered citation
+
+
+
+% ******************************************************************************
+% ************************* User Defined Commands ******************************
+% ******************************************************************************
+
+% Set spacing as 1.5 line spacing for the PhD Thesis
+\onehalfspace
+
+
+
+% ********************** Adding TOC and List of Figures ************************
+% To hide sections from appearing in TOC add \tochide\section{Section name} 
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
+% To restrict the length of the figure caption in List of figures use:
+% \caption[Caption that you want to appear in TOC]{Actual caption of the figure}
+% \section[short]{title}

@@ -14,3 +14,11 @@
 *.d
 *.btmp
 *.fls
+*.dvi
+*.glo
+*.idx
+*.ist
+*.ilg
+*.ind
+*cookie*
+thesis.ps
