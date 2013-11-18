@@ -6,7 +6,7 @@
 %% Authors: Krishna Kumar                                                       %%
 %% Date: 2013/11/16                                                             %%
 %% Based on: King's LaTeX workshop by Krishna, CUED V1.1 Template by H. Banderi %%
-%%           and Alex Ridge's idea to form a unified template                   %%
+%%           Compuer Lab PhD Template & Alex Rige's idea of an unified template %%
 %% License: GPL V2.0 https://www.gnu.org/licenses/gpl-2.0.html                  %%
 %% GitHub Repo: https://github.com/kks32/phd-thesis-template/                   %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -138,7 +138,7 @@
 \RequirePackage{lscape}   % Supports Landscape Layout
 \RequirePackage{setspace} % Define line spacing in para
 \RequirePackage{fancyhdr} % Define custom header
-
+\RequirePackage{calc}     % To calculate vertical spacing
 
 % *************************** Conditional Statements **************************
 \RequirePackage{ifthen}   % Used in LaTeX Class files for conditional statements
@@ -286,7 +286,6 @@
 \newcommand{\@crest}{}
 \newcommand{\crest}[1]{\renewcommand{\@crest}{#1}}
 
-
 % Submission Text
 \newcommand{\submissiontext}{{A thesis submitted for the degree of}}
 
@@ -309,6 +308,7 @@
        \else\newpage\fi}
        {\if@restonecol\twocolumn\else\newpage\fi}
 
+% Set single column even under two column layout
 \newcommand{\setsinglecolumn}{
 \if@twocolumn
    \onecolumn
@@ -321,10 +321,103 @@
 % ***************************** Front Matter Layout ******************************
 % ********************************************************************************
 
+% Boxes below are used to space differt contents on the title page
+%\newcommand{\makephdtitle}{
+%
+%\pagestyle{empty}
+%%%% Title Box
+%\newsavebox{\CU@Title}
+%\begin{lrbox}{\CU@Title}
+%\begin{minipage}[c]{0.98\textwidth}
+%\centering
+%\Huge \bfseries{\@title}
+%\end{minipage}
+%\end{lrbox}
+%%
+%%% University Crest Box
+%\newsavebox{\CU@crest}
+%\begin{lrbox}{\CU@crest}
+%\@crest
+%\end{lrbox}
+%
+%%% Author Box
+%\newsavebox{\CU@author}
+%\begin{lrbox}{\CU@author}
+%\begin{minipage}[c]{\textwidth}
+%\centering
+%\Large \bfseries{\@author}
+%\end{minipage}
+%\end{lrbox}
+%
+%%% Department Box
+%\newsavebox{\CU@dept}
+%\begin{lrbox}{\CU@dept}
+%\begin{minipage}[c]{\textwidth}
+%\centering
+%{\large \@dept \par}
+%\vspace*{1ex}
+%{\large \@university \par}
+%\end{minipage}
+%\end{lrbox}
+%
+%%% Submission Box
+%\newsavebox{\CU@submission}
+%\begin{lrbox}{\CU@submission}
+%\begin{minipage}[c]{\textwidth}
+%\begin{center}
+%\large \submissiontext \par
+%\vspace*{1ex}
+%\large \it {\@degree} \par
+%\end{center}
+%\end{minipage}
+%\end{lrbox}
+%
+%%% College and Date Box
+%\newsavebox{\CU@collegedate}
+%\begin{lrbox}{\CU@collegedate}
+%\begin{minipage}[c]{\textwidth}
+%\large
+%\begin{minipage}{0.45\textwidth}
+%\flushleft\@college
+%\end{minipage}
+%\begin{minipage}{0.45\textwidth}
+%\flushright \@degreedate
+%\end{minipage}
+%\end{minipage}
+%\end{lrbox}
+%
+%%%  Now to compute the free vertical space
+%\newlength{\CU@titlepagespacing}
+%\setlength{\CU@titlepagespacing}{ \textheight %
+%			- \totalheightof{\usebox{\CU@Title}}
+%			- \totalheightof{\usebox{\CU@crest}}
+%			- \totalheightof{\usebox{\CU@author}}
+%			- \totalheightof{\usebox{\CU@dept}}
+%			- \totalheightof{\usebox{\CU@submission}}
+%			- \totalheightof{\usebox{\CU@collegedate}}
+%}
+%
+%\begin{center}
+%~\vspace{.02\CU@titlepagespacing}
+%{\usebox{\CU@Title}}\par
+%\vspace{.25\CU@titlepagespacing}
+%{\usebox{\CU@crest}}\par
+%\vspace{.2\CU@titlepagespacing}
+%{\usebox{\CU@author}}\par
+%\vspace{.05\CU@titlepagespacing}
+%{\usebox{\CU@dept}}\par
+%\vspace{.2\CU@titlepagespacing}
+%{\usebox{\CU@submission}}\par
+%\null \vfill
+%%{\usebox{\cam@collegedate}}
+%
+%\end{center}
+%}
+
 % ********************************** Title Page *********************************
 \renewcommand{\maketitle}{
-%Can use the line below to remove the blank page after the title page
-%\setcounter{page}{0}  % Sasa Tomic
+%%Can use the line below to remove the blank page after the title page
+%%\setcounter{page}{0}  % Sasa Tomic
 
 \begin{singlespace}
 \begin{center}
@@ -347,9 +440,9 @@
 \vspace*{0.1\textheight}
 
 % Submission Text
-{\submissiontext \par}
+{\large \submissiontext \par}
 \vspace*{1ex}
-{\it {\@degree} \par} 
+{\large \it {\@degree} \par} 
 \vspace*{0.15\textheight}
 
 \end{center}
