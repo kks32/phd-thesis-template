@@ -62,11 +62,11 @@ It also supports some custom options:
 
 ### Choosing the Fonts:
 
-`PhDThesisPSnPDF` currently supports two fonts `Times` and `Palatino (default)`.
+`PhDThesisPSnPDF` currently supports two fonts `Times` and `Latin Modern (default)`.
 
 *   `times`: Specifying times option in the document class will use `mathptpx` or `Times` font with Math Support.
 
-*   `default (empty)`: When no font is specified, `Palatino` is used as default font with Math Support.
+*   `default (empty)`: When no font is specified, `Latin Modern` is used as the default font with Math Support.
 
 ## Custom Settings
 
@@ -145,3 +145,5 @@ You can run the following command:
 *   Support custom margins
 
 *   Headheight should be fixed according to the fontsize used!
+
+*   User should be able to set required font in preamble

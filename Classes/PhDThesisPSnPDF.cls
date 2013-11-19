@@ -34,6 +34,8 @@
 \DeclareOption{index}{\CU@indextrue}
 
 % ************************** Font Option *************************
+%\newif\ifCU@setfont\CU@setfontfalse 
+
 \newif\ifCU@times\CU@timesfalse % Times with Math Support
 \DeclareOption{times}{\CU@timestrue}
 
@@ -182,11 +184,11 @@
 \RequirePackage[ansinew]{inputenc}
 \RequirePackage[T1]{fontenc}
 
-% Times
+% Font Selection
 \ifCU@times
 \RequirePackage{mathptmx}  % times roman, including math (where possible)
 \else
-\RequirePackage{mathpazo}  % palatino, including math (where possible)
+\RequirePackage{lmodern}  % LatinModern as Default with math (where possible)
 \fi
 
 \input{glyphtounicode}
@@ -394,9 +396,7 @@
 
 % ******************************** Declaration **********************************
 % The declaration environment puts a large, bold, centered 
-% "Declaration" label at the top of the page. The acknowledgements
-% themselves appear in a quote environment, i.e. tabbed in at both sides, and
-% on its own page.
+% "Declaration" label at the top of the page.
 
 \newenvironment{declaration}{
 \cleardoublepage
@@ -409,9 +409,7 @@
 
 % ******************************* Acknowlegments *********************************
 % The acknowledgements environment puts a large, bold, centered 
-% "Acknowledgements" label at the top of the page. The acknowledgements
-% themselves appear in a quote environment, i.e. tabbed in at both sides, and
-% on its own page.
+% "Acknowledgements" label at the top of the page.
 
 \newenvironment{acknowledgements}{
 \cleardoublepage
@@ -423,8 +421,7 @@
 
 % ******************************** Abstract ***********************************
 % The abstract environment puts a large, bold, centered "Abstract" label at
-% the top of the page. The abstract itself appears in a quote environment,
-% i.e. tabbed in at both sides, and on its own page.
+% the top of the page. 
 
 \newenvironment{abstract} {
 \cleardoublepage
