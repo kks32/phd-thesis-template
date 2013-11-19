@@ -51,8 +51,6 @@ It also supports some custom options:
 
 *   `twoside` or `oneside`: This is especially useful for printing double side (twoside) or single side.
 
-*   `10pt` or `11pt` or `12pt`: Font Size. Default set as `11pt`.
-
 *   `printmode`: Supports PrintMode and Online Version with different page margins and hyperlink styles.
     Use `printmode` in the options to activate Print Version with appropriate margins and page layout and view    styles. Leaving the options field blank will activate Online version.
 
@@ -61,6 +59,14 @@ It also supports some custom options:
     Instructions on how to use the index can be found [here](http://en.wikibooks.org/wiki/LaTeX/Indexing#Using_makeidx).
 
     _Note_: the package `makeidx` is used to create the index.
+
+### Choosing the Fonts:
+
+`PhDThesisPSnPDF` currently supports two fonts `Times` and `Palatino (default)`.
+
+*   `times`: Specifying times option in the document class will use `mathptpx` or `Times` font with Math Support.
+
+*   `default (empty)`: When no font is specified, `Palatino` is used as default font with Math Support.
 
 ## Custom Settings
 
@@ -138,6 +144,4 @@ You can run the following command:
 
 *   Support custom margins
 
-*   Support non-free fonts! 
-
-*   Title page on twoside requires tweaking for College name and degreedate at the bottom
+*   Headheight should be fixed according to the fontsize used!

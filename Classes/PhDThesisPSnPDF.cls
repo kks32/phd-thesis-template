@@ -33,6 +33,10 @@
 \newif\ifCU@index\CU@indexfalse
 \DeclareOption{index}{\CU@indextrue}
 
+% ************************** Font Option *************************
+\newif\ifCU@times\CU@timesfalse % Times with Math Support
+\DeclareOption{times}{\CU@timestrue}
+
 \ProcessOptions\relax%
 
 \ifCU@bookmode
@@ -177,6 +181,14 @@
 \RequirePackage{textcomp}
 \RequirePackage[ansinew]{inputenc}
 \RequirePackage[T1]{fontenc}
+
+% Times
+\ifCU@times
+\RequirePackage{mathptmx}  % times roman, including math (where possible)
+\else
+\RequirePackage{mathpazo}  % palatino, including math (where possible)
+\fi
+
 \input{glyphtounicode}
 \pdfglyphtounicode{f_f}{FB00}
 \pdfglyphtounicode{f_i}{FB01}
@@ -228,7 +240,7 @@
 \fancyfoot{}
 
 
-\setlength{\headheight}{14pt}
+\setlength{\headheight}{14.5pt}
 %\renewcommand{\headrulewidth}{0.5pt}
 %\renewcommand{\footrulewidth}{0pt}
 \fancypagestyle{plain}{
