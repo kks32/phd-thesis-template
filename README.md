@@ -1,6 +1,6 @@
 phd-thesis-template
 ===================
-> A PhD thesis LaTeX template for Cambridge University, based on Krishna Kumar's King's latex course, CUED V1.1 Template by H. Banderi, and Cambridge Computer Laboratry Template.
+> A PhD thesis LaTeX template for Cambridge University, based on Krishna Kumar's King's latex course, CUED V1.1 Template by H. Banderi, and Cambridge Computer Laboratory Template.
 
 ### Build your thesis
 The template supports PDF, DVI and PS formats. All three formats can be generated
@@ -120,10 +120,10 @@ logos on [this page](http://www.admin.cam.ac.uk/offices/communications/services/
 Download and exchange the new logos with `CUni.eps` and/or `CUni.pdf`.
 
 
-## _Q5_: Where can I find extra fonts (like Adobe Sabon, Adobe Utopia etc.)?
+## _Q5_: How can I use my favourite fonts (like Adobe Sabon, Adobe Utopia etc.)?
 
-This template uses Libertine fonts instead of Arial/Times/Sabon.
-After you've installed the fonts, add somewhere in the preamble (before `\begin{document}`) the following command:
+This template uses Times and Latin Modern (as default) fonts. Libertine Font doesn't support Math (looking for a suitable alternative for Math font in Libertine).
+After you've installed your custom/favourite fonts, add the following command in the preamble section within `\ifFontNotSet \fi`:
 
     \renewcommand\rmdefault{psb}
 
