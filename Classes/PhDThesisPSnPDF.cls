@@ -34,7 +34,7 @@
 \DeclareOption{index}{\CU@indextrue}
 
 % ************************** Font Option *************************
-%\newif\ifCU@setfont\CU@setfontfalse 
+\newif\ifFontNotSet\FontNotSetfalse % Font is not set 
 
 \newif\ifCU@times\CU@timesfalse % Times with Math Support
 \DeclareOption{times}{\CU@timestrue}
@@ -187,8 +187,9 @@
 % Font Selection
 \ifCU@times
 \RequirePackage{mathptmx}  % times roman, including math (where possible)
+\FontNotSetfalse
 \else
-\RequirePackage{lmodern}  % LatinModern as Default with math (where possible)
+\FontNotSettrue
 \fi
 
 \input{glyphtounicode}

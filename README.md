@@ -66,7 +66,7 @@ It also supports some custom options:
 
 *   `times`: Specifying times option in the document class will use `mathptpx` or `Times` font with Math Support.
 
-*   `default (empty)`: When no font is specified, `Latin Modern` is used as the default font with Math Support.
+*   `default (empty)`: When no font is specified, `Latin Modern` is used as the default font with Math Support. The default font is set in preamble with the following condition `ifFontNotSet` is True then default is set as `Latin Modern`. User can change this default font in the preamble.
 
 ## Custom Settings
 
@@ -145,5 +145,3 @@ You can run the following command:
 *   Support custom margins
 
 *   Headheight should be fixed according to the fontsize used!
-
-*   User should be able to set required font in preamble
