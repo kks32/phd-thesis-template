@@ -25,9 +25,9 @@
 \DeclareOption{report}{\CU@bookmodefalse}
 \DeclareOption{book}{\CU@bookmodetrue}
 
-% ****************** Define a print/online mode ******************
-\newif\if@printmode\@printmodefalse
-\DeclareOption{printmode}{\@printmodetrue}
+% ****************** Define a Print/Online Version ******************
+\newif\if@print\@printfalse
+\DeclareOption{print}{\@printtrue}
 
 % ************************** Define index ************************
 \newif\ifCU@index\CU@indexfalse
@@ -79,9 +79,9 @@
 
 
 
-% Defines a print mode / online mode to define page-layout and hyperrefering 
+% Defines a print / online version to define page-layout and hyperrefering 
 
-\if@printmode
+\if@print
 	\RequirePackage{hyperref}
 	% For Print version
 	\hypersetup{

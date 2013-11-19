@@ -51,8 +51,9 @@ It also supports some custom options:
 
 *   `twoside` or `oneside`: This is especially useful for printing double side (twoside) or single side.
 
-*   `printmode`: Supports PrintMode and Online Version with different page margins and hyperlink styles.
-    Use `printmode` in the options to activate Print Version with appropriate margins and page layout and view    styles. Leaving the options field blank will activate Online version.
+*   `print`: Supports Print and Online Version with different page margins and hyperlink styles.
+    Use `print` in the options to activate Print Version with appropriate margins and page layout and view styles. 
+    Leaving the options field blank will activate Online version.
 
 *   `index`: Including this option in `\documentclass` build the index, which you can put at the and of the thesis.
 
@@ -136,7 +137,7 @@ You can run the following command:
 
 # Known Issues / Bugs
 
-*   Abstract, Acknowlegment and Dedication has extra spacing at the top: needs removal
+*   Abstract, Acknowlegment and Dedication have extra spacing at the top: needs removal
 
 --------------------------------------------------------------------------------
 
