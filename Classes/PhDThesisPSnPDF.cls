@@ -181,7 +181,7 @@
 
 % *************************** To copy ligatures and Fonts ***********************
 \RequirePackage{textcomp}
-\RequirePackage[ansinew]{inputenc}
+\RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
 
 % Font Selection
