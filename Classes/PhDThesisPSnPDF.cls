@@ -14,7 +14,6 @@
 % ******************** Class Identification *********************
 %\NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{PhDThesisPSnPDF}[2013/11/14 version 1.0 by Krishna Kumar]
-\typeout{CUED PhD Tempalate Version 1.0 by Krishna Kumar}
 \typeout{https://github.com/kks32/phd-thesis-template/}
 
 

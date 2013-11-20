@@ -159,12 +159,14 @@ You can run the following command:
 
 # Known Issues / Bugs
 
-*   Abstract, Acknowlegment and Dedication have extra spacing at the top: needs removal
+*   Abstract, Acknowlegment and Dedication have extra spacing at the top: needs removal?
 
 --------------------------------------------------------------------------------
 
 # TODO list
 
 *   Support custom margins
+
+*   Support custome headers
 
 *   Headheight should be fixed according to the fontsize used!
