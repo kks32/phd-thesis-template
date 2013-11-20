@@ -88,6 +88,28 @@ It also supports some custom options:
 *   Bibliography with Author-Year Citation in `preamble.tex`:
 		`\RequirePackage[round, sort, numbers, authoryear]{natbib}`
 
+*   You can change the Title of Nomenclature to Notations or Symbols in the `preamble.tex` using:
+		`\renewcommand\nomname{Symbols}`
+
+## Nomenclature Definition
+
+* To use nomenclature in your chapters:
+		`\nomenclature[g-pi]{$\pi$}{ $\simeq 3.14\ldots$}`
+The sort keys have prefix. In this case a prefix of `g` is used to denote Greek Symbols, followed by `-pi` or `-sort_key`. Use a `-` to separate sort key from the prefixes. The standard prefixes defined in this class are:
+
+* `A` or `a`: Roman Symbols
+
+* `G` or `g`: Greek Symbols
+
+* `Z` or `z`: Acronyms/Abbreviations
+
+* `R` or `r`: Superscripts
+
+* `S` or `s`: Subscripts
+
+* `X` or `x`: Other Symbols
+
+
 -------------------------------------------------------------------------------
 
 # Troubleshooting

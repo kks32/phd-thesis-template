@@ -14,6 +14,7 @@
 % ******************** Class Identification *********************
 %\NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{PhDThesisPSnPDF}[2013/11/14 version 1.0 by Krishna Kumar]
+\typeout{CUED PhD Tempalate Version 1.0 by Krishna Kumar}
 \typeout{https://github.com/kks32/phd-thesis-template/}
 
 
@@ -454,17 +455,6 @@
 
 
 % ******************************** Nomenclature *********************************
-%\usepackage{nomencl}
-%\makenomenclature
-%\renewcommand\nomgroup[1]{%
-%\ifthenelse{\equal{#1}{A}}{\item[\textbf{Roman Symbols}]}{%  A - Roman
-%\ifthenelse{\equal{#1}{G}}{\item[\textbf{Greek Symbols}]}{%  G - Greek
-%\ifthenelse{\equal{#1}{R}}{\item[\textbf{Superscripts}]}{%   R - Superscripts
-%\ifthenelse{\equal{#1}{S}}{\item[\textbf{Subscripts}]}{{%    S - Subscripts
-%\ifthenelse{\equal{#1}{X}}{\item[\textbf{Other Symbols}]}{{% X - Other Symbols
-%\ifthenelse{\equal{#1}{Z}}{\item[\textbf{Acronyms}]}%              Z - Acronyms
-%              			{{}}}}}}}}}}
-
 \usepackage{nomencl}
 \makenomenclature
 \renewcommand{\nomgroup}[1]{%
