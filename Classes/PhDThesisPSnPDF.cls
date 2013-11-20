@@ -78,7 +78,7 @@
 \fi
 
 
-
+% **************************** Print / Online ***************************
 % Defines a print / online version to define page-layout and hyperrefering 
 
 \if@print
@@ -454,22 +454,39 @@
 
 
 % ******************************** Nomenclature *********************************
+%\usepackage{nomencl}
+%\makenomenclature
+%\renewcommand\nomgroup[1]{%
+%\ifthenelse{\equal{#1}{A}}{\item[\textbf{Roman Symbols}]}{%  A - Roman
+%\ifthenelse{\equal{#1}{G}}{\item[\textbf{Greek Symbols}]}{%  G - Greek
+%\ifthenelse{\equal{#1}{R}}{\item[\textbf{Superscripts}]}{%   R - Superscripts
+%\ifthenelse{\equal{#1}{S}}{\item[\textbf{Subscripts}]}{{%    S - Subscripts
+%\ifthenelse{\equal{#1}{X}}{\item[\textbf{Other Symbols}]}{{% X - Other Symbols
+%\ifthenelse{\equal{#1}{Z}}{\item[\textbf{Acronyms}]}%              Z - Acronyms
+%              			{{}}}}}}}}}}
+
 \usepackage{nomencl}
 \makenomenclature
-\renewcommand\nomgroup[1]{%
-  \ifthenelse{\equal{#1}{A}}{%
-   \item[\textbf{Roman Symbols}] }{%             A - Roman
-    \ifthenelse{\equal{#1}{G}}{%
-     \item[\textbf{Greek Symbols}]}{%             G - Greek
-      \ifthenelse{\equal{#1}{R}}{%
-        \item[\textbf{Superscripts}]}{%              R - Superscripts
-          \ifthenelse{\equal{#1}{S}}{%
-           \item[\textbf{Subscripts}]}{{%             S - Subscripts
-	    \ifthenelse{\equal{#1}{X}}{%
-	     \item[\textbf{Other Symbols}]}{{%    X - Other Symbols
-	    \ifthenelse{\equal{#1}{Z}}{%
-	     \item[\textbf{Acronyms}]}%              Z - Acronyms
-              			{{}}}}}}}}}}
+\renewcommand{\nomgroup}[1]{%
+\ifthenelse{\equal{#1}{A}}{\item[\textbf{Roman Symbols}]}{%
+\ifthenelse{\equal{#1}{G}}{\item[\textbf{Greek Symbols}]}{%
+\ifthenelse{\equal{#1}{Z}}{\item[\textbf{Acronyms / Abbreviations}]}{%
+\ifthenelse{\equal{#1}{R}}{\item[\textbf{Superscripts}]}{%
+\ifthenelse{\equal{#1}{S}}{\item[\textbf{Subscripts}]}{%
+\ifthenelse{\equal{#1}{X}}{\item[\textbf{Other Symbols}]}
+{}
+}% matches mathematical symbols > X
+}% matches Subscripts           > S
+}% matches Superscripts         > R
+}% matches Abbreviations        > Z
+}% matches Greek Symbols        > G
+}% matches Roman Symbols        > A
+
+% Add nomenclature to contents and print out nomenclature
+\newcommand{\printnomencl}{
+\printnomenclature 
+\addcontentsline{toc}{chapter}{\nomname}
+}
 
 
 % ******************************* Create the index ******************************

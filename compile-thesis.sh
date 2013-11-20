@@ -5,47 +5,82 @@
 compile="compile";
 clean="clean";
 
-if test -z "$1"
+if test -z "$2"
 then
+if [ $1 = $clean ]; then
+	echo "Cleaning please wait ..."
+	rm -f *~
+	rm -rf *.aux
+	rm -rf *.bbl
+	rm -rf *.blg
+	rm -rf *.d
+	rm -rf *.fls
+	rm -rf *.ilg
+	rm -rf *.ind
+	rm -rf *.toc*
+	rm -rf *.lot*
+	rm -rf *.lof*
+	rm -rf *.log
+	rm -rf *.idx
+	rm -rf *.out*
+	rm -rf *.nlo
+	rm -rf *.nls
+	rm -rf $filename.pdf
+	rm -rf $filename.ps
+	rm -rf $filename.dvi
+	rm -rf *#* 
+	echo "Cleaning complete!"
+	exit
+else
 	echo "Shell scrip for compiling the PhD Thesis"
-	echo "Usage: sh ./compile-thesis.sh [OPTIONS]"
-	echo "  compile: Compiles the PhD Thesis"
-	echo "  clean: removes temporary files"
+	echo "Usage: sh ./compile-thesis.sh [OPTIONS] [filename]"
+	echo "[option]  compile: Compiles the PhD Thesis"
+	echo "[option]  clean: removes temporary files no filename required"
 	exit
 fi
+fi
+
+filename=$2;
 
 if [ $1 = $clean ]; then
 	echo "Cleaning please wait ..."
 	rm -f *~
-	rm -f *.aux*
-	rm -f *.bbl
-	rm -f *.blg
-	rm -f *.d
-	rm -f *.fls
-	rm -f *.ilg
-	rm -f *.ind
-	rm -f *.toc*
-	rm -f *.lot*
-	rm -f *.lof*
-	rm -f *.log
-	rm -f *.idx
-	rm -f *.out*
-	rm -f *.pdf
-	rm -f *.nlo
-	rm -f *.dvi
+	rm -rf *.aux
+	rm -rf *.bbl
+	rm -rf *.blg
+	rm -rf *.d
+	rm -rf *.fls
+	rm -rf *.ilg
+	rm -rf *.ind
+	rm -rf *.toc*
+	rm -rf *.lot*
+	rm -rf *.lof*
+	rm -rf *.log
+	rm -rf *.idx
+	rm -rf *.out*
+	rm -rf *.nlo
+	rm -rf *.nls
+	rm -rf $filename.pdf
+	rm -rf $filename.ps
+	rm -rf $filename.dvi
+	rm -rf *#* 
 	echo "Cleaning complete!"
 	exit
 elif [ $1 = $compile ]; then
 	echo "Compiling your PhD Thesis...please wait...!"
-	pdflatex -interaction=nonstopmode thesis.tex
-	bibtex thesis.aux 
-	pdflatex -interaction=nonstopmode thesis.tex
+	pdflatex -interaction=nonstopmode $filename.tex
+	bibtex $filename.aux 
+	pdflatex -interaction=nonstopmode $filename.tex
+	makeindex $filename.nlo -s nomencl.ist -o $filename.nls
+	pdflatex -interaction=nonstopmode $filename.tex
+	makeindex $filename.nlo -s nomencl.ist -o $filename.nls
+	pdflatex -interaction=nonstopmode $filename.tex
 	echo "Success!"
 	exit
 fi
 
 
-if test -z "$2"
+if test -z "$3"
 then
 	exit
 fi
