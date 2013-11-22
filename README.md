@@ -157,16 +157,15 @@ You can run the following command:
 
 --------------------------------------------------------------------------------
 
-# Known Issues / Bugs
+# Known Issue(s) / Bugs
 
-*   Abstract, Acknowlegment and Dedication have extra spacing at the top: needs removal?
-
+*   Content gets capitalised on the header 
 --------------------------------------------------------------------------------
 
 # TODO list
 
 *   Support custom margins
 
-*   Support custome headers
+*   Support custom headers
 
 *   Headheight should be fixed according to the fontsize used!
