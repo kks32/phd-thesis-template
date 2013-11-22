@@ -228,28 +228,21 @@
 \pagestyle{fancy}
 
 % Style 1:
-%\renewcommand{\chaptermark}[1]{\markboth{\thechapter. #1 }{}}
-%\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
-%\fancyhead[LO]{\bfseries\rightmark}
-%\fancyhead[LE,RO]{\bfseries\thepage}
-%\fancyhead[RE]{\bfseries\leftmark}
-%\fancyfoot{}
-
-% Style 2:
-%\renewcommand{\chaptermark}[1]{\markboth{Chapter \thechapter. #1}{}}
-%\renewcommand{\sectionmark}[1]{\markright{#1}}
-%\fancyhead[LO]{\rightmark}
-%\fancyhead[LE,RO]{\bfseries\thepage}
-%\fancyhead[RE]{\leftmark}
-%\fancyfoot{}
-
-% Style 3:
 \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
 \fancyhf{}
-\fancyhead[RO]{\bfseries\rightmark}
-\fancyhead[LE]{\bfseries\leftmark}
-\fancyfoot[C]{\thepage}
+\fancyhead[LO]{\rightmark}
+\fancyhead[LE,RO]{\bfseries\thepage}
+\fancyhead[RE]{\leftmark}
+
+
+% Style 2:
+%\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+%\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+%\fancyhf{}
+%\fancyhead[RO]{\bfseries\rightmark}
+%\fancyhead[LE]{\bfseries\leftmark}
+%\fancyfoot[C]{\thepage}
 
 
 \setlength{\headheight}{14.5pt}
