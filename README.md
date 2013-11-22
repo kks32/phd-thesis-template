@@ -159,7 +159,7 @@ You can run the following command:
 
 # Known Issue(s) / Bugs
 
-*   Content gets capitalised on the header 
+*   No known bugs. Let me know, if you find any!
 --------------------------------------------------------------------------------
 
 # TODO list
