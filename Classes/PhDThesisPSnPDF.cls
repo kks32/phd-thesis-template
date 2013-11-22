@@ -220,7 +220,8 @@
 % ***************************** TOC and Hide Sections ***************************
 \newcommand{\nocontentsline}[3]{}
 \newcommand{\tochide}[2]{\bgroup\let\addcontentsline=\nocontentsline#1{#2}\egroup}
-
+% Removes pagenumber appearing from TOC
+\addtocontents{toc}{\protect\thispagestyle{empty}}
 
 
 % ******************************* Header Formatting *****************************
@@ -228,21 +229,21 @@
 \pagestyle{fancy}
 
 % Style 1:
-\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
-\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
-\fancyhf{}
-\fancyhead[LO]{\rightmark}
-\fancyhead[LE,RO]{\bfseries\thepage}
-\fancyhead[RE]{\leftmark}
-
-
-% Style 2:
 %\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
 %\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
 %\fancyhf{}
-%\fancyhead[RO]{\bfseries\rightmark}
-%\fancyhead[LE]{\bfseries\leftmark}
-%\fancyfoot[C]{\thepage}
+%\fancyhead[LO]{\rightmark}
+%\fancyhead[LE,RO]{\bfseries\thepage}
+%\fancyhead[RE]{\leftmark}
+
+
+% Style 2:
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\fancyhf{}
+\fancyhead[RO]{\bfseries\rightmark}
+\fancyhead[LE]{\bfseries\leftmark}
+\fancyfoot[C]{\thepage}
 
 
 \setlength{\headheight}{14.5pt}
