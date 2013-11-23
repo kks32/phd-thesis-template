@@ -42,14 +42,15 @@ __Note__: the `Makefile` itself is take from and maintained at
 
 ## Class Options
 
-`PhDThesisPSnPDF` supports all the options of the standard `book` and `report` classes (on which
-it is based).
+`PhDThesisPSnPDF` is based on the standard `book` class
 
-It also supports some custom options:
+It support the following custom options:
 
-*   `book` or `report`: Supports both book and report class. Default is `book`.
+*   `a4paper` or `a5paper` or `letter`: Paper size
 
-*   `twoside` or `oneside`: This is especially useful for printing double side (twoside) or single side.
+*   `10pt` or `11pt` or `12pt`: Font Size
+
+*   `oneside` or `twoside`: This is especially useful for printing double side (twoside) or single side.
 
 *   `print`: Supports Print and Online Version with different page margins and hyperlink styles.
     Use `print` in the options to activate Print Version with appropriate margins and page layout and view styles. 
@@ -155,10 +156,10 @@ logos on [this page](http://www.admin.cam.ac.uk/offices/communications/services/
 Download and exchange the new logos with `CUni.eps` and/or `CUni.pdf`.
 
 
-## _Q5_: How can I use my favourite fonts (like Adobe Sabon, Adobe Utopia etc.)?
+## _Q5_: How can I use my favourite fonts (like Libertine etc.)?
 
 This template uses Times and Latin Modern (as default) fonts. Libertine Font doesn't support Math (looking for a suitable alternative for Math font in Libertine).
-After you've installed your custom/favourite fonts, add the following command in the preamble section within `\ifFontNotSet \fi`:
+After you've installed your custom/favourite fonts, add the following command in the preamble section within `\ifsetFont\else \RequirePackage{yourfont} \fi`:
 
     \renewcommand\rmdefault{psb}
 
@@ -171,7 +172,7 @@ You can run the following command:
 
 # Known Issue(s) / Bugs
 
-*   No know bug(s) so far. If you find any let me know or even better if you can patch it and contribute to the development of the LaTeX Template
+*   No know bug(s) so far. If you find any let me know or even better, if you can patch it and contribute to the development of the LaTeX Template
 
 --------------------------------------------------------------------------------
 

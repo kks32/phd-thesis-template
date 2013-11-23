@@ -19,11 +19,7 @@
 
 % ***************************************************************
 % ********************** Class Definition ***********************
-
-\newif\ifCU@bookmode
-\CU@bookmodetrue
-\DeclareOption{report}{\CU@bookmodefalse}
-\DeclareOption{book}{\CU@bookmodetrue}
+% ***************************************************************
 
 % ****************** Define a Print/Online Version **************
 \newif\if@print\@printfalse
@@ -57,47 +53,55 @@
 \newif\ifCU@custombib\CU@custombibfalse % Custom Bibliography
 \DeclareOption{custombib}{\CU@custombibtrue}
 
+% ****************** Header / Footer Styling ********************
+
+
+
+\ProcessOptions\relax%
+
+% ********************* Pre-defined Options **********************
+
+% Font Size
+\DeclareOption{10pt}{\PassOptionsToClass{\CurrentOption}{book}}%
+\DeclareOption{11pt}{\PassOptionsToClass{\CurrentOption}{book}}%
+\DeclareOption{12pt}{\PassOptionsToClass{\CurrentOption}{book}}%
+
+% Page Size
+\DeclareOption{a4paper}{\PassOptionsToClass{\CurrentOption}{book}}%
+\DeclareOption{a5paper}{\PassOptionsToClass{\CurrentOption}{book}}%
+\DeclareOption{letter}{\PassOptionsToClass{\CurrentOption}{book}}%
+
+% Column layout
+\DeclareOption{oneside}{\PassOptionsToClass{\CurrentOption}{book}}%
+\DeclareOption{twoside}{\PassOptionsToClass{\CurrentOption}{book}}%
+
+% Generates Warning for unknown options
 \DeclareOption*{
-  \ClassWarning{PhDThesisPSnPDF}{Unknown option '\CurrentOption'}
+  \ClassWarning{PhDThesisPSnPDF}{Unknown or non-standard option '\CurrentOption'. Will see if I can load it from the book class. If you get a warning unused global option(s): `\CurrentOption` then the option is not supported!}
+  \PassOptionsToClass{\CurrentOption}{book}
 }
 
+
 \ProcessOptions\relax%
 
-\ifCU@bookmode
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{book}}%
-\ProcessOptions\relax%
 \ifx\pdfoutput\undefined%
-   \LoadClass[dvips,fleqn,openright]{book}%
-\else%
-   \LoadClass[pdftex,fleqn,openright]{book}%
-\fi%
-\else
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}%
-\ProcessOptions\relax%
-\ifx\pdfoutput\undefined%
-  \LoadClass[dvips,fleqn,openright]{report}%
-\else%
-   \LoadClass[pdftex,fleqn,openright]{report}%
-\fi%
-\fi
+      \LoadClass[dvips,fleqn,openright]{book}%
+      \@ifundefined{pdfoutput}{
+        \AtBeginDvi{\special{papersize=\paperwidth,\paperheight}}
+      }
 
+\else%
+      \LoadClass[pdftex,fleqn,openright]{book}%
+      \AtBeginDvi{\special{papersize=\paperwidth,\paperheight}}%
+\fi%
 
 
 % ************** Set pdfpage and dvips paper sizes ***************
-% if \pdfoutput is undefined or equal to relax, output a dvips special
-\@ifundefined{pdfoutput}{
-  \AtBeginDvi{\special{papersize=\paperwidth,\paperheight}}
-}
 % pdfoutput is defined and not equal to \relax
 % check for pdfpageheight existence just in case someone sets pdfoutput
 % under non-pdflatex. If exists, set them regardless of value of \pdfoutput.
 \@ifundefined{pdfpageheight}{\relax}{\global\pdfpagewidth\paperwidth
 \global\pdfpageheight\paperheight}%
-% if using \pdfoutput=0 under pdflatex, send dvips papersize special
-\ifcase\pdfoutput
-\AtBeginDvi{\special{papersize=\paperwidth,\paperheight}}%
-\else
-\fi
 
 
 % **************************** Print / Online ***************************
