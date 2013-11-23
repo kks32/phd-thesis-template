@@ -177,9 +177,7 @@ You can run the following command:
 
 # TODO list
 
-*   Support Libertine fonts and set the default font in the classfile
-
-*   Work on how to change the default option in bibliography
+*   Support Libertine fonts + Math
 
 *   Support custom margins
 

@@ -39,6 +39,12 @@
 \newif\ifCU@times\CU@timesfalse % Times with Math Support
 \DeclareOption{times}{\CU@timestrue}
 
+\newif\ifCU@palatino\CU@palatinofalse % Palatino with Math Support
+\DeclareOption{palatino}{\CU@palatinotrue}
+
+\newif\ifCU@customfont\CU@customfontfalse % Custom Font with Math Support
+\DeclareOption{customfont}{\CU@customfonttrue}
+
 % ************************** Bibliography ***********************
 \newif\ifsetBib\setBibfalse % Using Custom Bibliography
 
@@ -50,6 +56,10 @@
 
 \newif\ifCU@custombib\CU@custombibfalse % Custom Bibliography
 \DeclareOption{custombib}{\CU@custombibtrue}
+
+\DeclareOption*{
+  \ClassWarning{PhDThesisPSnPDF}{Unknown option '\CurrentOption'}
+}
 
 \ProcessOptions\relax%
 
@@ -204,6 +214,7 @@
          \else
          \RequirePackage[numbers,sort&compress]{natbib} % Default - numbered
          \setBibtrue
+         \ClassWarning{PhDThesisPSnPDF}{No bibliography style was specified. Default numbered style is used. If you would like to use a different style, use `authoryear' or `numbered' in the options in documentclass or use `custombib` and define the natbibpackage with required style in the Preamble.tex file}
          % Generate a warning message here
          \fi
      \fi
@@ -219,9 +230,21 @@
 % Font Selection
 \ifCU@times
 \RequirePackage{mathptmx}  % times roman, including math (where possible)
-\setFontfalse
-\else
 \setFonttrue
+\else
+     \ifCU@palatino
+     \RequirePackage[sc]{mathpazo} % Palatino
+     \linespread{1.05} % Requires a longer line space
+     \setFonttrue
+     \else
+          \ifCU@customfont
+          \setFontfalse
+          \else
+          \ClassWarning{PhDThesisPSnPDf}{Using default font Latin Modern. If you would like to use other pre-defined fonts use `times' or `palatino' or load a custom font in preamble by specifying `customfont' in the class options}
+          \RequirePackage{lmodern}
+          \setFonttrue
+          \fi
+    \fi
 \fi
 
 \input{glyphtounicode}
