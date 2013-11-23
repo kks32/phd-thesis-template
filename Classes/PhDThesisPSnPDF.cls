@@ -53,9 +53,9 @@
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}%
 \ProcessOptions\relax%
 \ifx\pdfoutput\undefined%
-  \LoadClass[dvips, a4paper]{report}%
+  \LoadClass[dvips,fleqn,openright]{report}%
 \else%
-   \LoadClass[pdftex, a4paper]{report}%
+   \LoadClass[pdftex,fleqn,openright]{report}%
 \fi%
 \fi
 
