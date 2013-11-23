@@ -226,9 +226,10 @@
 
 % ******************************* Header Formatting *****************************
 % Custom Header with Chapter Number, Page Number and Section Numbering
+
 \pagestyle{fancy}
 
-% Style 1:
+% Style 1: Sets Page Number at the Top (LE/RO) with Chapter/Section Name on LO/RE
 \renewcommand{\chaptermark}[1]{\markboth {#1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
 \fancyhf{}
@@ -237,7 +238,7 @@
 \fancyhead[RE]{\nouppercase \leftmark}
 
 
-% Style 2:
+% Style 2: Sets Page Number at the Top and Chapter/Section Name on LE/RO
 %\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
 %\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
 %\fancyhf{}
@@ -245,12 +246,13 @@
 %\fancyhead[LE]{\bfseries \nouppercase \leftmark}
 %\fancyfoot[C]{\thepage}
 
-% Style 3:
+% Style 3: Sets Page Number at the Bottom with Chapter/Section Name on LO/RE
 %\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
 %\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1\ }}
 %\fancyhf{}
 %\fancyhead[RO]{\nouppercase \rightmark | \bfseries{\thepage} }
 %\fancyhead[LE]{{\bfseries\thepage} | \nouppercase \leftmark }
+
 
 \setlength{\headheight}{14.5pt}
 %\renewcommand{\headrulewidth}{0.5pt}
@@ -259,7 +261,6 @@
   \fancyhead{}
   \renewcommand{\headrulewidth}{0pt}
 }
-
 
 % **************** Clear Header Style on the Last Empty Odd pages ***************
 \renewcommand{\cleardoublepage}{\clearpage\if@twoside \ifodd\c@page\else%
