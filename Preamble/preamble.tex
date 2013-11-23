@@ -44,15 +44,18 @@
 % ******************* Fonts (like different typewriter fonts etc.)*************
 %\renewcommand\rmdefault{psb}
 % \usepackage{libertine} % Linux Libertine Font - no Math support
-\ifFontNotSet
+\ifsetFont
+\else
 \RequirePackage{lmodern}  % LatinModern as Default with math (where possible)
 \fi
 
 % *****************************************************************************
 % *************************** Bibliography  and References ********************
 \usepackage{cleveref} %Referencing without need to explicitly state fig /table
+\ifsetBib % True it's already set do nothing
+\else % custom bibliography style chosen so enter bibstyle here
 \RequirePackage[square, sort, numbers, authoryear]{natbib} %author year
-%\RequirePackage[numbers,sort&compress]{natbib} % numbered citation
+\fi
 
 
 

@@ -25,19 +25,31 @@
 \DeclareOption{report}{\CU@bookmodefalse}
 \DeclareOption{book}{\CU@bookmodetrue}
 
-% ****************** Define a Print/Online Version ******************
+% ****************** Define a Print/Online Version **************
 \newif\if@print\@printfalse
 \DeclareOption{print}{\@printtrue}
 
-% ************************** Define index ************************
+% ************************** Define index ***********************
 \newif\ifCU@index\CU@indexfalse
 \DeclareOption{index}{\CU@indextrue}
 
-% ************************** Font Option *************************
-\newif\ifFontNotSet\FontNotSetfalse % Font is not set 
+% ************************** Font Option ************************
+\newif\ifsetFont\setFontfalse % Font is not set 
 
 \newif\ifCU@times\CU@timesfalse % Times with Math Support
 \DeclareOption{times}{\CU@timestrue}
+
+% ************************** Bibliography ***********************
+\newif\ifsetBib\setBibfalse % Using Custom Bibliography
+
+\newif\ifCU@authoryear\CU@authoryearfalse % Author-Year citation
+\DeclareOption{authoryear}{\CU@authoryeartrue}
+
+\newif\ifCU@numbered\CU@numberedfalse % Numbered citiation
+\DeclareOption{numbered}{\CU@numberedtrue}
+
+\newif\ifCU@custombib\CU@custombibfalse % Custom Bibliography
+\DeclareOption{custombib}{\CU@custombibtrue}
 
 \ProcessOptions\relax%
 
@@ -178,6 +190,26 @@
  \@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\small\ttfamily}}}
 \urlstyle{leo}
 
+% ********************************** Bibliography *******************************
+\ifCU@authoryear
+\RequirePackage[round, sort, numbers, authoryear]{natbib} %author year
+\setBibtrue
+\else
+     \ifCU@numbered
+     \RequirePackage[numbers,sort&compress]{natbib} % numbered citation
+     \setBibtrue
+     \else
+         \ifCU@custombib
+         \setBibfalse
+         \else
+         \RequirePackage[numbers,sort&compress]{natbib} % Default - numbered
+         \setBibtrue
+         % Generate a warning message here
+         \fi
+     \fi
+\fi
+
+
 
 % *************************** To copy ligatures and Fonts ***********************
 \RequirePackage{textcomp}
@@ -187,9 +219,9 @@
 % Font Selection
 \ifCU@times
 \RequirePackage{mathptmx}  % times roman, including math (where possible)
-\FontNotSetfalse
+\setFontfalse
 \else
-\FontNotSettrue
+\setFonttrue
 \fi
 
 \input{glyphtounicode}

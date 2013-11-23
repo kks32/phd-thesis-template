@@ -69,6 +69,18 @@ It also supports some custom options:
 
 *   `default (empty)`: When no font is specified, `Latin Modern` is used as the default font with Math Support. The default font is set in preamble with the following condition `ifFontNotSet` is True then default is set as `Latin Modern`. User can change this default font in the preamble.
 
+### Choosing the Bibliography style
+
+`PhDThesisPSnPDF` currently supports two styles `AuthorYear` and `Numbered (default)`. Citation style has to be set. You can also specify `CustomBib` style
+
+* `authoryear`: For author-year citation eg., Krishna (2013)
+
+* `numbered`: (Default Option) For numbered and sorted citation e.g., [1,5,2]
+
+* `custombib`: Define your own bibliography style in the `preamble.tex` file.
+		`\RequirePackage[square, sort, numbers, authoryear]{natbib}`
+
+
 ## Custom Settings
 
 *   The depth of table of contents can be set using: 
@@ -159,10 +171,15 @@ You can run the following command:
 
 # Known Issue(s) / Bugs
 
-*   No known bugs. Let me know, if you find any!
+*   No know bug(s) so far. If you find any let me know or even better if you can patch it and contribute to the development of the LaTeX Template
+
 --------------------------------------------------------------------------------
 
 # TODO list
+
+*   Support Libertine fonts and set the default font in the classfile
+
+*   Work on how to change the default option in bibliography
 
 *   Support custom margins
 
