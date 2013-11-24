@@ -422,15 +422,19 @@
 %%Can use the line below to remove the blank page after the title page
 %%\setcounter{page}{0}  % Sasa Tomic
 
+% To compute the free vertical space in Title page
+\computeTitlePageSpacing
+
+
 \begin{singlespace}
 \begin{center}
 % Title
 {\Huge \bfseries{\@title} \par}
-\vspace*{0.125\textheight}
+\vspace{.25\CU@titlepagespacing}
 
 % Crest
 {\@crest \par}
-\vspace*{0.1\textheight}
+\vspace{.2\CU@titlepagespacing}
 
 % Author
 {\Large \bfseries{\@author} \par}
@@ -440,13 +444,13 @@
 {\large \@dept \par}
 \vspace*{1ex}
 {\large \@university \par}
-\vspace*{0.1\textheight}
+\vspace{.2\CU@titlepagespacing}
 
 % Submission Text
 {\large \submissiontext \par}
 \vspace*{1ex}
 {\large \it {\@degree} \par} 
-%\vspace*{0.15\textheight}
+
 
 \end{center}
 \vfill
@@ -458,7 +462,6 @@
 \flushright \@degreedate
 \end{minipage}
 \end{singlespace}
-\vspace*{0.02\textheight}
 }
 
 
@@ -573,96 +576,77 @@
 
 
 
-% This Title page works but is too complicated!
+% ********************* To compute empty space in title page *********************
 % Boxes below are used to space differt contents on the title page
-%\newcommand{\makephdtitle}{
-%
-%\pagestyle{empty}
-%%%% Title Box
-%\newsavebox{\CU@Title}
-%\begin{lrbox}{\CU@Title}
-%\begin{minipage}[c]{0.98\textwidth}
-%\centering
-%\Huge \bfseries{\@title}
-%\end{minipage}
-%\end{lrbox}
-%%
-%%% University Crest Box
-%\newsavebox{\CU@crest}
-%\begin{lrbox}{\CU@crest}
-%\@crest
-%\end{lrbox}
-%
-%%% Author Box
-%\newsavebox{\CU@author}
-%\begin{lrbox}{\CU@author}
-%\begin{minipage}[c]{\textwidth}
-%\centering
-%\Large \bfseries{\@author}
-%\end{minipage}
-%\end{lrbox}
-%
-%%% Department Box
-%\newsavebox{\CU@dept}
-%\begin{lrbox}{\CU@dept}
-%\begin{minipage}[c]{\textwidth}
-%\centering
-%{\large \@dept \par}
-%\vspace*{1ex}
-%{\large \@university \par}
-%\end{minipage}
-%\end{lrbox}
-%
-%%% Submission Box
-%\newsavebox{\CU@submission}
-%\begin{lrbox}{\CU@submission}
-%\begin{minipage}[c]{\textwidth}
-%\begin{center}
-%\large \submissiontext \par
-%\vspace*{1ex}
-%\large \it {\@degree} \par
-%\end{center}
-%\end{minipage}
-%\end{lrbox}
-%
-%%% College and Date Box
-%\newsavebox{\CU@collegedate}
-%\begin{lrbox}{\CU@collegedate}
-%\begin{minipage}[c]{\textwidth}
-%\large
-%\begin{minipage}{0.45\textwidth}
-%\flushleft\@college
-%\end{minipage}
-%\begin{minipage}{0.45\textwidth}
-%\flushright \@degreedate
-%\end{minipage}
-%\end{minipage}
-%\end{lrbox}
-%
-%%%  Now to compute the free vertical space
-%\newlength{\CU@titlepagespacing}
-%\setlength{\CU@titlepagespacing}{ \textheight %
-%			- \totalheightof{\usebox{\CU@Title}}
-%			- \totalheightof{\usebox{\CU@crest}}
-%			- \totalheightof{\usebox{\CU@author}}
-%			- \totalheightof{\usebox{\CU@dept}}
-%			- \totalheightof{\usebox{\CU@submission}}
-%			- \totalheightof{\usebox{\CU@collegedate}}
-%}
-%
-%\begin{center}
-%~\vspace{.02\CU@titlepagespacing}
-%{\usebox{\CU@Title}}\par
-%\vspace{.25\CU@titlepagespacing}
-%{\usebox{\CU@crest}}\par
-%\vspace{.2\CU@titlepagespacing}
-%{\usebox{\CU@author}}\par
-%\vspace{.05\CU@titlepagespacing}
-%{\usebox{\CU@dept}}\par
-%\vspace{.2\CU@titlepagespacing}
-%{\usebox{\CU@submission}}\par
-%\null \vfill
-%%{\usebox{\cam@collegedate}}
-%
-%\end{center}
-%}
+\newcommand{\computeTitlePageSpacing}{
+
+
+% Title Box
+\newsavebox{\CU@Title}
+\begin{lrbox}{\CU@Title}
+\begin{minipage}[c]{0.98\textwidth}
+\centering \Huge \bfseries{\@title}
+\end{minipage}
+\end{lrbox}
+
+% University Crest Box
+\newsavebox{\CU@crest}
+\begin{lrbox}{\CU@crest}
+\@crest
+\end{lrbox}
+
+% Author Box
+\newsavebox{\CU@author}
+\begin{lrbox}{\CU@author}
+\begin{minipage}[c]{\textwidth}
+\centering \Large \bfseries{\@author}
+\end{minipage}
+\end{lrbox}
+
+% Department Box
+\newsavebox{\CU@dept}
+\begin{lrbox}{\CU@dept}
+\begin{minipage}[c]{\textwidth}
+\centering {\large \@dept \par}
+\vspace*{1ex}
+{\large \@university \par}
+\end{minipage}
+\end{lrbox}
+
+% Submission Box
+\newsavebox{\CU@submission}
+\begin{lrbox}{\CU@submission}
+\begin{minipage}[c]{\textwidth}
+\begin{center}
+\large \submissiontext \par
+\vspace*{1ex}
+\large \it {\@degree} \par
+\end{center}
+\end{minipage}
+\end{lrbox}
+
+% College and Date Box
+\newsavebox{\CU@collegedate}
+\begin{lrbox}{\CU@collegedate}
+\begin{minipage}[c]{\textwidth}
+\large
+\begin{minipage}{0.45\textwidth}
+\flushleft\@college
+\end{minipage}
+\begin{minipage}{0.45\textwidth}
+\flushright \@degreedate
+\end{minipage}
+\end{minipage}
+\end{lrbox}
+
+%  Now to compute the free vertical space
+\newlength{\CU@titlepagespacing}
+\setlength{\CU@titlepagespacing}{ \textheight %
+			- \totalheightof{\usebox{\CU@Title}}
+			- \totalheightof{\usebox{\CU@crest}}
+			- \totalheightof{\usebox{\CU@author}}
+			- \totalheightof{\usebox{\CU@dept}}
+			- \totalheightof{\usebox{\CU@submission}}
+			- \totalheightof{\usebox{\CU@collegedate}}
+}
+}
