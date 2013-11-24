@@ -106,6 +106,12 @@
 \fi%
 
 
+% ******************************** Eco Mode **************************************
+\ifCU@eco
+\usepackage[title=normal]{savetrees} % subtle / moderate /extreme
+\linespread{0.9}
+\fi
+
 % ************** Set pdfpage and dvips paper sizes ***************
 % pdfoutput is defined and not equal to \relax
 % check for pdfpageheight existence just in case someone sets pdfoutput
@@ -135,17 +141,19 @@
           citecolor=black, 
           anchorcolor=black
         }
-
-	\if@twoside 
+	\ifCU@eco
+	\RequirePackage{a4wide}
+	\else
+		\if@twoside 
         % Odd and Even side Margin staggering for binding and set viewmode for PDF
               \RequirePackage[hmarginratio=3:2]{geometry}
 	      \hypersetup{pdfpagelayout=TwoPageRight}
-	\else 
+		\else 
          % Single side print margin for binding and set view mode for PDF
               \RequirePackage[hmarginratio=3:2]{geometry}
     	      \hypersetup{pdfpagelayout=OneColumn}
-	\fi
-        
+		\fi
+    \fi
 \else
 	\RequirePackage{hyperref}
 	% For PDF Online version
@@ -163,9 +171,13 @@
           urlcolor=blue,
           citecolor=blue, 
           anchorcolor=green}
-        % No Margin staggering on Odd and Even side 
-	\RequirePackage[hmarginratio=1:1]{geometry} 
-    \hypersetup{pdfpagelayout=OneColumn}
+	\ifCU@eco
+	\RequirePackage{a4wide}
+	\else
+		% No Margin staggering on Odd and Even side 
+		\RequirePackage[hmarginratio=1:1]{geometry} 
+    	\hypersetup{pdfpagelayout=OneColumn}
+	\fi
 \fi
 
 
@@ -234,11 +246,6 @@
      \fi
 \fi
 
-
-% ******************************** Eco Mode **************************************
-\ifCU@eco
-\usepackage[title=normal]{savetrees} % subtle / moderate /extreme
-\fi
 
 
 % *************************** To copy ligatures and Fonts ***********************
