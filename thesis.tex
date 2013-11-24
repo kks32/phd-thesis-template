@@ -1,4 +1,50 @@
-\documentclass[a4paper,12pt,twoside,times,numbered,PageStyleI,eco,print,index]{Classes/PhDThesisPSnPDF}
+% ******************************* PhD Thesis Template ************************
+% Please have a look at the README.md file for info on how to use the template
+
+\documentclass[a4paper,twoside,12pt,times,numbered,print,index]{Classes/PhDThesisPSnPDF}
+
+% *****************************************************************************
+% ******************************* Class Options *******************************
+% *****************************************************************************
+% `a4paper` or `a5paper` or `letter`: Paper size
+%
+% `10pt` or `11pt` or `12pt`: Font Size
+%
+% `oneside` or `twoside`: Printing double side (twoside) or single side.
+%
+% `print`: Use `print` for print version with appropriate margins and page layout. Leaving the options field blank will activate Online version.
+%
+% `index`: For index at the end of the thesis
+%
+% `draft`: For draft mode without loading any images (same as draft in book)
+%
+% ******************* Choosing the Fonts in Class Options *********************
+%
+% `times`: For Times font with math support.
+%
+% `palatino`: For Palatino font
+%
+% `customfont`: Use `customfont' option in the document class and load the package in the preamble.tex
+%
+% `default (leave empty)`: When no font is specified, `Latin Modern` is used as the default font with Math Support. 
+%
+% ******************** Choosing the Bibliography style ***********************
+%
+% `authoryear`: For author-year citation eg., Krishna (2013)
+%
+% `numbered`: (Default Option) For numbered and sorted citation e.g., [1,5,2]
+%
+% `custombib`: Define your own bibliography style in the `preamble.tex` file.
+% `\RequirePackage[square, sort, numbers, authoryear]{natbib}`
+%
+% ********************** Choosing the Page Style *********************************
+%
+% `default (leave empty)`: For Page Numbers in Header (Left Even, Right Odd) and Chapter Name in Header (Right Even) and Section Name (Left Odd). Blank Footer.
+%
+% `PageStyleI`: Chapter Name next & Page Number on Even Side (Left Even). Section Name & Page Number in Header on Odd Side (Right Odd). Footer is empty.
+%
+% `PageStyleII`: Chapter Name on Even Side (Left Even) in Header. Section Number and Section Name in Header on Odd Side (Right Odd). Page numbering in footer
+
 
 % ********************************* Preamble **********************************
 % Preamble: Contains packages and user-defined commands and settings
@@ -6,8 +52,8 @@
 
 % ******************** Thesis Information & Meta-data *************************
 %% The title of the thesis
-\title{Multiscale Modelling of \texorpdfstring{\\}{}Granular Flows} 
-
+\title{ How to write your thesis in \texorpdfstring{\\ \LaTeX}{LaTeX}} 
+%\texorpdfstring is used for PDF metadata and \\ creates a new line
 
 %% The full name of the author
 \author{Krishna Kumar}
@@ -29,11 +75,11 @@
 \college{King's College}
 
 %% Submission date
-\degreedate{Yet to be decided} 
+\degreedate{2013} 
 
 %% Meta information
-\subject{GeoMechanics}
-\keywords{{Material Point Method} {Lattice Boltzmann} {Multi-scale} {Multiphase} {Granular Flows}} 
+\subject{LaTeX}
+\keywords{{LaTeX} {PhD Thesis} {Engineering} {University of Cambridge}} 
 
 
 % ********************************Front Matter************************************
@@ -86,10 +132,10 @@
 
 \begin{spacing}{0.9}
 \bibliographystyle{apalike}
-%\bibliographystyle{plainna}
+%\bibliographystyle{plainnat}
 \renewcommand{\bibname}{References}% changes default name Bibliography-> References 
 \cleardoublepage
-\bibliography{References/References}
+\bibliography{References/References} % Path to your References.bib file
 \end{spacing}
 
 
@@ -97,4 +143,3 @@
 \printthesisindex
 
 \end{document}
-

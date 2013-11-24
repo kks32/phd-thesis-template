@@ -8,9 +8,9 @@ phd-thesis-template
 
 *   Print / On-line version: Different layout and hyper-referncing styles
 
-*   Custom font and pre-defined fonts (Times / Latin Modern)
+*   Pre-defined and custom fonts (Times / Palatino / Latin Modern) with math support
 
-*   Custom bibliography style support (authoryear / numbered / custom)
+*   Pre-defined and custom bibliography style support (authoryear / numbered / custom)
 
 *   Custom page styles: 3 Different Header / Footer styles
 
@@ -80,8 +80,10 @@ It support the following custom options:
 `PhDThesisPSnPDF` currently supports two fonts `Times` and `Latin Modern (default)`.
 
 *   `times`: Specifying times option in the document class will use `mathptpx` or `Times` font with Math Support.
-
-*   `default (empty)`: When no font is specified, `Latin Modern` is used as the default font with Math Support. The default font is set in preamble with the following condition `ifFontNotSet` is True then default is set as `Latin Modern`. User can change this default font in the preamble.
+*   `palatino`: Palatino font with math support
+*   `default (empty)`: When no font is specified, `Latin Modern` is used as the default font with Math Support. 
+*   `customfont`: Any custom font can be set in preamble by using `customfont` option in the document class. Then the custom font can be loaded in preamble.tex in 
+		`\ifsetFont\else \RequirePackage{Your_Custom_Font}\fi`
 
 ### Choosing the Bibliography style
 
@@ -100,15 +102,20 @@ It support the following custom options:
 
 * `default (leave empty)`: For Page Numbers in Header (Left Even, Right Odd) and Chapter Name in Header (Right Even) and Section #. Section Name (Left Odd). Blank Footer.
 
+Header (Even)   : 4				Introduction 
+Header (Odd)    : 1.2 Section Name 			   5
+Footer 		: Empty
+
 * `PageStyleI`: For Page Numbers in Header (Left Even, Right Odd) and Chapter Name next to the Page Number on Even Side (Left Even). Section Number and Section Name and Page Number in Header on Odd Side (Right Odd). Footer is empty. Layout:
 
- 3 | Introduction     and   1.2 Section Name | 4
-
+Header (Even)   : 4 | Introduction 
+Header (Odd)    :                         1.2 Section Name | 5
+Footer 		: Empty
 
 * `PageStyleII`: Chapter Name on Even Side (Left Even) in Header. Section Number and Section Name in Header on Odd Side (Right Odd). Page numbering in footer. Layout:
 
+Header (Even)   : Introduction
 Header (Odd)    : 			   1.2 Section Name
-Header (Even)   : Introduction                             
 Footer[centered]:                   3
 
 ## Custom Settings
@@ -130,8 +137,6 @@ Footer[centered]:                   3
 *   Bibliography with Author-Year Citation in `preamble.tex`:
 		`\RequirePackage[round, sort, numbers, authoryear]{natbib}`
 
-*   You can change the Title of Nomenclature to Notations or Symbols in the `preamble.tex` using:
-		`\renewcommand\nomname{Symbols}`
 
 ## Nomenclature Definition
 
@@ -150,6 +155,9 @@ The sort keys have prefix. In this case a prefix of `g` is used to denote Greek 
 * `S` or `s`: Subscripts
 
 * `X` or `x`: Other Symbols
+
+*   You can change the Title of Nomenclature to Notations or Symbols in the `preamble.tex` using:
+		`\renewcommand\nomname{Symbols}`
 
 
 -------------------------------------------------------------------------------
@@ -170,8 +178,7 @@ You can also mail
 
 ## _Q3_: Can I use my own Makefile?
 
-By all means. We are currently using the very nice (and smart) `Makefile` built
-specifically for LaTeX:
+Yes please. We are using this nice `Makefile` built specifically for LaTeX:
 
 > [http://code.google.com/p/latex-makefile/](http://code.google.com/p/latex-makefile/)
 
@@ -198,6 +205,27 @@ You can run the following command:
     `ps2ascii thesis.pdf | wc -w`
 
 --------------------------------------------------------------------------------
+# Warnings and FAQs
+
+__W1__: I get the ``LaTeX Warning: You have requested document class `Classes/PhDThesisPSnPDF', but the document class provides `PhDThesisPSnPDF'." warning, should I be concerned? 
+
+No! Do nothing, or if you don't want any warning messages change the line near the top of the class file to \ProvidesClass{Classes/PhDthesisPSnPDF} if you're not going to install the class file in a more standard location.
+
+__W2__:I get package Fancyhdr Warning: \fancyhead's `E' option without twoside option is useless on input line 321 or 322.. What should I do? 
+
+Nothing. The warning is because twoside option is also defined in the class, although only oneside option is currently used. 
+
+__W3__: I get Class PhDThesisPSnPDF Warning: Unknown or non-standard option 'something'. Will see if I can load it from the book class. If you get a warning unused global option(s): `eco` then the option is not supported! on input line 91.
+
+You are either trying to use a undefined option or a non-standard option, which is in the book class but not defined in the PhD Thesis Template. If it can be used it will be loaded and you will get no further warnings. If not the option you chose is unavailable. 
+
+
+__W4__: I get LaTeX Warning: Unused global option(s):[something].
+
+You are trying to load an option that is not supported in the PhDThesisClass and the Book Class. Check you spelling!
+
+
+--------------------------------------------------------------------------------
 
 # Known Issue(s) / Bugs
 
@@ -209,8 +237,4 @@ You can run the following command:
 
 *   Support Libertine fonts + Math
 
-*   Support eco mode: squeeze more text in a page
-
 *   Scale the section sizes by an order when moving from a4paper to a5paper
-
-*   Support custom margin

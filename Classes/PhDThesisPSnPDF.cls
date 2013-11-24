@@ -13,7 +13,7 @@
 
 % ******************** Class Identification *********************
 %\NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{PhDThesisPSnPDF}[2013/11/14 version 1.0 by Krishna Kumar]
+\ProvidesClass{PhDThesisPSnPDF}[2013/11/24 version 1.0Beta by Krishna Kumar]
 \typeout{https://github.com/kks32/phd-thesis-template/}
 
 
@@ -60,10 +60,6 @@
 \newif\ifCU@pageStyleII\CU@pageStyleIIfalse % Set Page StyleI
 \DeclareOption{PageStyleII}{\CU@pageStyleIItrue}
 
-% *************************** Eco Mode ****************************
-\newif\ifCU@eco\CU@ecofalse % Set Eco Mode to squeeze more text
-\DeclareOption{eco}{\CU@ecotrue}
-
 \ProcessOptions\relax%
 
 % ********************* Pre-defined Options **********************
@@ -106,20 +102,6 @@
 \fi%
 
 
-% ******************************** Eco Mode **************************************
-\ifCU@eco
-\usepackage[title=normal]{savetrees} % subtle / moderate /extreme
-\linespread{0.9}
-\fi
-
-% ************** Set pdfpage and dvips paper sizes ***************
-% pdfoutput is defined and not equal to \relax
-% check for pdfpageheight existence just in case someone sets pdfoutput
-% under non-pdflatex. If exists, set them regardless of value of \pdfoutput.
-\@ifundefined{pdfpageheight}{\relax}{\global\pdfpagewidth\paperwidth
-\global\pdfpageheight\paperheight}%
-
-
 % **************************** Print / Online ***************************
 % Defines a print / online version to define page-layout and hyperrefering 
 
@@ -141,19 +123,15 @@
           citecolor=black, 
           anchorcolor=black
         }
-	\ifCU@eco
-	\RequirePackage{a4wide}
-	\else
-		\if@twoside 
+	\if@twoside 
         % Odd and Even side Margin staggering for binding and set viewmode for PDF
-              \RequirePackage[hmarginratio=3:2]{geometry}
-	      \hypersetup{pdfpagelayout=TwoPageRight}
-		\else 
+        \RequirePackage[hmarginratio=3:2]{geometry}
+	\hypersetup{pdfpagelayout=TwoPageRight}
+	\else 
          % Single side print margin for binding and set view mode for PDF
-              \RequirePackage[hmarginratio=3:2]{geometry}
-    	      \hypersetup{pdfpagelayout=OneColumn}
-		\fi
-    \fi
+        \RequirePackage[hmarginratio=3:2]{geometry}
+    	\hypersetup{pdfpagelayout=OneColumn}
+        \fi
 \else
 	\RequirePackage{hyperref}
 	% For PDF Online version
@@ -171,13 +149,9 @@
           urlcolor=blue,
           citecolor=blue, 
           anchorcolor=green}
-	\ifCU@eco
-	\RequirePackage{a4wide}
-	\else
-		% No Margin staggering on Odd and Even side 
-		\RequirePackage[hmarginratio=1:1]{geometry} 
+	% No Margin staggering on Odd and Even side 
+	\RequirePackage[hmarginratio=1:1]{geometry} 
     	\hypersetup{pdfpagelayout=OneColumn}
-	\fi
 \fi
 
 
@@ -222,8 +196,8 @@
 % **************************** URL Package and Definition ***********************
 \RequirePackage{url}
 % Redefining urlstyle to use smaller fontsize in References with URLs
-\def\url@leostyle{%
- \@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\small\ttfamily}}}
+\newcommand{\url@leostyle}{%
+ \@ifundefined{selectfont}{\renewcommand{\UrlFont}{\sf}}{\renewcommand{\UrlFont}{\small\ttfamily}}}
 \urlstyle{leo}
 
 % ********************************** Bibliography *******************************
