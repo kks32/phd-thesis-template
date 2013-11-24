@@ -54,7 +54,11 @@
 \DeclareOption{custombib}{\CU@custombibtrue}
 
 % ****************** Header / Footer Styling ********************
+\newif\ifCU@pageStyleI\CU@pageStyleIfalse % Set Page StyleI
+\DeclareOption{PageStyleI}{\CU@pageStyleItrue}
 
+\newif\ifCU@pageStyleII\CU@pageStyleIIfalse % Set Page StyleI
+\DeclareOption{PageStyleII}{\CU@pageStyleIItrue}
 
 
 \ProcessOptions\relax%
@@ -288,7 +292,28 @@
 
 \pagestyle{fancy}
 
-% Style 1: Sets Page Number at the Top (LE/RO) with Chapter/Section Name on LO/RE
+\ifCU@pageStyleI
+% Style 1: Sets Page Number at the Top and Chapter/Section Name on LE/RO
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1\ }}
+\fancyhf{}
+\fancyhead[RO]{\nouppercase \rightmark | \bfseries{\thepage} }
+\fancyhead[LE]{{\bfseries\thepage} | \nouppercase \leftmark }
+
+
+\else
+\ifCU@pageStyleII
+% Style 2: Sets Page Number at the Bottom with Chapter/Section Name on LO/RE
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\fancyhf{}
+\fancyhead[RO]{\bfseries\nouppercase \rightmark}
+\fancyhead[LE]{\bfseries \nouppercase \leftmark}
+\fancyfoot[C]{\thepage}
+
+
+\else
+% Default Style: Sets Page Number at the Top (LE/RO) with Chapter/Section Name on LO/RE
 \renewcommand{\chaptermark}[1]{\markboth {#1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
 \fancyhf{}
@@ -296,22 +321,9 @@
 \fancyhead[LE,RO]{\bfseries\thepage}
 \fancyhead[RE]{\nouppercase \leftmark}
 
+\fi
 
-% Style 2: Sets Page Number at the Top and Chapter/Section Name on LE/RO
-%\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
-%\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
-%\fancyhf{}
-%\fancyhead[RO]{\bfseries\nouppercase \rightmark}
-%\fancyhead[LE]{\bfseries \nouppercase \leftmark}
-%\fancyfoot[C]{\thepage}
-
-% Style 3: Sets Page Number at the Bottom with Chapter/Section Name on LO/RE
-%\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
-%\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1\ }}
-%\fancyhf{}
-%\fancyhead[RO]{\nouppercase \rightmark | \bfseries{\thepage} }
-%\fancyhead[LE]{{\bfseries\thepage} | \nouppercase \leftmark }
-
+\fi
 
 \setlength{\headheight}{14.5pt}
 %\renewcommand{\headrulewidth}{0.5pt}

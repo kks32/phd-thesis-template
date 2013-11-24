@@ -81,6 +81,22 @@ It support the following custom options:
 * `custombib`: Define your own bibliography style in the `preamble.tex` file.
 		`\RequirePackage[square, sort, numbers, authoryear]{natbib}`
 
+### Choosing the Page Style
+
+`PhDThesisPSnPDF` defines 3 different page styles (header and footer). The following definition is for `twoside` layout.
+
+* `default (leave empty)`: For Page Numbers in Header (Left Even, Right Odd) and Chapter Name in Header (Right Even) and Section #. Section Name (Left Odd). Blank Footer.
+
+* `PageStyleI`: For Page Numbers in Header (Left Even, Right Odd) and Chapter Name next to the Page Number on Even Side (Left Even). Section Number and Section Name and Page Number in Header on Odd Side (Right Odd). Footer is empty. Layout:
+
+ 3 | Introduction     and   1.2 Section Name | 4
+
+
+* `PageStyleII`: Chapter Name on Even Side (Left Even) in Header. Section Number and Section Name in Header on Odd Side (Right Odd). Page numbering in footer. Layout:
+
+Header (Odd)    : 			   1.2 Section Name
+Header (Even)   : Introduction                             
+Footer[centered]:                   3
 
 ## Custom Settings
 
@@ -180,8 +196,6 @@ You can run the following command:
 
 *   Support Libertine fonts + Math
 
-*   Support custom margins
-
-*   Support custom headers
+*   Support eco mode: squeeze more text in a page
 
 *   Headheight should be fixed according to the fontsize used!
