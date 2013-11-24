@@ -198,4 +198,4 @@ You can run the following command:
 
 *   Support eco mode: squeeze more text in a page
 
-*   Headheight should be fixed according to the fontsize used!
+*   Scale the section sizes by an order when moving from a4paper to a5paper
