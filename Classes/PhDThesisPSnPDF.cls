@@ -60,6 +60,9 @@
 \newif\ifCU@pageStyleII\CU@pageStyleIIfalse % Set Page StyleI
 \DeclareOption{PageStyleII}{\CU@pageStyleIItrue}
 
+% *************************** Eco Mode ****************************
+\newif\ifCU@eco\CU@ecofalse % Set Eco Mode to squeeze more text
+\DeclareOption{eco}{\CU@ecotrue}
 
 \ProcessOptions\relax%
 
@@ -78,6 +81,9 @@
 % Column layout
 \DeclareOption{oneside}{\PassOptionsToClass{\CurrentOption}{book}}%
 \DeclareOption{twoside}{\PassOptionsToClass{\CurrentOption}{book}}%
+
+% Draft Mode
+\DeclareOption{draft}{\PassOptionsToClass{\CurrentOption}{book}}%
 
 % Generates Warning for unknown options
 \DeclareOption*{
@@ -228,6 +234,11 @@
      \fi
 \fi
 
+
+% ******************************** Eco Mode **************************************
+\ifCU@eco
+\usepackage[title=normal]{savetrees} % subtle / moderate /extreme
+\fi
 
 
 % *************************** To copy ligatures and Fonts ***********************

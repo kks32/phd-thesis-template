@@ -2,6 +2,19 @@ phd-thesis-template
 ===================
 > A PhD thesis LaTeX template for Cambridge University, based on Krishna Kumar's King's latex course, CUED V1.1 Template by H. Banderi, and Cambridge Computer Laboratory Template.
 
+### Features
+
+*   Adaptive Title Page: Title page adapts to title length
+
+*   Print / On-line version: Different layout and hyper-referncing styles
+
+*   Custom font and pre-defined fonts (Times / Latin Modern)
+
+*   Custom bibliography style support (authoryear / numbered / custom)
+
+*   Custom page styles: 3 Different Header / Footer styles
+
+
 ### Build your thesis
 The template supports PDF, DVI and PS formats. All three formats can be generated
 with the provided `Makefile`.
@@ -197,5 +210,7 @@ You can run the following command:
 *   Support Libertine fonts + Math
 
 *   Support eco mode: squeeze more text in a page
+
+*   Support Draft mode
 
 *   Scale the section sizes by an order when moving from a4paper to a5paper
