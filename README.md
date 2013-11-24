@@ -211,6 +211,6 @@ You can run the following command:
 
 *   Support eco mode: squeeze more text in a page
 
-*   Support Draft mode
-
 *   Scale the section sizes by an order when moving from a4paper to a5paper
+
+*   Support custom margin
