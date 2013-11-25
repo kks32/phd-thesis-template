@@ -1,5 +1,12 @@
 \chapter{My Third Chapter}
 
+% **************************** Define Graphics Path **************************
+\ifpdf
+    \graphicspath{{Chapter3/Figs/Raster/}{Chapter3/Figs/PDF/}{Chapter3/Figs/}}
+\else
+    \graphicspath{{Chapter3/Figs/Vector/}{Chapter3/Figs/}}
+\fi
+
 \section{First Section of the Third Chapter}
 And now I begin my third chapter here \dots
 

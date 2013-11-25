@@ -138,8 +138,8 @@
         \fi
 	
         \if@twoside 
-		\hypersetup{pdfpagelayout=TwoPageRight}
-		\else 
+	\hypersetup{pdfpagelayout=TwoPageRight}
+	\else 
     	\hypersetup{pdfpagelayout=OneColumn}
         \fi
 \else
@@ -163,8 +163,8 @@
         \ifCU@custommargin
         \setMarginfalse
         \else
-		% No Margin staggering on Odd and Even side 
-		\RequirePackage[hmarginratio=1:1]{geometry} 
+	% No Margin staggering on Odd and Even side 
+	\RequirePackage[hmarginratio=1:1]{geometry} 
         \setMargintrue
         \fi
 
@@ -182,11 +182,10 @@
 % Set {innerside margin / outerside margin / topmargin / bottom margin}  and many custom size for page layout
 \ifsetMargin
 \else
-\usepackage{geometry}  
+\RequirePackage[left=35mm,right=20mm,top=35mm,bottom=25mm]{geometry}
 \fi
 
 % *********************** Layout and Formatting ********************************
-
 \def\pdfshellescape{1}
 \RequirePackage{lscape}   % Supports Landscape Layout
 \RequirePackage{setspace} % Define line spacing in para
