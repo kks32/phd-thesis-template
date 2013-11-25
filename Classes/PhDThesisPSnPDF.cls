@@ -35,8 +35,8 @@
 \newif\ifCU@times\CU@timesfalse % Times with Math Support
 \DeclareOption{times}{\CU@timestrue}
 
-\newif\ifCU@palatino\CU@palatinofalse % Palatino with Math Support
-\DeclareOption{palatino}{\CU@palatinotrue}
+\newif\ifCU@fourier\CU@fourierfalse % Fourier with Math Support
+\DeclareOption{fourier}{\CU@fouriertrue}
 
 \newif\ifCU@customfont\CU@customfontfalse % Custom Font with Math Support
 \DeclareOption{customfont}{\CU@customfonttrue}
@@ -78,7 +78,7 @@
 % Page Size
 \DeclareOption{a4paper}{\PassOptionsToClass{\CurrentOption}{book}}%
 \DeclareOption{a5paper}{\PassOptionsToClass{\CurrentOption}{book}}%
-\DeclareOption{letter}{\PassOptionsToClass{\CurrentOption}{book}}%
+\DeclareOption{letterpaper}{\PassOptionsToClass{\CurrentOption}{book}}%
 
 % Column layout
 \DeclareOption{oneside}{\PassOptionsToClass{\CurrentOption}{book}}%
@@ -182,7 +182,7 @@
 % Set {innerside margin / outerside margin / topmargin / bottom margin}  and many custom size for page layout
 \ifsetMargin
 \else
-\RequirePackage[left=35mm,right=30mm,top=35mm,bottom=25mm]{geometry}  
+\usepackage{geometry}  
 \fi
 
 % *********************** Layout and Formatting ********************************
@@ -256,15 +256,14 @@
 \RequirePackage{mathptmx}  % times roman, including math (where possible)
 \setFonttrue
 \else
-     \ifCU@palatino
-     \RequirePackage[sc]{mathpazo} % Palatino
-     \linespread{1.05} % Requires a longer line space
+     \ifCU@fourier
+     \RequirePackage{fourier} % Fourier
      \setFonttrue
      \else
           \ifCU@customfont
           \setFontfalse
           \else
-          \ClassWarning{PhDThesisPSnPDf}{Using default font Latin Modern. If you would like to use other pre-defined fonts use `times' or `palatino' or load a custom font in preamble by specifying `customfont' in the class options}
+          \ClassWarning{PhDThesisPSnPDf}{Using default font Latin Modern. If you would like to use other pre-defined fonts use `times' or `fourier' or load a custom font in preamble by specifying `customfont' in the class options}
           \RequirePackage{lmodern}
           \setFonttrue
           \fi

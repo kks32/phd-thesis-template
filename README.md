@@ -8,7 +8,7 @@ phd-thesis-template
 
 *   Print / On-line version: Different layout and hyper-referncing styles
 
-*   Pre-defined and custom fonts (Times / Palatino / Latin Modern) with math support
+*   Pre-defined and custom fonts (Times / fourier / Latin Modern) with math support
 
 *   Pre-defined and custom bibliography style support (authoryear / numbered / custom)
 
@@ -86,7 +86,7 @@ It support the following custom options:
 `PhDThesisPSnPDF` currently supports two fonts `Times` and `Latin Modern (default)`.
 
 *   `times`: Specifying times option in the document class will use `mathptpx` or `Times` font with Math Support.
-*   `palatino`: Palatino font with math support
+*   `fourier`: fourier font with math support
 *   `default (empty)`: When no font is specified, `Latin Modern` is used as the default font with Math Support. 
 *   `customfont`: Any custom font can be set in preamble by using `customfont` option in the document class. Then the custom font can be loaded in preamble.tex in 
 		`\ifsetFont\else \RequirePackage{Your_Custom_Font}\fi`
@@ -244,7 +244,3 @@ You are trying to load an option that is not supported in the PhDThesisClass and
 *   Support Libertine fonts + Math
 
 *   Scale the section sizes by an order when moving from a4paper to a5paper
-
-*   Support default option like a4paper, 12pt, etc., if not specified
-
-*   Custom margin has to be defined in the Cls file, will try to move it to the preamble.
