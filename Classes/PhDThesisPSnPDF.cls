@@ -208,12 +208,14 @@
 % Convert eps figures to pdf
 \RequirePackage{epstopdf} 
 \ifpdf 
-    \RequirePackage[pdftex]{graphicx}
-    \DeclareGraphicsExtensions{.png, .jpg, .pdf}
-    \pdfcompresslevel=9
+	\RequirePackage[pdftex]{graphicx}
+	\DeclareGraphicsExtensions{.png, .jpg, .pdf}
+	\pdfcompresslevel=9
+	\graphicspath{{Figs/Raster/}{Figs/}}
 \else
-    \RequirePackage{graphicx}
-    \DeclareGraphicsExtensions{.eps, .ps}
+	\RequirePackage{graphicx}
+	\DeclareGraphicsExtensions{.eps, .ps}
+	\graphicspath{{Figs/Vector/}{Figs/}}
 \fi
 
 

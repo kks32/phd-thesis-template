@@ -1,4 +1,16 @@
+%*****************************************************************************************
+%*********************************** Second Chapter **************************************
+%*****************************************************************************************
+
 \chapter{My Second Chapter}
+
+\ifpdf
+    \graphicspath{{Chapter2/Figs/Raster/}{Chapter2/Figs/PDF/}{Chapter2/Figs/}}
+\else
+    \graphicspath{{Chapter2/Figs/Vector/}{Chapter2/Figs/}}
+\fi
+
+
 \section[Short title]{Reasonably Long Section Title}
 
 The SI Units for dynamic viscosity is \si{\newton\second\per\metre\squared}. I'm going to randomly include a picture~\cref{fig:minion}.
@@ -9,7 +21,7 @@ If you have trouble viewing this document contact Krishna \href{mailto:kks32@cam
 
 \begin{figure}[htbp!] 
 \centering    
-\includegraphics[width=0.5\textwidth]{Chapter2/Figs/minion.jpg}
+\includegraphics[width=0.7\textwidth]{minion}
 \caption[Minion]{This is just a long figure caption for the minion in Despicable Me from Pixar}
 \label{fig:minion}
 \end{figure}
