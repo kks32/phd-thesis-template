@@ -71,7 +71,7 @@ It support the following custom options:
     Use `print` in the options to activate Print Version with appropriate margins and page layout and view styles. 
     Leaving the options field blank will activate Online version.
 
-*   `custommargin`: You can alter the margin dimension for both print and online version by using the keyword `custommargin` in the options sections. Then you can define the dimensions of the margin in the `preamble.tex` file.
+*   `custommargin`: You can alter the margin dimension for both print and online version by using the keyword `custommargin` in the options sections. Then you can define the dimensions of the margin in the `PhDThesisPSnPDF.cls` Class file.
 
 *   `index`: Including this option in `\documentclass` build the index, which you can put at the and of the thesis.
 
@@ -246,3 +246,5 @@ You are trying to load an option that is not supported in the PhDThesisClass and
 *   Scale the section sizes by an order when moving from a4paper to a5paper
 
 *   Support default option like a4paper, 12pt, etc., if not specified
+
+*   Custom margin has to be defined in the Cls file, will try to move it to the preamble.

@@ -138,8 +138,8 @@
         \fi
 	
         \if@twoside 
-	\hypersetup{pdfpagelayout=TwoPageRight}
-	\else 
+		\hypersetup{pdfpagelayout=TwoPageRight}
+		\else 
     	\hypersetup{pdfpagelayout=OneColumn}
         \fi
 \else
@@ -163,8 +163,8 @@
         \ifCU@custommargin
         \setMarginfalse
         \else
-	% No Margin staggering on Odd and Even side 
-	\RequirePackage[hmarginratio=1:1]{geometry} 
+		% No Margin staggering on Odd and Even side 
+		\RequirePackage[hmarginratio=1:1]{geometry} 
         \setMargintrue
         \fi
 
@@ -177,12 +177,19 @@
 % ******************************** Packages ************************************
 % ******************************************************************************
 
-% ******************** Layout, Formatting and Headers **************************
+% ******************************* Custom Margin ********************************
+% Add `custommargin' in the document class option to use this section
+% Set {innerside margin / outerside margin / topmargin / bottom margin}  and many custom size for page layout
+\ifsetMargin
+\else
+\RequirePackage[left=35mm,right=30mm,top=35mm,bottom=25mm]{geometry}  
+\fi
+
+% *********************** Layout and Formatting ********************************
 
 \def\pdfshellescape{1}
 \RequirePackage{lscape}   % Supports Landscape Layout
 \RequirePackage{setspace} % Define line spacing in para
-\RequirePackage{fancyhdr} % Define custom header
 \RequirePackage{calc}     % To calculate vertical spacing
 
 % *************************** Conditional Statements **************************
@@ -299,6 +306,8 @@
 % ******************************* Header Formatting *****************************
 % Custom Header with Chapter Number, Page Number and Section Numbering
 
+\RequirePackage{fancyhdr} % Define custom header
+
 \pagestyle{fancy}
 
 \ifCU@pageStyleI
@@ -329,10 +338,11 @@
 \fancyhead[LO]{\nouppercase \rightmark}
 \fancyhead[LE,RO]{\bfseries\thepage}
 \fancyhead[RE]{\nouppercase \leftmark}
-
 \fi
 
 \fi
+
+
 
 \setlength{\headheight}{14.5pt}
 %\renewcommand{\headrulewidth}{0.5pt}
@@ -341,6 +351,7 @@
   \fancyhead{}
   \renewcommand{\headrulewidth}{0pt}
 }
+
 
 % **************** Clear Header Style on the Last Empty Odd pages ***************
 \renewcommand{\cleardoublepage}{\clearpage\if@twoside \ifodd\c@page\else%
