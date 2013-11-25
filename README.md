@@ -14,6 +14,8 @@ phd-thesis-template
 
 *   Custom page styles: 3 Different Header / Footer styles
 
+*   Custom margin size
+
 
 ### Build your thesis
 The template supports PDF, DVI and PS formats. All three formats can be generated
@@ -69,11 +71,15 @@ It support the following custom options:
     Use `print` in the options to activate Print Version with appropriate margins and page layout and view styles. 
     Leaving the options field blank will activate Online version.
 
+*   `custommargin`: You can alter the margin dimension for both print and online version by using the keyword `custommargin` in the options sections. Then you can define the dimensions of the margin in the `preamble.tex` file.
+
 *   `index`: Including this option in `\documentclass` build the index, which you can put at the and of the thesis.
 
     Instructions on how to use the index can be found [here](http://en.wikibooks.org/wiki/LaTeX/Indexing#Using_makeidx).
 
     _Note_: the package `makeidx` is used to create the index.
+
+
 
 ### Choosing the Fonts:
 
@@ -87,7 +93,7 @@ It support the following custom options:
 
 ### Choosing the Bibliography style
 
-`PhDThesisPSnPDF` currently supports two styles `AuthorYear` and `Numbered (default)`. Citation style has to be set. You can also specify `CustomBib` style
+`PhDThesisPSnPDF` currently supports two styles `authoryear` and `numbered (default)`. Citation style has to be set. You can also specify `custombib` style
 
 * `authoryear`: For author-year citation eg., Krishna (2013)
 
@@ -238,3 +244,5 @@ You are trying to load an option that is not supported in the PhDThesisClass and
 *   Support Libertine fonts + Math
 
 *   Scale the section sizes by an order when moving from a4paper to a5paper
+
+*   Support default option like a4paper, 12pt, etc., if not specified

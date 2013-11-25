@@ -60,6 +60,12 @@
 \newif\ifCU@pageStyleII\CU@pageStyleIIfalse % Set Page StyleI
 \DeclareOption{PageStyleII}{\CU@pageStyleIItrue}
 
+% ********************** Custom Margins  ************************
+\newif\ifsetMargin\setMarginfalse % Margins are not set
+
+\newif\ifCU@custommargin\CU@custommarginfalse % Custom margin
+\DeclareOption{custommargin}{\CU@custommargintrue}
+
 \ProcessOptions\relax%
 
 % ********************* Pre-defined Options **********************
@@ -123,13 +129,17 @@
           citecolor=black, 
           anchorcolor=black
         }
-	\if@twoside 
+        \ifCU@custommargin
+        \setMarginfalse
+        \else
         % Odd and Even side Margin staggering for binding and set viewmode for PDF
         \RequirePackage[hmarginratio=3:2]{geometry}
+        \setMargintrue
+        \fi
+	
+        \if@twoside 
 	\hypersetup{pdfpagelayout=TwoPageRight}
 	\else 
-         % Single side print margin for binding and set view mode for PDF
-        \RequirePackage[hmarginratio=3:2]{geometry}
     	\hypersetup{pdfpagelayout=OneColumn}
         \fi
 \else
@@ -149,8 +159,15 @@
           urlcolor=blue,
           citecolor=blue, 
           anchorcolor=green}
+
+        \ifCU@custommargin
+        \setMarginfalse
+        \else
 	% No Margin staggering on Odd and Even side 
 	\RequirePackage[hmarginratio=1:1]{geometry} 
+        \setMargintrue
+        \fi
+
     	\hypersetup{pdfpagelayout=OneColumn}
 \fi
 

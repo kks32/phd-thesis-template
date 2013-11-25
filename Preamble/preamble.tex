@@ -1,4 +1,33 @@
 % *****************************************************************************
+% ******************************* Custom Margin ********************************
+% Add `custommargin' in the document class option to use this section
+% Set {innerside margin / outerside margin / topmargin / bottom margin}  and many custom size for page layout
+\ifsetMargin
+\else
+\RequirePackage[left=35mm,right=30mm,top=35mm,bottom=25mm]{geometry}  
+\fi
+
+
+% *****************************************************************************
+% ******************* Fonts (like different typewriter fonts etc.)*************
+% Add `customfont' in the document class option to use this section
+%\renewcommand\rmdefault{psb}
+\ifsetFont
+\else
+\RequirePackage{libertine}  % Set your custom font here and use `customfont' in options
+\fi
+
+% *****************************************************************************
+% *************************** Bibliography  and References ********************
+% Add `custombib' in the document class option to use this section
+\usepackage{cleveref} %Referencing without need to explicitly state fig /table
+\ifsetBib % True, Bibliography option is chosen in class options
+\else % If custom bibliography style chosen then load bibstyle here
+\RequirePackage[square, sort, numbers, authoryear]{natbib} % CustomBib
+\fi
+
+
+% *****************************************************************************
 % **************************** Custom Packages *********************************
 % *****************************************************************************
 
@@ -37,25 +66,6 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{siunitx}
-
-
-
-% *****************************************************************************
-% ******************* Fonts (like different typewriter fonts etc.)*************
-%\renewcommand\rmdefault{psb}
-\ifsetFont
-\else
-\RequirePackage{libertine}  % Set your custom font here and use `customfont' in options
-\fi
-
-% *****************************************************************************
-% *************************** Bibliography  and References ********************
-\usepackage{cleveref} %Referencing without need to explicitly state fig /table
-\ifsetBib % True, Bibliography option is chosen in class options
-\else % If custom bibliography style chosen then load bibstyle here
-\RequirePackage[square, sort, numbers, authoryear]{natbib} % CustomBib
-\fi
-
 
 
 % ******************************************************************************
