@@ -69,8 +69,9 @@ if [ $1 = $clean ]; then
 elif [ $1 = $compile ]; then
 	echo "Compiling your PhD Thesis...please wait...!"
 	pdflatex -interaction=nonstopmode $filename.tex
-	bibtex $filename.aux 
-	pdflatex -interaction=nonstopmode $filename.tex
+	bibtex $filename.aux 	
+	makeindex $filename.aux
+	makeindex $filename.idx
 	makeindex $filename.nlo -s nomencl.ist -o $filename.nls
 	pdflatex -interaction=nonstopmode $filename.tex
 	makeindex $filename.nlo -s nomencl.ist -o $filename.nls

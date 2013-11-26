@@ -575,8 +575,10 @@
 }% matches Roman Symbols        > A
 
 % Add nomenclature to contents and print out nomenclature
-\newcommand{\printnomencl}{
-\printnomenclature 
+\newcommand{\printnomencl}[1][]{
+\ifthenelse{\equal {#1}{}}
+{\printnomenclature}
+{\printnomenclature[#1]} 
 \addcontentsline{toc}{chapter}{\nomname}
 }
 
