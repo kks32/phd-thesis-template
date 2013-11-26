@@ -1,5 +1,14 @@
 % *****************************************************************************
 
+% ******************************* Custom Margin ********************************
+% Add `custommargin' in the document class option to use this section
+% Set {innerside margin / outerside margin / topmargin / bottom margin}  and many custom size for page layout
+\ifsetMargin
+\else
+\RequirePackage[left=37mm,right=30mm,top=35mm,bottom=30mm]{geometry}
+\setFancyHdr % To apply fancy header after geometry package is loaded
+\fi
+
 % *****************************************************************************
 % ******************* Fonts (like different typewriter fonts etc.)*************
 % Add `customfont' in the document class option to use this section

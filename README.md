@@ -235,18 +235,18 @@ You are trying to load an option that is not supported in the PhDThesisClass and
 
 # Known Issue(s) / Bugs
 
-*   No know bug(s) so far. If you find any let me know or even better, if you can patch it and contribute to the development of the LaTeX Template
+*   No know bug(s) so far. If you find any let me know or even better, if you can patch it and contribute to the development of the LaTeX Template.
+
+*   Bug in Makefile that prevents conversion from PS to PDF. Workaround: `Run ps2pdf thesis.ps thesis.pdf` to produce the PDF output.
 
 --------------------------------------------------------------------------------
 
 # TODO list
 
-*   Custommargin option is still in the class file, should move to preamble
-
 *   Scale the section sizes by an order when moving from a4paper to a5paper
 
 *   Support Libertine fonts + Math
 
-*   Tweak Make file to convert PS to PDF
+*   Tweak Make file to convert PS to PDF and clean PS files
 
 

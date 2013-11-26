@@ -177,13 +177,6 @@
 % ******************************** Packages ************************************
 % ******************************************************************************
 
-% ******************************* Custom Margin ********************************
-% Add `custommargin' in the document class option to use this section
-% Set {innerside margin / outerside margin / topmargin / bottom margin}  and many custom size for page layout
-\ifsetMargin
-\else
-\RequirePackage[left=35mm,right=20mm,top=35mm,bottom=25mm]{geometry}
-\fi
 
 % *********************** Layout and Formatting ********************************
 \def\pdfshellescape{1}
@@ -308,12 +301,14 @@
 
 \RequirePackage{fancyhdr} % Define custom header
 
-\pagestyle{fancy}
+% Set Fancy Header Command is defined to Load FancyHdr after Geometry is defined
+\newcommand{\setFancyHdr}{
 
+\pagestyle{fancy}
 \ifCU@pageStyleI
 % Style 1: Sets Page Number at the Top and Chapter/Section Name on LE/RO
-\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
-\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1\ }}
+\renewcommand{\chaptermark}[1]{\markboth{##1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ ##1\ }}
 \fancyhf{}
 \fancyhead[RO]{\nouppercase \rightmark\hspace{0.25em} | \hspace{0.25em}  \bfseries{\thepage} }
 \fancyhead[LE]{{\bfseries\thepage} \hspace{0.25em} | \hspace{0.25em}  \nouppercase \leftmark }
@@ -322,8 +317,8 @@
 \else
 \ifCU@pageStyleII
 % Style 2: Sets Page Number at the Bottom with Chapter/Section Name on LO/RE
-\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
-\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\renewcommand{\chaptermark}[1]{\markboth{##1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ ##1}}
 \fancyhf{}
 \fancyhead[RO]{\bfseries\nouppercase \rightmark}
 \fancyhead[LE]{\bfseries \nouppercase \leftmark}
@@ -332,8 +327,8 @@
 
 \else
 % Default Style: Sets Page Number at the Top (LE/RO) with Chapter/Section Name on LO/RE
-\renewcommand{\chaptermark}[1]{\markboth {#1}{}}
-\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\renewcommand{\chaptermark}[1]{\markboth {##1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ ##1}}
 \fancyhf{}
 \fancyhead[LO]{\nouppercase \rightmark}
 \fancyhead[LE,RO]{\bfseries\thepage}
@@ -342,7 +337,7 @@
 
 \fi
 
-
+}
 
 \setlength{\headheight}{14.5pt}
 %\renewcommand{\headrulewidth}{0.5pt}
@@ -352,6 +347,10 @@
   \renewcommand{\headrulewidth}{0pt}
 }
 
+% If Margin has been set (default margin print/online version)
+\ifsetMargin
+\setFancyHdr % Apply fancy header settings otherwise apply it in preamble
+\fi
 
 % **************** Clear Header Style on the Last Empty Odd pages ***************
 \renewcommand{\cleardoublepage}{\clearpage\if@twoside \ifodd\c@page\else%

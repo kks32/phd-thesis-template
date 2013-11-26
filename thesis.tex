@@ -18,6 +18,10 @@
 %
 % `draft`: For draft mode without loading any images (same as draft in book)
 %
+% ************************* Custom Page Margins ********************************
+%
+% `custommargin`: Use `custommargin' in options to activate custom page margins, which can be defined in the preamble.tex. Custom margin will override print/online margin setup.
+%
 % ******************* Choosing the Fonts in Class Options *********************
 %
 % `times`: For Times font with math support.
@@ -37,10 +41,6 @@
 % `custombib`: Define your own bibliography style in the `preamble.tex` file.
 % `\RequirePackage[square, sort, numbers, authoryear]{natbib}`
 %
-% ************************* Custom Page Margins ********************************
-%
-% `custommargin`: Define your custom margin and other sizes in the geometry package in the preamble.tex. 
-%
 % ********************** Choosing the Page Style *********************************
 %
 % `default (leave empty)`: For Page Numbers in Header (Left Even, Right Odd) and Chapter Name in Header (Right Even) and Section Name (Left Odd). Blank Footer.
@@ -56,8 +56,8 @@
 
 % ******************** Thesis Information & Meta-data *************************
 %% The title of the thesis
-\title{ How to write your thesis in \texorpdfstring{\\ \LaTeX}{LaTeX}} 
-%\texorpdfstring is used for PDF metadata and \\ creates a new line
+\title{Writing your PhD Thesis in \texorpdfstring{\\ \LaTeX2e}{LaTeX2e}} 
+%\texorpdfstring is used for PDF metadata. Usage: \texorpdfstring{LaTeX_Version}{PDF Version (non-latex)} eg., \texorpdfstring{$sigma$}{sigma}
 
 %% The full name of the author
 \author{Krishna Kumar}
