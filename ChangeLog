@@ -1,5 +1,18 @@
+2013/11/26 - Version 1.0 Beta Release 6.1
+*   Updated Makefile to support PS to PDF conversion
 
-2013/11/24 - Version 1.0 Beta Release
+2013/11/26 - Version 1.0 Beta Release 6 (187b9324420812326e62d963afa42e26532e82e7)
+*   Includes a Windows Batch file for compilation
+
+*   Supports \printnomencl[optional_argument]
+
+2013/11/26 - Version 1.0 Beta Release 5 (76a733ee305ed4aae9d546492cef768512df2b13)
+
+*   Supports DVI/PS
+
+*   Supports Custom Margin and FancyHdr update
+
+2013/11/24 - Version 1.0 Beta Release 0 (73c8dd9)
 Author(s): Krishna Kumar
 *   Adaptive Title Page: Title page adapts to title length
 

@@ -117,6 +117,9 @@ export LC_ALL		?= C
 #
 #
 # CHANGES:
+# Krishna Kumar (2013-11-26):
+# * Changed PS_EMBED_OPTION ?= -dPDFSETTINGS=/prepress from /printer
+#
 # Chris Monson (2012-06-25):
 # * Bumped version to 2.2.1-alpha9
 # * Built with Holger Dell's changes to fix multiple unnecessary compilations.
@@ -793,7 +796,7 @@ $(if $(USE_CYGPATH),$(shell $(CYGPATH) -u "$1"),$1)
 endef
 
 # Command options for embedding fonts and postscript->pdf conversion
-PS_EMBED_OPTIONS	?= -dPDFSETTINGS=/printer -dEmbedAllFonts=true -dSubsetFonts=true -dMaxSubsetPct=100
+PS_EMBED_OPTIONS	?= -dPDFSETTINGS=/prepress -dEmbedAllFonts=true -dSubsetFonts=true -dMaxSubsetPct=100
 PS_COMPATIBILITY	?= 1.4
 
 # If set to something, will cause temporary files to not be deleted immediately
@@ -2475,6 +2478,7 @@ $(GS) \
 	-sDEVICE=$(if $(filter pdf,$(GPI_OUTPUT_EXTENSION)),pdfwrite,pswrite) \
 	-sOutputFile='$2' \
 	-sstdout=%stderr \
+	-dColorConversionStrategy=/LeaveColorUnchanged \
 	-dCompatibilityLevel=1.5 \
 	-dPDFSETTINGS=/prepress \
 	-c .setpdfwrite \
