@@ -18,6 +18,9 @@ phd-thesis-template
 
 
 ### Build your thesis
+
+#### Using the Make File (Unix/Linux)
+
 The template supports PDF, DVI and PS formats. All three formats can be generated
 with the provided `Makefile`.
 
@@ -42,7 +45,7 @@ or
 This will use the `latex` command to build the document and will produce
 `thesis.dvi`, `thesis.ps` and `thesis.pdf` documents.
 
-### Clean unwanted files
+Clean unwanted files
 
 To clean unwanted clutter (all LaTeX auto-generated files), run:
 
@@ -50,6 +53,18 @@ To clean unwanted clutter (all LaTeX auto-generated files), run:
 
 __Note__: the `Makefile` itself is take from and maintained at
 [here](http://code.google.com/p/latex-makefile/).
+
+#### Shell script for PDFLaTeX (Unix/Linux)
+
+Usage: `sh ./compile-thesis.sh [OPTIONS] [filename]`
+[option]  compile: Compiles the PhD Thesis
+[option]  clean: removes temporary files no filename required
+
+#### Using the Batch file on Windows (PDFLaTeX)
+
+*    Open command prompt and navigate to the directory with the tex file. Run `compile-thesis-windows.bat`.
+
+*    Double click on `compile-thesis-windows.bat`
 
 -------------------------------------------------------------------------------
 
@@ -182,14 +197,8 @@ You can also mail
 
 [http://www.eng.cam.ac.uk/postgraduate/assets/library/document/p/original/planningphd.pdf](http://www.eng.cam.ac.uk/postgraduate/assets/library/document/p/original/planningphd.pdf)
 
-## _Q3_: Can I use my own Makefile?
 
-Yes please. We are using this nice `Makefile` built specifically for LaTeX:
-
-> [http://code.google.com/p/latex-makefile/](http://code.google.com/p/latex-makefile/)
-
-
-## _Q4_: Where can I find newer versions of the University of Cambridge logo?
+## _Q3_: Where can I find newer versions of the University of Cambridge logo?
 
 The university updates its logo every now and then. You can find up-to-date
 logos on [this page](http://www.admin.cam.ac.uk/offices/communications/services/logos/)
@@ -198,14 +207,14 @@ logos on [this page](http://www.admin.cam.ac.uk/offices/communications/services/
 Download and exchange the new logos with `CUni.eps` and/or `CUni.pdf`.
 
 
-## _Q5_: How can I use my favourite fonts (like Libertine etc.)?
+## _Q4_: How can I use my favourite fonts (like Libertine etc.)?
 
 This template uses Times and Latin Modern (as default) fonts. Libertine Font doesn't support Math (looking for a suitable alternative for Math font in Libertine).
 After you've installed your custom/favourite fonts, add the following command in the preamble section within `\ifsetFont\else \RequirePackage{yourfont} \fi`:
 
     \renewcommand\rmdefault{psb}
 
-## _Q6_: How should I count the number of words in my thesis?
+## _Q5_: How should I count the number of words in my thesis?
 
 You can run the following command:
     `ps2ascii thesis.pdf | wc -w`
