@@ -14,7 +14,7 @@ phd-thesis-template
 
 *   Custom page styles: 3 Different Header / Footer styles
 
-*   Pre-defined and custom margin size (should be modified in the class file)
+*   Pre-defined and custom margin size
 
 
 ### Build your thesis
@@ -255,7 +255,5 @@ You are trying to load an option that is not supported in the PhDThesisClass and
 *   Scale the section sizes by an order when moving from a4paper to a5paper
 
 *   Support Libertine fonts + Math
-
-*   Tweak Make file to convert PS to PDF and clean PS files
 
 
