@@ -1,4 +1,7 @@
-2013/11/26 - Version 1.0 Beta Release 6.1
+2013/11/27 - Version 1.0 Beta Release 6.2 ()
+*   Update to Makefile to remove PS files when running Makeclean
+
+2013/11/26 - Version 1.0 Beta Release 6.1 (e29a99406649dcce8f23b6d9df0b87eabd09fc0e)
 *   Updated Makefile to support PS to PDF conversion
 
 2013/11/26 - Version 1.0 Beta Release 6 (187b9324420812326e62d963afa42e26532e82e7)
