@@ -246,7 +246,6 @@ You are trying to load an option that is not supported in the PhDThesisClass and
 
 *   No know bug(s) so far. If you find any let me know or even better, if you can patch it and contribute to the development of the LaTeX Template.
 
-*   Bug in Makefile that prevents conversion from PS to PDF. Workaround: `Run ps2pdf thesis.ps thesis.pdf` to produce the PDF output.
 
 --------------------------------------------------------------------------------
 
