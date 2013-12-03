@@ -1,15 +1,18 @@
+2013/12/03 - Version 1.0 Beta Release 7.0 (1f695d512ae5ce765398db4dc4b6381dc0351868)
+*   Default font size 12pt and paper size (A4 as default) and adhering to University regulations in terms of font, font sizer, paper size and set them as defaults.
+
 2013/11/27 - Version 1.0 Beta Release 6.2 (a5f49d49a6cc39209d95f91e667fd7b359ab5227)
 *   Update to Makefile to remove PS files when running Makeclean
 
 2013/11/26 - Version 1.0 Beta Release 6.1 (e29a99406649dcce8f23b6d9df0b87eabd09fc0e)
 *   Updated Makefile to support PS to PDF conversion
 
-2013/11/26 - Version 1.0 Beta Release 6 (187b9324420812326e62d963afa42e26532e82e7)
+2013/11/26 - Version 1.0 Beta Release 6.0 (187b9324420812326e62d963afa42e26532e82e7)
 *   Includes a Windows Batch file for compilation
 
 *   Supports \printnomencl[optional_argument]
 
-2013/11/26 - Version 1.0 Beta Release 5 (76a733ee305ed4aae9d546492cef768512df2b13)
+2013/11/26 - Version 1.0 Beta Release 5.0 (76a733ee305ed4aae9d546492cef768512df2b13)
 
 *   Supports DVI/PS
 
