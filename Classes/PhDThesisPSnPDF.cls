@@ -6,13 +6,13 @@
 %% Authors: Krishna Kumar                                                       %%
 %% Date: 2013/11/16                                                             %%
 %% Based on: King's LaTeX workshop by Krishna, CUED V1.1 Template by H. Banderi %%
-%%           Compuer Lab PhD Template & Alex Rige's idea of an unified template %%
+%%           Cambridge Computer Laboratory PhD Template                         %%
 %% License: GPL V2.0 https://www.gnu.org/licenses/gpl-2.0.html                  %%
 %% GitHub Repo: https://github.com/kks32/phd-thesis-template/                   %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % ******************** Class Identification *********************
-%\NeedsTeXFormat{LaTeX2e}
+\NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{PhDThesisPSnPDF}[2013/11/24 version 1.0Beta by Krishna Kumar]
 \typeout{https://github.com/kks32/phd-thesis-template/}
 
@@ -71,14 +71,21 @@
 % ********************* Pre-defined Options **********************
 
 % Font Size
-\DeclareOption{10pt}{\PassOptionsToClass{\CurrentOption}{book}}%
-\DeclareOption{11pt}{\PassOptionsToClass{\CurrentOption}{book}}%
-\DeclareOption{12pt}{\PassOptionsToClass{\CurrentOption}{book}}%
+\newcommand\CU@ptsize{12pt} %Set Default Size as 12
+
+\DeclareOption{10pt}{\ClassWarning{PhDThesisPSnPDF}{Cambridge University recommends using a minimum font size of 11pt (12pt is preferred) and 10pt for footnotes.}\renewcommand\CU@ptsize{10pt}}
+\DeclareOption{11pt}{\renewcommand\CU@ptsize{11pt}}%
+\DeclareOption{12pt}{\renewcommand\CU@ptsize{12pt}}%
+\PassOptionsToClass{\CU@ptsize}{book}%
 
 % Page Size
-\DeclareOption{a4paper}{\PassOptionsToClass{\CurrentOption}{book}}%
-\DeclareOption{a5paper}{\PassOptionsToClass{\CurrentOption}{book}}%
-\DeclareOption{letterpaper}{\PassOptionsToClass{\CurrentOption}{book}}%
+\newcommand\CU@papersize{a4paper} % Set Default as a4paper
+
+\DeclareOption{a4paper}{\renewcommand\CU@papersize{a4paper}}
+\DeclareOption{a5paper}{\renewcommand\CU@papersize{a5paper}}
+\DeclareOption{letterpaper}{\ClassWarning{PhDThesisPSnPDF}{Cambridge University Engineering Deparment recommends using A4 or A5paper}\renewcommand\CU@papersize{letterpaper}}
+
+\PassOptionsToClass{\CU@papersize}{book}%
 
 % Column layout
 \DeclareOption{oneside}{\PassOptionsToClass{\CurrentOption}{book}}%
@@ -257,7 +264,7 @@
           \ifCU@customfont
           \setFontfalse
           \else
-          \ClassWarning{PhDThesisPSnPDf}{Using default font Latin Modern. If you would like to use other pre-defined fonts use `times' or `fourier' or load a custom font in preamble by specifying `customfont' in the class options}
+          \ClassWarning{PhDThesisPSnPDf}{Using default font Latin Modern. If you would like to use other pre-defined fonts use `times' (Cambridge University recommends using Times font)  or `fourier' or load a custom font in preamble by specifying `customfont' in the class options}
           \RequirePackage{lmodern}
           \setFonttrue
           \fi

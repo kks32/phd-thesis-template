@@ -1,6 +1,6 @@
 phd-thesis-template
 ===================
-> A PhD thesis LaTeX template for Cambridge University, based on Krishna Kumar's King's latex course, CUED V1.1 Template by H. Banderi, and Cambridge Computer Laboratory Template.
+> A PhD thesis LaTeX template for Cambridge University Engineering Department, based on Krishna Kumar's King's latex course, Cambridge Computer Laboratory Template and CUED V1.1 Template by H. Banderi.
 
 ### Features
 
@@ -17,7 +17,7 @@ phd-thesis-template
 *   Pre-defined and custom margin size
 
 
-### Build your thesis
+### Building your thesis
 
 #### Using the Make File (Unix/Linux)
 
@@ -76,11 +76,11 @@ Usage: `sh ./compile-thesis.sh [OPTIONS] [filename]`
 
 It support the following custom options:
 
-*   `a4paper` or `a5paper` or `letter`: Paper size
+*   `a4paper` (default as per University guidelines) or `a5paper`: Paper size
 
-*   `10pt` or `11pt` or `12pt`: Font Size
+*   `11pt` or `12pt`: Cambridge University recommends using a minimum font size of 11pt (12pt is preferred) and 10pt for footnotes. This template also supports `10pt`.
 
-*   `oneside` or `twoside`: This is especially useful for printing double side (twoside) or single side.
+*   `oneside` or `twoside` (default): This is especially useful for printing double side (twoside) or single side.
 
 *   `print`: Supports Print and Online Version with different page margins and hyperlink styles.
     Use `print` in the options to activate Print Version with appropriate margins and page layout and view styles. 
@@ -100,7 +100,7 @@ It support the following custom options:
 
 `PhDThesisPSnPDF` currently supports two fonts `Times` and `Latin Modern (default)`.
 
-*   `times`: Specifying times option in the document class will use `mathptpx` or `Times` font with Math Support.
+*   `times`: (Cambridge University recommends using Times). Specifying times option in the document class will use `mathptpx` or `Times` font with Math Support.
 *   `fourier`: fourier font with math support
 *   `default (empty)`: When no font is specified, `Latin Modern` is used as the default font with Math Support. 
 *   `customfont`: Any custom font can be set in preamble by using `customfont` option in the document class. Then the custom font can be loaded in preamble.tex in 
@@ -191,9 +191,11 @@ You can report issues through
 [our GitHub repository](https://github.com/kks32/phd-thesis-template).
 
 You can also mail 
-[the maintainers](https://github.com/kks32/phd-thesis-template/collaborators) directly.
+[the developers](https://github.com/kks32/phd-thesis-template/collaborators) directly.
 
 ## _Q2_: Where can I find the thesis formatting guidelines this class is based on?
+
+[https://www.admin.cam.ac.uk/students/studentregistry/exams/submission/phd/format.html](https://www.admin.cam.ac.uk/students/studentregistry/exams/submission/phd/format.html)
 
 [http://www.eng.cam.ac.uk/postgraduate/assets/library/document/p/original/planningphd.pdf](http://www.eng.cam.ac.uk/postgraduate/assets/library/document/p/original/planningphd.pdf)
 
@@ -217,7 +219,10 @@ After you've installed your custom/favourite fonts, add the following command in
 ## _Q5_: How should I count the number of words in my thesis?
 
 You can run the following command:
-    `ps2ascii thesis.pdf | wc -w`
+    `ps2ascii thesis.pdf | wc -w` (eg., result 2713 words)
+
+or 
+    `pdftotext thesis.pdf | wc thesis.txt -w` (eg., result 2690 words)
 
 --------------------------------------------------------------------------------
 # Warnings and FAQs
@@ -250,9 +255,5 @@ You are trying to load an option that is not supported in the PhDThesisClass and
 --------------------------------------------------------------------------------
 
 # TODO list
-
-*   Scale the section sizes by an order when moving from a4paper to a5paper
-
-*   Support Libertine fonts + Math
 
 
