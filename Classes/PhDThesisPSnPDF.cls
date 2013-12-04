@@ -409,7 +409,7 @@
 \newcommand{\crest}[1]{\renewcommand{\@crest}{#1}}
 
 % Submission Text
-\newcommand{\submissiontext}{{A thesis submitted for the degree of}}
+\newcommand{\submissiontext}{This dissertation is submitted for the degree of }
 
 
 % keywords (These keywords will appear in the PDF meta-information
@@ -514,6 +514,13 @@
 \setsinglecolumn
 \chapter*{\centering \Large Declaration}
 \thispagestyle{empty}
+
+
+}{
+\flushright
+\@author{}\\
+\@degreedate{}
+\vfill
 }
 
 

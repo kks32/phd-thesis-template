@@ -1,6 +1,8 @@
 phd-thesis-template
 ===================
-> A PhD thesis LaTeX template for Cambridge University Engineering Department, based on Krishna Kumar's King's latex course, Cambridge Computer Laboratory Template and CUED V1.1 Template by H. Banderi.
+> A PhD thesis LaTeX template for Cambridge University Engineering Department. Based on Krishna Kumar's King's latex course, Cambridge Computer Laboratory Template and CUED V1.1 Template by H. Banderi.
+
+* Distributed under GPLv2.0
 
 ### Features
 
@@ -185,44 +187,45 @@ The sort keys have prefix. In this case a prefix of `g` is used to denote Greek 
 
 # Troubleshooting
 
-## _Q1_: I found a bug in the template. Where do I report bugs?
-
-You can report issues through
-[our GitHub repository](https://github.com/kks32/phd-thesis-template).
-
-You can also mail 
-[the developers](https://github.com/kks32/phd-thesis-template/collaborators) directly.
-
-## _Q2_: Where can I find the thesis formatting guidelines this class is based on?
+## _Q1_: Where can I find the thesis formatting guidelines this class is based on?
 
 [https://www.admin.cam.ac.uk/students/studentregistry/exams/submission/phd/format.html](https://www.admin.cam.ac.uk/students/studentregistry/exams/submission/phd/format.html)
 
 [http://www.eng.cam.ac.uk/postgraduate/assets/library/document/p/original/planningphd.pdf](http://www.eng.cam.ac.uk/postgraduate/assets/library/document/p/original/planningphd.pdf)
 
 
-## _Q3_: Where can I find newer versions of the University of Cambridge logo?
+## _Q2_: Where can I find newer versions of the University of Cambridge crest/logos?
 
-The university updates its logo every now and then. You can find up-to-date
+The university updates its crest every now and then. You can find up-to-date
 logos on [this page](http://www.admin.cam.ac.uk/offices/communications/services/logos/)
 (subject to change without notice).
 
-Download and exchange the new logos with `CUni.eps` and/or `CUni.pdf`.
+Download and exchange the new logos with `CUni.eps` and/or `CUni.pdf`. I'll try to keep the crest up to date.
 
+## _Q3_: Where can I find the guidelines to submit my thesis and requirements?
 
-## _Q4_: How can I use my favourite fonts (like Libertine etc.)?
+[Preparing to submit:](https://www.admin.cam.ac.uk/students/studentregistry/exams/submission/phd/preparing.html)
 
-This template uses Times and Latin Modern (as default) fonts. Libertine Font doesn't support Math (looking for a suitable alternative for Math font in Libertine).
-After you've installed your custom/favourite fonts, add the following command in the preamble section within `\ifsetFont\else \RequirePackage{yourfont} \fi`:
+[Formatting styles:](https://www.admin.cam.ac.uk/students/studentregistry/exams/submission/phd/format.html)
 
-    \renewcommand\rmdefault{psb}
+[Submitting the dissertation](https://www.admin.cam.ac.uk/students/studentregistry/exams/submission/phd/submitting.html)
 
-## _Q5_: How should I count the number of words in my thesis?
+## _Q4_: How should I count the number of words in my thesis?
 
 You can run the following command:
     `ps2ascii thesis.pdf | wc -w` (eg., result 2713 words)
 
 or 
     `pdftotext thesis.pdf | wc thesis.txt -w` (eg., result 2690 words)
+
+## _Q5_: I found a bug in the template. Where do I report bugs?
+
+You can report issues at
+[our GitHub repository](https://github.com/kks32/phd-thesis-template).
+
+You can also mail 
+[the developer](https://github.com/kks32/phd-thesis-template/collaborators) directly.
+
 
 --------------------------------------------------------------------------------
 # Warnings and FAQs
@@ -256,4 +259,62 @@ You are trying to load an option that is not supported in the PhDThesisClass and
 
 # TODO list
 
+*   Pull author and degree date information in declaration
+--------------------------------------------------------------------------------
+
+# Author(s):
+*   Krishna Kumar
+
+# License:
+
+This LaTeX template is free software: you can redistribute it and/or modify tt under the terms of the GNU General Public License as published by the Free Software Foundation, either version 2 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program. If not, see [http://www.gnu.org/licenses/](http://www.gnu.org/licenses/)
+
+--------------------------------------------------------------------------------
+# ChangeLog
+
+### 2013/12/03 - Version 1.0 Beta Release 7.
+> Commit 1f695d512ae5ce765398db4dc4b6381dc0351868
+*   Default font size 12pt and paper size (A4 as default) and adhering to University regulations in terms of font, font sizer, paper size and set them as defaults.
+
+### 2013/11/27 - Version 1.0 Beta Release 6.2
+> Commit a5f49d49a6cc39209d95f91e667fd7b359ab5227
+*   Update to Makefile to remove PS files when running Makeclean
+
+### 2013/11/26 - Version 1.0 Beta Release 6.1 
+> Commit e29a99406649dcce8f23b6d9df0b87eabd09fc0e
+*   Updated Makefile to support PS to PDF conversion
+
+### 2013/11/26 - Version 1.0 Beta Release 6.0
+> Commit 187b9324420812326e62d963afa42e26532e82e7
+*   Includes a Windows Batch file for compilation
+
+*   Supports \printnomencl[optional_argument]
+
+### 2013/11/26 - Version 1.0 Beta Release 5.0
+> Commit 76a733ee305ed4aae9d546492cef768512df2b13
+
+*   Supports DVI/PS
+
+*   Supports Custom Margin and FancyHdr update
+
+### 2013/11/24 - Version 1.0 Beta Release 0
+> Commit 73c8dd9ea82c21476d964ad5cdff1b71fe7327c8
+Author(s): Krishna Kumar
+*   Adaptive Title Page: Title page adapts to title length
+
+*   Print / On-line version: Different layout and hyper-referncing styles
+
+*   Pre-defined and custom fonts (Times / Palatino / Latin Modern) with math support
+
+*   Pre-defined and custom bibliography style support (authoryear / numbered / custom)
+
+*   Custom page styles: 3 Different Header / Footer styles
+
+
+### 2013/11/14 - Inception
+Author(s): Krishna Kumar
 
