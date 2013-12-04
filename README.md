@@ -80,7 +80,7 @@ It support the following custom options:
 
 *   `a4paper` (default as per University guidelines) or `a5paper`: Paper size
 
-*   `11pt` or `12pt`: Cambridge University recommends using a minimum font size of 11pt (12pt is preferred) and 10pt for footnotes. This template also supports `10pt`.
+*   `11pt` or `12pt`: Cambridge University guidelines recommend using a minimum font size of 11pt (12pt is preferred) and 10pt for footnotes. This template also supports `10pt`.
 
 *   `oneside` or `twoside` (default): This is especially useful for printing double side (twoside) or single side.
 
@@ -102,7 +102,7 @@ It support the following custom options:
 
 `PhDThesisPSnPDF` currently supports two fonts `Times` and `Latin Modern (default)`.
 
-*   `times`: (Cambridge University recommends using Times). Specifying times option in the document class will use `mathptpx` or `Times` font with Math Support.
+*   `times`: (Cambridge University guidelines recommend using Times). Specifying times option in the document class will use `mathptpx` or `Times` font with Math Support.
 *   `fourier`: fourier font with math support
 *   `default (empty)`: When no font is specified, `Latin Modern` is used as the default font with Math Support. 
 *   `customfont`: Any custom font can be set in preamble by using `customfont` option in the document class. Then the custom font can be loaded in preamble.tex in 
@@ -275,6 +275,10 @@ You should have received a copy of the GNU General Public License along with thi
 
 --------------------------------------------------------------------------------
 # ChangeLog
+
+### 2013/12/04 - Version 1.0 Beta Release 7.1
+> Commit 9cb782f26cc3573f8d3077db520ba84b5f295049
+*   Declaration with automatic insertion of author and date and conforming to statments in University guidelines
 
 ### 2013/12/03 - Version 1.0 Beta Release 7.
 > Commit 1f695d512ae5ce765398db4dc4b6381dc0351868

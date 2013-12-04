@@ -73,7 +73,7 @@
 % Font Size
 \newcommand\CU@ptsize{12pt} %Set Default Size as 12
 
-\DeclareOption{10pt}{\ClassWarning{PhDThesisPSnPDF}{Cambridge University recommends using a minimum font size of 11pt (12pt is preferred) and 10pt for footnotes.}\renewcommand\CU@ptsize{10pt}}
+\DeclareOption{10pt}{\ClassWarning{PhDThesisPSnPDF}{The Cambridge University PhD thesis guidelines recommend using a minimum font size of 11pt (12pt is preferred) and 10pt for footnotes.}\renewcommand\CU@ptsize{10pt}}
 \DeclareOption{11pt}{\renewcommand\CU@ptsize{11pt}}%
 \DeclareOption{12pt}{\renewcommand\CU@ptsize{12pt}}%
 \PassOptionsToClass{\CU@ptsize}{book}%
@@ -83,7 +83,7 @@
 
 \DeclareOption{a4paper}{\renewcommand\CU@papersize{a4paper}}
 \DeclareOption{a5paper}{\renewcommand\CU@papersize{a5paper}}
-\DeclareOption{letterpaper}{\ClassWarning{PhDThesisPSnPDF}{Cambridge University Engineering Deparment recommends using A4 or A5paper}\renewcommand\CU@papersize{letterpaper}}
+\DeclareOption{letterpaper}{\ClassWarning{PhDThesisPSnPDF}{The Cambridge University Engineering Deparment PhD thesis guidelines recommend using A4 or A5paper}\renewcommand\CU@papersize{letterpaper}}
 
 \PassOptionsToClass{\CU@papersize}{book}%
 
@@ -264,7 +264,7 @@
           \ifCU@customfont
           \setFontfalse
           \else
-          \ClassWarning{PhDThesisPSnPDf}{Using default font Latin Modern. If you would like to use other pre-defined fonts use `times' (Cambridge University recommends using Times font)  or `fourier' or load a custom font in preamble by specifying `customfont' in the class options}
+          \ClassWarning{PhDThesisPSnPDf}{Using default font Latin Modern. If you would like to use other pre-defined fonts use `times' (The Cambridge University PhD thesis guidelines recommend using Times font)  or `fourier' or load a custom font in preamble by specifying `customfont' in the class options}
           \RequirePackage{lmodern}
           \setFonttrue
           \fi
