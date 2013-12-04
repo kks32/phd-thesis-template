@@ -295,30 +295,23 @@ You should have received a copy of the GNU General Public License along with thi
 ### 2013/11/26 - Version 1.0 Beta Release 6.0
 > Commit 187b9324420812326e62d963afa42e26532e82e7
 *   Includes a Windows Batch file for compilation
-
 *   Supports \printnomencl[optional_argument]
 
 ### 2013/11/26 - Version 1.0 Beta Release 5.0
 > Commit 76a733ee305ed4aae9d546492cef768512df2b13
-
 *   Supports DVI/PS
-
 *   Supports Custom Margin and FancyHdr update
 
 ### 2013/11/24 - Version 1.0 Beta Release 0
 > Commit 73c8dd9ea82c21476d964ad5cdff1b71fe7327c8
-Author(s): Krishna Kumar
+*   Author(s): Krishna Kumar
 *   Adaptive Title Page: Title page adapts to title length
-
 *   Print / On-line version: Different layout and hyper-referncing styles
-
 *   Pre-defined and custom fonts (Times / Palatino / Latin Modern) with math support
-
 *   Pre-defined and custom bibliography style support (authoryear / numbered / custom)
-
 *   Custom page styles: 3 Different Header / Footer styles
 
 
 ### 2013/11/14 - Inception
-Author(s): Krishna Kumar
+> Author(s): Krishna Kumar
 
