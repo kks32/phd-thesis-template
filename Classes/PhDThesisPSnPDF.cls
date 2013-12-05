@@ -70,7 +70,13 @@
 \newif \ifdefineAbstract\defineAbstractfalse %To enable Separate abstract
 
 \newif\ifCU@abstract\CU@abstractfalse % Enable Separate Abstract
-\DeclareOption{abstract}{\CU@abstracttrue}
+\DeclareOption{abstract}{\CU@abstracttrue     
+  \ClassWarning{PhDThesisPSnPDF}{You have chosen an option that
+    generates only the Title page and an abstract with PhD title and
+    author name, if this was intentional, ignore this
+    warning. Congratulations on submitting your thesis!! If not,
+    please remove the option `abstract' from the document class and
+    recompile. Good luck with your writing!}}
 
 \ProcessOptions\relax%
 
@@ -606,6 +612,8 @@
     \renewcommand{\listoftables}{}
     \renewcommand{\printnomencl}{}
     \renewcommand{\printthesisindex}{}
+    \renewcommand{\bibname}{}
+    \renewcommand{\bibliography}[1]{\thispagestyle{empty}}
 \else
     \defineAbstractfalse
 \fi

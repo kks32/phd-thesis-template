@@ -1,12 +1,13 @@
 % ******************************* PhD Thesis Template ************************
 % Please have a look at the README.md file for info on how to use the template
 
-\documentclass[times,twoside,numbered,abstract,print,index]{Classes/PhDThesisPSnPDF}
+\documentclass[times,twoside,numbered,print,index]{Classes/PhDThesisPSnPDF}
 
 % *****************************************************************************
 % ******************************* Class Options *******************************
 % *****************************************************************************
-% `a4paper'(The University of Cambridge PhD thesis guidelines recommends a page size a4 - default option) or `a5paper': Paper size is also allowed as per the Engineering deparment guidelines for PhD thesis
+% `a4paper'(The University of Cambridge PhD thesis guidelines
+% recommends a page size a4 - default option) or `a5paper': Paper size is also allowed as per the Engineering deparment guidelines for PhD thesis
 %
 % `11pt' or `12pt'(default): Font Size 10pt is NOT recommended by the University guidelines)
 %
@@ -18,7 +19,8 @@
 %
 % `draft': For draft mode without loading any images (same as draft in book)
 %
-% `abstract': To generate only the title page and abstract page with dissertation title and name, to submit to BoGS
+% `abstract': To generate only the title page and abstract page with
+% dissertation title and name, to submit to the Student Registry
 %
 % ************************* Custom Page Margins ********************************
 %
@@ -147,16 +149,23 @@
 \include{Appendix2/appendix2}
 
 % ***********************************Bibliography**********************************
-%\include{References/references}
 \begin{spacing}{0.9}
+
+% Bibliography style
+
 \bibliographystyle{apalike}
-%\bibliographystyle{plainnat} % use this to have URLs listed in References
-\renewcommand{\bibname}{References}% changes default name Bibliography-> References 
+%\bibliographystyle{plainnat} % use this to have URLs listed in
+%References
+
+% changes default name Bibliography-> References 
+\renewcommand{\bibname}{References}
 \cleardoublepage
+
 \bibliography{References/references} % Path to your References.bib file
+
 \end{spacing}
 
 % *************************************** Index ***********************************
-\printthesisindex
+\printthesisindex % If index is present
 
 \end{document}
