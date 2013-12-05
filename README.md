@@ -6,6 +6,8 @@ phd-thesis-template
 
 ### Features
 
+*   Conforms to the Student Registry PhD dissertation guidelines and CUED PhD guidelines
+
 *   Adaptive Title Page: Title page adapts to title length
 
 *   Print / On-line version: Different layout and hyper-referncing styles
@@ -17,6 +19,8 @@ phd-thesis-template
 *   Custom page styles: 3 Different Header / Footer styles
 
 *   Pre-defined and custom margin size
+
+*   Abstract separate with title and name is generated as per the requirements of the Student Registry for submitting the PhD dissertation. 
 
 
 ### Building your thesis
@@ -182,7 +186,11 @@ The sort keys have prefix. In this case a prefix of `g` is used to denote Greek 
 *   You can change the Title of Nomenclature to Notations or Symbols in the `preamble.tex` using:
 		`\renewcommand\nomname{Symbols}`
 
+## Abstract separate
 
+*  A separate abstract with the title of the PhD and the candidate name is to be submitted to the Student Registry. This can be generated using abstractseparate environment in abstract.tex file and uncommenting the following line in `thesis.tex` file. Ignore subsequent warnings about skipping sections.
+
+	`\includeonly{Abstract/abstract}`
 -------------------------------------------------------------------------------
 
 # Frequently Asked Questions
@@ -246,6 +254,11 @@ You are either trying to use a undefined option or a non-standard option, which 
 ### _W4_: I get LaTeX Warning: Unused global option(s):[something].
 
 You are trying to load an option that is not supported in the PhDThesisClass and the Book Class. Are you sure you are using the right option? check you spelling!
+
+### _W5_: I get I'm skipping whatever remains of this command line 28 of file thesis.aux \@input{Chapter1/chapter1.aux}
+
+If you are generating a separate abstract for your thesis submission, ignore this warning and good luck with your submission. If you are compiling your thesis and see this warning, please change your environment in abstract.tex file to abstract and make sure \includeonly command is commented before the begin{document} environment in thesis.tex file
+
 
 
 --------------------------------------------------------------------------------

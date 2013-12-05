@@ -558,24 +558,17 @@
 }
 
 
-%The abstractseparate environment is for running of a page with the abstract
-%on including title and author etc as required to be handed in separately
+% The abstractseparate environment is for generating a separate abstract with dissertation title and candidate name as required by the Student Registry.
 
-\newenvironment{abstractseparate} {\begin{alwayssingle} \pagestyle{empty}
-%  \vspace*{-1in}
- \begin{center}
+\newenvironment{abstractseparate} {
+\thispagestyle{empty}
+\setsinglecolumn
+\begin{center}
     { \Large {\bfseries {\@title}} \par}
-    {{\large \vspace*{1ex} \@author} \par}
-{\large \vspace*{1ex}
-    {{\@dept} \par}
-    {{\@university} \par}
-\vspace*{1ex}
-    {{\it \submissiontext} \par}
-    {\it {\@degree} \par}
-\vspace*{2ex}
-    {\@degreedate}}
-  \end{center}}
-{\end{alwayssingle}}
+    {{\large \vspace*{1em} \@author} \par}
+\end{center}
+
+}
 
 
 
