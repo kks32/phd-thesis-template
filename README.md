@@ -230,20 +230,20 @@ You can also mail
 --------------------------------------------------------------------------------
 # Troubleshooting Warnings
 
-## _W1_: I get the `LaTeX Warning: You have requested document class Classes/PhDThesisPSnPDF, but the document class provides PhDThesisPSnPDF`, should I be concerned? 
+### _W1_: I get the LaTeX Warning: You have requested document class Classes/PhDThesisPSnPDF, but the document class provides PhDThesisPSnPDF, should I be concerned? 
 
 No! Do nothing, or if you don't want any warning messages change the line near the top of the class file to \ProvidesClass{Classes/PhDthesisPSnPDF} if you're not going to install the class file in a more standard location.
 
-## _W2_:I get the package Fancyhdr Warning: \fancyhead's `E` option without twoside option is useless on input line 321 or 322.. What should I do? 
+### _W2_:I get the package Fancyhdr Warning: \fancyhead's `E` option without twoside option is useless on input line 321 or 322.. What should I do? 
 
 Nothing. The warning is because twoside option is also defined in the class, although only oneside option is currently used. 
 
-## _W3_: I get the Class PhDThesisPSnPDF Warning: Unknown or non-standard option 'something'. Will see if I can load it from the book class. If you get a warning unused global option(s): `something` then the option is not supported! on input line \#.
+### _W3_: I get the Class PhDThesisPSnPDF Warning: Unknown or non-standard option 'something'. Will see if I can load it from the book class. If you get a warning unused global option(s): `something` then the option is not supported! on input line \#.
 
 You are either trying to use a undefined option or a non-standard option, which is in the book class but not defined in the PhD Thesis Template. If it can be used it will be loaded and you will get no further warnings. If not the option you chose is unavailable. 
 
 
-## _W4_: I get LaTeX Warning: Unused global option(s):[something].
+### _W4_: I get LaTeX Warning: Unused global option(s):[something].
 
 You are trying to load an option that is not supported in the PhDThesisClass and the Book Class. Are you sure you are using the right option? check you spelling!
 
