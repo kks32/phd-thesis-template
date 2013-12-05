@@ -123,13 +123,13 @@
 
 % **************************** Print / Online ***************************
 % Defines a print / online version to define page-layout and hyperrefering 
+\ifsetDVI
+\RequirePackage[dvips]{hyperref}
+\else
+\RequirePackage{hyperref}
+\fi
 
 \if@print
-        \ifsetDVI
-	\RequirePackage[dvips]{hyperref}
-        \else
-	\RequirePackage{hyperref}
-        \fi
 	% For Print version
 	\hypersetup{
           plainpages=false, 
@@ -160,12 +160,6 @@
     	\hypersetup{pdfpagelayout=OneColumn}
         \fi
 \else
-        \ifsetDVI
-	\RequirePackage[dvips]{hyperref}
-        \else
-	\RequirePackage{hyperref}
-        \fi
-
 	% For PDF Online version
 	\hypersetup{
           plainpages=false,
