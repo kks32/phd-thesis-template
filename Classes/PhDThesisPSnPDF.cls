@@ -100,26 +100,36 @@
   \PassOptionsToClass{\CurrentOption}{book}
 }
 
-
+% Determine whether to run pdftex or dvips
 \ProcessOptions\relax%
-
-\ifx\pdfoutput\undefined%
-      \LoadClass[dvips,fleqn,openright]{book}%
-      \@ifundefined{pdfoutput}{
-        \AtBeginDvi{\special{papersize=\paperwidth,\paperheight}}
-      }
-
-\else%
-      \LoadClass[pdftex,fleqn,openright]{book}%
-      \AtBeginDvi{\special{papersize=\paperwidth,\paperheight}}%
-\fi%
-
+\newif\ifsetDVI\setDVIfalse
+\ifx\pdfoutput\undefined
+  % we are not running PDFLaTeX
+  \LoadClass[dvips,fleqn,openright]{book}%
+  \AtBeginDvi{\special{papersize=\paperwidth,\paperheight}}
+  \setDVItrue
+\else % we are running PDFLaTeX
+  \ifnum \pdfoutput>0
+    %PDF-Output
+    \setDVIfalse
+    \LoadClass[pdftex,fleqn,openright]{book}%
+  \else
+    %DVI-output
+    \setDVItrue
+    \LoadClass[fleqn,openright]{book}%
+    \AtBeginDvi{\special{papersize=\paperwidth,\paperheight}}
+  \fi
+\fi
 
 % **************************** Print / Online ***************************
 % Defines a print / online version to define page-layout and hyperrefering 
 
 \if@print
+        \ifsetDVI
+	\RequirePackage[dvips]{hyperref}
+        \else
 	\RequirePackage{hyperref}
+        \fi
 	% For Print version
 	\hypersetup{
           plainpages=false, 
@@ -150,7 +160,12 @@
     	\hypersetup{pdfpagelayout=OneColumn}
         \fi
 \else
+        \ifsetDVI
+	\RequirePackage[dvips]{hyperref}
+        \else
 	\RequirePackage{hyperref}
+        \fi
+
 	% For PDF Online version
 	\hypersetup{
           plainpages=false,
@@ -204,10 +219,10 @@
 
 % **************************** Graphics and Figures ****************************
 \RequirePackage[usenames, dvipsnames]{color} 
-% Convert eps figures to pdf
-\RequirePackage{epstopdf} 
 \ifpdf 
-	\RequirePackage[pdftex]{graphicx}
+        % Convert eps figures to pdf
+        \RequirePackage{epstopdf} 
+        \RequirePackage[pdftex]{graphicx}
 	\DeclareGraphicsExtensions{.png, .jpg, .pdf}
 	\pdfcompresslevel=9
 	\graphicspath{{Figs/Raster/}{Figs/}}
