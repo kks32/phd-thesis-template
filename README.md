@@ -275,6 +275,10 @@ You should have received a copy of the GNU General Public License along with thi
 
 --------------------------------------------------------------------------------
 # ChangeLog
+### 2013/12/05 - Version 1.0 Beta Release 8.0
+> Commit 324d1a5609992028afb109b424573cd3a5e31849
+*   Update class file to support dvips driver when using dvi > PS output in hyperTeX. Removed deprecated codes from Declaration and class files
+
 ### 2013/12/05 - Version 1.0 Beta Release 7.2
 > Commit 2f397eda12ef2b81314b67847e312f688095a379
 *   Update to margin dimensions (1:1 ratio is maintained) with a binding offset of 5mm on the print version. Replaced the hmargin ratio of 3:2 with 1:1 with a binding offset.
