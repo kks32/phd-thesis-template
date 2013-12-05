@@ -78,9 +78,9 @@ Usage: `sh ./compile-thesis.sh [OPTIONS] [filename]`
 
 It support the following custom options:
 
-*   `a4paper` (default as per University guidelines) or `a5paper`: Paper size
+*   `a4paper` (default as per the University guidelines) or `a5paper`: Paper size
 
-*   `11pt` or `12pt`: Cambridge University guidelines recommend using a minimum font size of 11pt (12pt is preferred) and 10pt for footnotes. This template also supports `10pt`.
+*   `11pt` or `12pt`: The University of Cambridge guidelines recommend using a minimum font size of 11pt (12pt is preferred) and 10pt for footnotes. This template also supports `10pt`.
 
 *   `oneside` or `twoside` (default): This is especially useful for printing double side (twoside) or single side.
 
@@ -102,7 +102,7 @@ It support the following custom options:
 
 `PhDThesisPSnPDF` currently supports two fonts `Times` and `Latin Modern (default)`.
 
-*   `times`: (Cambridge University guidelines recommend using Times). Specifying times option in the document class will use `mathptpx` or `Times` font with Math Support.
+*   `times`: (The University of Cambridge guidelines recommend using Times). Specifying times option in the document class will use `mathptpx` or `Times` font with Math Support.
 *   `fourier`: fourier font with math support
 *   `default (empty)`: When no font is specified, `Latin Modern` is used as the default font with Math Support. 
 *   `customfont`: Any custom font can be set in preamble by using `customfont` option in the document class. Then the custom font can be loaded in preamble.tex in 
@@ -185,7 +185,7 @@ The sort keys have prefix. In this case a prefix of `g` is used to denote Greek 
 
 -------------------------------------------------------------------------------
 
-# Troubleshooting
+# Frequently Asked Questions
 
 ## _Q1_: Where can I find the thesis formatting guidelines this class is based on?
 
@@ -228,17 +228,17 @@ You can also mail
 
 
 --------------------------------------------------------------------------------
-# Warnings and FAQs
+# Troubleshooting Warnings
 
 __W1__: I get the ``LaTeX Warning: You have requested document class `Classes/PhDThesisPSnPDF', but the document class provides `PhDThesisPSnPDF'." warning, should I be concerned? 
 
 No! Do nothing, or if you don't want any warning messages change the line near the top of the class file to \ProvidesClass{Classes/PhDthesisPSnPDF} if you're not going to install the class file in a more standard location.
 
-__W2__:I get package Fancyhdr Warning: \fancyhead's `E' option without twoside option is useless on input line 321 or 322.. What should I do? 
+__W2__:I get the package Fancyhdr Warning: \fancyhead's `E' option without twoside option is useless on input line 321 or 322.. What should I do? 
 
 Nothing. The warning is because twoside option is also defined in the class, although only oneside option is currently used. 
 
-__W3__: I get Class PhDThesisPSnPDF Warning: Unknown or non-standard option 'something'. Will see if I can load it from the book class. If you get a warning unused global option(s): `eco` then the option is not supported! on input line 91.
+__W3__: I get the Class PhDThesisPSnPDF Warning: Unknown or non-standard option 'something'. Will see if I can load it from the book class. If you get a warning unused global option(s): `eco` then the option is not supported! on input line \#.
 
 You are either trying to use a undefined option or a non-standard option, which is in the book class but not defined in the PhD Thesis Template. If it can be used it will be loaded and you will get no further warnings. If not the option you chose is unavailable. 
 
@@ -262,10 +262,10 @@ You are trying to load an option that is not supported in the PhDThesisClass and
 
 --------------------------------------------------------------------------------
 
-# Author(s):
+# Author(s)
 *   Krishna Kumar
 
-# License:
+# License
 
 This LaTeX template is free software: you can redistribute it and/or modify tt under the terms of the GNU General Public License as published by the Free Software Foundation, either version 2 of the License, or (at your option) any later version.
 
@@ -275,26 +275,29 @@ You should have received a copy of the GNU General Public License along with thi
 
 --------------------------------------------------------------------------------
 # ChangeLog
+### 2013/12/05 - Version 1.0 Beta Release 7.2
+> Commit 2f397eda12ef2b81314b67847e312f688095a379
+*   Update to margin dimensions (1:1 ratio is maintained) with a binding offset of 5mm on the print version. Replaced the hmargin ratio of 3:2 with 1:1 with a binding offset.
 
 ### 2013/12/04 - Version 1.0 Beta Release 7.1
 > Commit 9cb782f26cc3573f8d3077db520ba84b5f295049
-*   Declaration with automatic insertion of author and date and conforming to statments in University guidelines
+*   Declaration with automatic insertion of the author and the degree date and conforming to the statments in the University guidelines
 
 ### 2013/12/03 - Version 1.0 Beta Release 7.0
 > Commit 1f695d512ae5ce765398db4dc4b6381dc0351868
-*   Default font size 12pt and paper size (A4 as default) and adhering to University regulations in terms of font, font sizer, paper size and set them as defaults.
+*   Default font size is 12pt and the default paper size is A4, confirming to the University regulations in terms of font, font sizer, paper size and set them as defaults.
 
 ### 2013/11/27 - Version 1.0 Beta Release 6.2
 > Commit a5f49d49a6cc39209d95f91e667fd7b359ab5227
-*   Update to Makefile to remove PS files when running Makeclean
+*   Update to the Makefile to remove PS files when running Makeclean
 
 ### 2013/11/26 - Version 1.0 Beta Release 6.1 
 > Commit e29a99406649dcce8f23b6d9df0b87eabd09fc0e
-*   Updated Makefile to support PS to PDF conversion
+*   Update to the Makefile to support PS to PDF conversion
 
 ### 2013/11/26 - Version 1.0 Beta Release 6.0
 > Commit 187b9324420812326e62d963afa42e26532e82e7
-*   Includes a Windows Batch file for compilation
+*   Included a Windows Batch file for LaTeX / Nomenclature compilation
 *   Supports \printnomencl[optional_argument]
 
 ### 2013/11/26 - Version 1.0 Beta Release 5.0
@@ -305,12 +308,11 @@ You should have received a copy of the GNU General Public License along with thi
 ### 2013/11/24 - Version 1.0 Beta Release 0
 > Commit 73c8dd9ea82c21476d964ad5cdff1b71fe7327c8
 *   Author(s): Krishna Kumar
-*   Adaptive Title Page: Title page adapts to title length
+*   Adaptive Title Page: Title page adapts to the length of the title
 *   Print / On-line version: Different layout and hyper-referncing styles
 *   Pre-defined and custom fonts (Times / Palatino / Latin Modern) with math support
 *   Pre-defined and custom bibliography style support (authoryear / numbered / custom)
 *   Custom page styles: 3 Different Header / Footer styles
-
 
 ### 2013/11/14 - Inception
 > Author(s): Krishna Kumar
