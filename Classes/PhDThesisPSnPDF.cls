@@ -66,6 +66,12 @@
 \newif\ifCU@custommargin\CU@custommarginfalse % Custom margin
 \DeclareOption{custommargin}{\CU@custommargintrue}
 
+% ********************** Separate Abstract  ************************
+\newif \ifdefineAbstract\defineAbstractfalse %To enable Separate abstract
+
+\newif\ifCU@abstract\CU@abstractfalse % Enable Separate Abstract
+\DeclareOption{abstract}{\CU@abstracttrue}
+
 \ProcessOptions\relax%
 
 % ********************* Pre-defined Options **********************
@@ -546,31 +552,6 @@
 }
 
 
-% ******************************** Abstract ***********************************
-% The abstract environment puts a large, bold, centered "Abstract" label at
-% the top of the page. 
-
-\newenvironment{abstract} {
-\cleardoublepage
-\setsinglecolumn 
-\chapter*{\centering \Large Abstract}
-\thispagestyle{empty}
-}
-
-
-% The abstractseparate environment is for generating a separate abstract with dissertation title and candidate name as required by the Student Registry.
-
-\newenvironment{abstractseparate} {
-\thispagestyle{empty}
-\setsinglecolumn
-\begin{center}
-    { \Large {\bfseries {\@title}} \par}
-    {{\large \vspace*{1em} \@author} \par}
-\end{center}
-
-}
-
-
 
 % ******************************** Nomenclature *********************************
 \usepackage{nomencl}
@@ -610,6 +591,45 @@
 \else
     \newcommand{\printthesisindex}{}
 \fi
+
+
+% ******************************** Abstract ***********************************
+% The abstract environment puts a large, bold, centered "Abstract" label at
+% the top of the page. Defines both abstract and separate abstract environment
+
+% To include only the Title and the abstract pages for submission to BoGS
+\ifCU@abstract
+    \defineAbstracttrue
+    % Disable the table of contents, figures, tables, index and nomenclature
+    \renewcommand{\tableofcontents}{}
+    \renewcommand{\listoffigures}{}
+    \renewcommand{\listoftables}{}
+    \renewcommand{\printnomencl}{}
+    \renewcommand{\printthesisindex}{}
+\else
+    \defineAbstractfalse
+\fi
+
+
+\newenvironment{abstract} {
+\ifCU@abstract
+% Separate abstract as per Student Registry guidelines
+	\thispagestyle{empty}
+	\setsinglecolumn
+	\begin{center}
+		{ \Large {\bfseries {\@title}} \par}
+		{{\large \vspace*{1em} \@author} \par}
+	\end{center}
+
+\else
+% Normal abstract in the thesis
+	\cleardoublepage
+	\setsinglecolumn 
+	\chapter*{\centering \Large Abstract}
+	\thispagestyle{empty}
+\fi
+}
+
 
 
 

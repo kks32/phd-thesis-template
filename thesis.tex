@@ -1,7 +1,7 @@
 % ******************************* PhD Thesis Template ************************
 % Please have a look at the README.md file for info on how to use the template
 
-\documentclass[times,twoside,numbered,print,index]{Classes/PhDThesisPSnPDF}
+\documentclass[times,twoside,numbered,abstract,print,index]{Classes/PhDThesisPSnPDF}
 
 % *****************************************************************************
 % ******************************* Class Options *******************************
@@ -17,6 +17,8 @@
 % `index': For index at the end of the thesis
 %
 % `draft': For draft mode without loading any images (same as draft in book)
+%
+% `abstract': To generate only the title page and abstract page with dissertation title and name, to submit to BoGS
 %
 % ************************* Custom Page Margins ********************************
 %
@@ -92,8 +94,10 @@
 % To print out a separate abstract in the abstract.tex file change the environment to \begin{abstractseparate} and \end{abstractseparate} and uncomment the following line. 
 % Please note: Contents, List of Tables and Figures, References will still be produced.
 
-%\includeonly{Abstract/abstract}
-
+\ifdefineAbstract
+\includeonly{Abstract/abstract}
+\else
+\fi
 
 
 % ********************************Front Matter************************************
@@ -143,15 +147,14 @@
 \include{Appendix2/appendix2}
 
 % ***********************************Bibliography**********************************
-
+%\include{References/references}
 \begin{spacing}{0.9}
 \bibliographystyle{apalike}
 %\bibliographystyle{plainnat} % use this to have URLs listed in References
 \renewcommand{\bibname}{References}% changes default name Bibliography-> References 
 \cleardoublepage
-\bibliography{References/References} % Path to your References.bib file
+\bibliography{References/references} % Path to your References.bib file
 \end{spacing}
-
 
 % *************************************** Index ***********************************
 \printthesisindex

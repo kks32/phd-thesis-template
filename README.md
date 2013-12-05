@@ -20,7 +20,7 @@ phd-thesis-template
 
 *   Pre-defined and custom margin size
 
-*   Abstract separate with title and name is generated as per the requirements of the Student Registry for submitting the PhD dissertation. 
+*   Abstract separate with title and name is generated as per the requirements of the Student Registry for submission of the PhD dissertation. 
 
 
 ### Building your thesis
@@ -49,7 +49,7 @@ or
     make BUILD_STRATEGY=latex
 
 This will use the `latex` command to build the document and will produce
-`thesis.dvi`, `thesis.ps` and `thesis.pdf` documents.
+`thesis.dvi`, `thesis.ps` and `thesis.pdf` documents. You need psutils installed
 
 Clean unwanted files
 
@@ -99,6 +99,8 @@ It support the following custom options:
     Instructions on how to use the index can be found [here](http://en.wikibooks.org/wiki/LaTeX/Indexing#Using_makeidx).
 
     _Note_: the package `makeidx` is used to create the index.
+    
+*   `abstract`: This option enables only the thesis title page and the abstract with title and author to be printed. Ignore warnings about skipped sections.
 
 
 
@@ -188,9 +190,8 @@ The sort keys have prefix. In this case a prefix of `g` is used to denote Greek 
 
 ## Abstract separate
 
-*  A separate abstract with the title of the PhD and the candidate name is to be submitted to the Student Registry. This can be generated using abstractseparate environment in abstract.tex file and uncommenting the following line in `thesis.tex` file. Ignore subsequent warnings about skipping sections.
+*  A separate abstract with the title of the PhD and the candidate name has to be submitted to the Student Registry. This can be generated using `abstract` option in the document class.  Ignore subsequent warnings about skipping sections.
 
-	`\includeonly{Abstract/abstract}`
 -------------------------------------------------------------------------------
 
 # Frequently Asked Questions
@@ -272,7 +273,7 @@ If you are generating a separate abstract for your thesis submission, ignore thi
 
 # TODO list
 
-
+*   References shouldn't be printed for abstract mode
 --------------------------------------------------------------------------------
 
 # Author(s)
