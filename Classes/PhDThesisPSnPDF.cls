@@ -140,7 +140,7 @@
         \setMarginfalse
         \else
         % Odd and Even side Margin staggering for binding and set viewmode for PDF
-        \RequirePackage[hmarginratio=3:2]{geometry}
+        \RequirePackage[hmarginratio=1:1,bindingoffset=5mm]{geometry}
         \setMargintrue
         \fi
 	

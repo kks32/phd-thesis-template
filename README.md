@@ -259,7 +259,7 @@ You are trying to load an option that is not supported in the PhDThesisClass and
 
 # TODO list
 
-*   Pull author and degree date information in declaration
+
 --------------------------------------------------------------------------------
 
 # Author(s):
@@ -280,7 +280,7 @@ You should have received a copy of the GNU General Public License along with thi
 > Commit 9cb782f26cc3573f8d3077db520ba84b5f295049
 *   Declaration with automatic insertion of author and date and conforming to statments in University guidelines
 
-### 2013/12/03 - Version 1.0 Beta Release 7.
+### 2013/12/03 - Version 1.0 Beta Release 7.0
 > Commit 1f695d512ae5ce765398db4dc4b6381dc0351868
 *   Default font size 12pt and paper size (A4 as default) and adhering to University regulations in terms of font, font sizer, paper size and set them as defaults.
 
