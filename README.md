@@ -10,9 +10,9 @@ phd-thesis-template
 
 *   Adaptive Title Page: Title page adapts to title length
 
-*   Print / On-line version: Different layout and hyper-referncing styles
+*   Print / On-line version: Different layout and hyper-referencing styles
 
-*   Pre-defined and custom fonts (Times / fourier / Latin Modern) with math support
+*   Pre-defined and custom fonts (Times / Fourier / Latin Modern) with math support
 
 *   Pre-defined and custom bibliography style support (authoryear / numbered / custom)
 
@@ -49,7 +49,7 @@ or
     make BUILD_STRATEGY=latex
 
 This will use the `latex` command to build the document and will produce
-`thesis.dvi`, `thesis.ps` and `thesis.pdf` documents. You need psutils installed
+`thesis.dvi`, `thesis.ps` and `thesis.pdf` documents. You will need psutils installed
 
 Clean unwanted files
 
@@ -64,13 +64,13 @@ __Note__: the `Makefile` itself is take from and maintained at
 
 Usage: `sh ./compile-thesis.sh [OPTIONS] [filename]`
 [option]  compile: Compiles the PhD Thesis
-[option]  clean: removes temporary files no filename required
+[option]  clean: removes temporary files - no filename required
 
 #### Using the Batch file on Windows (PDFLaTeX)
 
 *    Open command prompt and navigate to the directory with the tex file. Run `compile-thesis-windows.bat`.
 
-*    Double click on `compile-thesis-windows.bat`
+*    Alternatively, double click on `compile-thesis-windows.bat`
 
 -------------------------------------------------------------------------------
 
@@ -78,9 +78,9 @@ Usage: `sh ./compile-thesis.sh [OPTIONS] [filename]`
 
 ## Class Options
 
-`PhDThesisPSnPDF` is based on the standard `book` class
+The class file, `PhDThesisPSnPDF`, is based on the standard `book` class
 
-It support the following custom options:
+It supports the following custom options:
 
 *   `a4paper` (default as per the University guidelines) or `a5paper`: Paper size
 
@@ -92,26 +92,32 @@ It support the following custom options:
     Use `print` in the options to activate Print Version with appropriate margins and page layout and view styles. 
     Leaving the options field blank will activate Online version.
 
-*   `custommargin`: You can alter the margin dimension for both print and online version by using the keyword `custommargin` in the options sections. Then you can define the dimensions of the margin in the `PhDThesisPSnPDF.cls` Class file.
+*   `custommargin`: You can alter the margin dimension for both print and online version by using the keyword `custommargin` in the options. Then you can define the dimensions of the margin in the `preamble.tex` file: `\ifsetMargin \else \RequirePackage[left=37mm,right=30mm,top=35mm,bottom=30mm]{geometry} \setFancyHdr \fi`. `\setFancyHdr` should be called when using custom margins for proper header/footer dimensions
 
-*   `index`: Including this option in `\documentclass` build the index, which you can put at the and of the thesis.
+
+*   `index`: Including this option builds the index, which is placed at the end of the thesis.
 
     Instructions on how to use the index can be found [here](http://en.wikibooks.org/wiki/LaTeX/Indexing#Using_makeidx).
 
     _Note_: the package `makeidx` is used to create the index.
     
-*   `abstract`: This option enables only the thesis title page and the abstract with title and author to be printed. Ignore warnings about skipped sections.
+*   `abstract`: This option enables only the thesis title page and the abstract with title and author to be printed. 
+
+## Abstract separate
+
+*  A separate abstract with the title of the PhD and the candidate name has to be submitted to the Student Registry. This can be generated using `abstract` option in the document class. Ignore subsequent warnings about skipping sections (if any).
+
+*  To generate the separate abstract and the title page, make sure the following commands are in the `preamble.tex` file: `\ifdefineAbstract \includeonly{Abstract/abstract} \else \fi`
 
 
-
-### Choosing the Fonts:
+### Choosing the Fonts
 
 `PhDThesisPSnPDF` currently supports two fonts `Times` and `Latin Modern (default)`.
 
 *   `times`: (The University of Cambridge guidelines recommend using Times). Specifying times option in the document class will use `mathptpx` or `Times` font with Math Support.
 *   `fourier`: fourier font with math support
 *   `default (empty)`: When no font is specified, `Latin Modern` is used as the default font with Math Support. 
-*   `customfont`: Any custom font can be set in preamble by using `customfont` option in the document class. Then the custom font can be loaded in preamble.tex in 
+*   `customfont`: Any custom font can be set in preamble by using `customfont` option in the document class. Then the custom font can be loaded in preamble.tex in the line:
 		`\ifsetFont\else \RequirePackage{Your_Custom_Font}\fi`
 
 ### Choosing the Bibliography style
@@ -131,34 +137,30 @@ It support the following custom options:
 
 * `default (leave empty)`: For Page Numbers in Header (Left Even, Right Odd) and Chapter Name in Header (Right Even) and Section #. Section Name (Left Odd). Blank Footer.
 
-Header (Even)   : 4								Introduction 
-Header (Odd)    : 1.2 Section Name 			   	5
-Footer 			: Empty
+Header (Even)   : 4							Introduction 
+Header (Odd)    : 1.2 Section Name 		   			5
+Footer 		: Empty
 
 * `PageStyleI`: For Page Numbers in Header (Left Even, Right Odd) and Chapter Name next to the Page Number on Even Side (Left Even). Section Number and Section Name and Page Number in Header on Odd Side (Right Odd). Footer is empty. Layout:
 
 Header (Even)   : 4 | Introduction 
-Header (Odd)    :                         		1.2 Section Name | 5
-Footer 			: Empty
+Header (Odd)    :                         				1.2 Section Name | 5
+Footer 		: Empty
 
 * `PageStyleII`: Chapter Name on Even Side (Left Even) in Header. Section Number and Section Name in Header on Odd Side (Right Odd). Page numbering in footer. Layout:
 
 Header (Even)   : Introduction
-Header (Odd)    : 			   					1.2 Section Name
-Footer[centered]:                   3
+Header (Odd)    : 			   				1.2 Section Name
+Footer[centered]:                   		3
 
 ## Custom Settings
 
-*   The depth of table of contents can be set using: 
+*   The depth for the table of contents can be set using: 
 		`\setcounter{secnumdepth}{3}`
 		`\setcounter{tocdepth}{3}`
-    a depth of [3] indicates to a level of `\subsubsection` or #.#.#.#. Default set as 2.
+    A depth of [3] indicates to a level of `\subsubsection` or #.#.#.#. Default set as 2.
 
 *   To hide sections from appearing in TOC use: `\tochide\section{Section name}` in your TeX files
-
-*   To restrict the length of the figure caption in List of figures use in `preamble.tex`:
-		`\caption[Caption that you want to appear in TOC]{Actual caption of the figure}`
-		`\section[short]{title}`
 
 *   Define custom caption style for figure and table caption in `preamble.tex` using:
 		`\RequirePackage[small,bf,figurename=Fig.,labelsep=space,tableposition=top]{caption}`
@@ -188,14 +190,14 @@ The sort keys have prefix. In this case a prefix of `g` is used to denote Greek 
 *   You can change the Title of Nomenclature to Notations or Symbols in the `preamble.tex` using:
 		`\renewcommand\nomname{Symbols}`
 
-## Abstract separate
+## General guidelines
 
-*  A separate abstract with the title of the PhD and the candidate name has to be submitted to the Student Registry. This can be generated using `abstract` option in the document class.  Ignore subsequent warnings about skipping sections (if any).
-*  Make sure, the following commands are in the preamble:
-			\ifdefineAbstract
-			\includeonly{Abstract/abstract}
-			\else
-			\fi
+*   To restrict the length of the figure caption in List of figures use a \[short-title\] and {longtitle} for the caption or the section:
+		`\caption[Caption that you want to appear in TOC]{Actual caption of the figure}`
+		`\section[short]{title}`
+
+*   Use a `-` to separate sort key from the prefixes, eg., `g-pi` dentes the Greek symbol `pi`.
+
 -------------------------------------------------------------------------------
 
 # Frequently Asked Questions
@@ -223,9 +225,9 @@ Download and exchange the new logos with `CUni.eps` and/or `CUni.pdf`. I'll try 
 
 [Submitting the dissertation](https://www.admin.cam.ac.uk/students/studentregistry/exams/submission/phd/submitting.html)
 
-## _Q4_: How should I count the number of words in my thesis?
+## _Q4_: How can I count the number of words in my thesis?
 
-You can run the following command:
+You can run the following command (Linux/Unix):
     `ps2ascii thesis.pdf | wc -w` (eg., result 2713 words)
 
 or 
@@ -249,20 +251,20 @@ No! Do nothing, or if you don't want any warning messages change the line near t
 
 ### _W2_:I get the package Fancyhdr Warning: \fancyhead's `E` option without twoside option is useless on input line \# or \#. What should I do? 
 
-Nothing. The warning is because twoside option is also defined in the class, although only oneside option is currently used. 
+Nothing. The warning is because the twoside option is also defined in the class, although only the oneside option is currently used. 
 
 ### _W3_: I get the Class PhDThesisPSnPDF Warning: Unknown or non-standard option 'something'. Will see if I can load it from the book class. If you get a warning unused global option(s): `something` then the option is not supported! on input line \#.
 
-You are either trying to use a undefined option or a non-standard option, which is in the book class but not defined in the PhD Thesis Template. If it can be used it will be loaded and you will get no further warnings. If not the option you chose is unavailable. 
+You are either trying to use a undefined option or a non-standard option which is in the book class but not defined in the PhD Thesis Template. If it can be used it will be loaded and you will get no further warnings. If not, the option you chose is unavailable. 
 
 
 ### _W4_: I get LaTeX Warning: Unused global option(s):[something].
 
-You are trying to load an option that is not supported in the PhDThesisClass and the Book Class. Are you sure you are using the right option? check you spelling!
+You are trying to load an option that is not supported in the PhDThesisClass and the Book Class. Are you sure you are using the right option? Check your spelling!
 
 ### _W5_: I get I'm skipping whatever remains of this command line \# of file thesis.aux \@input{Chapter1/chapter1.aux}
 
-If you are generating a separate abstract for your thesis submission, ignore this warning and good luck with your submission. If you are compiling your thesis and see this warning, please change your environment in abstract.tex file to abstract and make sure \includeonly command is commented before the begin{document} environment in thesis.tex file
+If you are generating a separate abstract for your thesis submission, ignore this warning and good luck with your submission. If you are compiling your thesis and see this warning, please remove the option `abstract` from the document class.
 
 
 
@@ -270,7 +272,7 @@ If you are generating a separate abstract for your thesis submission, ignore thi
 
 # Known Issue(s) / Bugs
 
-*   No know bug(s) so far. If you find any let me know or even better, if you can patch it and contribute to the development of the LaTeX Template.
+*   No know bug(s) so far. If you find any let me know, or even better, patch it and contribute to the development of the LaTeX Template.
 
 
 --------------------------------------------------------------------------------
@@ -284,7 +286,7 @@ If you are generating a separate abstract for your thesis submission, ignore thi
 
 # License
 
-This LaTeX template is free software: you can redistribute it and/or modify tt under the terms of the GNU General Public License as published by the Free Software Foundation, either version 2 of the License, or (at your option) any later version.
+This LaTeX template is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 2 of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
