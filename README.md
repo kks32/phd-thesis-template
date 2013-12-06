@@ -247,7 +247,7 @@ You can also mail
 
 ### _W1_: I get the LaTeX Warning: You have requested document class Classes/PhDThesisPSnPDF, but the document class provides PhDThesisPSnPDF, should I be concerned? 
 
-No! Do nothing, or if you don't want any warning messages change the line near the top of the class file to \ProvidesClass{Classes/PhDthesisPSnPDF} if you're not going to install the class file in a more standard location.
+No! Do nothing, or if you don't want any warning messages change the line near the top of the class file to \ProvidesClass{Classes/PhDthesisPSnPDF} if you're not going to install the class file in a more standard location like `/usr/share/texmf/tex/latex/`. Run `texhash` to reconfigure, if you have the class installed in a standard location.
 
 ### _W2_:I get the package Fancyhdr Warning: \fancyhead's `E` option without twoside option is useless on input line \# or \#. What should I do? 
 
