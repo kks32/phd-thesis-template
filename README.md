@@ -107,7 +107,14 @@ It supports the following custom options:
     Use `print` in the options to activate Print Version with appropriate margins and page layout and view styles. 
     Leaving the options field blank will activate Online version.
 
-*   `custommargin`: You can alter the margin dimension for both print and online version by using the keyword `custommargin` in the options. Then you can define the dimensions of the margin in the `preamble.tex` file: `\ifsetMargin \else \RequirePackage[left=37mm,right=30mm,top=35mm,bottom=30mm]{geometry} \setFancyHdr \fi`. `\setFancyHdr` should be called when using custom margins for proper header/footer dimensions
+*   `custommargin`: You can alter the margin dimension for both print and online version by using the keyword `custommargin` in the options. Then you can define the dimensions of the margin in the `preamble.tex` file: 
+
+        \ifsetMargin
+        \else
+        \RequirePackage[left=37mm,right=30mm,top=35mm,bottom=30mm]{geometry} 
+        \setFancyHdr
+        \fi
+    `\setFancyHdr` should be called when using custom margins for proper header/footer dimensions
 
 
 *   `index`: Including this option builds the index, which is placed at the end of the thesis.
@@ -162,25 +169,27 @@ It supports the following custom options:
 
 * `default (leave empty)`: For Page Numbers in Header (Left Even, Right Odd) and Chapter Name in Header (Right Even) and Section #. Section Name (Left Odd). Blank Footer.
 
-Header (Even)   : 4                                 Introduction 
+        Header (Even)   : 4                                 Introduction 
 
-Header (Odd)    : 1.2 Section Name 		   			5
+        Header (Odd)    : 1.2 Section Name 		   			5
 
-Footer 		    : Empty
+        Footer 		    : Empty
 
 * `PageStyleI`: For Page Numbers in Header (Left Even, Right Odd) and Chapter Name next to the Page Number on Even Side (Left Even). Section Number and Section Name and Page Number in Header on Odd Side (Right Odd). Footer is empty. Layout:
 
-Header (Even)   : 4 | Introduction 
+        Header (Even)   : 4 | Introduction 
 
-Header (Odd)    :                         				1.2 Section Name | 5
+        Header (Odd)    :                         			1.2 Section Name | 5
 
-Footer 		: Empty
+        Footer 		: Empty
 
 * `PageStyleII`: Chapter Name on Even Side (Left Even) in Header. Section Number and Section Name in Header on Odd Side (Right Odd). Page numbering in footer. Layout:
 
-Header (Even)   : Introduction
-Header (Odd)    : 			   				1.2 Section Name
-Footer[centered]:                   		3
+        Header (Even)   : Introduction
+        
+        Header (Odd)    : 			   				        1.2 Section Name
+        
+        Footer[centered]:                   	3
 
 ### Custom Settings
 
@@ -204,23 +213,26 @@ Footer[centered]:                   		3
 ### Nomenclature Definition
 
 * To use nomenclature in your chapters:
-		`\nomenclature[g-pi]{$\pi$}{ $\simeq 3.14\ldots$}`
-The sort keys have prefix. In this case a prefix of `g` is used to denote Greek Symbols, followed by `-pi` or `-sort_key`. Use a `-` to separate sort key from the prefixes. The standard prefixes defined in this class are:
 
-* `A` or `a`: Roman Symbols
+        \nomenclature[g-pi]{$\pi$}{ $\simeq 3.14\ldots$}
+	        
+    The sort keys have prefix. In this case a prefix of `g` is used to denote Greek Symbols, followed by `-pi` or `-sort_key`. Use a `-` to separate sort key from the prefixes. The standard prefixes defined in this class are:
 
-* `G` or `g`: Greek Symbols
+    * `A` or `a`: Roman Symbols
 
-* `Z` or `z`: Acronyms/Abbreviations
+    * `G` or `g`: Greek Symbols
 
-* `R` or `r`: Superscripts
+    * `Z` or `z`: Acronyms/Abbreviations
 
-* `S` or `s`: Subscripts
+    * `R` or `r`: Superscripts
 
-* `X` or `x`: Other Symbols
+    * `S` or `s`: Subscripts
+
+    * `X` or `x`: Other Symbols
 
 *   You can change the Title of Nomenclature to Notations or Symbols in the `preamble.tex` using:
-		`\renewcommand\nomname{Symbols}`
+
+        \renewcommand\nomname{Symbols}
 
 ## General guidelines
 [Why is it important to follow good practices and not get killed by a Velociraptor ;)](http://www.xkcd.com/292/)
