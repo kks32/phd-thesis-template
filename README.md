@@ -191,10 +191,17 @@ The sort keys have prefix. In this case a prefix of `g` is used to denote Greek 
 		`\renewcommand\nomname{Symbols}`
 
 ## General guidelines
+[Why is it important to follow good practices and not get killed by a Velociraptor](http://www.xkcd.com/292/)
 
 *   To restrict the length of the figure caption in List of figures use a \[short-title\] and {longtitle} for the caption or the section:
 		`\caption[Caption that you want to appear in TOC]{Actual caption of the figure}`
 		`\section[short]{title}`
+*   To exclude sections from being numbered and disable it from appearing in the Table of Contents use \section*{Section_Name} or \chapter*{Chapter_Name}
+
+*   To only exclude it from being listed in the Table of Contents encapsulate the section command inside the `\tochide` command. `\tochide{\section{Section_Name}}` the section will not appear in the Table of Contents, but the section will be numbered.
+
+*   When including figures in your tex file, it's a good practice to size your picture depending on the page size, instead of using absolute values. In the following example `0.75\textwidth` refers to picture width being set to 75% of the text width.
+		`\includegraphics[width=0.75\textwidth]{minion}`
 
 *   Use a `-` to separate sort key from the prefixes, eg., `g-pi` dentes the Greek symbol `pi`.
 
