@@ -1,8 +1,19 @@
-phd-thesis-template
-===================
+CUED PhD Thesis Template
+========================
 > A PhD thesis LaTeX template for Cambridge University Engineering Department.
 
-*   Distributed under GPLv2.0
+# Author(s)
+*   Krishna Kumar
+
+# License
+
+This LaTeX template is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 2 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program. If not, see [http://www.gnu.org/licenses/](http://www.gnu.org/licenses/)
+
+--------------------------------------------------------------------------------
 
 ### Features
 
@@ -63,12 +74,16 @@ __Note__: the `Makefile` itself is take from and maintained at
 #### Shell script for PDFLaTeX (Unix/Linux)
 
 Usage: `sh ./compile-thesis.sh [OPTIONS] [filename]`
+
 [option]  compile: Compiles the PhD Thesis
+
 [option]  clean: removes temporary files - no filename required
 
 #### Using the Batch file on Windows (PDFLaTeX)
 
-*    Open command prompt and navigate to the directory with the tex file. Run `compile-thesis-windows.bat`.
+*    Open command prompt and navigate to the directory with the tex file. Run:
+    
+    `compile-thesis-windows.bat`.
 
 *    Alternatively, double click on `compile-thesis-windows.bat`
 
@@ -107,7 +122,12 @@ It supports the following custom options:
 
 *  A separate abstract with the title of the PhD and the candidate name has to be submitted to the Student Registry. This can be generated using `abstract` option in the document class. Ignore subsequent warnings about skipping sections (if any).
 
-*  To generate the separate abstract and the title page, make sure the following commands are in the `preamble.tex` file: `\ifdefineAbstract \includeonly{Abstract/abstract} \else \fi`
+*  To generate the separate abstract and the title page, make sure the following commands are in the `preamble.tex` file: 
+
+        \ifdefineAbstract
+        \includeonly{Abstract/abstract}
+        \else
+        \fi
 
 
 ### Choosing the Fonts
@@ -118,7 +138,11 @@ It supports the following custom options:
 *   `fourier`: fourier font with math support
 *   `default (empty)`: When no font is specified, `Latin Modern` is used as the default font with Math Support. 
 *   `customfont`: Any custom font can be set in preamble by using `customfont` option in the document class. Then the custom font can be loaded in preamble.tex in the line:
-		`\ifsetFont\else \RequirePackage{Your_Custom_Font}\fi`
+
+		\ifsetFont
+		\else 
+		\RequirePackage{Your_Custom_Font}
+		\fi
 
 ### Choosing the Bibliography style
 
@@ -129,7 +153,8 @@ It supports the following custom options:
 * `numbered`: (Default Option) For numbered and sorted citation e.g., [1,5,2]
 
 * `custombib`: Define your own bibliography style in the `preamble.tex` file.
-		`\RequirePackage[square, sort, numbers, authoryear]{natbib}`
+
+		\RequirePackage[square, sort, numbers, authoryear]{natbib}
 
 ### Choosing the Page Style
 
@@ -137,14 +162,18 @@ It supports the following custom options:
 
 * `default (leave empty)`: For Page Numbers in Header (Left Even, Right Odd) and Chapter Name in Header (Right Even) and Section #. Section Name (Left Odd). Blank Footer.
 
-Header (Even)   : 4							Introduction 
+Header (Even)   : 4                                 Introduction 
+
 Header (Odd)    : 1.2 Section Name 		   			5
-Footer 		: Empty
+
+Footer 		    : Empty
 
 * `PageStyleI`: For Page Numbers in Header (Left Even, Right Odd) and Chapter Name next to the Page Number on Even Side (Left Even). Section Number and Section Name and Page Number in Header on Odd Side (Right Odd). Footer is empty. Layout:
 
 Header (Even)   : 4 | Introduction 
+
 Header (Odd)    :                         				1.2 Section Name | 5
+
 Footer 		: Empty
 
 * `PageStyleII`: Chapter Name on Even Side (Left Even) in Header. Section Number and Section Name in Header on Odd Side (Right Odd). Page numbering in footer. Layout:
@@ -156,17 +185,20 @@ Footer[centered]:                   		3
 ## Custom Settings
 
 *   The depth for the table of contents can be set using: 
-		`\setcounter{secnumdepth}{3}`
-		`\setcounter{tocdepth}{3}`
+
+        \setcounter{secnumdepth}{3}
+	    \setcounter{tocdepth}{3}
     A depth of [3] indicates to a level of `\subsubsection` or #.#.#.#. Default set as 2.
 
 *   To hide sections from appearing in TOC use: `\tochide\section{Section name}` in your TeX files
 
 *   Define custom caption style for figure and table caption in `preamble.tex` using:
-		`\RequirePackage[small,bf,figurename=Fig.,labelsep=space,tableposition=top]{caption}`
+
+        \RequirePackage[small,bf,figurename=Fig.,labelsep=space,tableposition=top]{caption}
 
 *   Bibliography with Author-Year Citation in `preamble.tex`:
-		`\RequirePackage[round, sort, numbers, authoryear]{natbib}`
+	
+        \RequirePackage[round, sort, numbers, authoryear]{natbib}
 
 
 ## Nomenclature Definition
@@ -191,17 +223,20 @@ The sort keys have prefix. In this case a prefix of `g` is used to denote Greek 
 		`\renewcommand\nomname{Symbols}`
 
 ## General guidelines
-[Why is it important to follow good practices and not get killed by a Velociraptor](http://www.xkcd.com/292/)
+[Why is it important to follow good practices and not get killed by a Velociraptor ;)](http://www.xkcd.com/292/)
 
 *   To restrict the length of the figure caption in List of figures use a \[short-title\] and {longtitle} for the caption or the section:
+
 		`\caption[Caption that you want to appear in TOC]{Actual caption of the figure}`
 		`\section[short]{title}`
+
 *   To exclude sections from being numbered and disable it from appearing in the Table of Contents use \section*{Section_Name} or \chapter*{Chapter_Name}
 
 *   To only exclude it from being listed in the Table of Contents encapsulate the section command inside the `\tochide` command. `\tochide{\section{Section_Name}}` the section will not appear in the Table of Contents, but the section will be numbered.
 
 *   When including figures in your tex file, it's a good practice to size your picture depending on the page size, instead of using absolute values. In the following example `0.75\textwidth` refers to picture width being set to 75% of the text width.
-		`\includegraphics[width=0.75\textwidth]{minion}`
+
+        \includegraphics[width=0.75\textwidth]{minion}
 
 *   Use a `-` to separate sort key from the prefixes, eg., `g-pi` dentes the Greek symbol `pi`.
 
@@ -254,7 +289,7 @@ You can also mail
 
 ### _W1_: I get the LaTeX Warning: You have requested document class Classes/PhDThesisPSnPDF, but the document class provides PhDThesisPSnPDF, should I be concerned? 
 
-No! Do nothing, or if you don't want any warning messages change the line near the top of the class file to \ProvidesClass{Classes/PhDthesisPSnPDF} if you're not going to install the class file in a more standard location like `/usr/share/texmf/tex/latex/`. Run `texhash` to reconfigure, if you have the class installed in a standard location.
+No! Do nothing, or if you don't want any warning messages change the line near the top of the class file to \ProvidesClass{Classes/PhDthesisPSnPDF} if you're not going to install the class file in a more standard location. You can install it in a standard location like `/usr/share/texmf/tex/latex/` and run `texhash` to reconfigure.
 
 ### _W2_:I get the package Fancyhdr Warning: \fancyhead's `E` option without twoside option is useless on input line \# or \#. What should I do? 
 
@@ -286,20 +321,6 @@ If you are generating a separate abstract for your thesis submission, ignore thi
 
 # TODO list
 
---------------------------------------------------------------------------------
-
-# Author(s)
-*   Krishna Kumar
-
---------------------------------------------------------------------------------
-
-# License
-
-This LaTeX template is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 2 of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License along with this program. If not, see [http://www.gnu.org/licenses/](http://www.gnu.org/licenses/)
 
 --------------------------------------------------------------------------------
 # ChangeLog
@@ -364,5 +385,3 @@ You should have received a copy of the GNU General Public License along with thi
 *   Steven Kaneti - code concepts
 
 *   Tina Schwamb - testing and bug reports
-
-
