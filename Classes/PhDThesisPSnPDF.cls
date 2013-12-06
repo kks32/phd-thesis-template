@@ -4,16 +4,14 @@
 %%                                                                              %%
 %% Version: v1.0                                                                %%
 %% Authors: Krishna Kumar                                                       %%
-%% Date: 2013/11/16                                                             %%
-%% Based on: King's LaTeX workshop by Krishna, CUED V1.1 Template by H. Banderi %%
-%%           Cambridge Computer Laboratory PhD Template                         %%
+%% Date: 2013/11/16 (inception)                                                 %%
 %% License: GPL V2.0 https://www.gnu.org/licenses/gpl-2.0.html                  %%
 %% GitHub Repo: https://github.com/kks32/phd-thesis-template/                   %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % ******************** Class Identification *********************
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{PhDThesisPSnPDF}[2013/11/24 version 1.0Beta by Krishna Kumar]
+\ProvidesClass{PhDThesisPSnPDF}[2013/11/16 version 1.0Beta by Krishna Kumar]
 \typeout{https://github.com/kks32/phd-thesis-template/}
 
 

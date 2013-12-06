@@ -1,8 +1,8 @@
 phd-thesis-template
 ===================
-> A PhD thesis LaTeX template for Cambridge University Engineering Department. Based on Krishna Kumar's King's latex course, Cambridge Computer Laboratory Template and CUED V1.1 Template by H. Banderi.
+> A PhD thesis LaTeX template for Cambridge University Engineering Department.
 
-* Distributed under GPLv2.0
+*   Distributed under GPLv2.0
 
 ### Features
 
@@ -284,6 +284,8 @@ If you are generating a separate abstract for your thesis submission, ignore thi
 # Author(s)
 *   Krishna Kumar
 
+--------------------------------------------------------------------------------
+
 # License
 
 This LaTeX template is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 2 of the License, or (at your option) any later version.
@@ -339,4 +341,21 @@ You should have received a copy of the GNU General Public License along with thi
 
 ### 2013/11/14 - Inception
 > Author(s): Krishna Kumar
+
+--------------------------------------------------------------------------------
+
+## Inspirations
+
+*   Cambridge Computer Laboratory PhD Thesis Template [https://github.com/cambridge/thesis](https://github.com/cambridge/thesis)
+
+*   CUED Version 1.1 Template by H. Banderi
+
+# Acknowlegments
+
+*   Alex Ridge - original idea, code concepts & testing
+
+*   Steven Kaneti - code concepts
+
+*   Tina Schwamb - testing and bug reports
+
 
