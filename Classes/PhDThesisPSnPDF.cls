@@ -68,8 +68,14 @@
 \newif \ifdefineAbstract\defineAbstractfalse %To enable Separate abstract
 
 \newif\ifCU@abstract\CU@abstractfalse % Enable Separate Abstract
-\DeclareOption{abstract}{\CU@abstracttrue     
-  \ClassWarning{PhDThesisPSnPDF}{You have chosen an option that generates only the Title page and an abstract with PhD title and author name, if this was intentional, ignore this warning. Congratulations on submitting your thesis!! If not, please remove the option `abstract' from the document class and recompile. Good luck with your writing!}}
+\DeclareOption{abstract}{
+  \CU@abstracttrue     
+  \ClassWarning{PhDThesisPSnPDF}{You have chosen an option that generates only
+the Title page and an abstract with PhD title and author name, if this was
+intentional, ignore this warning. Congratulations on submitting your thesis!!
+If not, please remove the option `abstract' from the document class and
+recompile. Good luck with your writing!}
+}
 
 \ProcessOptions\relax%
 
@@ -78,7 +84,12 @@
 % Font Size
 \newcommand\CU@ptsize{12pt} %Set Default Size as 12
 
-\DeclareOption{10pt}{\ClassWarning{PhDThesisPSnPDF}{The Cambridge University PhD thesis guidelines recommend using a minimum font size of 11pt (12pt is preferred) and 10pt for footnotes.}\renewcommand\CU@ptsize{10pt}}
+\DeclareOption{10pt}{
+  \ClassWarning{PhDThesisPSnPDF}{The Cambridge University PhD thesis guidelines
+recommend using a minimum font size of 11pt (12pt is preferred) and 10pt for
+footnotes.}
+  \renewcommand\CU@ptsize{10pt}
+}
 \DeclareOption{11pt}{\renewcommand\CU@ptsize{11pt}}%
 \DeclareOption{12pt}{\renewcommand\CU@ptsize{12pt}}%
 \PassOptionsToClass{\CU@ptsize}{book}%
@@ -88,9 +99,11 @@
 
 \DeclareOption{a4paper}{\renewcommand\CU@papersize{a4paper}}
 \DeclareOption{a5paper}{\renewcommand\CU@papersize{a5paper}}
-\DeclareOption{letterpaper}{\ClassWarning{PhDThesisPSnPDF}{
-The Cambridge University Engineering Deparment PhD thesis guidelines recommend using A4 or A5paper} 
-\renewcommand\CU@papersize{letterpaper}}
+\DeclareOption{letterpaper}{
+  \ClassWarning{PhDThesisPSnPDF}{The Cambridge University Engineering Deparment
+PhD thesis guidelines recommend using A4 or A5paper}
+  \renewcommand\CU@papersize{letterpaper}
+}
 
 \PassOptionsToClass{\CU@papersize}{book}%
 
@@ -103,7 +116,10 @@ The Cambridge University Engineering Deparment PhD thesis guidelines recommend u
 
 % Generates Warning for unknown options
 \DeclareOption*{
-  \ClassWarning{PhDThesisPSnPDF}{Unknown or non-standard option '\CurrentOption'. Will see if I can load it from the book class. If you get a warning unused global option(s): `\CurrentOption` then the option is not supported!}
+  \ClassWarning{PhDThesisPSnPDF}{Unknown or non-standard option
+'\CurrentOption'. Will see if I can load it from the book class. If you get a
+warning unused global option(s): `\CurrentOption` then the option is not
+supported!} 
   \PassOptionsToClass{\CurrentOption}{book}
 }
 
@@ -137,61 +153,63 @@ The Cambridge University Engineering Deparment PhD thesis guidelines recommend u
 \fi
 
 \if@print
-	% For Print version
-	\hypersetup{
-          plainpages=false, 
-          pdfstartview=FitV,
-          pdftoolbar=true, 
-          pdfmenubar=true,
-          bookmarksopen=true,
-          bookmarksnumbered=true, 
-          breaklinks=true, 
-          linktocpage, 
-          colorlinks=true, 
-          linkcolor=black,
-          urlcolor=black, 
-          citecolor=black, 
-          anchorcolor=black
-        }
-        \ifCU@custommargin
+    % For Print version
+    \hypersetup{
+      plainpages=false, 
+      pdfstartview=FitV,
+      pdftoolbar=true, 
+      pdfmenubar=true,
+      bookmarksopen=true,
+      bookmarksnumbered=true, 
+      breaklinks=true, 
+      linktocpage, 
+      colorlinks=true, 
+      linkcolor=black,
+      urlcolor=black, 
+      citecolor=black, 
+      anchorcolor=black
+    }
+    \ifCU@custommargin
         \setMarginfalse
-        \else
+    \else
         % Odd and Even side Margin for binding and set viewmode for PDF
-        \RequirePackage[hmarginratio=1:1,vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
-        \setMargintrue
-        \fi
-	
-        \if@twoside 
-	\hypersetup{pdfpagelayout=TwoPageRight}
-	\else 
-    	\hypersetup{pdfpagelayout=OneColumn}
-        \fi
-\else
-	% For PDF Online version
-	\hypersetup{
-          plainpages=false,
-          pdfstartview=FitV, 
-          pdftoolbar=true, 
-          pdfmenubar=true,
-          bookmarksopen=true,
-          bookmarksnumbered=true,
-          breaklinks=true,
-          linktocpage, 
-          colorlinks=true, 
-          linkcolor=blue, 
-          urlcolor=blue,
-          citecolor=blue, 
-          anchorcolor=green}
+	\RequirePackage[hmarginratio=1:1,vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
+	\setMargintrue
+    \fi
 
-        \ifCU@custommargin
+    \if@twoside 
+        \hypersetup{pdfpagelayout=TwoPageRight}
+    \else 
+    	\hypersetup{pdfpagelayout=OneColumn}
+    \fi
+
+\else
+    % For PDF Online version
+    \hypersetup{
+      plainpages=false,
+      pdfstartview=FitV, 
+      pdftoolbar=true, 
+      pdfmenubar=true,
+      bookmarksopen=true,
+      bookmarksnumbered=true,
+      breaklinks=true,
+      linktocpage, 
+      colorlinks=true, 
+      linkcolor=blue, 
+      urlcolor=blue,
+      citecolor=blue, 
+      anchorcolor=green
+    }
+    
+    \ifCU@custommargin
         \setMarginfalse
-        \else
+    \else
 	% No Margin staggering on Odd and Even side 
 	\RequirePackage[hmarginratio=1:1,vmarginratio=1:1,scale=0.75]{geometry} 
         \setMargintrue
-        \fi
+    \fi
 
-    	\hypersetup{pdfpagelayout=OneColumn}
+    \hypersetup{pdfpagelayout=OneColumn}
 \fi
 
 
@@ -257,7 +275,10 @@ The Cambridge University Engineering Deparment PhD thesis guidelines recommend u
          \else
          \RequirePackage[numbers,sort&compress]{natbib} % Default - numbered
          \setBibtrue
-         \ClassWarning{PhDThesisPSnPDF}{No bibliography style was specified. Default numbered style is used. If you would like to use a different style, use `authoryear' or `numbered' in the options in documentclass or use `custombib` and define the natbibpackage with required style in the Preamble.tex file}
+	 \ClassWarning{PhDThesisPSnPDF}{No bibliography style was specified.
+Default numbered style is used. If you would like to use a different style, use
+`authoryear' or `numbered' in the options in documentclass or use `custombib`
+and define the natbibpackage with required style in the Preamble.tex file}
          % Generate a warning message here
          \fi
      \fi
@@ -282,7 +303,10 @@ The Cambridge University Engineering Deparment PhD thesis guidelines recommend u
           \ifCU@customfont
           \setFontfalse
           \else
-          \ClassWarning{PhDThesisPSnPDf}{Using default font Latin Modern. If you would like to use other pre-defined fonts use `times' (The Cambridge University PhD thesis guidelines recommend using Times font)  or `fourier' or load a custom font in preamble by specifying `customfont' in the class options}
+	  \ClassWarning{PhDThesisPSnPDf}{Using default font Latin Modern. If you
+would like to use other pre-defined fonts use `times' (The Cambridge University
+PhD thesis guidelines recommend using Times font)  or `fourier' or load a custom
+font in preamble by specifying `customfont' in the class options}
           \RequirePackage{lmodern}
           \setFonttrue
           \fi
@@ -354,7 +378,8 @@ The Cambridge University Engineering Deparment PhD thesis guidelines recommend u
 
 
 \else
-% Default Style: Sets Page Number at the Top (LE/RO) with Chapter/Section Name on LO/RE and an empty footer
+% Default Style: Sets Page Number at the Top (LE/RO) with Chapter/Section Name
+% on LO/RE and an empty footer
 \renewcommand{\chaptermark}[1]{\markboth {##1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection\ ##1}}
 \fancyhf{}

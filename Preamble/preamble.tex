@@ -1,12 +1,13 @@
-% *****************************************************************************
-% ******************************* Custom Margin ********************************
+% ******************************************************************************
+% ****************************** Custom Margin *********************************
 
 % Add `custommargin' in the document class option to use this section
-% Set {innerside margin / outerside margin / topmargin / bottom margin}  and many custom size for page layout
+% Set {innerside margin / outerside margin / topmargin / bottom margin}  and
+% many custom size for page layout
 \ifsetMargin
 \else
-\RequirePackage[left=37mm,right=30mm,top=35mm,bottom=30mm]{geometry}
-\setFancyHdr % To apply fancy header after geometry package is loaded
+    \RequirePackage[left=37mm,right=30mm,top=35mm,bottom=30mm]{geometry}
+    \setFancyHdr % To apply fancy header after geometry package is loaded
 \fi
 
 % *****************************************************************************
@@ -16,7 +17,9 @@
 %\renewcommand\rmdefault{psb}
 \ifsetFont
 \else
-\RequirePackage{libertine}  % Set your custom font here and use `customfont' in options. Leave empty to load computer modern font.
+    % Set your custom font here and use `customfont' in options. Leave empty to
+    % load computer modern font.  
+    \RequirePackage{libertine} 
 \fi
 
 % *****************************************************************************
@@ -26,7 +29,7 @@
 \usepackage{cleveref} %Referencing without need to explicitly state fig /table
 \ifsetBib % True, Bibliography option is chosen in class options
 \else % If custom bibliography style chosen then load bibstyle here
-\RequirePackage[square, sort, numbers, authoryear]{natbib} % CustomBib
+    \RequirePackage[square, sort, numbers, authoryear]{natbib} % CustomBib
 \fi
 
 
@@ -35,22 +38,22 @@
 % *****************************************************************************
 
 
-% ************************** Algorithms and Pseudocode *************************
-%\usepackage{algpseudocode} % Algorithmicx package support for algorithms and pseudocode
+% ************************* Algorithms and Pseudocode **************************
+%\usepackage{algpseudocode} 
 
 
-% *********************Captions and Hyperreferencing / URL ***********************
+% ********************Captions and Hyperreferencing / URL **********************
 %% Captions: This makes captions of figures use a boldfaced small font. 
 %\RequirePackage[small,bf]{caption}
 
 \RequirePackage[figurename=Fig.,labelsep=space,tableposition=top]{caption} 
 
 
-% ************************ Formatting / Footnote *****************************
+% ************************ Formatting / Footnote *******************************
 %\usepackage[perpage]{footmisc} %Range of footnote options 
 
 
-% ****************************** Line Numbers ********************************
+% ****************************** Line Numbers **********************************
 %\RequirePackage{lineno}
 %\linenumbers
 
@@ -62,14 +65,14 @@
 \usepackage{subfig}
 
 
-% ********************************* Table *************************************
+% ********************************* Table **************************************
 %\usepackage{longtable}
 %\usepackage{multicol}
 %\usepackage{multirow}
 %\usepackage{tabularx}
 
 
-% ****************************** Math and SI Units ****************************
+% ***************************** Math and SI Units ******************************
 \usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{amssymb}
