@@ -384,7 +384,7 @@ If you are generating a separate abstract for your thesis submission, ignore thi
 
 --------------------------------------------------------------------------------
 
-## Inspirations
+## Inspirations/Based on:
 
 *   Cambridge Computer Laboratory PhD Thesis Template [https://github.com/cambridge/thesis](https://github.com/cambridge/thesis)
 

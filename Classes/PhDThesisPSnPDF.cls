@@ -1,33 +1,33 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%                                                                              %%
-%% Class ``PhD Thesis PSnPDF''                                                  %%
-%%                                                                              %%
-%% Version: v1.0                                                                %%
-%% Authors: Krishna Kumar                                                       %%
-%% Date: 2013/11/16 (inception)                                                 %%
-%% License: GPL V2.0 https://www.gnu.org/licenses/gpl-2.0.html                  %%
-%% GitHub Repo: https://github.com/kks32/phd-thesis-template/                   %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                            %%
+%% Class ``PhD Thesis PSnPDF''                                                %%
+%%                                                                            %%
+%% Version: v1.0                                                              %%
+%% Authors: Krishna Kumar                                                     %%
+%% Date: 2013/11/16 (inception)                                               %%
+%% License: GPL V2.0 https://www.gnu.org/licenses/gpl-2.0.html                %%
+%% GitHub Repo: https://github.com/kks32/phd-thesis-template/                 %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% ******************** Class Identification *********************
+% ************************** Class Identification ******************************
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{PhDThesisPSnPDF}[2013/11/16 version 1.0Beta by Krishna Kumar]
 \typeout{https://github.com/kks32/phd-thesis-template/}
 
 
-% ***************************************************************
-% ********************** Class Definition ***********************
-% ***************************************************************
+% ******************************************************************************
+% **************************** Class Definition ********************************
+% ******************************************************************************
 
-% ****************** Define a Print/Online Version **************
+% *********************** Define a Print/Online Version ************************
 \newif\if@print\@printfalse
 \DeclareOption{print}{\@printtrue}
 
-% ************************** Define index ***********************
+% ****************************** Define index **********************************
 \newif\ifCU@index\CU@indexfalse
 \DeclareOption{index}{\CU@indextrue}
 
-% ************************** Font Option ************************
+% ******************************* Font Option **********************************
 \newif\ifsetFont\setFontfalse % Font is not set 
 
 \newif\ifCU@times\CU@timesfalse % Times with Math Support
@@ -39,7 +39,7 @@
 \newif\ifCU@customfont\CU@customfontfalse % Custom Font with Math Support
 \DeclareOption{customfont}{\CU@customfonttrue}
 
-% ************************** Bibliography ***********************
+% ******************************* Bibliography *********************************
 \newif\ifsetBib\setBibfalse % Using Custom Bibliography
 
 \newif\ifCU@authoryear\CU@authoryearfalse % Author-Year citation
@@ -51,34 +51,29 @@
 \newif\ifCU@custombib\CU@custombibfalse % Custom Bibliography
 \DeclareOption{custombib}{\CU@custombibtrue}
 
-% ****************** Header / Footer Styling ********************
+% ************************* Header / Footer Styling ****************************
 \newif\ifCU@pageStyleI\CU@pageStyleIfalse % Set Page StyleI
 \DeclareOption{PageStyleI}{\CU@pageStyleItrue}
 
 \newif\ifCU@pageStyleII\CU@pageStyleIIfalse % Set Page StyleI
 \DeclareOption{PageStyleII}{\CU@pageStyleIItrue}
 
-% ********************** Custom Margins  ************************
+% ***************************** Custom Margins  ********************************
 \newif\ifsetMargin\setMarginfalse % Margins are not set
 
 \newif\ifCU@custommargin\CU@custommarginfalse % Custom margin
 \DeclareOption{custommargin}{\CU@custommargintrue}
 
-% ********************** Separate Abstract  ************************
+% **************************** Separate Abstract  ******************************
 \newif \ifdefineAbstract\defineAbstractfalse %To enable Separate abstract
 
 \newif\ifCU@abstract\CU@abstractfalse % Enable Separate Abstract
 \DeclareOption{abstract}{\CU@abstracttrue     
-  \ClassWarning{PhDThesisPSnPDF}{You have chosen an option that
-    generates only the Title page and an abstract with PhD title and
-    author name, if this was intentional, ignore this
-    warning. Congratulations on submitting your thesis!! If not,
-    please remove the option `abstract' from the document class and
-    recompile. Good luck with your writing!}}
+  \ClassWarning{PhDThesisPSnPDF}{You have chosen an option that generates only the Title page and an abstract with PhD title and author name, if this was intentional, ignore this warning. Congratulations on submitting your thesis!! If not, please remove the option `abstract' from the document class and recompile. Good luck with your writing!}}
 
 \ProcessOptions\relax%
 
-% ********************* Pre-defined Options **********************
+% *************************** Pre-defined Options ******************************
 
 % Font Size
 \newcommand\CU@ptsize{12pt} %Set Default Size as 12
@@ -93,7 +88,9 @@
 
 \DeclareOption{a4paper}{\renewcommand\CU@papersize{a4paper}}
 \DeclareOption{a5paper}{\renewcommand\CU@papersize{a5paper}}
-\DeclareOption{letterpaper}{\ClassWarning{PhDThesisPSnPDF}{The Cambridge University Engineering Deparment PhD thesis guidelines recommend using A4 or A5paper}\renewcommand\CU@papersize{letterpaper}}
+\DeclareOption{letterpaper}{\ClassWarning{PhDThesisPSnPDF}{
+The Cambridge University Engineering Deparment PhD thesis guidelines recommend using A4 or A5paper} 
+\renewcommand\CU@papersize{letterpaper}}
 
 \PassOptionsToClass{\CU@papersize}{book}%
 
@@ -131,12 +128,12 @@
   \fi
 \fi
 
-% **************************** Print / Online ***************************
+%* ***************************** Print / Online ********************************
 % Defines a print / online version to define page-layout and hyperrefering 
 \ifsetDVI
 \RequirePackage[dvips]{hyperref}
 \else
-\RequirePackage{hyperref}
+\RequirePackage[unicode]{hyperref}
 \fi
 
 \if@print
@@ -159,7 +156,7 @@
         \ifCU@custommargin
         \setMarginfalse
         \else
-        % Odd and Even side Margin staggering for binding and set viewmode for PDF
+        % Odd and Even side Margin for binding and set viewmode for PDF
         \RequirePackage[hmarginratio=1:1,vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
         \setMargintrue
         \fi
@@ -204,13 +201,13 @@
 % ******************************************************************************
 
 
-% *********************** Layout and Formatting ********************************
+% ************************** Layout and Formatting *****************************
 \def\pdfshellescape{1}
 \RequirePackage{lscape}   % Supports Landscape Layout
 \RequirePackage{setspace} % Define line spacing in para
 \RequirePackage{calc}     % To calculate vertical spacing
 
-% *************************** Conditional Statements **************************
+% ************************* Conditional Statements *****************************
 \RequirePackage{ifthen}   % Used in LaTeX Class files for conditional statements
 \RequirePackage{ifpdf}    % Check for pdfLaTeX
 
@@ -221,7 +218,7 @@
 \RequirePackage{appendix}  % add appendix
 
 
-% **************************** Graphics and Figures ****************************
+% *************************** Graphics and Figures *****************************
 \RequirePackage[usenames, dvipsnames]{color} 
 \ifpdf 
         % Convert eps figures to pdf
@@ -237,14 +234,16 @@
 \fi
 
 
-% **************************** URL Package and Definition ***********************
+% ************************ URL Package and Definition **************************
 \RequirePackage{url}
 % Redefining urlstyle to use smaller fontsize in References with URLs
 \newcommand{\url@leostyle}{%
- \@ifundefined{selectfont}{\renewcommand{\UrlFont}{\sf}}{\renewcommand{\UrlFont}{\small\ttfamily}}}
+ \@ifundefined{selectfont}{\renewcommand{\UrlFont}{\sf}}
+{\renewcommand{\UrlFont}{\small\ttfamily}}
+}
 \urlstyle{leo}
 
-% ********************************** Bibliography *******************************
+% ******************************* Bibliography *********************************
 \ifCU@authoryear
 \RequirePackage[round, sort, numbers, authoryear]{natbib} %author year
 \setBibtrue
@@ -266,7 +265,7 @@
 
 
 
-% *************************** To copy ligatures and Fonts ***********************
+% *********************** To copy ligatures and Fonts **************************
 \RequirePackage{textcomp}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
@@ -298,11 +297,11 @@
 \pdfglyphtounicode{f_f_l}{FB04}
 \pdfgentounicode=1
 
-% ********************************************************************************
-% **************************** Pre-defined Settings ******************************
-% ********************************************************************************
+% ******************************************************************************
+% **************************** Pre-defined Settings ****************************
+% ******************************************************************************
 
-% ***************************** Setting PDF Meta-Data ****************************
+% *************************** Setting PDF Meta-Data ****************************
 \ifpdf
 \AtBeginDocument{
   \hypersetup{
@@ -315,14 +314,17 @@
 \fi
 
 
-% ***************************** TOC and Hide Sections ***************************
+% ************************** TOC and Hide Sections *****************************
 \newcommand{\nocontentsline}[3]{}
-\newcommand{\tochide}[2]{\bgroup\let\addcontentsline=\nocontentsline#1{#2}\egroup}
+\newcommand{\tochide}[2]{
+	\bgroup\let
+	\addcontentsline=\nocontentsline#1{#2}
+	\egroup}
 % Removes pagenumber appearing from TOC
 \addtocontents{toc}{\protect\thispagestyle{empty}}
 
 
-% ******************************* Header Formatting *****************************
+% ***************************** Header Formatting ******************************
 % Custom Header with Chapter Number, Page Number and Section Numbering
 
 \RequirePackage{fancyhdr} % Define custom header
@@ -336,8 +338,8 @@
 \renewcommand{\chaptermark}[1]{\markboth{##1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection\ ##1\ }}
 \fancyhf{}
-\fancyhead[RO]{\nouppercase \rightmark\hspace{0.25em} | \hspace{0.25em}  \bfseries{\thepage} }
-\fancyhead[LE]{{\bfseries\thepage} \hspace{0.25em} | \hspace{0.25em}  \nouppercase \leftmark }
+\fancyhead[RO]{\nouppercase \rightmark\hspace{0.25em} | \hspace{0.25em} \bfseries{\thepage}}
+\fancyhead[LE]{ {\bfseries\thepage} \hspace{0.25em} | \hspace{0.25em} \nouppercase \leftmark}
 
 
 \else
@@ -352,7 +354,7 @@
 
 
 \else
-% Default Style: Sets Page Number at the Top (LE/RO) with Chapter/Section Name on LO/RE
+% Default Style: Sets Page Number at the Top (LE/RO) with Chapter/Section Name on LO/RE and an empty footer
 \renewcommand{\chaptermark}[1]{\markboth {##1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection\ ##1}}
 \fancyhf{}
@@ -378,7 +380,7 @@
 \setFancyHdr % Apply fancy header settings otherwise apply it in preamble
 \fi
 
-% **************** Clear Header Style on the Last Empty Odd pages ***************
+% **************** Clear Header Style on the Last Empty Odd pages **************
 \renewcommand{\cleardoublepage}{\clearpage\if@twoside \ifodd\c@page\else%
 	\hbox{}%
 	\thispagestyle{empty}  % Empty header styles
@@ -386,7 +388,7 @@
 	\if@twocolumn\hbox{}\newpage\fi\fi\fi}
 
 
-% ********************************* Roman Pages *********************************
+% ******************************** Roman Pages *********************************
 % The romanpages environment set the page numbering to lowercase roman one
 % for the contents and figures lists. It also resets
 % page-numbering for the remainder of the dissertation (arabic, starting at 1).
@@ -397,9 +399,9 @@
 {\newpage\renewcommand{\thepage}{\arabic{page}}}
 
 
-% *******************************************************************************
-% **************************** Macro Definitions ********************************
-% *******************************************************************************
+% ******************************************************************************
+% **************************** Macro Definitions *******************************
+% ******************************************************************************
 % These macros are used to declare arguments needed for the
 % construction of the title page and other preamble.
 
@@ -458,11 +460,11 @@
 }
 
 
-% ********************************************************************************
-% ***************************** Front Matter Layout ******************************
-% ********************************************************************************
+% ******************************************************************************
+% *************************** Front Matter Layout ******************************
+% ******************************************************************************
 
-% ********************************** Title Page *********************************
+% ******************************** Title Page **********************************
 \renewcommand{\maketitle}{
 %%Can use the line below to remove the blank page after the title page
 %%\setcounter{page}{0}  % Sasa Tomic
@@ -510,9 +512,9 @@
 }
 
 
-% ********************************* Dedication **********************************
+% ********************************* Dedication *********************************
 % The dedication environment makes sure the dedication gets its
-% own page and is set out in verse format.3
+% own page, centered
 
 \newenvironment{dedication}
 {
@@ -524,7 +526,8 @@
 }
 
 
-% ******************************** Declaration **********************************
+
+% ******************************* Declaration **********************************
 % The declaration environment puts a large, bold, centered 
 % "Declaration" label at the top of the page.
 
@@ -533,8 +536,6 @@
 \setsinglecolumn
 \chapter*{\centering \Large Declaration}
 \thispagestyle{empty}
-
-
 }{
 \flushright
 \@author{}\\
@@ -544,7 +545,7 @@
 
 
 
-% ******************************* Acknowlegments *********************************
+% ****************************** Acknowlegments ********************************
 % The acknowledgements environment puts a large, bold, centered 
 % "Acknowledgements" label at the top of the page.
 
@@ -557,7 +558,7 @@
 
 
 
-% ******************************** Nomenclature *********************************
+% ******************************* Nomenclature *********************************
 \usepackage{nomencl}
 \makenomenclature
 \renewcommand{\nomgroup}[1]{%
@@ -584,7 +585,7 @@
 }
 
 
-% ******************************* Create the index ******************************
+% ***************************** Create the index *******************************
 \ifCU@index
     \RequirePackage{makeidx}
     \makeindex
@@ -597,7 +598,7 @@
 \fi
 
 
-% ******************************** Abstract ***********************************
+% ******************************** Abstract ************************************
 % The abstract environment puts a large, bold, centered "Abstract" label at
 % the top of the page. Defines both abstract and separate abstract environment
 
@@ -639,7 +640,7 @@
 
 
 
-% ********************* To compute empty space in title page *********************
+% ******************** To compute empty space in title page ********************
 % Boxes below are used to space differt contents on the title page
 \newcommand{\computeTitlePageSpacing}{
 
