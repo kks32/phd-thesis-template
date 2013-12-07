@@ -326,6 +326,8 @@ If you are generating a separate abstract for your thesis submission, ignore thi
 
 ## Known Issue(s) / Bugs
 
+*   Hyperlinks doesn't seem to be working in Post-Script file, however works on DVI and PDF (which is produced from the PS file), possibly viewer limitation than a code bug.
+
 *   No know bug(s) so far. If you find any let me know, or even better, patch it and contribute to the development of the LaTeX Template.
 
 
@@ -333,9 +335,14 @@ If you are generating a separate abstract for your thesis submission, ignore thi
 
 ## TODO list
 
+*  Make example thesis a document on how to use the template and include general guidelines and good  practices.
 
 --------------------------------------------------------------------------------
 ## ChangeLog
+### 2013/12/07 - Version 1.0 Beta Release 9.0
+> Commit 
+*   Wider text area (75% of page size), support for separate abstract for submission to the Student Registry
+
 ### 2013/12/05 - Version 1.0 Beta Release 8.0
 > Commit 324d1a5609992028afb109b424573cd3a5e31849
 *   Update class file to support dvips driver when using dvi > PS output in hyperTeX. Removed deprecated codes from Declaration and class files

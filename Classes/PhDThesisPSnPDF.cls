@@ -2,6 +2,8 @@
 %%                                                                            %%
 %% Class ``PhD Thesis PSnPDF''                                                %%
 %%                                                                            %%
+%% A PhD thesis LaTeX template for Cambridge University Engineering Department%%
+%%                                                                            %%
 %% Version: v1.0                                                              %%
 %% Authors: Krishna Kumar                                                     %%
 %% Date: 2013/11/16 (inception)                                               %%
@@ -24,52 +26,52 @@
 \DeclareOption{print}{\@printtrue}
 
 % ****************************** Define index **********************************
-\newif\ifCU@index\CU@indexfalse
-\DeclareOption{index}{\CU@indextrue}
+\newif\ifCUED@index\CUED@indexfalse
+\DeclareOption{index}{\CUED@indextrue}
 
 % ******************************* Font Option **********************************
 \newif\ifsetFont\setFontfalse % Font is not set 
 
-\newif\ifCU@times\CU@timesfalse % Times with Math Support
-\DeclareOption{times}{\CU@timestrue}
+\newif\ifCUED@times\CUED@timesfalse % Times with Math Support
+\DeclareOption{times}{\CUED@timestrue}
 
-\newif\ifCU@fourier\CU@fourierfalse % Fourier with Math Support
-\DeclareOption{fourier}{\CU@fouriertrue}
+\newif\ifCUED@fourier\CUED@fourierfalse % Fourier with Math Support
+\DeclareOption{fourier}{\CUED@fouriertrue}
 
-\newif\ifCU@customfont\CU@customfontfalse % Custom Font with Math Support
-\DeclareOption{customfont}{\CU@customfonttrue}
+\newif\ifCUED@customfont\CUED@customfontfalse % Custom Font with Math Support
+\DeclareOption{customfont}{\CUED@customfonttrue}
 
 % ******************************* Bibliography *********************************
 \newif\ifsetBib\setBibfalse % Using Custom Bibliography
 
-\newif\ifCU@authoryear\CU@authoryearfalse % Author-Year citation
-\DeclareOption{authoryear}{\CU@authoryeartrue}
+\newif\ifCUED@authoryear\CUED@authoryearfalse % Author-Year citation
+\DeclareOption{authoryear}{\CUED@authoryeartrue}
 
-\newif\ifCU@numbered\CU@numberedfalse % Numbered citiation
-\DeclareOption{numbered}{\CU@numberedtrue}
+\newif\ifCUED@numbered\CUED@numberedfalse % Numbered citiation
+\DeclareOption{numbered}{\CUED@numberedtrue}
 
-\newif\ifCU@custombib\CU@custombibfalse % Custom Bibliography
-\DeclareOption{custombib}{\CU@custombibtrue}
+\newif\ifCUED@custombib\CUED@custombibfalse % Custom Bibliography
+\DeclareOption{custombib}{\CUED@custombibtrue}
 
 % ************************* Header / Footer Styling ****************************
-\newif\ifCU@pageStyleI\CU@pageStyleIfalse % Set Page StyleI
-\DeclareOption{PageStyleI}{\CU@pageStyleItrue}
+\newif\ifCUED@pageStyleI\CUED@pageStyleIfalse % Set Page StyleI
+\DeclareOption{PageStyleI}{\CUED@pageStyleItrue}
 
-\newif\ifCU@pageStyleII\CU@pageStyleIIfalse % Set Page StyleI
-\DeclareOption{PageStyleII}{\CU@pageStyleIItrue}
+\newif\ifCUED@pageStyleII\CUED@pageStyleIIfalse % Set Page StyleI
+\DeclareOption{PageStyleII}{\CUED@pageStyleIItrue}
 
 % ***************************** Custom Margins  ********************************
 \newif\ifsetMargin\setMarginfalse % Margins are not set
 
-\newif\ifCU@custommargin\CU@custommarginfalse % Custom margin
-\DeclareOption{custommargin}{\CU@custommargintrue}
+\newif\ifCUED@custommargin\CUED@custommarginfalse % Custom margin
+\DeclareOption{custommargin}{\CUED@custommargintrue}
 
 % **************************** Separate Abstract  ******************************
 \newif \ifdefineAbstract\defineAbstractfalse %To enable Separate abstract
 
-\newif\ifCU@abstract\CU@abstractfalse % Enable Separate Abstract
+\newif\ifCUED@abstract\CUED@abstractfalse % Enable Separate Abstract
 \DeclareOption{abstract}{
-  \CU@abstracttrue     
+  \CUED@abstracttrue     
   \ClassWarning{PhDThesisPSnPDF}{You have chosen an option that generates only
 the Title page and an abstract with PhD title and author name, if this was
 intentional, ignore this warning. Congratulations on submitting your thesis!!
@@ -82,30 +84,30 @@ recompile. Good luck with your writing!}
 % *************************** Pre-defined Options ******************************
 
 % Font Size
-\newcommand\CU@ptsize{12pt} %Set Default Size as 12
+\newcommand\CUED@ptsize{12pt} %Set Default Size as 12
 
 \DeclareOption{10pt}{
   \ClassWarning{PhDThesisPSnPDF}{The Cambridge University PhD thesis guidelines
 recommend using a minimum font size of 11pt (12pt is preferred) and 10pt for
 footnotes.}
-  \renewcommand\CU@ptsize{10pt}
+  \renewcommand\CUED@ptsize{10pt}
 }
-\DeclareOption{11pt}{\renewcommand\CU@ptsize{11pt}}%
-\DeclareOption{12pt}{\renewcommand\CU@ptsize{12pt}}%
-\PassOptionsToClass{\CU@ptsize}{book}%
+\DeclareOption{11pt}{\renewcommand\CUED@ptsize{11pt}}%
+\DeclareOption{12pt}{\renewcommand\CUED@ptsize{12pt}}%
+\PassOptionsToClass{\CUED@ptsize}{book}%
 
 % Page Size
-\newcommand\CU@papersize{a4paper} % Set Default as a4paper
+\newcommand\CUED@papersize{a4paper} % Set Default as a4paper
 
-\DeclareOption{a4paper}{\renewcommand\CU@papersize{a4paper}}
-\DeclareOption{a5paper}{\renewcommand\CU@papersize{a5paper}}
+\DeclareOption{a4paper}{\renewcommand\CUED@papersize{a4paper}}
+\DeclareOption{a5paper}{\renewcommand\CUED@papersize{a5paper}}
 \DeclareOption{letterpaper}{
   \ClassWarning{PhDThesisPSnPDF}{The Cambridge University Engineering Deparment
 PhD thesis guidelines recommend using A4 or A5paper}
-  \renewcommand\CU@papersize{letterpaper}
+  \renewcommand\CUED@papersize{letterpaper}
 }
 
-\PassOptionsToClass{\CU@papersize}{book}%
+\PassOptionsToClass{\CUED@papersize}{book}%
 
 % Column layout
 \DeclareOption{oneside}{\PassOptionsToClass{\CurrentOption}{book}}%
@@ -169,7 +171,7 @@ supported!}
       citecolor=black, 
       anchorcolor=black
     }
-    \ifCU@custommargin
+    \ifCUED@custommargin
         \setMarginfalse
     \else
         % Odd and Even side Margin for binding and set viewmode for PDF
@@ -201,7 +203,7 @@ supported!}
       anchorcolor=green
     }
     
-    \ifCU@custommargin
+    \ifCUED@custommargin
         \setMarginfalse
     \else
 	% No Margin staggering on Odd and Even side 
@@ -257,20 +259,19 @@ supported!}
 % Redefining urlstyle to use smaller fontsize in References with URLs
 \newcommand{\url@leostyle}{%
  \@ifundefined{selectfont}{\renewcommand{\UrlFont}{\sf}}
-{\renewcommand{\UrlFont}{\small\ttfamily}}
-}
+ {\renewcommand{\UrlFont}{\small\ttfamily}}}
 \urlstyle{leo}
 
 % ******************************* Bibliography *********************************
-\ifCU@authoryear
+\ifCUED@authoryear
 \RequirePackage[round, sort, numbers, authoryear]{natbib} %author year
 \setBibtrue
 \else
-     \ifCU@numbered
+     \ifCUED@numbered
      \RequirePackage[numbers,sort&compress]{natbib} % numbered citation
      \setBibtrue
      \else
-         \ifCU@custombib
+         \ifCUED@custombib
          \setBibfalse
          \else
          \RequirePackage[numbers,sort&compress]{natbib} % Default - numbered
@@ -279,7 +280,6 @@ supported!}
 Default numbered style is used. If you would like to use a different style, use
 `authoryear' or `numbered' in the options in documentclass or use `custombib`
 and define the natbibpackage with required style in the Preamble.tex file}
-         % Generate a warning message here
          \fi
      \fi
 \fi
@@ -292,15 +292,15 @@ and define the natbibpackage with required style in the Preamble.tex file}
 \RequirePackage[T1]{fontenc}
 
 % Font Selection
-\ifCU@times
+\ifCUED@times
 \RequirePackage{mathptmx}  % times roman, including math (where possible)
 \setFonttrue
 \else
-     \ifCU@fourier
+     \ifCUED@fourier
      \RequirePackage{fourier} % Fourier
      \setFonttrue
      \else
-          \ifCU@customfont
+          \ifCUED@customfont
           \setFontfalse
           \else
 	  \ClassWarning{PhDThesisPSnPDf}{Using default font Latin Modern. If you
@@ -357,7 +357,7 @@ font in preamble by specifying `customfont' in the class options}
 \newcommand{\setFancyHdr}{
 
 \pagestyle{fancy}
-\ifCU@pageStyleI
+\ifCUED@pageStyleI
 % Style 1: Sets Page Number at the Top and Chapter/Section Name on LE/RO
 \renewcommand{\chaptermark}[1]{\markboth{##1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection\ ##1\ }}
@@ -367,7 +367,7 @@ font in preamble by specifying `customfont' in the class options}
 
 
 \else
-\ifCU@pageStyleII
+\ifCUED@pageStyleII
 % Style 2: Sets Page Number at the Bottom with Chapter/Section Name on LO/RE
 \renewcommand{\chaptermark}[1]{\markboth{##1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection\ ##1}}
@@ -502,11 +502,11 @@ font in preamble by specifying `customfont' in the class options}
 \begin{center}
 % Title
 {\Huge \bfseries{\@title} \par}
-\vspace{.25\CU@titlepagespacing}
+\vspace{.25\CUED@titlepagespacing}
 
 % Crest
 {\@crest \par}
-\vspace{.2\CU@titlepagespacing}
+\vspace{.2\CUED@titlepagespacing}
 
 % Author
 {\Large \bfseries{\@author} \par}
@@ -516,7 +516,7 @@ font in preamble by specifying `customfont' in the class options}
 {\large \@dept \par}
 \vspace*{1ex}
 {\large \@university \par}
-\vspace{.2\CU@titlepagespacing}
+\vspace{.2\CUED@titlepagespacing}
 
 % Submission Text
 {\large \submissiontext \par}
@@ -611,7 +611,7 @@ font in preamble by specifying `customfont' in the class options}
 
 
 % ***************************** Create the index *******************************
-\ifCU@index
+\ifCUED@index
     \RequirePackage{makeidx}
     \makeindex
     \newcommand{\printthesisindex}{
@@ -628,7 +628,7 @@ font in preamble by specifying `customfont' in the class options}
 % the top of the page. Defines both abstract and separate abstract environment
 
 % To include only the Title and the abstract pages for submission to BoGS
-\ifCU@abstract
+\ifCUED@abstract
     \defineAbstracttrue
     % Disable the table of contents, figures, tables, index and nomenclature
     \renewcommand{\tableofcontents}{}
@@ -644,7 +644,7 @@ font in preamble by specifying `customfont' in the class options}
 
 
 \newenvironment{abstract} {
-\ifCU@abstract
+\ifCUED@abstract
 % Separate abstract as per Student Registry guidelines
 	\thispagestyle{empty}
 	\setsinglecolumn
@@ -671,30 +671,30 @@ font in preamble by specifying `customfont' in the class options}
 
 
 % Title Box
-\newsavebox{\CU@Title}
-\begin{lrbox}{\CU@Title}
+\newsavebox{\CUED@Title}
+\begin{lrbox}{\CUED@Title}
 \begin{minipage}[c]{0.98\textwidth}
 \centering \Huge \bfseries{\@title}
 \end{minipage}
 \end{lrbox}
 
 % University Crest Box
-\newsavebox{\CU@crest}
-\begin{lrbox}{\CU@crest}
+\newsavebox{\CUED@crest}
+\begin{lrbox}{\CUED@crest}
 \@crest
 \end{lrbox}
 
 % Author Box
-\newsavebox{\CU@author}
-\begin{lrbox}{\CU@author}
+\newsavebox{\CUED@author}
+\begin{lrbox}{\CUED@author}
 \begin{minipage}[c]{\textwidth}
 \centering \Large \bfseries{\@author}
 \end{minipage}
 \end{lrbox}
 
 % Department Box
-\newsavebox{\CU@dept}
-\begin{lrbox}{\CU@dept}
+\newsavebox{\CUED@dept}
+\begin{lrbox}{\CUED@dept}
 \begin{minipage}[c]{\textwidth}
 \centering {\large \@dept \par}
 \vspace*{1ex}
@@ -703,8 +703,8 @@ font in preamble by specifying `customfont' in the class options}
 \end{lrbox}
 
 % Submission Box
-\newsavebox{\CU@submission}
-\begin{lrbox}{\CU@submission}
+\newsavebox{\CUED@submission}
+\begin{lrbox}{\CUED@submission}
 \begin{minipage}[c]{\textwidth}
 \begin{center}
 \large \submissiontext \par
@@ -715,8 +715,8 @@ font in preamble by specifying `customfont' in the class options}
 \end{lrbox}
 
 % College and Date Box
-\newsavebox{\CU@collegedate}
-\begin{lrbox}{\CU@collegedate}
+\newsavebox{\CUED@collegedate}
+\begin{lrbox}{\CUED@collegedate}
 \begin{minipage}[c]{\textwidth}
 \large
 \begin{minipage}{0.45\textwidth}
@@ -729,13 +729,13 @@ font in preamble by specifying `customfont' in the class options}
 \end{lrbox}
 
 %  Now to compute the free vertical space
-\newlength{\CU@titlepagespacing}
-\setlength{\CU@titlepagespacing}{ \textheight %
-			- \totalheightof{\usebox{\CU@Title}}
-			- \totalheightof{\usebox{\CU@crest}}
-			- \totalheightof{\usebox{\CU@author}}
-			- \totalheightof{\usebox{\CU@dept}}
-			- \totalheightof{\usebox{\CU@submission}}
-			- \totalheightof{\usebox{\CU@collegedate}}
+\newlength{\CUED@titlepagespacing}
+\setlength{\CUED@titlepagespacing}{ \textheight %
+			- \totalheightof{\usebox{\CUED@Title}}
+			- \totalheightof{\usebox{\CUED@crest}}
+			- \totalheightof{\usebox{\CUED@author}}
+			- \totalheightof{\usebox{\CUED@dept}}
+			- \totalheightof{\usebox{\CUED@submission}}
+			- \totalheightof{\usebox{\CUED@collegedate}}
 }
 }
