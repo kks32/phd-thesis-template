@@ -232,11 +232,11 @@ supported!}
 \RequirePackage{ifpdf}    % Check for pdfLaTeX
 
 
-% *********************** Table of Contents and Appendix************************
+% *********************** Table of Contents & Appendices ***********************
 % add Bibliography, List of figures and tables to contents
 \RequirePackage{tocbibind}
-\RequirePackage{appendix}  % add appendix
-
+% Add appendices
+\RequirePackage[title,titletoc]{appendix}
 
 % *************************** Graphics and Figures *****************************
 \RequirePackage[usenames, dvipsnames]{color} 
@@ -663,6 +663,9 @@ font in preamble by specifying `customfont' in the class options}
 }
 
 
+% ******************************** Line Spacing ********************************
+% Set spacing as 1.5 line spacing for the PhD Thesis
+\onehalfspace
 
 
 % ******************** To compute empty space in title page ********************

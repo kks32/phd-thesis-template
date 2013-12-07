@@ -14,7 +14,6 @@
 % ******************* Fonts (like different typewriter fonts etc.)*************
 
 % Add `customfont' in the document class option to use this section
-%\renewcommand\rmdefault{psb}
 \ifsetFont
 \else
     % Set your custom font here and use `customfont' in options. Leave empty to
@@ -25,8 +24,9 @@
 % *****************************************************************************
 % *************************** Bibliography  and References ********************
 
-% Add `custombib' in the document class option to use this section
 \usepackage{cleveref} %Referencing without need to explicitly state fig /table
+
+% Add `custombib' in the document class option to use this section
 \ifsetBib % True, Bibliography option is chosen in class options
 \else % If custom bibliography style chosen then load bibstyle here
     \RequirePackage[square, sort, numbers, authoryear]{natbib} % CustomBib
@@ -34,7 +34,7 @@
 
 
 % *****************************************************************************
-% **************************** Custom Packages *********************************
+% **************************** Custom Packages ********************************
 % *****************************************************************************
 
 
@@ -83,19 +83,20 @@
 % ************************* User Defined Commands ******************************
 % ******************************************************************************
 
-% Set spacing as 1.5 line spacing for the PhD Thesis
-\onehalfspace
 
-
-% ********************** Adding TOC and List of Figures ************************
-
+% ********************** TOC depth and numbering depth *************************
 \setcounter{secnumdepth}{2}
 \setcounter{tocdepth}{2}
 
-% To hide sections from appearing in TOC use:
-% \tochide\section{Section name}  in the section
-
-
 % ******************************* Nomenclature *********************************
 % To change the name of the Nomenclature section, uncomment the following line
+
 % \renewcommand\nomname{Symbols}
+
+
+% ********************************* Appendix ***********************************
+% The default value of both \appendixtocname and \appendixpagename is `Appendices'. These names can all be changed via: 
+
+%\renewcommand{\appendixtocname}{List of appendices}
+
+%\renewcommand{\appendixname}{Appndx}
