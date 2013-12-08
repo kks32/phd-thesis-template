@@ -130,9 +130,8 @@ supported!}
 \newif\ifsetDVI\setDVIfalse
 \ifx\pdfoutput\undefined
   % we are not running PDFLaTeX
-  \LoadClass[dvips,fleqn,openright]{book}%
-  \AtBeginDvi{\special{papersize=\paperwidth,\paperheight}}
   \setDVItrue
+  \LoadClass[dvips,fleqn,openright]{book}%
 \else % we are running PDFLaTeX
   \ifnum \pdfoutput>0
     %PDF-Output
@@ -142,13 +141,13 @@ supported!}
     %DVI-output
     \setDVItrue
     \LoadClass[fleqn,openright]{book}%
-    \AtBeginDvi{\special{papersize=\paperwidth,\paperheight}}
   \fi
 \fi
 
 %* ***************************** Print / Online ********************************
 % Defines a print / online version to define page-layout and hyperrefering 
 \ifsetDVI
+\special{papersize=\paperwidth,\paperheight}
 \RequirePackage[dvips]{hyperref}
 \else
 \RequirePackage[unicode]{hyperref}
