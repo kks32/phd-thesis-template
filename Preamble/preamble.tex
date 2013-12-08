@@ -24,7 +24,7 @@
 % *****************************************************************************
 % *************************** Bibliography  and References ********************
 
-\usepackage{cleveref} %Referencing without need to explicitly state fig /table
+%\usepackage{cleveref} %Referencing without need to explicitly state fig /table
 
 % Add `custombib' in the document class option to use this section
 \ifsetBib % True, Bibliography option is chosen in class options
@@ -49,8 +49,8 @@
 %% Captions: This makes captions of figures use a boldfaced small font. 
 %\RequirePackage[small,bf]{caption}
 
-\RequirePackage[figurename=Fig.,labelsep=space,tableposition=top]{caption} 
-
+\RequirePackage[labelsep=space,tableposition=top]{caption} 
+\renewcommand{\figurename}{Fig.} %to support older versions of captions.sty
 
 % ************************ Formatting / Footnote *******************************
 %\usepackage[perpage]{footmisc} %Range of footnote options 
@@ -79,7 +79,7 @@
 \usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage{siunitx}
+%\usepackage{siunitx} % use this package module for SI units
 
 
 % ******************************************************************************
