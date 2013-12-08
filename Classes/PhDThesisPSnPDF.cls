@@ -147,7 +147,7 @@ supported!}
 %* ***************************** Print / Online ********************************
 % Defines a print / online version to define page-layout and hyperrefering 
 \ifsetDVI
-%\special{papersize=\paperwidth,\paperheight}
+\special{papersize=\the\paperwidth,\the\paperheight}
 \RequirePackage[dvips]{hyperref}
 \else
 \RequirePackage[unicode]{hyperref}
@@ -174,7 +174,7 @@ supported!}
         \setMarginfalse
     \else
         % Odd and Even side Margin for binding and set viewmode for PDF
-	\RequirePackage[\CUED@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
+	\RequirePackage[paper=\CUED@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
 	\setMargintrue
     \fi
 
@@ -206,7 +206,7 @@ supported!}
         \setMarginfalse
     \else
 	% No Margin staggering on Odd and Even side 
-	\RequirePackage[\CUED@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75]{geometry} 
+	\RequirePackage[paper=\CUED@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75]{geometry} 
         \setMargintrue
     \fi
 
