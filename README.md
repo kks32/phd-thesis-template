@@ -341,9 +341,9 @@ If you are generating a separate abstract for your thesis submission, ignore thi
 
 --------------------------------------------------------------------------------
 ## ChangeLog
-### 2013/12/07 - Version 1.0 Beta Release 9.0
-> Commit 
-*   Wider text area (75% of page size), support for separate abstract for submission to the Student Registry
+### 2013/12/08 - Version 1.0 Beta Release 9.0
+> Commit c11f98e26566af08cb9c4cacbdfddf6b28111886
+*   Wider text area (75% of page size), support for separate abstract for submission to the Student Registry, appendix
 
 ### 2013/12/05 - Version 1.0 Beta Release 8.0
 > Commit 324d1a5609992028afb109b424573cd3a5e31849
