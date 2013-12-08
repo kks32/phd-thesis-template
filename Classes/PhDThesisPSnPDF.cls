@@ -99,28 +99,12 @@ footnotes.}
 % Page Size
 \newcommand\CUED@papersize{a4paper} % Set Default as a4paper
 
-\DeclareOption{a4paper}{
-  \renewcommand\CUED@papersize{a4paper}
-  % paperheight and paperwidth are set only for DVIPS (version 5.96 or below)
-  % to maintain backward compatability
-  \setlength{\paperheight}{297mm}
-  \setlength{\paperwidth} {210mm}
-}
-\DeclareOption{a5paper}{
-  \renewcommand\CUED@papersize{a5paper}
-  % paperheight and paperwidth are set only for DVIPS (version 5.96 or below)
-  % to maintain backward compatability
-  \setlength{\paperheight}{210mm}
-  \setlength{\paperwidth} {148mm}
-}
+\DeclareOption{a4paper}{\renewcommand\CUED@papersize{a4paper}}
+\DeclareOption{a5paper}{\renewcommand\CUED@papersize{a5paper}}
 \DeclareOption{letterpaper}{
   \ClassWarning{PhDThesisPSnPDF}{The Cambridge University Engineering Deparment
 PhD thesis guidelines recommend using A4 or A5paper}
   \renewcommand\CUED@papersize{letterpaper}
-  % paperheight and paperwidth are set only for DVIPS (version 5.96 or below)
-  % to maintain backward compatability
-  \setlength{\paperheight}{11in}
-  \setlength{\paperwidth} {8.5in}
 }
 
 \PassOptionsToClass{\CUED@papersize}{book}%
@@ -163,7 +147,7 @@ supported!}
 %* ***************************** Print / Online ********************************
 % Defines a print / online version to define page-layout and hyperrefering 
 \ifsetDVI
-\special{papersize=\paperwidth,\paperheight}
+%\special{papersize=\paperwidth,\paperheight}
 \RequirePackage[dvips]{hyperref}
 \else
 \RequirePackage[unicode]{hyperref}
@@ -190,7 +174,7 @@ supported!}
         \setMarginfalse
     \else
         % Odd and Even side Margin for binding and set viewmode for PDF
-	\RequirePackage[hmarginratio=1:1,vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
+	\RequirePackage[\CUED@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
 	\setMargintrue
     \fi
 
@@ -222,7 +206,7 @@ supported!}
         \setMarginfalse
     \else
 	% No Margin staggering on Odd and Even side 
-	\RequirePackage[hmarginratio=1:1,vmarginratio=1:1,scale=0.75]{geometry} 
+	\RequirePackage[\CUED@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75]{geometry} 
         \setMargintrue
     \fi
 
