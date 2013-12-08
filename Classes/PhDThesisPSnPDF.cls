@@ -99,12 +99,28 @@ footnotes.}
 % Page Size
 \newcommand\CUED@papersize{a4paper} % Set Default as a4paper
 
-\DeclareOption{a4paper}{\renewcommand\CUED@papersize{a4paper}}
-\DeclareOption{a5paper}{\renewcommand\CUED@papersize{a5paper}}
+\DeclareOption{a4paper}{
+  \renewcommand\CUED@papersize{a4paper}
+  % paperheight and paperwidth are set only for DVIPS (version 5.96 or below)
+  % to maintain backward compatability
+  \setlength{\paperheight}{297mm}
+  \setlength{\paperwidth} {210mm}
+}
+\DeclareOption{a5paper}{
+  \renewcommand\CUED@papersize{a5paper}
+  % paperheight and paperwidth are set only for DVIPS (version 5.96 or below)
+  % to maintain backward compatability
+  \setlength{\paperheight}{210mm}
+  \setlength{\paperwidth} {148mm}
+}
 \DeclareOption{letterpaper}{
   \ClassWarning{PhDThesisPSnPDF}{The Cambridge University Engineering Deparment
 PhD thesis guidelines recommend using A4 or A5paper}
   \renewcommand\CUED@papersize{letterpaper}
+  % paperheight and paperwidth are set only for DVIPS (version 5.96 or below)
+  % to maintain backward compatability
+  \setlength{\paperheight}{11in}
+  \setlength{\paperwidth} {8.5in}
 }
 
 \PassOptionsToClass{\CUED@papersize}{book}%
