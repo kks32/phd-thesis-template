@@ -163,6 +163,8 @@ It supports the following custom options:
 
 		\RequirePackage[square, sort, numbers, authoryear]{natbib}
 
+* (Overview of Bibtex-Styles with preview)[http://nodonn.tipido.net/bibstyle.php?]
+
 ### Choosing the Page Style
 
 `PhDThesisPSnPDF` defines 3 different page styles (header and footer). The following definition is for `twoside` layout.
