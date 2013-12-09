@@ -330,7 +330,13 @@ If you are generating a separate abstract for your thesis submission, ignore thi
 
 *   Hyperlinks doesn't seem to be working in Post-Script file, however works on DVI and PDF (which is produced from the PS file), possibly viewer limitation than a code bug.
 
-*   No know bug(s) so far. If you find any let me know, or even better, patch it and contribute to the development of the LaTeX Template.
+*   On older versions of dvips (version 5.97 or below), if your page margins are not set properly in your PDF, when compiling through DVI >> PS >> PDF, please use a4paper or a5paper in the document class. If you are still having issues you can run:
+
+		ps2pdf -sPAPERSIZE=a4 thesis.ps thesis.pdf
+
+This issue is only when the papersize is not specified in the document class and you are compiling DVI >> PS >> PDF using an older version (5.97 or below) of dvips.
+
+*   If you find any let me know, or even better, patch it and contribute to the development of the LaTeX Template.
 
 
 --------------------------------------------------------------------------------
