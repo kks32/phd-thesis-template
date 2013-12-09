@@ -151,6 +151,8 @@ supported!}
 \RequirePackage[dvips]{hyperref}
 \else
 \RequirePackage[unicode]{hyperref}
+\pdfpagewidth=\the\paperwidth
+\pdfpageheight=\the\paperheight
 \fi
 
 \if@print
@@ -173,8 +175,12 @@ supported!}
     \ifCUED@custommargin
         \setMarginfalse
     \else
+        \ifsetDVI
         % Odd and Even side Margin for binding and set viewmode for PDF
-	\RequirePackage[paper=\CUED@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
+	\RequirePackage[dvips,paper=\CUED@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
+        \else
+	\RequirePackage[pdftex,paper=\CUED@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
+        \fi
 	\setMargintrue
     \fi
 
@@ -206,7 +212,11 @@ supported!}
         \setMarginfalse
     \else
 	% No Margin staggering on Odd and Even side 
-	\RequirePackage[paper=\CUED@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75]{geometry} 
+        \ifsetDVI
+	\RequirePackage[dvips,paper=\CUED@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75]{geometry} 
+        \else
+	\RequirePackage[pdftex,paper=\CUED@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75]{geometry} 
+        \fi
         \setMargintrue
     \fi
 
