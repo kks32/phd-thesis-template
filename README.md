@@ -171,9 +171,9 @@ It supports the following custom options:
 
 * `default (leave empty)`: For Page Numbers in Header (Left Even, Right Odd) and Chapter Name in Header (Right Even) and Section #. Section Name (Left Odd). Blank Footer.
 
-        Header (Even)   : 4                                 Introduction 
+        Header (Even)   : 4                                                 Introduction 
 
-        Header (Odd)    : 1.2 Section Name 		   			5
+        Header (Odd)    : 1.2 Section Name 		   			                5
 
         Footer 		    : Empty
 
@@ -181,17 +181,33 @@ It supports the following custom options:
 
         Header (Even)   : 4 | Introduction 
 
-        Header (Odd)    :                         			1.2 Section Name | 5
+        Header (Odd)    :                         			                1.2 Section Name | 5
 
-        Footer 		: Empty
+        Footer 		    :                               Empty
 
 * `PageStyleII`: Chapter Name on Even Side (Left Even) in Header. Section Number and Section Name in Header on Odd Side (Right Odd). Page numbering in footer. Layout:
 
         Header (Even)   : Introduction
         
-        Header (Odd)    : 			   				        1.2 Section Name
+        Header (Odd)    : 			   				                        1.2 Section Name
         
-        Footer[centered]:                   	3
+        Footer[centered]:                           	3
+
+### Changing the visual style of chapter headings
+
+The visual style of chapter headings can be modified using the `titlesec` package. Edit the following lines in the `preamble.tex` file.
+
+        \RequirePackage{titlesec}
+        \newcommand{\PreContentTitleFormat}{\titleformat{\chapter}[display]{\scshape\Large}
+        {\Large\filleft{\chaptertitlename} \Huge\thechapter}
+        {1ex}{}
+        [\vspace{1ex}\titlerule]}
+        \newcommand{\ContentTitleFormat}{\titleformat{\chapter}[display]{\scshape\huge}
+        {\Large\filleft{\chaptertitlename} \Huge\thechapter}{1ex}
+        {\titlerule\vspace{1ex}\filright}
+        [\vspace{1ex}\titlerule]}
+        \newcommand{\PostContentTitleFormat}{\PreContentTitleFormat}
+        \PreContentTitleFormat
 
 ### Custom Settings
 
@@ -330,11 +346,11 @@ If you are generating a separate abstract for your thesis submission, ignore thi
 
 *   Hyperlinks doesn't seem to be working in Post-Script file, however works on DVI and PDF (which is produced from the PS file), possibly viewer limitation than a code bug.
 
-*   On older versions of dvips (version 5.97 or below), if your page margins are not set properly in your PDF, when compiling through DVI >> PS >> PDF, please use a4paper or a5paper in the document class. If you are still having issues you can run:
+*   On older versions of dvips (version 5.97 or below), if your page margins do not appear properly in your PDF, when compiling through DVI >> PS >> PDF, please ensure that you have set a4paper or a5paper in the document class. If you are still having issues you can run:
 
 		ps2pdf -sPAPERSIZE=a4 thesis.ps thesis.pdf
 
-This issue is only when the papersize is not specified in the document class and you are compiling DVI >> PS >> PDF using an older version (5.97 or below) of dvips.
+    This issue occurs only when the papersize is not specified in the document class and you are compiling DVI >> PS >> PDF using an older version (5.97 or below) of dvips.
 
 *   If you find any let me know, or even better, patch it and contribute to the development of the LaTeX Template.
 

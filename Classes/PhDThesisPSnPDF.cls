@@ -57,7 +57,7 @@
 \newif\ifPHD@pageStyleI\PHD@pageStyleIfalse % Set Page StyleI
 \DeclareOption{PageStyleI}{\PHD@pageStyleItrue}
 
-\newif\ifPHD@pageStyleII\PHD@pageStyleIIfalse % Set Page StyleI
+\newif\ifPHD@pageStyleII\PHD@pageStyleIIfalse % Set Page StyleII
 \DeclareOption{PageStyleII}{\PHD@pageStyleIItrue}
 
 % ***************************** Custom Margins  ********************************
@@ -119,7 +119,7 @@ PhD thesis guidelines recommend using A4 or A5paper}
 % Generates Warning for unknown options
 \DeclareOption*{
   \ClassWarning{PhDThesisPSnPDF}{Unknown or non-standard option
-'\CurrentOption'. Will see if I can load it from the book class. If you get a
+'\CurrentOption'. I'll see if I can load it from the book class. If you get a
 warning unused global option(s): `\CurrentOption` then the option is not
 supported!} 
   \PassOptionsToClass{\CurrentOption}{book}
@@ -233,7 +233,7 @@ supported!}
 % ************************** Layout and Formatting *****************************
 \def\pdfshellescape{1}
 \RequirePackage{lscape}   % Supports Landscape Layout
-\RequirePackage{setspace} % Define line spacing in para
+\RequirePackage{setspace} % Define line spacing in paragraph
 \RequirePackage{calc}     % To calculate vertical spacing
 
 % ************************* Conditional Statements *****************************
@@ -315,7 +315,7 @@ and define the natbibpackage with required style in the Preamble.tex file}
 	  \ClassWarning{PhDThesisPSnPDf}{Using default font Latin Modern. If you
 would like to use other pre-defined fonts use `times' (The Cambridge University
 PhD thesis guidelines recommend using Times font)  or `fourier' or load a custom
-font in preamble by specifying `customfont' in the class options}
+font in the preamble.tex file by specifying `customfont' in the class options}
           \RequirePackage{lmodern}
           \setFonttrue
           \fi
@@ -500,6 +500,7 @@ font in preamble by specifying `customfont' in the class options}
 
 % ******************************** Title Page **********************************
 \renewcommand{\maketitle}{
+
 %%Can use the line below to remove the blank page after the title page
 %%\setcounter{page}{0}  % Sasa Tomic
 
