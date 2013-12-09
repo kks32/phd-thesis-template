@@ -501,12 +501,8 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 % ******************************** Title Page **********************************
 \renewcommand{\maketitle}{
 
-%%Can use the line below to remove the blank page after the title page
-%%\setcounter{page}{0}  % Sasa Tomic
-
 % To compute the free vertical space in Title page
 \computeTitlePageSpacing
-
 
 \begin{singlespace}
 \begin{center}
