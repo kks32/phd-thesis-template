@@ -26,52 +26,52 @@
 \DeclareOption{print}{\@printtrue}
 
 % ****************************** Define index **********************************
-\newif\ifCUED@index\CUED@indexfalse
-\DeclareOption{index}{\CUED@indextrue}
+\newif\ifPHD@index\PHD@indexfalse
+\DeclareOption{index}{\PHD@indextrue}
 
 % ******************************* Font Option **********************************
 \newif\ifsetFont\setFontfalse % Font is not set 
 
-\newif\ifCUED@times\CUED@timesfalse % Times with Math Support
-\DeclareOption{times}{\CUED@timestrue}
+\newif\ifPHD@times\PHD@timesfalse % Times with Math Support
+\DeclareOption{times}{\PHD@timestrue}
 
-\newif\ifCUED@fourier\CUED@fourierfalse % Fourier with Math Support
-\DeclareOption{fourier}{\CUED@fouriertrue}
+\newif\ifPHD@fourier\PHD@fourierfalse % Fourier with Math Support
+\DeclareOption{fourier}{\PHD@fouriertrue}
 
-\newif\ifCUED@customfont\CUED@customfontfalse % Custom Font with Math Support
-\DeclareOption{customfont}{\CUED@customfonttrue}
+\newif\ifPHD@customfont\PHD@customfontfalse % Custom Font with Math Support
+\DeclareOption{customfont}{\PHD@customfonttrue}
 
 % ******************************* Bibliography *********************************
 \newif\ifsetBib\setBibfalse % Using Custom Bibliography
 
-\newif\ifCUED@authoryear\CUED@authoryearfalse % Author-Year citation
-\DeclareOption{authoryear}{\CUED@authoryeartrue}
+\newif\ifPHD@authoryear\PHD@authoryearfalse % Author-Year citation
+\DeclareOption{authoryear}{\PHD@authoryeartrue}
 
-\newif\ifCUED@numbered\CUED@numberedfalse % Numbered citiation
-\DeclareOption{numbered}{\CUED@numberedtrue}
+\newif\ifPHD@numbered\PHD@numberedfalse % Numbered citiation
+\DeclareOption{numbered}{\PHD@numberedtrue}
 
-\newif\ifCUED@custombib\CUED@custombibfalse % Custom Bibliography
-\DeclareOption{custombib}{\CUED@custombibtrue}
+\newif\ifPHD@custombib\PHD@custombibfalse % Custom Bibliography
+\DeclareOption{custombib}{\PHD@custombibtrue}
 
 % ************************* Header / Footer Styling ****************************
-\newif\ifCUED@pageStyleI\CUED@pageStyleIfalse % Set Page StyleI
-\DeclareOption{PageStyleI}{\CUED@pageStyleItrue}
+\newif\ifPHD@pageStyleI\PHD@pageStyleIfalse % Set Page StyleI
+\DeclareOption{PageStyleI}{\PHD@pageStyleItrue}
 
-\newif\ifCUED@pageStyleII\CUED@pageStyleIIfalse % Set Page StyleI
-\DeclareOption{PageStyleII}{\CUED@pageStyleIItrue}
+\newif\ifPHD@pageStyleII\PHD@pageStyleIIfalse % Set Page StyleI
+\DeclareOption{PageStyleII}{\PHD@pageStyleIItrue}
 
 % ***************************** Custom Margins  ********************************
 \newif\ifsetMargin\setMarginfalse % Margins are not set
 
-\newif\ifCUED@custommargin\CUED@custommarginfalse % Custom margin
-\DeclareOption{custommargin}{\CUED@custommargintrue}
+\newif\ifPHD@custommargin\PHD@custommarginfalse % Custom margin
+\DeclareOption{custommargin}{\PHD@custommargintrue}
 
 % **************************** Separate Abstract  ******************************
 \newif \ifdefineAbstract\defineAbstractfalse %To enable Separate abstract
 
-\newif\ifCUED@abstract\CUED@abstractfalse % Enable Separate Abstract
+\newif\ifPHD@abstract\PHD@abstractfalse % Enable Separate Abstract
 \DeclareOption{abstract}{
-  \CUED@abstracttrue     
+  \PHD@abstracttrue     
   \ClassWarning{PhDThesisPSnPDF}{You have chosen an option that generates only
 the Title page and an abstract with PhD title and author name, if this was
 intentional, ignore this warning. Congratulations on submitting your thesis!!
@@ -84,30 +84,30 @@ recompile. Good luck with your writing!}
 % *************************** Pre-defined Options ******************************
 
 % Font Size
-\newcommand\CUED@ptsize{12pt} %Set Default Size as 12
+\newcommand\PHD@ptsize{12pt} %Set Default Size as 12
 
 \DeclareOption{10pt}{
   \ClassWarning{PhDThesisPSnPDF}{The Cambridge University PhD thesis guidelines
 recommend using a minimum font size of 11pt (12pt is preferred) and 10pt for
 footnotes.}
-  \renewcommand\CUED@ptsize{10pt}
+  \renewcommand\PHD@ptsize{10pt}
 }
-\DeclareOption{11pt}{\renewcommand\CUED@ptsize{11pt}}%
-\DeclareOption{12pt}{\renewcommand\CUED@ptsize{12pt}}%
-\PassOptionsToClass{\CUED@ptsize}{book}%
+\DeclareOption{11pt}{\renewcommand\PHD@ptsize{11pt}}%
+\DeclareOption{12pt}{\renewcommand\PHD@ptsize{12pt}}%
+\PassOptionsToClass{\PHD@ptsize}{book}%
 
 % Page Size
-\newcommand\CUED@papersize{a4paper} % Set Default as a4paper
+\newcommand\PHD@papersize{a4paper} % Set Default as a4paper
 
-\DeclareOption{a4paper}{\renewcommand\CUED@papersize{a4paper}}
-\DeclareOption{a5paper}{\renewcommand\CUED@papersize{a5paper}}
+\DeclareOption{a4paper}{\renewcommand\PHD@papersize{a4paper}}
+\DeclareOption{a5paper}{\renewcommand\PHD@papersize{a5paper}}
 \DeclareOption{letterpaper}{
   \ClassWarning{PhDThesisPSnPDF}{The Cambridge University Engineering Deparment
 PhD thesis guidelines recommend using A4 or A5paper}
-  \renewcommand\CUED@papersize{letterpaper}
+  \renewcommand\PHD@papersize{letterpaper}
 }
 
-\PassOptionsToClass{\CUED@papersize}{book}%
+\PassOptionsToClass{\PHD@papersize}{book}%
 
 % Column layout
 \DeclareOption{oneside}{\PassOptionsToClass{\CurrentOption}{book}}%
@@ -172,14 +172,14 @@ supported!}
       citecolor=black, 
       anchorcolor=black
     }
-    \ifCUED@custommargin
+    \ifPHD@custommargin
         \setMarginfalse
     \else
         \ifsetDVI
         % Odd and Even side Margin for binding and set viewmode for PDF
-	\RequirePackage[dvips,paper=\CUED@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
+	\RequirePackage[dvips,paper=\PHD@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
         \else
-	\RequirePackage[pdftex,paper=\CUED@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
+	\RequirePackage[pdftex,paper=\PHD@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
         \fi
 	\setMargintrue
     \fi
@@ -208,14 +208,14 @@ supported!}
       anchorcolor=green
     }
     
-    \ifCUED@custommargin
+    \ifPHD@custommargin
         \setMarginfalse
     \else
 	% No Margin staggering on Odd and Even side 
         \ifsetDVI
-	\RequirePackage[dvips,paper=\CUED@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75]{geometry} 
+	\RequirePackage[dvips,paper=\PHD@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75]{geometry} 
         \else
-	\RequirePackage[pdftex,paper=\CUED@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75]{geometry} 
+	\RequirePackage[pdftex,paper=\PHD@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75]{geometry} 
         \fi
         \setMargintrue
     \fi
@@ -272,15 +272,15 @@ supported!}
 \urlstyle{leo}
 
 % ******************************* Bibliography *********************************
-\ifCUED@authoryear
+\ifPHD@authoryear
 \RequirePackage[round, sort, numbers, authoryear]{natbib} %author year
 \setBibtrue
 \else
-     \ifCUED@numbered
+     \ifPHD@numbered
      \RequirePackage[numbers,sort&compress]{natbib} % numbered citation
      \setBibtrue
      \else
-         \ifCUED@custombib
+         \ifPHD@custombib
          \setBibfalse
          \else
          \RequirePackage[numbers,sort&compress]{natbib} % Default - numbered
@@ -301,15 +301,15 @@ and define the natbibpackage with required style in the Preamble.tex file}
 \RequirePackage[T1]{fontenc}
 
 % Font Selection
-\ifCUED@times
+\ifPHD@times
 \RequirePackage{mathptmx}  % times roman, including math (where possible)
 \setFonttrue
 \else
-     \ifCUED@fourier
+     \ifPHD@fourier
      \RequirePackage{fourier} % Fourier
      \setFonttrue
      \else
-          \ifCUED@customfont
+          \ifPHD@customfont
           \setFontfalse
           \else
 	  \ClassWarning{PhDThesisPSnPDf}{Using default font Latin Modern. If you
@@ -366,7 +366,7 @@ font in preamble by specifying `customfont' in the class options}
 \newcommand{\setFancyHdr}{
 
 \pagestyle{fancy}
-\ifCUED@pageStyleI
+\ifPHD@pageStyleI
 % Style 1: Sets Page Number at the Top and Chapter/Section Name on LE/RO
 \renewcommand{\chaptermark}[1]{\markboth{##1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection\ ##1\ }}
@@ -376,7 +376,7 @@ font in preamble by specifying `customfont' in the class options}
 
 
 \else
-\ifCUED@pageStyleII
+\ifPHD@pageStyleII
 % Style 2: Sets Page Number at the Bottom with Chapter/Section Name on LO/RE
 \renewcommand{\chaptermark}[1]{\markboth{##1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection\ ##1}}
@@ -511,11 +511,11 @@ font in preamble by specifying `customfont' in the class options}
 \begin{center}
 % Title
 {\Huge \bfseries{\@title} \par}
-\vspace{.25\CUED@titlepagespacing}
+\vspace{.25\PHD@titlepagespacing}
 
 % Crest
 {\@crest \par}
-\vspace{.2\CUED@titlepagespacing}
+\vspace{.2\PHD@titlepagespacing}
 
 % Author
 {\Large \bfseries{\@author} \par}
@@ -525,7 +525,7 @@ font in preamble by specifying `customfont' in the class options}
 {\large \@dept \par}
 \vspace*{1ex}
 {\large \@university \par}
-\vspace{.2\CUED@titlepagespacing}
+\vspace{.2\PHD@titlepagespacing}
 
 % Submission Text
 {\large \submissiontext \par}
@@ -620,7 +620,7 @@ font in preamble by specifying `customfont' in the class options}
 
 
 % ***************************** Create the index *******************************
-\ifCUED@index
+\ifPHD@index
     \RequirePackage{makeidx}
     \makeindex
     \newcommand{\printthesisindex}{
@@ -637,7 +637,7 @@ font in preamble by specifying `customfont' in the class options}
 % the top of the page. Defines both abstract and separate abstract environment
 
 % To include only the Title and the abstract pages for submission to BoGS
-\ifCUED@abstract
+\ifPHD@abstract
     \defineAbstracttrue
     % Disable the table of contents, figures, tables, index and nomenclature
     \renewcommand{\tableofcontents}{}
@@ -653,7 +653,7 @@ font in preamble by specifying `customfont' in the class options}
 
 
 \newenvironment{abstract} {
-\ifCUED@abstract
+\ifPHD@abstract
 % Separate abstract as per Student Registry guidelines
 	\thispagestyle{empty}
 	\setsinglecolumn
@@ -683,30 +683,30 @@ font in preamble by specifying `customfont' in the class options}
 
 
 % Title Box
-\newsavebox{\CUED@Title}
-\begin{lrbox}{\CUED@Title}
+\newsavebox{\PHD@Title}
+\begin{lrbox}{\PHD@Title}
 \begin{minipage}[c]{0.98\textwidth}
 \centering \Huge \bfseries{\@title}
 \end{minipage}
 \end{lrbox}
 
 % University Crest Box
-\newsavebox{\CUED@crest}
-\begin{lrbox}{\CUED@crest}
+\newsavebox{\PHD@crest}
+\begin{lrbox}{\PHD@crest}
 \@crest
 \end{lrbox}
 
 % Author Box
-\newsavebox{\CUED@author}
-\begin{lrbox}{\CUED@author}
+\newsavebox{\PHD@author}
+\begin{lrbox}{\PHD@author}
 \begin{minipage}[c]{\textwidth}
 \centering \Large \bfseries{\@author}
 \end{minipage}
 \end{lrbox}
 
 % Department Box
-\newsavebox{\CUED@dept}
-\begin{lrbox}{\CUED@dept}
+\newsavebox{\PHD@dept}
+\begin{lrbox}{\PHD@dept}
 \begin{minipage}[c]{\textwidth}
 \centering {\large \@dept \par}
 \vspace*{1ex}
@@ -715,8 +715,8 @@ font in preamble by specifying `customfont' in the class options}
 \end{lrbox}
 
 % Submission Box
-\newsavebox{\CUED@submission}
-\begin{lrbox}{\CUED@submission}
+\newsavebox{\PHD@submission}
+\begin{lrbox}{\PHD@submission}
 \begin{minipage}[c]{\textwidth}
 \begin{center}
 \large \submissiontext \par
@@ -727,8 +727,8 @@ font in preamble by specifying `customfont' in the class options}
 \end{lrbox}
 
 % College and Date Box
-\newsavebox{\CUED@collegedate}
-\begin{lrbox}{\CUED@collegedate}
+\newsavebox{\PHD@collegedate}
+\begin{lrbox}{\PHD@collegedate}
 \begin{minipage}[c]{\textwidth}
 \large
 \begin{minipage}{0.45\textwidth}
@@ -741,13 +741,13 @@ font in preamble by specifying `customfont' in the class options}
 \end{lrbox}
 
 %  Now to compute the free vertical space
-\newlength{\CUED@titlepagespacing}
-\setlength{\CUED@titlepagespacing}{ \textheight %
-			- \totalheightof{\usebox{\CUED@Title}}
-			- \totalheightof{\usebox{\CUED@crest}}
-			- \totalheightof{\usebox{\CUED@author}}
-			- \totalheightof{\usebox{\CUED@dept}}
-			- \totalheightof{\usebox{\CUED@submission}}
-			- \totalheightof{\usebox{\CUED@collegedate}}
+\newlength{\PHD@titlepagespacing}
+\setlength{\PHD@titlepagespacing}{ \textheight %
+			- \totalheightof{\usebox{\PHD@Title}}
+			- \totalheightof{\usebox{\PHD@crest}}
+			- \totalheightof{\usebox{\PHD@author}}
+			- \totalheightof{\usebox{\PHD@dept}}
+			- \totalheightof{\usebox{\PHD@submission}}
+			- \totalheightof{\usebox{\PHD@collegedate}}
 }
 }

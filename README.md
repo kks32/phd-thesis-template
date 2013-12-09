@@ -295,7 +295,7 @@ You can report issues at
 [our GitHub repository](https://github.com/kks32/phd-thesis-template).
 
 You can also mail 
-[the developer](https://github.com/kks32/phd-thesis-template/collaborators) directly.
+[the developer](https://github.com/kks32/phd-thesis-template/graphs/contributors) directly.
 
 
 --------------------------------------------------------------------------------
