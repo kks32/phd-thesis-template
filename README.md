@@ -347,6 +347,11 @@ This issue is only when the papersize is not specified in the document class and
 
 --------------------------------------------------------------------------------
 ## ChangeLog
+
+### 2013/12/09 - Version 1.0 Beta Release 10.0
+> Commit 973492fe1f1805e4fef60ec54060621b3e90a3cd
+*   Fixed issues with DVI >> PS >> PDF and workaround, when papersize is not set for older versions of dvips (5.97 or lower).
+
 ### 2013/12/08 - Version 1.0 Beta Release 9.0
 > Commit c11f98e26566af08cb9c4cacbdfddf6b28111886
 *   Wider text area (75% of page size), support for separate abstract for submission to the Student Registry, appendix
