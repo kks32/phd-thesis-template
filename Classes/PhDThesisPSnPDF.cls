@@ -13,7 +13,7 @@
 
 % ************************** Class Identification ******************************
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{PhDThesisPSnPDF}[2013/11/16 version 1.0Beta by Krishna Kumar]
+\ProvidesClass{PhDThesisPSnPDF}[2013/12/10 version 1.0 by Krishna Kumar]
 \typeout{https://github.com/kks32/phd-thesis-template/}
 
 
