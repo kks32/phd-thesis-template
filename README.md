@@ -364,6 +364,10 @@ If you are generating a separate abstract for your thesis submission, ignore thi
 --------------------------------------------------------------------------------
 ## ChangeLog
 
+### 2013/12/10 - Version 1.0
+> Commit 04f571157fb374c6db85bc1222d5967e571be5a6
+*   Removed deprecated codes, added functionality to tweak chapter headings in preamble.tex. 
+
 ### 2013/12/09 - Version 1.0 Beta Release 10.0
 > Commit 973492fe1f1805e4fef60ec54060621b3e90a3cd
 *   Fixed issues with DVI >> PS >> PDF and workaround, when papersize is not set for older versions of dvips (5.97 or lower).
