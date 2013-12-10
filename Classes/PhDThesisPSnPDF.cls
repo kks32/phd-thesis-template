@@ -607,6 +607,9 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 }% matches Greek Symbols        > G
 }% matches Roman Symbols        > A
 
+% To add nomenclature in the header
+\renewcommand{\nompreamble}{\markboth{\nomname}{\nomname}}
+
 % Add nomenclature to contents and print out nomenclature
 \newcommand{\printnomencl}[1][]{
 \ifthenelse{\equal {#1}{}}
