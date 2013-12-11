@@ -45,17 +45,11 @@ To build the `PDF` version of your thesis, run:
 
     make
 
-or
-
-    ./makepdf
 
 This build procedure uses `pdflatex` and will produce `thesis.pdf`.
 
 To produce `DVI` and `PS` versions of your document, you should run:
 
-    ./makeps
-
-or
 
     make BUILD_STRATEGY=latex
 
