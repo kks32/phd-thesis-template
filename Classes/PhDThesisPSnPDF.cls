@@ -7,7 +7,7 @@
 %% Version: v1.0                                                              %%
 %% Authors: Krishna Kumar                                                     %%
 %% Date: 2013/11/16 (inception)                                               %%
-%% License: GPL V2.0 https://www.gnu.org/licenses/gpl-2.0.html                %%
+%% License: MIT License (c) 2013 Krishna Kumar                                %%
 %% GitHub Repo: https://github.com/kks32/phd-thesis-template/                 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
