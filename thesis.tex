@@ -113,7 +113,10 @@ Cambridge}}
 % author name for submission to the Student Registry, use the abstract option in
 % the document class. 
 
-\ifdefineAbstract \includeonly{Abstract/abstract} \else \fi
+\ifdefineAbstract
+ \includeonly{Abstract/abstract} 
+\else
+\fi
 
 
 % ******************************** Front Matter ********************************
@@ -129,8 +132,10 @@ Cambridge}}
 
 \end{titlepage}
 
-\include{Dedication/dedication} \include{Declaration/declaration}
-\include{Acknowledgement/acknowledgement} \include{Abstract/abstract}
+\include{Dedication/dedication}
+\include{Declaration/declaration}
+\include{Acknowledgement/acknowledgement}
+\include{Abstract/abstract}
 
 % *********************** Adding TOC and List of Figures ***********************
 
