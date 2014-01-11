@@ -374,8 +374,8 @@ If you are generating a separate abstract for your thesis submission, ignore thi
 --------------------------------------------------------------------------------
 ## ChangeLog
 
-### 2013/12/10 - Version 1.0
-> Commit 478d56cf1a914109f4eef65e93674d7ecd252483
+### 2014/01/11 - Version 1.0
+> Commit 7a28523e82fc7e873e20348894eb78b296bd9001
 *   Fixed an issue with the headers in Nomenclature section
 *   Removed deprecated codes, added functionality to tweak chapter headings in preamble.tex. 
 *   Distributed under MIT license
