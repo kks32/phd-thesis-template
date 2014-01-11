@@ -148,9 +148,9 @@ supported!}
 % Defines a print / online version to define page-layout and hyperrefering 
 \ifsetDVI
 \special{papersize=\the\paperwidth,\the\paperheight}
-\RequirePackage[dvips]{hyperref}
+\RequirePackage[dvips,unicode=true]{hyperref}
 \else
-\RequirePackage[unicode]{hyperref}
+\RequirePackage[unicode=true]{hyperref}
 \pdfpagewidth=\the\paperwidth
 \pdfpageheight=\the\paperheight
 \fi
