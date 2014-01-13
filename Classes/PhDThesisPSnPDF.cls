@@ -576,14 +576,14 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 
 
 
-% ****************************** Acknowledgments ********************************
+% ****************************** Acknowledgements ********************************
 % The acknowledgements environment puts a large, bold, centered 
 % "Acknowledgements" label at the top of the page.
 
-\newenvironment{acknowledgments}{
+\newenvironment{acknowledgements}{
 \cleardoublepage
 \setsinglecolumn
-\chapter*{\centering \Large Acknowledgments}
+\chapter*{\centering \Large Acknowledgements}
 \thispagestyle{empty}
 }
 
