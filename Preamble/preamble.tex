@@ -33,7 +33,7 @@
 \ifsetBib % True, Bibliography option is chosen in class options
 \else % If custom bibliography style chosen then load bibstyle here
       \ifsetBiBLaTeX
-           \RequirePackage[backend = biber, style = numeric-comp, citestyle = numeric, sorting = nty, natbib = true]{biblatex}
+           \RequirePackage[backend=biber, style=numeric-comp, citestyle=numeric, sorting=nty, natbib=true]{biblatex}
       \else
             \RequirePackage[square, sort, numbers, authoryear]{natbib} % CustomBib
      \fi
@@ -42,6 +42,7 @@
 
 % changes the default name `Bibliography` -> `References'
 \renewcommand{\bibname}{References}
+
 
 % *****************************************************************************
 % *************** Changing the Visual Style of Chapter Headings ***************

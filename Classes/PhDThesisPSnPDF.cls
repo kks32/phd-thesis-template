@@ -278,7 +278,7 @@ supported!}
 % ******************************* Bibliography *********************************
 \ifPHD@authoryear
 \ifPHD@biblatex
-\RequirePackage[backend = biber, style = authoryear, citestyle = alphabetic, sorting = nty, natbib = true]{biblatex}
+\RequirePackage[backend=biber, style=authoryear, citestyle=alphabetic, sorting=nty, natbib=true]{biblatex}
 \setBiBLaTeXtrue
 \else
 \RequirePackage[round, sort, numbers, authoryear]{natbib} %author year
@@ -287,7 +287,7 @@ supported!}
 \else
      \ifPHD@numbered
      \ifPHD@biblatex
-     \RequirePackage[backend = biber, style = numeric-comp, citestyle = numeric, sorting = none, natbib = true]{biblatex}
+     \RequirePackage[backend=biber, style=numeric-comp, citestyle=numeric, sorting=none, natbib=true]{biblatex}
      \setBiBLaTeXtrue
      \else
      \RequirePackage[numbers,sort&compress]{natbib} % numbered citation
@@ -300,7 +300,12 @@ supported!}
              \setBiBLaTeXtrue
          \fi
          \else
-         \RequirePackage[numbers,sort&compress]{natbib} % Default - numbered
+             \ifPHD@biblatex
+                 \RequirePackage[backend=biber, style=numeric-comp, citestyle=numeric, sorting=none, natbib=true]{biblatex}
+                 \setBiBLaTeXtrue
+             \else
+                 \RequirePackage[numbers,sort&compress]{natbib} % Default - numbered
+             \fi
          \setBibtrue
 	 \ClassWarning{PhDThesisPSnPDF}{No bibliography style was specified.
 Default numbered style is used. If you would like to use a different style, use
@@ -448,6 +453,16 @@ font in the preamble.tex file by specifying `customfont' in the class options}
   \setcounter{page}{1}
   \renewcommand{\thepage}{\roman{page}}}
 {\newpage\renewcommand{\thepage}{\arabic{page}}}
+
+% ******************************* Appendices **********************************
+% Appending the appendix name to the letter in TOC
+% Especially when backmatter is enabled
+
+%\renewcommand\backmatter{
+%    \def\chaptermark##1{\markboth{%
+%        \ifnum  \c@secnumdepth > \m@ne  \@chapapp\ \thechapter:  \fi  ##1}{%
+%        \ifnum  \c@secnumdepth > \m@ne  \@chapapp\ \thechapter:  \fi  ##1}}%
+%    \def\sectionmark##1{\relax}}
 
 
 % ******************************************************************************

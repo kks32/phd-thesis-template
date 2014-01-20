@@ -1,7 +1,7 @@
 % ******************************* PhD Thesis Template **************************
 % Please have a look at the README.md file for info on how to use the template
 
-\documentclass[a4paper,12pt,times,custombib,print,index,biblatex]{Classes/PhDThesisPSnPDF}
+\documentclass[a4paper,12pt,times, print,index,biblatex]{Classes/PhDThesisPSnPDF}
 
 % ******************************************************************************
 % ******************************* Class Options ********************************
@@ -167,25 +167,25 @@ Cambridge}}
 
 
 % ********************************** Back Matter *******************************
-% ********************************** Bibliography ******************************
+% Backmatter should be turned off, if you are using appendices after References
 %\backmatter 
 
+% ********************************** Bibliography ******************************
 \begin{spacing}{0.9}
 
 
-%\ifsetBiBLaTeX                   % BiBLaTeX
-    \printbibliography
+\ifsetBiBLaTeX                   % BiBLaTeX
+    \printbibliography[heading=bibintoc, title={References}]
 
-%\else                            % NatBiB
+\else                            % NatBiB
 
-% Bibliography style previews: http://nodonn.tipido.net/bibstyle.php
+    % Bibliography style previews: http://nodonn.tipido.net/bibstyle.php
+    \bibliographystyle{apalike}
+    %\bibliographystyle{plainnat} % use this to have URLs listed in References
+    \cleardoublepage
+    \bibliography{References/references} % Path to your References.bib file
 
-%\bibliographystyle{apalike}
-%%\bibliographystyle{plainnat} % use this to have URLs listed in References
-
-%\cleardoublepage
-%\bibliography{References/references} % Path to your References.bib file
-%\fi
+\fi
 
 \end{spacing}
 
