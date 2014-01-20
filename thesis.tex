@@ -71,6 +71,8 @@
 % Preamble: Contains packages and user-defined commands and settings
 \input{Preamble/preamble}
 
+
+% ***************************** BiBLaTeX Reference *****************************
 \ifsetBiBLaTeX    
 \bibliography{References/references}
 \fi
@@ -109,8 +111,6 @@
 %% Meta information
 \subject{LaTeX} \keywords{{LaTeX} {PhD Thesis} {Engineering} {University of
 Cambridge}} 
-
-
 
 % ***************************** Abstract Separate ****************************** 
 % To printout only the titlepage and the abstract with the PhD title and the 
@@ -175,6 +175,7 @@ Cambridge}}
 
 
 \ifsetBiBLaTeX                   % BiBLaTeX
+    % Bibfile is specified in Line 77 in thesis.tex
     \printbibliography[heading=bibintoc, title={References}]
 
 \else                            % NatBiB
