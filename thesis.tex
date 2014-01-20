@@ -1,7 +1,7 @@
 % ******************************* PhD Thesis Template **************************
 % Please have a look at the README.md file for info on how to use the template
 
-\documentclass[a4paper,12pt,times,numbered,print,index]{Classes/PhDThesisPSnPDF}
+\documentclass[a4paper,12pt,times,custombib,print,index,biblatex]{Classes/PhDThesisPSnPDF}
 
 % ******************************************************************************
 % ******************************* Class Options ********************************
@@ -70,6 +70,10 @@
 % ********************************** Preamble **********************************
 % Preamble: Contains packages and user-defined commands and settings
 \input{Preamble/preamble}
+
+\ifsetBiBLaTeX    
+\bibliography{References/references}
+\fi
 
 % ************************ Thesis Information & Meta-data **********************
 %% The title of the thesis
@@ -168,14 +172,20 @@ Cambridge}}
 
 \begin{spacing}{0.9}
 
+
+%\ifsetBiBLaTeX                   % BiBLaTeX
+    \printbibliography
+
+%\else                            % NatBiB
+
 % Bibliography style previews: http://nodonn.tipido.net/bibstyle.php
 
-\bibliographystyle{apalike}
-%\bibliographystyle{plainnat} % use this to have URLs listed in References
+%\bibliographystyle{apalike}
+%%\bibliographystyle{plainnat} % use this to have URLs listed in References
 
-\cleardoublepage
-
-\bibliography{References/references} % Path to your References.bib file
+%\cleardoublepage
+%\bibliography{References/references} % Path to your References.bib file
+%\fi
 
 \end{spacing}
 

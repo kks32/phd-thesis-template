@@ -30,27 +30,31 @@
 \DeclareOption{index}{\PHD@indextrue}
 
 % ******************************* Font Option **********************************
-\newif\ifsetFont\setFontfalse % Font is not set 
+\newif\ifsetFont\setFontfalse                 % Font is not set 
 
-\newif\ifPHD@times\PHD@timesfalse % Times with Math Support
+\newif\ifPHD@times\PHD@timesfalse             % Times with Math Support
 \DeclareOption{times}{\PHD@timestrue}
 
-\newif\ifPHD@fourier\PHD@fourierfalse % Fourier with Math Support
+\newif\ifPHD@fourier\PHD@fourierfalse         % Fourier with Math Support
 \DeclareOption{fourier}{\PHD@fouriertrue}
 
-\newif\ifPHD@customfont\PHD@customfontfalse % Custom Font with Math Support
+\newif\ifPHD@customfont\PHD@customfontfalse   % Custom Font with Math Support
 \DeclareOption{customfont}{\PHD@customfonttrue}
 
 % ******************************* Bibliography *********************************
-\newif\ifsetBib\setBibfalse % Using Custom Bibliography
+\newif\ifsetBib\setBibfalse                   % Custom Bibliography = true/false
+\newif\ifsetBiBLaTeX\setBiBLaTeXfalse         % BiBLaTeX = True / False
 
-\newif\ifPHD@authoryear\PHD@authoryearfalse % Author-Year citation
+\newif\ifPHD@biblatex\PHD@biblatexfalse       % BiBLaTeX
+\DeclareOption{biblatex}{\PHD@biblatextrue}
+
+\newif\ifPHD@authoryear\PHD@authoryearfalse   % Author-Year citation
 \DeclareOption{authoryear}{\PHD@authoryeartrue}
 
-\newif\ifPHD@numbered\PHD@numberedfalse % Numbered citiation
+\newif\ifPHD@numbered\PHD@numberedfalse       % Numbered citiation
 \DeclareOption{numbered}{\PHD@numberedtrue}
 
-\newif\ifPHD@custombib\PHD@custombibfalse % Custom Bibliography
+\newif\ifPHD@custombib\PHD@custombibfalse     % Custom Bibliography
 \DeclareOption{custombib}{\PHD@custombibtrue}
 
 % ************************* Header / Footer Styling ****************************
@@ -273,22 +277,35 @@ supported!}
 
 % ******************************* Bibliography *********************************
 \ifPHD@authoryear
+\ifPHD@biblatex
+\RequirePackage[backend = biber, style = authoryear, citestyle = alphabetic, sorting = nty, natbib = true]{biblatex}
+\setBiBLaTeXtrue
+\else
 \RequirePackage[round, sort, numbers, authoryear]{natbib} %author year
+\fi
 \setBibtrue
 \else
      \ifPHD@numbered
+     \ifPHD@biblatex
+     \RequirePackage[backend = biber, style = numeric-comp, citestyle = numeric, sorting = none, natbib = true]{biblatex}
+     \setBiBLaTeXtrue
+     \else
      \RequirePackage[numbers,sort&compress]{natbib} % numbered citation
+     \fi
      \setBibtrue
      \else
          \ifPHD@custombib
          \setBibfalse
+         \ifPHD@biblatex
+             \setBiBLaTeXtrue
+         \fi
          \else
          \RequirePackage[numbers,sort&compress]{natbib} % Default - numbered
          \setBibtrue
 	 \ClassWarning{PhDThesisPSnPDF}{No bibliography style was specified.
 Default numbered style is used. If you would like to use a different style, use
 `authoryear' or `numbered' in the options in documentclass or use `custombib`
-and define the natbibpackage with required style in the Preamble.tex file}
+and define the natbib package or biblatex package with required style in the Preamble.tex file}
          \fi
      \fi
 \fi
