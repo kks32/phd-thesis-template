@@ -107,7 +107,7 @@ Usage: `sh ./compile-thesis.sh [OPTIONS] [filename]`
 
 ## Usage details
 
-Thesis information (title, author, year, degree) and other meta-data can be found in `thesis-info.tex`
+Thesis information such as title, author, year, degree, etc., and other meta-data can be modified in `thesis-info.tex`
 
 ### Class Options
 
@@ -152,7 +152,7 @@ It supports the following custom options in the documentclass in thesis.tex:
 
 *  A separate abstract with the title of the PhD and the candidate name has to be submitted to the Student Registry. This can be generated using `abstract` option in the document class. Ignore subsequent warnings about skipping sections (if any).
 
-*  To generate the separate abstract and the title page, make sure the following commands are in the `preamble.tex` file: 
+*  To generate the separate abstract and the title page, make sure the following commands are in the preamble section of `thesis.tex` file: 
 
         \ifdefineAbstract
         \includeonly{Abstract/abstract}
@@ -163,7 +163,7 @@ It supports the following custom options in the documentclass in thesis.tex:
 
 *  The chapter mode allows user to only print specific chapters along with references. By default, it excludes everything else in the front matter and appendices. This can done by using `chapter` option in the document class in `thesis.tex`. Ignore subsequent warnings about skipping sections (if any).
 
-*  To generate the separate abstract and the title page, make sure the following commands are in the `preamble.tex` file: 
+*  To generate the separate abstract and the title page, make sure the following commands are in the preamble section of `thesis.tex` file: 
 
 		\ifdefineChapter
 			\includeonly{Chapter3/chapter3} 
@@ -187,7 +187,9 @@ It supports the following custom options in the documentclass in thesis.tex:
 
 ### Choosing the Bibliography style
 
-`PhDThesisPSnPDF` currently supports two styles `authoryear` and `numbered (default)`. Citation style has to be set. You can also specify `custombib` style and customise the bibliography. BibLaTeX support has been added and can be invoked using `biblatex` in the documentclass. The bibtex is the backend for `biblatex` at the moment.
+`PhDThesisPSnPDF` currently supports two styles `authoryear` and `numbered (default)`. Citation style has to be set. You can also specify `custombib` style and customise the bibliography.
+
+* BibLaTeX support has been added and can be invoked using `biblatex` in the documentclass. Bibtex is used as the backend for `biblatex` at the moment. Will be replaced with biber when Makefile support is added.
 
 * `authoryear`: For author-year citation eg., Krishna (2013)
 
@@ -395,7 +397,7 @@ If you are generating a separate abstract for your thesis submission, ignore thi
 
 *  Make example thesis a document on how to use the template and include general guidelines and good  practices.
 
-*  Biber backend support with Makefile
+*  Biber backend support for biblatex with Makefile
 
 --------------------------------------------------------------------------------
 ## ChangeLog
