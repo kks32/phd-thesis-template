@@ -28,6 +28,9 @@
 % `abstract': To generate only the title page and abstract page with
 % dissertation title and name, to submit to the Student Registry
 %
+% `chapter`: This option enables only the specified chapter and it's references
+%  Useful for review and corrections.
+%
 % ************************* Custom Page Margins ********************************
 %
 % `custommargin`: Use `custommargin' in options to activate custom page margins,
@@ -47,6 +50,8 @@
 % default or leave empty: `Latin Modern' font will be loaded.
 %
 % ********************** Choosing the Bibliography style ***********************
+%
+% `biblatex`: To enable BibLaTeX Support with bibtex backend
 %
 % `authoryear': For author-year citation eg., Krishna (2013)
 %
@@ -72,59 +77,32 @@
 \input{Preamble/preamble}
 
 % ************************ Thesis Information & Meta-data **********************
-%% The title of the thesis
-\title{Writing your PhD Thesis in \texorpdfstring{\\ \LaTeX2e}{LaTeX2e}} 
-%\texorpdfstring is used for PDF metadata. Usage:
-%\texorpdfstring{LaTeX_Version}{PDF Version (non-latex)} eg.,
-%\texorpdfstring{$sigma$}{sigma}
-
-%% The full name of the author
-\author{Krishna Kumar}
-
-%% Department (eg. Department of Engineering, Maths, Physics)
-\dept{Department of Engineering}
-
-%% University and Crest
-\university{University of Cambridge}
-\crest{\includegraphics[width=0.25\textwidth]{University_Crest}}
-
-%% You can redefine the submission text:
-% Default as per the University guidelines: This dissertation is submitted for
-% the degree of Doctor of Philosophy
-%\renewcommand{\submissiontext}{change the default text here if needed}
-
-%% Full title of the Degree 
-\degree{Doctor of Philosophy}
- 
-%% College affiliation (optional)
-\college{King's College}
-
-%% Submission date
-\degreedate{2013} 
-
-%% Meta information
-\subject{LaTeX} \keywords{{LaTeX} {PhD Thesis} {Engineering} {University of
-Cambridge}} 
-
-
+% Thesis title and author information, refernce file for biblatex
+\input{thesis-info}
 
 % ***************************** Abstract Separate ****************************** 
 % To printout only the titlepage and the abstract with the PhD title and the 
-% author name for submission to the Student Registry, use the abstract option in
+% author name for submission to the Student Registry, use the `abstract' option in
 % the document class. 
 
 \ifdefineAbstract
  \includeonly{Abstract/abstract} 
-\else
 \fi
 
+% ***************************** Chapter Mode ***********************************
+% The chapter mode allows user to only print particular chapters with references
+% Title, Contents, Frontmatter are disabled by default
+% Useful option to review a particular chapter or to send it to supervisior.
+% To use choose `chapter' option in the document class
+
+\ifdefineChapter
+ \includeonly{Chapter3/chapter3} 
+\fi
 
 % ******************************** Front Matter ********************************
 \begin{document}
 
-
 \frontmatter
-
 
 \begin{titlepage}
 
@@ -163,19 +141,28 @@ Cambridge}}
 
 
 % ********************************** Back Matter *******************************
-% ********************************** Bibliography ******************************
+% Backmatter should be commented out, if you are using appendices after References
 %\backmatter 
 
+% ********************************** Bibliography ******************************
 \begin{spacing}{0.9}
 
+% To use BibLaTeX for your references, use `biblatex' in the document class
+% Bibfile (reference.bib) is specified in Line 38 in thesis-info.tex '\ifsetBiBLaTeX    \bibliography{References/references} \fi'
+
+\ifsetBiBLaTeX                   % BiBLaTeX
+    \printbibliography[heading=bibintoc, title={References}]
+
+% To use the conventional natbib style referencing
 % Bibliography style previews: http://nodonn.tipido.net/bibstyle.php
+\else                            % NatBiB
 
-\bibliographystyle{apalike}
-%\bibliographystyle{plainnat} % use this to have URLs listed in References
+    \bibliographystyle{apalike}
+    %\bibliographystyle{plainnat} % use this to have URLs listed in References
+    \cleardoublepage
+    \bibliography{References/references} % Path to your References.bib file
 
-\cleardoublepage
-
-\bibliography{References/references} % Path to your References.bib file
+\fi
 
 \end{spacing}
 

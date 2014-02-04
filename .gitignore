@@ -12,6 +12,12 @@
 *.nlo*
 *make*
 *.d*
+*.bcf*
+*.blg*
+*~*
+*.nlo*
+*make
+*.d
 *.btmp*
 *.fls*
 *.glo*
@@ -26,3 +32,4 @@
 thesis.txt*
 thesis.bcf*
 thesis.run.xml*
+*run.xml*
