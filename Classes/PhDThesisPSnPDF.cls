@@ -83,6 +83,15 @@ If not, please remove the option `abstract' from the document class and
 recompile. Good luck with your writing!}
 }
 
+% ****************** Chapter Mode - To print only selected chapters ************
+\newif \ifdefineChapter\defineChapterfalse %To enable Separate abstract
+
+\newif\ifPHD@chapter\PHD@chapterfalse % Enable Separate Abstract
+\DeclareOption{chapter}{
+  \PHD@chaptertrue     
+  \ClassWarning{PhDThesisPSnPDF}{You have chosen an option that generates only selected chapters with references, if this was intentional, ignore this warning. If not, please remove the option `chapter' from the document class and recompile. Good luck with your writing!}
+}
+
 \ProcessOptions\relax%
 
 % *************************** Pre-defined Options ******************************
@@ -278,7 +287,7 @@ supported!}
 % ******************************* Bibliography *********************************
 \ifPHD@authoryear
 \ifPHD@biblatex
-\RequirePackage[backend=biber, style=authoryear, citestyle=alphabetic, sorting=nty, natbib=true]{biblatex}
+\RequirePackage[backend=bibtex8, style=authoryear, citestyle=alphabetic, sorting=nty, natbib=true]{biblatex}
 \setBiBLaTeXtrue
 \else
 \RequirePackage[round, sort, numbers, authoryear]{natbib} %author year
@@ -287,7 +296,7 @@ supported!}
 \else
      \ifPHD@numbered
      \ifPHD@biblatex
-     \RequirePackage[backend=biber, style=numeric-comp, citestyle=numeric, sorting=none, natbib=true]{biblatex}
+     \RequirePackage[backend=bibtex8, style=numeric-comp, citestyle=numeric, sorting=none, natbib=true]{biblatex}
      \setBiBLaTeXtrue
      \else
      \RequirePackage[numbers,sort&compress]{natbib} % numbered citation
@@ -301,7 +310,7 @@ supported!}
          \fi
          \else
              \ifPHD@biblatex
-                 \RequirePackage[backend=biber, style=numeric-comp, citestyle=numeric, sorting=none, natbib=true]{biblatex}
+                 \RequirePackage[backend=bibtex8, style=numeric-comp, citestyle=numeric, sorting=none, natbib=true]{biblatex}
                  \setBiBLaTeXtrue
              \else
                  \RequirePackage[numbers,sort&compress]{natbib} % Default - numbered
@@ -319,7 +328,8 @@ and define the natbib package or biblatex package with required style in the Pre
 
 % *********************** To copy ligatures and Fonts **************************
 \RequirePackage{textcomp}
-\RequirePackage[utf8]{inputenc}
+ %[utf8] was used - removed for biblatex - biber backend required
+\RequirePackage{inputenc}
 \RequirePackage[T1]{fontenc}
 
 % Font Selection
@@ -663,6 +673,24 @@ font in the preamble.tex file by specifying `customfont' in the class options}
     \newcommand{\printthesisindex}{}
 \fi
 
+% ***************************** Chapter Mode ***********************************
+% The chapter mode allows user to only print particular chapters with references
+% All other options are disabled by default
+% To include only specific chapters without TOC, LOF, Title and Front Matter
+% To send it to supervisior for changes
+
+\ifPHD@chapter
+    \defineChaptertrue
+    % Disable the table of contents, figures, tables, index and nomenclature
+    \renewcommand{\maketitle}{}
+    \renewcommand{\tableofcontents}{}
+    \renewcommand{\listoffigures}{}
+    \renewcommand{\listoftables}{}
+    \renewcommand{\printnomencl}{}
+    \renewcommand{\printthesisindex}{}
+\else
+    \defineChapterfalse
+\fi
 
 % ******************************** Abstract ************************************
 % The abstract environment puts a large, bold, centered "Abstract" label at
