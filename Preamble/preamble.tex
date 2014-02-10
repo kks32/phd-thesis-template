@@ -32,12 +32,16 @@
 % Add `custombib' in the document class option to use this section
 \ifsetBib % True, Bibliography option is chosen in class options
 \else % If custom bibliography style chosen then load bibstyle here
-      \ifsetBiBLaTeX
-           \RequirePackage[backend=bitex8, style=numeric-comp, citestyle=numeric, sorting=nty, natbib=true]{biblatex}
-      \else
-            \RequirePackage[square, sort, numbers, authoryear]{natbib} % CustomBib
-     \fi
+
+   \RequirePackage[square, sort, numbers, authoryear]{natbib} % CustomBib
+
+% If you are using biblatex for your reference management, pass option `custombib` in the document class. Comment out the previous line to make sure you don't load the natbib package. Uncomment the following lines and specify the location of references.bib file
+
+% \RequirePackage[backend=biber, style=numeric-comp, citestyle=numeric, sorting=nty, natbib=true]{biblatex}
+% \bibliography{References/references} %Location of references.bib only for biblatex
+
 \fi
+
 
 % changes the default name `Bibliography` -> `References'
 \renewcommand{\bibname}{References}

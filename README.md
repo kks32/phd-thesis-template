@@ -51,8 +51,6 @@ THE SOFTWARE.
 
 *   Option to generate only specific chapters and references without the frontmatter and title page. Useful for review and corrections.
 
-*   BibLaTeX support for Bibliography
-
 *   A LyX Template is now available at [https://github.com/kks32/PhDThesisLyX/](https://github.com/kks32/PhDThesisLyX/)
 
 
@@ -189,8 +187,6 @@ It supports the following custom options in the documentclass in thesis.tex:
 
 `PhDThesisPSnPDF` currently supports two styles `authoryear` and `numbered (default)`. Citation style has to be set. You can also specify `custombib` style and customise the bibliography.
 
-* BibLaTeX support has been added and can be invoked using `biblatex` in the documentclass. Bibtex is used as the backend for `biblatex` at the moment. Will be replaced with biber when Makefile support is added.
-
 * `authoryear`: For author-year citation eg., Krishna (2013)
 
 * `numbered`: (Default Option) For numbered and sorted citation e.g., [1,5,2]
@@ -200,6 +196,8 @@ It supports the following custom options in the documentclass in thesis.tex:
 		\RequirePackage[square, sort, numbers, authoryear]{natbib}
 
 * (Overview of Bibtex-Styles with preview)[http://nodonn.tipido.net/bibstyle.php?]
+
+* If you would like to use biblatex instead of natbib. Pass the option `custombib` in the documentclass. In the `preamble.tex` file, edit the custombib section. Make sure you don't load the natbib package and you can specify the layout of your references in `thesis.tex` in the reference section. If you are using `biber` as backend, run `pdflatex thesis.tex >> biber thesis >> pdflatex thesis.tex >> biber thesis >> pdflatex thesis.tex`.
 
 ### Choosing the Page Style
 

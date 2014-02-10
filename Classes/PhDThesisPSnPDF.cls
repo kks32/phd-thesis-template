@@ -287,7 +287,7 @@ supported!}
 % ******************************* Bibliography *********************************
 \ifPHD@authoryear
 \ifPHD@biblatex
-\RequirePackage[backend=bibtex8, style=authoryear, citestyle=alphabetic, sorting=nty, natbib=true]{biblatex}
+\RequirePackage[backend=biber, style=authoryear, citestyle=alphabetic, sorting=nty, natbib=true]{biblatex}
 \setBiBLaTeXtrue
 \else
 \RequirePackage[round, sort, numbers, authoryear]{natbib} %author year
@@ -296,7 +296,7 @@ supported!}
 \else
      \ifPHD@numbered
      \ifPHD@biblatex
-     \RequirePackage[backend=bibtex8, style=numeric-comp, citestyle=numeric, sorting=none, natbib=true]{biblatex}
+     \RequirePackage[backend=biber, style=numeric-comp, citestyle=numeric, sorting=none, natbib=true]{biblatex}
      \setBiBLaTeXtrue
      \else
      \RequirePackage[numbers,sort&compress]{natbib} % numbered citation
@@ -310,7 +310,7 @@ supported!}
          \fi
          \else
              \ifPHD@biblatex
-                 \RequirePackage[backend=bibtex8, style=numeric-comp, citestyle=numeric, sorting=none, natbib=true]{biblatex}
+                 \RequirePackage[backend=biber, style=numeric-comp, citestyle=numeric, sorting=none, natbib=true]{biblatex}
                  \setBiBLaTeXtrue
              \else
                  \RequirePackage[numbers,sort&compress]{natbib} % Default - numbered
@@ -328,9 +328,6 @@ and define the natbib package or biblatex package with required style in the Pre
 
 % *********************** To copy ligatures and Fonts **************************
 \RequirePackage{textcomp}
- %[utf8] was used - removed for biblatex - biber backend required
-\RequirePackage{inputenc}
-\RequirePackage[T1]{fontenc}
 
 % Font Selection
 \ifPHD@times
@@ -353,6 +350,9 @@ font in the preamble.tex file by specifying `customfont' in the class options}
           \fi
     \fi
 \fi
+
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
 
 \input{glyphtounicode}
 \pdfglyphtounicode{f_f}{FB00}

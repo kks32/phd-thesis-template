@@ -39,10 +39,11 @@
 %
 % *********************** Choosing the Fonts in Class Options ******************
 %
-% `times' : Times font with math support. ( The Cambridge University guidelines
+% `times' : Times font with math support. (The Cambridge University guidelines
 % recommend using times)
 %
-% `fourier': Utopia Font with Fourier Math font
+% `fourier': Utopia Font with Fourier Math font (Font has to be installed) 
+%            It's a free font.
 %
 % `customfont': Use `customfont' option in the document class and load the
 % package in the preamble.tex
@@ -51,14 +52,14 @@
 %
 % ********************** Choosing the Bibliography style ***********************
 %
-% `biblatex`: To enable BibLaTeX Support with bibtex backend
-%
 % `authoryear': For author-year citation eg., Krishna (2013)
 %
 % `numbered': (Default Option) For numbered and sorted citation e.g., [1,5,2]
 %
 % `custombib': Define your own bibliography style in the `preamble.tex' file.
-% `\RequirePackage[square, sort, numbers, authoryear]{natbib}'
+%              `\RequirePackage[square, sort, numbers, authoryear]{natbib}'. 
+%              This can be also used to load biblatex instead of natbib 
+%              (See Preamble) 
 %
 % **************************** Choosing the Page Style *************************
 %
@@ -147,22 +148,22 @@
 % ********************************** Bibliography ******************************
 \begin{spacing}{0.9}
 
-% To use BibLaTeX for your references, use `biblatex' in the document class
-% Bibfile (reference.bib) is specified in Line 38 in thesis-info.tex '\ifsetBiBLaTeX    \bibliography{References/references} \fi'
-
-\ifsetBiBLaTeX                   % BiBLaTeX
-    \printbibliography[heading=bibintoc, title={References}]
-
 % To use the conventional natbib style referencing
 % Bibliography style previews: http://nodonn.tipido.net/bibstyle.php
-\else                            % NatBiB
 
-    \bibliographystyle{apalike}
-    %\bibliographystyle{plainnat} % use this to have URLs listed in References
-    \cleardoublepage
-    \bibliography{References/references} % Path to your References.bib file
+\bibliographystyle{apalike}
+%%\bibliographystyle{plainnat} % use this to have URLs listed in References
+\cleardoublepage
+\bibliography{References/references} % Path to your References.bib file
 
-\fi
+
+% If you would like to use BibLaTeX for your references, pass `custombib' as 
+% an option in the document class. The location of 'reference.bib' should be 
+% specified in the preamble.tex file in the custombib section. 
+% Comment out the lines related to natbib above and uncomment the following line.
+
+% \printbibliography[heading=bibintoc, title={References}]
+
 
 \end{spacing}
 
