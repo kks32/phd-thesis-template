@@ -400,8 +400,13 @@ If you are generating a separate abstract for your thesis submission, ignore thi
 --------------------------------------------------------------------------------
 ## ChangeLog
 
+### 2014/02/10 - Version 1.1.1
+> Commit e7f34cfd71cbe1b590d615a00d99b8d05513e5ba
+*   Biblatex handled as a custombib option
+*   UTF8 and Fontencoding after font has been loaded
+
 ### 2014/02/04 - Version 1.1
-> Commit
+> Commit 6e00ac94c2193882dd6f42686fc455cc66d829df
 *   BibLatex Support with bibtex backend
 *   Chapter mode for compiling only specified chapters and references
 
