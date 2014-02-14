@@ -81,6 +81,7 @@ the Title page and an abstract with PhD title and author name, if this was
 intentional, ignore this warning. Congratulations on submitting your thesis!!
 If not, please remove the option `abstract' from the document class and
 recompile. Good luck with your writing!}
+  \PassOptionsToClass{oneside}{book}
 }
 
 % ****************** Chapter Mode - To print only selected chapters ************
