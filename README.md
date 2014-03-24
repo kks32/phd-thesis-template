@@ -401,7 +401,7 @@ If you are generating a separate abstract for your thesis submission, ignore thi
 ## ChangeLog
 
 ### 2014/03/24 - Version 1.2
-> Commit 
+> Commit 4b709fed6cdfd5b3796152f9c59b619c72df491f
 *   Rearranged package order in preamble to support equation numbering using cref
 *   Removed dependencies on obsolete packages
 *   Restyled the URL fonts to use the same font as text
