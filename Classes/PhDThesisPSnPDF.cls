@@ -245,7 +245,7 @@ supported!}
 
 
 % ************************** Layout and Formatting *****************************
-\def\pdfshellescape{1}
+\renewcommand\pdfshellescape{1}
 \RequirePackage{lscape}   % Supports Landscape Layout
 \RequirePackage{setspace} % Define line spacing in paragraph
 \RequirePackage{calc}     % To calculate vertical spacing
@@ -276,14 +276,6 @@ supported!}
 	\graphicspath{{Figs/Vector/}{Figs/}}
 \fi
 
-
-% ************************ URL Package and Definition **************************
-\RequirePackage{url}
-% Redefining urlstyle to use smaller fontsize in References with URLs
-\newcommand{\url@leostyle}{%
- \@ifundefined{selectfont}{\renewcommand{\UrlFont}{\sf}}
- {\renewcommand{\UrlFont}{\small\ttfamily}}}
-\urlstyle{leo}
 
 % ******************************* Bibliography *********************************
 \ifPHD@authoryear
@@ -326,7 +318,6 @@ and define the natbib package or biblatex package with required style in the Pre
 \fi
 
 
-
 % *********************** To copy ligatures and Fonts **************************
 \RequirePackage{textcomp}
 
@@ -362,6 +353,22 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 \pdfglyphtounicode{f_f_i}{FB03}
 \pdfglyphtounicode{f_f_l}{FB04}
 \pdfgentounicode=1
+
+
+% ************************ URL Package and Definition **************************
+\RequirePackage{url}
+% Redefining urlstyle to use smaller fontsize in References with URLs
+\newcommand{\url@leostyle}{%
+ \@ifundefined{selectfont}{\renewcommand{\UrlFont}{\sffamily}}
+ {\renewcommand{\UrlFont}{\normalsize}}}
+\urlstyle{leo}
+
+% option to split urls over multiple lines for latex >> DVIPS >> PDF option
+% PDFLaTeX does it automatically.
+
+\ifsetDVI
+\RequirePackage{breakurl} % to split the url over multiple lines
+\fi
 
 % ******************************************************************************
 % **************************** Pre-defined Settings ****************************
@@ -570,7 +577,7 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 % Submission Text
 {\large \submissiontext \par}
 \vspace*{1ex}
-{\large \it {\@degree} \par} 
+{\large \textit {\@degree} \par} 
 
 
 \end{center}
@@ -633,7 +640,7 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 
 
 % ******************************* Nomenclature *********************************
-\usepackage{nomencl}
+\RequirePackage{nomencl}
 \makenomenclature
 \renewcommand{\nomgroup}[1]{%
 \ifthenelse{\equal{#1}{A}}{\item[\textbf{Roman Symbols}]}{%
@@ -782,7 +789,7 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 \begin{center}
 \large \submissiontext \par
 \vspace*{1ex}
-\large \it {\@degree} \par
+\large \textit {\@degree} \par
 \end{center}
 \end{minipage}
 \end{lrbox}
