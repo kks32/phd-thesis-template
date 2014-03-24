@@ -406,6 +406,11 @@ If you are generating a separate abstract for your thesis submission, ignore thi
 *   Removed dependencies on obsolete packages
 *   Restyled the URL fonts to use the same font as text
 
+### 2014/02/14 - Version 1.1.2
+> Commit a7f123bb220bf1e207b6e49e8b2978c203582e12
+*   Updates to abstract separate mode with no page numbers
+*   Declaration included in abstract mode for submission to student registry
+
 ### 2014/02/10 - Version 1.1.1
 > Commit e7f34cfd71cbe1b590d615a00d99b8d05513e5ba
 *   Biblatex handled as a custombib option
