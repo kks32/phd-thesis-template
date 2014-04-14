@@ -32,7 +32,7 @@ if [ $1 = $clean ]; then
 	echo "Cleaning complete!"
 	exit
 else
-	echo "Shell scrip for compiling the PhD Thesis"
+	echo "Shell script for compiling the PhD Thesis"
 	echo "Usage: sh ./compile-thesis.sh [OPTIONS] [filename]"
 	echo "[option]  compile: Compiles the PhD Thesis"
 	echo "[option]  clean: removes temporary files no filename required"
