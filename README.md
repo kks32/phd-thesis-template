@@ -60,7 +60,7 @@ THE SOFTWARE.
 
 This template supports arara. You can edit the thesis.tex arara commands to suit your needs
 
-    arara thesis.tex
+    arara -v thesis.tex
 
 ### Using the Make File (Unix/Linux)
 
