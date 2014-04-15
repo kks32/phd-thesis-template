@@ -56,6 +56,12 @@ THE SOFTWARE.
 
 ## Building your thesis
 
+### Using ARARA (Unix/Linux/Windows)
+
+This template supports arara. You can edit the thesis.tex arara commands to suit your needs
+
+    arara thesis.tex
+
 ### Using the Make File (Unix/Linux)
 
 The template supports PDF, DVI and PS formats. All three formats can be generated
@@ -339,6 +345,9 @@ You can run the following command (Linux/Unix):
 or 
     `pdftotext thesis.pdf | wc thesis.txt -w` (eg., result 2690 words)
 
+or
+    `texcount -inc *.tex` (eg., result 2341 words)
+
 ### _Q5_: I found a bug in the template. Where do I report bugs?
 
 You can report issues at
@@ -394,8 +403,6 @@ If you are generating a separate abstract for your thesis submission, ignore thi
 ## TODO list
 
 *  Make example thesis a document on how to use the template and include general guidelines and good  practices.
-
-*  Biber backend support for biblatex with Makefile
 
 --------------------------------------------------------------------------------
 ## ChangeLog
