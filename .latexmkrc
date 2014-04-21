@@ -70,9 +70,19 @@ add_cus_dep( 'eps', 'pdf', 0, 'cus_dep_delete_dest' );
 # detects an outdated pdf-image, and triggers a pdflatex-run
 #add_cus_dep( 'eps', 'pdf', 0, 'cus_dep_require_primary_run' );
 
-# Custom dependecy to convert tif to png
+# Custom dependency to convert tif to png
 add_cus_dep( 'tif', 'png', 0, 'maketif2png' );
 sub maketif2png {
     system( "convert \"$_[0].tif\" \"$_[0].png\"" );
 }
 
+# Custom dependency for mpost files
+add_cus_dep('mp', '1', 0, 'mpost');
+sub mpost {
+    my $file = $_[0];
+    my ($name, $path) =  fileparse( $file );
+    pushd( $path );
+    my $return = system "mpost $name" ;
+    popd();
+    return $return;
+}
