@@ -56,9 +56,16 @@ THE SOFTWARE.
 
 ## Building your thesis
 
+### Using latexmk (Unix/Linux/Windows)
+
+This template supports `latexmk`. To generate DVI, PS and PDF run
+
+    latexmk -dvi -ps -pdf thesis.tex
+
+	
 ### Using ARARA (Unix/Linux/Windows)
 
-This template supports arara. You can edit the thesis.tex arara commands to suit your needs
+This template supports `arara`. You can edit the arara commands in `thesis.tex` to suit your needs. Default is set to LATEX >> DVI >> PS2PDF with nomenclature and make index support.
 
     arara -v thesis.tex
 
@@ -150,6 +157,10 @@ It supports the following custom options in the documentclass in thesis.tex:
 *   `abstract`: This option enables only the thesis title page and the abstract with title and author to be printed. 
 
 *   `chapter`: This option enables only the specified chapter and it's references. Useful for review and corrections.
+
+*   `draft`: This mode is similar to the default draft mode in book class with line numbering. You can switch-off line numbering by specifying `nolineno` in the options.
+
+*   `lineno`: Enables pagewise line numbering on the outer edge.
 
 
 ### Abstract separate
@@ -252,9 +263,9 @@ The visual style of chapter headings can be modified using the `titlesec` packag
 ### Custom Settings
 
 *   The depth for the table of contents can be set using: 
-
-        \setcounter{secnumdepth}{3}
-	    \setcounter{tocdepth}{3}
+		
+		\setcounter{secnumdepth}{3}
+		\setcounter{tocdepth}{3}
     A depth of [3] indicates to a level of `\subsubsection` or #.#.#.#. Default set as 2.
 
 *   To hide sections from appearing in TOC use: `\tochide\section{Section name}` in your TeX files
@@ -263,11 +274,17 @@ The visual style of chapter headings can be modified using the `titlesec` packag
 
         \RequirePackage[small,bf,figurename=Fig.,labelsep=space,tableposition=top]{caption}
 
+*   Uncomment the following lines in `preamble.tex` to force a figure to be displayed in a particular location. Use `H` when including graphics. Note `H` instead of `h`.
+
+		\usepackage{float}
+		\restylefloat{figure}
+
 *   Bibliography with Author-Year Citation in `preamble.tex`:
 	
         \RequirePackage[round, sort, numbers, authoryear]{natbib}
 
-
+*   Line spacing for the entire document can be specified in `preamble.tex`. Uncomment the line spacing you prefer. e.g.,
+		\onehalfspacing
 ### Nomenclature Definition
 
 * To use nomenclature in your chapters:
