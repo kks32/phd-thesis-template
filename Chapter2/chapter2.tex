@@ -79,9 +79,21 @@ I can cite Wall-E (see Fig.~\ref{fig:WallE}) and Minions in despicable me (Fig.~
 
 \begin{figure}
   \centering
-  \subfloat[A Tom and Jerry]{\label{fig:TomJerry}\includegraphics[width=0.3\textwidth]{TomandJerry}}                
-  \subfloat[A Wall-E]{\label{fig:WallE}\includegraphics[width=0.3\textwidth]{WallE}}
-  \subfloat[A Minion]{\label{fig:Minnion}\includegraphics[width=0.3\textwidth]{minion}}
+  \begin{subfigure}[b]{0.3\textwidth}
+    \includegraphics[width=\textwidth]{TomandJerry}
+    \caption{Tom and Jerry}
+    \label{fig:TomJerry}   
+  \end{subfigure}             
+  \begin{subfigure}[b]{0.3\textwidth}
+    \includegraphics[width=\textwidth]{WallE}
+    \caption{Wall-E}
+    \label{fig:WallE}
+  \end{subfigure}             
+  \begin{subfigure}[b]{0.3\textwidth}
+    \includegraphics[width=\textwidth]{minion}
+    \caption{A Minion}
+    \label{fig:Minnion}
+  \end{subfigure}
   \caption{Best Animations}
   \label{fig:animations}
 \end{figure}
