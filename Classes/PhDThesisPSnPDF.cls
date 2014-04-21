@@ -25,8 +25,6 @@
 \newif\if@print\@printfalse
 \DeclareOption{print}{\@printtrue}
 
-\newif\ifPHD@draft\PHD@draftfalse
-
 % ****************************** Define index **********************************
 \newif\ifPHD@index\PHD@indexfalse
 \DeclareOption{index}{\PHD@indextrue}
@@ -130,7 +128,7 @@ PhD thesis guidelines recommend using A4 or A5paper}
 \DeclareOption{twoside}{\PassOptionsToClass{\CurrentOption}{book}}%
 
 % Draft Mode
-\DeclareOption{draft}{\PassOptionsToClass{\CurrentOption}{book}\PHD@drafttrue}%
+\DeclareOption{draft}{\PassOptionsToClass{\CurrentOption}{book}}%
 
 % Generates Warning for unknown options
 \DeclareOption*{
@@ -174,7 +172,6 @@ supported!}
 \if@print
     % For Print version
     \hypersetup{
-      final=true,
       plainpages=false, 
       pdfstartview=FitV,
       pdftoolbar=true, 
@@ -210,7 +207,6 @@ supported!}
 \else
     % For PDF Online version
     \hypersetup{
-      final=true
       plainpages=false,
       pdfstartview=FitV, 
       pdftoolbar=true, 
@@ -242,13 +238,6 @@ supported!}
 \fi
 
 
-\ifPHD@draft
-\usepackage[switch,pagewise,mathlines]{lineno}
-\renewcommand{\frontmatter}{\nolinenumbers}
-\renewcommand{\mainmatter}{\linenumbers}
-\renewcommand{\backmatter}{\linenumbers}
-
-\fi
 
 % ******************************************************************************
 % ******************************** Packages ************************************
@@ -378,7 +367,7 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 % PDFLaTeX does it automatically.
 
 \ifsetDVI
-\RequirePackage{breakurl} % to split the url over multiple lines
+\RequirePackage{sty/breakurl} % to split the url over multiple lines
 \fi
 
 % ******************************************************************************
