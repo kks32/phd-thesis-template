@@ -1,0 +1,571 @@
+%% `edtable.sty'---Uwe L"uck, direction Christian Tapp. 
+%% LaTeX package for tables with line numbers and 
+%% editorial notes. 
+%% 
+%% Copyright (C) 2003-2005 Uwe L"uck--author-maintained. 
+%% 
+\def\fileversion{1.3c} \def\filedate{2005/10/03} 
+%% 
+%% This file can be redistributed and/or modified under 
+%% the terms of the LaTeX Project Public License; either 
+%% version 1.3 of the License, or any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% We did our best to help you, but there is NO WARRANTY. 
+%% 
+%% Please send your comments via 
+%% 
+%%   http://www.contact-ednotes.sty.de.vu 
+%% 
+%% * USAGE: * 
+% 
+% *Requirements/overview:* 
+% 
+% The package is made for the background of the LaTeX2e macro 
+% package and enhances functionality of the following packages: 
+% 1.) Stephan I. B"ottcher's `lineno.sty' for printing line 
+%     numbers in the margin and a \label version \linelabel 
+%     relating labels to line numbers; 
+% 2.) our `ednotes.sty' for indicating variant readings and 
+%     other editorial remarks in separate footnote apparatuses; 
+% 3.) David Carlisle's `longtable.sty' for multi-page tables. 
+%                                                 %% TODO: supertabular etc.!? 
+% 4.) our `ltabptch.sty' for a patch of `longtable.sty' 
+%     (i.e., optionally, see below). 
+% 
+% Actually, only the first package is necessary for using the 
+% present one. The present one needs your line numbering commands 
+% according to the first one and its documentation to which we 
+% refer here. We likewise refer to the remaining packages for the 
+% details of their functionality. 
+% 
+% `lineno.sty' version 4.1 and (in case it is used) `ednotes.sty' 
+% version 0.8 (onwards) are needed. For obtaining recent versions 
+% of required packages, see the CTAN folder 
+%     /macros/latex/contrib/ednotes. 
+% 
+% *Install/load:* 
+% 1.) To be used, the present file must be put into a folder 
+%     that (La)TeX searches. You should have obtained a file 
+%     containing more detailed hints about this. 
+% 2.) We recommend loading this file *not* by 
+%     \usepackage[<options>]{edtable} but by loading `lineno.sty' 
+%     or `ednotes.sty' with package option `edtable'. 
+% 3.) To use the package options `longtable' and 
+%     `nolongtablepatch' that are described below, enter them 
+%     as options for `lineno.sty' or `ednotes.sty'. 
+% 
+% *User Commands:* 
+% 
+% 1. The package defines an environment `edtable' -- for its 
+% syntax we consider two cases: 
+% (a) Let <stdtable> be a tabular environment "like `tabular'". 
+% "Like" here means: (i) we have tested it with `tabular', but 
+% it should work with many more (e.g., from the `array' and 
+% `tabularx' packages) -- which share certain properties of 
+% implementation and requirements. Sorry, you must try, or we 
+% hope you will (and tell us). (For wizards: <stdtable> may 
+% probably be anything using a single \halign and \tabskip=0pt.) 
+% Definitively: 
+% (ii) LaTeX's standard `array' and other environments are *not* 
+% "like" `tabular'. Namely, environments that work only in math 
+% mode are not meant here. They are considered below in `b.'. 
+% (iii) `longtable' from the `longtable' package of the `tools' 
+% bundle neither is meant. An option of the present package 
+% deals with it as described below. Neither `supertabular' is 
+% meant. 
+% (iv) In general, usage with tabular environments that can 
+% break across pages as in (iii) is not recommended, at least 
+% when working with `ednotes.sty'. Even if some worked here, a 
+% shortcoming with `ednotes.sty' would be that the footnotes can 
+% appear on bad pages. 
+% -- Now the syntax is: 
+%    \begin{edtable}{<stdtable>}<args><entries>\end{edtable}
+% -- where <args> and <entries> are usual arguments and entries 
+% for <stdtable>. So an example is: 
+%    \begin{edtable}{tabular}{cc} 
+%      left upper & right upper \\ left lower & right lower 
+%    \end{edtable} 
+% This produces just what <stdtable> does in an extra line, 
+% only adding line numbers in the margin and processing `ednotes' 
+% commands in the entries appropriately. 
+% (b) Let <stdarray> be an "array environment" like -- standard 
+% LaTeX's `array'! "Like" here means (i) ... analogously to 
+% <stdtable> above. (ii) "Text" ... oh, sorry, this is not clear 
+% to me at present, and I am in a hurry.                 %% TODO 
+% (iii) Nothing from the `amsmath' package seems to work here, 
+% sorry, I have tried a lot ... (iv) For standard LaTeX's 
+% `eqnarray', it is better to try the `linenomath' environment 
+% of `lineno.sty' [with package option `mathlines']. Its 
+% modifications in `amsmath' produce (at best) a spurious line 
+% number with the `linenomath' environment (up to now). 
+% -- Now the syntax is: 
+%    \begin{edtable}[<$$$>]{<stdarray>}
+%      <args><entries>\end{edtable}
+% -- where <args> and <entries> are usual arguments and entries 
+% for <stdarray>. <$$$> can be one of `$' or `$$'. Indeed, the 
+% <stdtable> syntax above (without [<$$$>]) *does not work* 
+% inside $...$ or $$...$$. -- An example: 
+%    \begin{edtable}[$$]{array}{cc}
+%      a_{11} & a_{12} \\ a_{21} & a_{22}
+%    \end{edtable}
+% Now, this produces just what <stdarray> does in an extra line 
+% etc. as with <stdtable>. However, \linelabel and `ednotes.sty' 
+% footnotes may need the `mathrefs' option of `lineno.sty'. For 
+% the difference between `[$]' and `[$$]', see below. 
+% 
+% 2. When working with `ednotes.sty', in 
+%   \Anote{L1\<L2\>L3}{NOTE}
+% L2 may contain &'s and \\'s, but L1, L3 must not! Analogously 
+% for \Bnote, etc., \Anotelabel...\donote..., etc. -- Well this 
+% holds for <stdtable>, hardly for <stdarray> ...        %% TODO 
+% 
+% 3. On positioning: You may have wondered about `extra line' 
+% above. This means that `edtable' starts a new line at 
+% \begin{edtable} and at \end{edtable}.          %% TODO: sure!? 
+% (a) It should be placed within a `center', `flushleft', or 
+% `flushright' environment for proper (vertical) spacing, but 
+% also works without. However, with <stdarray> and optional 
+% parameter `$$' of `edtable' (i.e., \begin{edtable}[$$]...), 
+% you can obtain the usual math display spacing *within a 
+% paragraph*; especially, the vertical space is less when the 
+% previous line is short ... and so on. 
+% (b) Horizontal positioning of line numbers (usually) needs a 
+% second run (after changing a table)! %% TODO: automatic warning. 
+% (For wizards: It may fail if some of \leftskip, \rightskip, 
+% \linewidth, and \@totalleftmargin are used in an unusual way.) 
+% A <dimen> register \ETextraoffset is provided whose value is 
+% 0pt by default and which additionally moves line numbers 
+% to the left (right) if given a positive (negative) value. 
+%                                               %% TODO: any use? 
+% 
+% *Package options:* 
+% 
+% 1. Option `longtable' adjusts the `longtable' environment 
+% defined by David Carlisle's longtable.sty for use with 
+% `lineno.sty' and `ednotes.sty'. The option makes `longtable' 
+% environments appear with line numbers in the margin, according 
+% to `lineno.sty', and process `ednotes.sty' commands if line 
+% numbering is active according to `lineno.sty'. 
+% [We maintain an alternative package with just this function 
+% in a slightly different implementation.] %% -> ulnltab.sty. 
+% Lemmas may go across table entries as with `edtable' (see above). 
+% ---There might be options like `supertabular' for adjusting 
+% other tabular environments that cannot be handled by the 
+% `edtable' environment provided here---they have not been 
+% implemented yet!                                             %% TODO 
+% 
+% 2. Option `nolongtablepatch' avoids loading/asking for 
+% `ltabptch.sty'. I.e.: according to LaTeX bugs database, 
+% tools/3180 and tools/3485, there have been problems with 
+% vertical spacing around `longtable' environments. By default 
+% the present package loads our `ltabptch.sty' or asks for it. 
+% Option `nolongtablepatch' overrides this. This is useful when 
+% you don't want to have the patch, especially when you use an 
+% "emergency stop" installation of TeX. 
+% 
+% *Wizard interface:* 
+% Macros \@ET@makeLineNumber, \@ET@use@outerhook, 
+% \@ET@execute@outerhook, \@ET@ampnotes \@ET@startlinewith, 
+% \@ET@trivialize@linelabel are provided as tools for adjusting 
+% tabular environments for use with `lineno.sty' and 
+% `ednotes.sty'. \@ET@step@linenumber is \let \stepLineNumber 
+% (from `lineno.sty'), but could be used as a hook for 
+% something different. See Environment `edtable' and Option 
+% `longtable' below for examples of application. 
+%                                        %% TODO: specification here. 
+% 
+%
+%% * Acknowledgements: * 
+% 
+% Stephan I. B"ottcher told us how to do it in extensive discussion 
+% and by providing some first code lines. We changed these essentially 
+% in some respects, but kept his general ideas and some parts of his 
+% macros, the latter even without knowing what we are doing. 
+% 
+% v1.3 is due to a request by Martin Brandenburg. 
+% 
+%  * Now for internals: * 
+% 
+\NeedsTeXFormat{LaTeX2e}[1994/12/01] 
+% 1994/12/01: \newenvironment* etc. %% TODO: more recent needed? 
+\ProvidesPackage{edtable}[\filedate\space v\fileversion\space 
+  arrays with lineno + ednotes (ul)] 
+% 
+% Alternative ideas for implementation: 
+% 1. There is a German package `TABMAC' enhancing `EDMAC' (cf. 
+% documentation of `ednotes.sty'). We could have rewritten its 
+% macros so it would work with `lineno.sty' and `ednotes.sty' 
+% in place of `EDMAC'. [TODO: "tabmac.sty"] 
+% 2. We redefine `longtable' by Option `longtable' because 
+% there seems to be only one reasonable use of the `longtable' 
+% environment in the course of a critical edition. This may be 
+% different for environments like `array' and `tabular' which 
+% can be used within text lines. Therefore, these environments 
+% are not redefined. 
+% 3. One might use \everycr, however: (a) it is executed 
+% before the first row, (b) it is executed in fake lines that 
+% `longtable' uses. 
+% 4. As an alternative to \everycr, there is the approach of 
+% redefining \cr and \crcr for setting \noalign. This needs 
+% redefining \@tabularcr etc.---not nice. We use this approach 
+% here for `longtable' which uses a stretching \tabskip. 
+% For \tabskip=0pt, we attach line numbers by a template. 
+% 
+% \RequirePackage{lineno}[2004/10/06] 
+% Wanted to check lineno version--causes unknown option error. 
+% See LaTeX bug latex/3730. 
+
+% Options: 
+
+%% TODO: underful page with `longtable.sty'!? 
+\let\if@ET@longtable\iffalse % \newif\if@ET@longtable@ 
+\DeclareOption{longtable}{\let\if@ET@longtable\iftrue} 
+\let\if@ET@ltabptch\iftrue 
+\DeclareOption{nolongtablepatch}{\let\if@ET@ltabptch\iffalse}
+\ProcessOptions
+
+% Redefine \longtable if option: 
+\if@ET@longtable
+  % Stephan's direction for attaching a line number to each row 
+  % is using \noalign in the course of \\. 
+  % However, (1) the user should not worry about closing the table 
+  % with \\ or without, and (2) the line number thing should not 
+  % happen twice if \\ is the last token before \end{longtable}. 
+  % Our solution: attach something to the beginning of \endlongtable 
+  % which attaches line number unless an unsucceeded \\ has done it. 
+  % This thing is activated by each row start and turned off by \\. 
+  % Since the switch at row start may happen to be in a pbox, 
+  % let it act globally on \endlongtable. (The \crcr at the beginning 
+  % of \endlongtable must not be changed directly, since original 
+  % \crcr may be required in table entries using \oalign etc.) 
+  % 
+  \RequirePackage{longtable}%
+%   \IfFileExists{longtable.sty}{\RequirePackage{longtable}}%
+%                               {\RequirePackage{longtabl}}%
+% For Atari problem, it suffices to rename `longtable.sty' 
+% into `longtabl.sty'. 
+% 
+% Patch for tools/3180 and tools/3485 of LaTeX bug database:
+ \if@ET@ltabptch
+  \IfFileExists{ltabptch.sty}{\RequirePackage{ltabptch}}{% 
+    \PackageError{edtable}{% 
+      ltabptch.sty (for improving spacing around\MessageBreak
+      longtable) missing! Be sure to use it always\MessageBreak 
+      or never!%
+    }{% 
+      To omit ltabptch.sty *and* escape this error,\MessageBreak 
+      use package option `nolongtablepatch'.%
+    }%
+ }
+ \fi 
+  \let\@ET@@longtable\longtable 
+  \def\longtable{% 
+    \ifLineNumbers 
+      \expandafter\@ET@longtable 
+    \else 
+      \let\@ET@sw@cr\@ET@crcr % ... in \endlongtable. 
+      \expandafter\@ET@@longtable 
+    \fi 
+  } 
+  \def\@ET@longtable{% 
+  % Since we have made it anyway, we use the method of redefining 
+  % \halign for inserting the activating row start as well. 
+  % However, redefinition must be repeated before every \LT@bchunk. 
+  % \longtable and \LT@get@withs are good places for this. 
+    \@ET@startlinewith\@ET@sw@cr@on 
+    \@ET@trivialize@linelabel 
+    \@ET@use@outerhook 
+    \@ET@ampnotes 
+    \let\LT@tabularcr\@ET@LT@tabularcr 
+    \expandafter\def\expandafter\LT@get@widths\expandafter 
+      {\LT@get@widths\@ET@startlinewith\@ET@sw@cr@on}
+    % Admittedly, we could make it less of a hack by using @{...} 
+    % ---we could then leave \LT@get@widths untouched. 
+    \@ET@@longtable 
+  } 
+  \def\@ET@sw@cr@on{\global\let\@ET@sw@cr\@ET@cr@attach} 
+  % We are hacking a longtable version offering 
+  %   \def\LT@tabularcr{%
+  %     \relax\iffalse{\fi\ifnum0=`}\fi
+  %     \@ifstar
+  %       {\def\crcr{\LT@crcr\noalign{\nobreak}}\let\cr\crcr
+  %        \LT@t@bularcr}%
+  %       {\LT@t@bularcr}}
+  % We need a redefinition of \cr which is not overridden by \@ifstar: 
+  \def\@ET@LT@tabularcr{%
+    \relax\iffalse{\fi\ifnum0=`}\fi
+    \def\cr{\@ET@sw@cr}% 
+    % So \crcr is affected by change of \@ET@sw@cr, cf. below. 
+    \let\crcr\cr 
+    \@ifstar
+      {\gdef\@ET@sw@nobreak{\nobreak 
+       \global\let\@ET@sw@nobreak\relax}% 
+  %     {\def\cr{\@ET@sw@cr\noalign{\nobreak}}\let\cr\crcr
+  % Why didn't this work? %% TODO: try shorter again. 
+       \LT@t@bularcr}%
+      \LT@t@bularcr 
+  %     {\let\cr\@ET@sw@cr \let\crcr\cr
+  %      \LT@t@bularcr}% This accompanied \def\cr... above. 
+  }
+  % Attach \@ET@sw@cr to beginning of \endlongtable: 
+  \expandafter\def\expandafter\endlongtable\expandafter 
+    {\expandafter\@ET@sw@cr\endlongtable}
+  \def\@ET@cr@attach{% Actually attaching line numbers. 
+    \@ET@crcr\noalign{% Basically Stephan's approach. 
+  % If we were not careful, following box containing line number 
+  % could fool interline glue after longtable, even if tools/3485 
+  % is repaired in some way. This box should have same depth as 
+  % the line composed previously. 
+      \nobreak %% \@ET@ex... might cause page break. 2003/10/30. 
+      \setbox\z@\@ET@makeLineNumber 
+      \ht\z@-\prevdepth \dp\z@\prevdepth \box\z@ 
+      \@ET@step@linenumber 
+      \global\let\@ET@sw@cr\@ET@crcr % ... if called by \\. 
+  % This also resets the \crcr starting \LT@echunk following 
+  % \@xargarraycr or \@yargarraycr in \LT@argtabularcr. 
+  % \let...\relax seems to suffice at well, but in case ... 
+      \@ET@execute@outerhook %% 2003/10/30. 
+      \@ET@sw@nobreak 
+%       \@ET@execute@outerhook 
+    }% 
+  } 
+  \let\@ET@crcr\crcr 
+  \global\let\@ET@sw@nobreak\relax % Just to remind ... 
+\fi 
+ 
+\let\@ET@step@linenumber\stepLineNumber 
+% \def\@ET@step@linenumber{\global\advance\c@linenumber\@ne}
+\def\@ET@makeLineNumber{\hb@xt@\z@{\makeLineNumber}} 
+%% TODO: export to lineno.sty!? 
+% Special \halign: 
+% For `array' etc., we insert line numbers by a leftmost template. 
+% @{...} in the last argument of `array' etc. is difficult for this 
+% since `tabular*' has an additional argument. So we redefine 
+% \halign to put something to the right of the next \bgroup. 
+% Now, as a macro, \halign would break in an \edef or \xdef. 
+% Horribly, this danger has become quite real in longtable.sty's 
+% definition of \LT@bchunk. Only its latest version 4.10 has 
+% preceded \halign by a \noexpand (for mathtext.sty which 
+% redefines \halign as well). We need not rely on such a 
+% provision if we let \halign expand to \the<token register> 
+% for some token register. However, using \toks@ or \@temptokena 
+% is neither very safe---might be filled by macro ahead with 
+% something new. So reserve an own token register. 
+\newtoks\@ET@toks 
+\@ET@toks{\@ET@specialhalign} 
+% v1.3: In 'AMSmath', there are \halign's followed by explicit 
+% left braces. Thus '\def\@ET@specialhalign#1\bgroup{%' broke. 
+%% TODO ... 
+\def\@ET@specialhalign{%
+  \ifmeasuring@ \expandafter\@firstoftwo 
+% v1.3 2005/03/04, for `amsmath'. 
+  \else \expandafter\@secondoftwo 
+  \fi
+  {\let\halign\@ET@@halign \halign}% 
+  {\@ifnextchar\bgroup\@ET@replace@arg\@ET@sphalign@to}}
+%% TODO: change back, commenting out code above, report 
+%%       error with `alignat'. 
+%   \@ifnextchar\bgroup\@ET@replace@arg\@ET@sphalign@to}
+% If `amsmath' not loaded (v1.3): 
+\AtBeginDocument{\@ifundefined{measuring@true}{% 
+  \let\ifmeasuring@\iffalse}\relax}
+\def\@ET@replace@arg#1{%
+  \def\@EN@tempa{#1}\def\@EN@tempb{\bgroup}% Corr. after v1.3b. 
+  \ifx\@EN@tempa\@EN@tempb 
+    \def\@EN@tempa{\@ET@sphalign@to\bgroup}%
+  \else 
+    \def\@EN@tempa{\@ET@sphalign@to{#1}}%
+% This may be wrong, #1 might be `t' from `to' ... 
+  \fi 
+  \@EN@tempa}
+\def\@ET@sphalign@to#1\bgroup{% 
+  \let\halign\@ET@@halign % Reset for nested arrays. 
+  \halign#1\bgroup 
+%  \ifmeasuring@\else % For `amsmath', moved backwards. 
+    \@ET@startline % [Wizard interface, via \@ET@starlinewith.] 
+%  \fi 
+}
+% Wizard interface: 
+\def\@ET@startlinewith{% Next token precedes preamble. 
+%   \let\@ET@@halign\halign % Or \AtBeginDocument? 
+% ... indeed: bad loop with long longtable (\LT@get@widths!?) 
+  \def\halign{\the\@ET@toks}% 
+  \let\@ET@startline 
+} 
+\AtBeginDocument{\let\@ET@@halign\halign} 
+% Or save it at start of environment only 
+% (don't repeat inside longtable). 
+% 
+% Outer hook for inserts: (wizard interface) 
+\def\@ET@execute@outerhook{% To be placed outside inner mode. 
+  \@ET@outerhook \global\let\@ET@outerhook\@empty 
+} 
+\global\let\@ET@outerhook\@empty % Just to remind: global! 
+% \@EN@hookfn (ednotes) sends to outer hook: 
+\def\@ET@use@outerhook{% Wizard interface. 
+  \def\@EN@hookfn{\g@addto@macro\@ET@outerhook}% 
+}%% TODO: move last line to `ednotes', \let\@ET@use...\@empty. 
+%%        But this requires re-installing both packages 
+%%        at the same time. See the `ampnotes' thing as well. 
+% 
+% Trivialize \linelabel: (wizard interface) 
+\def\@ET@trivialize@linelabel{\let\linelabel\@ET@linelabel}
+\def\@ET@linelabel{% 
+  \protected@edef\@currentlabel{\theLineNumber}% 
+  \label
+}
+% Change ampersand at \Anote etc.: (wizard interface) 
+%% 2003/10/31. 
+% & is changed by \Anote etc. No \begin...\endgroup, 
+% next \\ or & after % note/donote command switches back. 
+% ---Global change seems to break table setup. 
+\begingroup 
+\gdef\@ET@hideamps{\catcode`\&\active}
+\@ET@hideamps 
+\gdef\@ET@ampnotes{% 
+  \let&\@ET@hideamp 
+  %% & would be undefined after \\ in lemma. 
+  \let\@ET@EN@rnote\@EN@note 
+  \def\@EN@note{\@ET@hideamps\@ET@EN@rnote}%
+  \let\@ET@EN@rnotelb\@EN@notelabel 
+  \def\@EN@notelabel{\@ET@hideamps\@ET@EN@rnotelb}%
+} 
+%% TODO: & and \\ in \@EN@lemmaexpands!? 
+\endgroup 
+\def\@ET@hideamp{&}
+
+\newenvironment*{edtable}[2][]{% 
+% #1 $ or $$, #2 standard environment name. 
+%% TODO: star version!? cf. lineno.sty's `numquote'. 
+  \def\@ET@mode{#1}% 
+  \def\@ET@currenvir{#2}% 
+  \ifhmode \ifnum\the\lastpenalty=-\@M\else 
+% \par must be executed for printing/stopping line numbers: 
+    \@centercr\relax \noindent 
+  \fi \fi 
+  \ifvmode \noindent \fi % Otherwise linenumbers are indented 
+% -- however, not recommended. 
+  \@ET@use@outerhook 
+  \@ET@trivialize@linelabel 
+  \@ET@ampnotes 
+  \@ET@startlinewith\@ET@normal@startline 
+  \global\advance\c@linenumber\m@ne % Stepping correction. 
+% (Must come after closing previous paragraph.)
+% Calculate offset: 
+  \global\advance\c@ET@array\@ne 
+% Saving/calling width of table (`longtable's algorithm). 
+% Test if there is \@flushglue on the left (center or flushleft): 
+  \edef\@EN@tempa{\the\@flushglue}% 
+% ... v1.3: fool this for "$$". 
+  \in@{$$}{#1\@nil}% \in@{#1}{#2} searches #1 in #2#1 ... 
+  \edef\@EN@tempb{\the\ifin@\@flushglue\else\leftskip\fi}% 
+  \ifx\@EN@tempa\@EN@tempb 
+% Assume \@ET@offset is 0pt else here. 
+    \@ET@offset\linewidth 
+    \advance\@ET@offset-% 
+      \@ifundefined\@ET@arraywidth@csn % Shortened for v1.3. 
+        {\linewidth\G@refundefinedtrue 
+         \PackageWarningNoLine{edtab}{^^JLine numbers at 
+           \@ET@currenvir\space need \jobname.aux}}% 
+        {\csname\@ET@arraywidth@csn\endcsname}% 
+% Test if \@flushglue on the right (center): 
+% ... v1.3: fool it again. Repeat \in@ in case ... 
+    \in@{$$}{#1\@nil}%
+    \edef\@EN@tempb{\the\ifin@\@flushglue\else\rightskip\fi}% 
+    \ifx\@EN@tempa\@EN@tempb \divide\@ET@offset\tw@ \fi 
+  \fi 
+  \advance\@ET@offset\@totalleftmargin 
+  \advance\@ET@offset\ETextraoffset % Offset ready. 
+  \setbox\@tempboxa\hbox\bgroup 
+% v1.3: `alignat' complains later when this is \vbox instead. 
+%    \vbox\bgroup % Tried in vain. 
+    \ifx\@ET@mode\@empty\else $\fi 
+    \csname#2\endcsname 
+}{% 
+    \csname end\@ET@currenvir \endcsname 
+    \ifx\@ET@mode\@empty\else $\fi 
+  \egroup 
+  \@ET@step@linenumber % Stepping correction. 
+  \if@filesw
+    \immediate\write\@auxout{%
+      \gdef\expandafter\noexpand
+        \csname\@ET@arraywidth@csn\endcsname
+          {\the\wd\@tempboxa}}%
+%% TODO: warning if changed!? 
+  \fi
+% No automatic line number at array line: 
+  \nolinenumbers 
+  \@ET@mode\ensuremath{\vcenter{\box\@tempboxa}}\@ET@mode % v1.3. 
+  \@ET@execute@outerhook
+  \ifhmode \@centercr\relax \fi 
+% \par must be executed for proper restart of printing line numbers 
+% (think so). 
+  \@endpetrue % Outside \@flushglue environment, avoid indent ahead. 
+%% TODO: slightly change for math mode around? Or give an error 
+%%       in math mode. 
+} 
+%% TODO: make \edtable \outer!? 
+\def\@ET@normal@startline{%
+  \@ET@step@linenumber 
+  \llap{\@ET@makeLineNumber \hskip\@ET@offset}% 
+} 
+\newdimen\@ET@offset 
+\newdimen\ETextraoffset 
+%% TODO: export to lineno.sty!? 
+\newcount\c@ET@array 
+\def\@ET@arraywidth@csn{ET@a@\romannumeral\c@ET@array}
+% 
+%% TODO: .dtx 
+\endinput 
+
+%% VERSION HISTORY: 
+v0.22 2003/01/13  First version, named `edtab02.sty', sent around, 
+                  together with ednotes.sty. 
+v0.23 2003/01/22  Added version history. 
+v0.24 2003/01/27  Copyright notice. 
+%%% v0.3  2003/03/03  Requires linenox0.sty. %% RETREATED 
+%% TODO: reconsider,  see `lineno[x].sty'. 
+v0.25 2003/03/05  Added <ednotes.sty@web.de>. 
+v0.26 2003/03/23  Added \@ET@startlinewith to wizard command list; 
+                  moved redefinition \LT@get@widths from option code 
+                  into \@ET@longtable so this really happens in 
+                  line number mode only; moved \let\@ET@@halign\halign 
+                  from \@ET@startlinewith to \AtBeginDocument. 
+v0.27 2003/06/02  Added \ifvmode \noindent \fi to `edtable' definition; 
+      2003/06/10  added `lemma cannot run' to instructions. 
+v0.28 2003/10/31  \@ET@cr@attach: moved \@ET@execu..., added \nobreak. 
+                  Added \@ET@ampnotes and documentation: now working 
+                  across entries. 
+v1.0  2004/05/13  `ednotes.sty' etc., updated copyright. Renamed as 
+                  `edtable.sty' for TUGboat article. 
+                  \RequirePackage{lineno}, changed doc. accordingly. 
+                  Removed `may be released under different name'. 
+v1.10 2004/07/27  Looking for `longtabl.sty' for my Atari! 
+      2004/08/22  Added warning (screen/documentation) concerning 
+                  ltabptch.sty. 
+      2004/08/23  Added suggestion of option `nolongtablepatch'; 
+                  LPPL v1.3. 
+v1.2  2004/08/31  Rearranged preamble concerning maintenance, 
+                  removed `preliminary release'. 
+      2004/10/06  \newif -> \let...; option `nolongtablepatch'; 
+                  changed documentation accordingly and for 
+                  loading edtable.sty by lineno/ednotes option; 
+                  \let\@ET@step@linenumber\stepLineNumber; use 
+                  \ifLineNumbers. 
+      2004/10/07  Needed version numbers. 
+      2004/10/08  ltabptch warning -> error! 
+      2004/10/11  Disabled \RequirePackage{lineno}[...]; undid 
+                  the `longtabl.sty' thing from 2004/07/27. 
+      2004/10/12  latex/3730. 
+v1.2a 2004/11/07  LPPL v1.3a. 
+v1.2b 2005/01/10  Contact via http. 
+v1.3b 2005/03/04  Support for environments like `array' 
+                  environment. The description of `edtable' was 
+                  wrong in this respect! 
+v1.3  2005/03/07  Adaptations in documentation, and extended usage 
+                  instructions very much, correcting some 
+                  errors as well. Acknowledgement to M. B. 
+v1.3a 2005/03/09  Corrected numbering in `usage'. 
+v1.3c 2005/03/15  \@centercr\relax, TODO on math mode. 
+      2005/04/09  `editory' -> `editorial'. 

@@ -1,0 +1,104 @@
+%%
+%% This is file `totalcount.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% totalcount.dtx  (with options: `package')
+%% 
+%% Copyright (C) 1994-2013 Axel Sommerfeldt (axel.sommerfeldt@f-m.fm)
+%% 
+%% http://sourceforge.net/projects/latex-caption/
+%% 
+%% --------------------------------------------------------------------------
+%% 
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2003/12/01 or later.
+%% 
+%% This work has the LPPL maintenance status "maintained".
+%% 
+%% This Current Maintainer of this work is Axel Sommerfeldt.
+%% 
+%% This work consists of the files
+%%   CHANGELOG, README, SUMMARY, caption.ins,
+%%   caption.dtx, caption2.dtx, caption3.dtx,
+%%   bicaption.dtx, ltcaption.dtx, subcaption.dtx,
+%%   newfloat.dtx, and totalcount.dtx
+%% the derived files
+%%   caption.sty, caption2.sty, caption3.sty,
+%%   bicaption.sty, ltcaption.sty, subcaption.sty,
+%%   newfloat.sty, and totalcount.sty
+%% and the user manuals
+%%   caption-deu.tex, caption-eng.tex, and caption-rus.tex.
+%% 
+\NeedsTeXFormat{LaTeX2e}[1994/12/01]
+\def\caption@tempa$Id: #1 #2 #3-#4-#5 #6${%
+  \def\caption@tempa{#3/#4/#5 }\def\caption@tempb{#2 }}
+\caption@tempa $Id: totalcount.sty 92 2013-05-12 09:06:59Z sommerfeldt $
+\ProvidesPackage{totalcount}[\caption@tempa v1.0-\caption@tempb Total values of counters (AR)]
+\newcommand*\DeclareTotalCounter[1]{%
+  \newcounter{totalcount@#1}%
+  \@namedef{total#1s}{\nfss@text{\reset@font\bfseries ??}}%
+  \@namedef{total#1es}{\@nameuse{total#1s}}%
+  \expandafter\newif\csname iftotal#1s\endcsname
+  \@namedef{iftotal#1es}{\@nameuse{iftotal#1s}}%
+  \AtBeginDocument{\@ifundefined{c@#1}%
+    {\PackageError{totalcount}{Undefined counter `#1'}\@ehc}%
+    {\@cons\totalcount@counters{{#1}}}}}
+\@onlypreamble\DeclareTotalCounter
+\let\totalcount@counters\@empty
+\newcommand*\totalcount@xspace{}
+\DeclareOption{xspace}{\renewcommand*\totalcount@xspace{\xspace}}
+\DeclareOption*{\expandafter\DeclareTotalCounter\expandafter{\CurrentOption}}
+\ProcessOptions\relax
+\ifx\totalcount@xspace\@empty\else
+  \RequirePackage{xspace}
+\fi
+\newcommand*\totalcount@addtocounter[1]{%
+  \@ifundefined{c@totalcount@#1}{}{%
+    \addtocounter{totalcount@#1}{\value{#1}}}}
+\let\totalcount@stpelt@ORI\@stpelt
+\renewcommand*\@stpelt[1]{%
+  \totalcount@addtocounter{#1}%
+  \totalcount@stpelt@ORI{#1}}
+\newcommand*\totalcount@set[2]{%
+  \@ifundefined{c@totalcount@#1}%
+    {}%
+    {\global\@namedef{total#1s}{#2\totalcount@xspace}%
+     \ifnum#2=0\relax \else
+       \global\@nameuse{total#1strue}%
+     \fi}}
+\AtBeginDocument{\AtEndDocument{%
+  \begingroup
+    \@tempswafalse
+    \if@filesw
+      \immediate\write\@mainaux{%
+        \string\providecommand\string\totalcount@set[2]{}}%
+    \fi
+    \def\@elt#1{%
+      \totalcount@addtocounter{#1}%
+      \edef\totalcount@tempa{\the\value{totalcount@#1}}%
+      \expandafter\let\expandafter\totalcount@tempb\csname total#1s\endcsname
+      \@expandtwoargs\totalcount@set{#1}{\totalcount@tempa}%
+      \expandafter\ifx\csname total#1s\endcsname\totalcount@tempb \else
+        \@tempswatrue
+      \fi
+      \if@filesw
+        \immediate\write\@mainaux{%
+          \string\totalcount@set{#1}{\totalcount@tempa}}%
+      \fi}%
+    \totalcount@counters
+    \if@tempswa
+      \PackageWarningNoLine{totalcount}{%
+        Total counter(s) have changed.\MessageBreak
+        Rerun to get them right}%
+    \fi
+  \endgroup}}%
+\endinput
+%%
+%% End of file `totalcount.sty'.

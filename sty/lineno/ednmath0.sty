@@ -1,0 +1,202 @@
+%% Macro package `ednmath0.sty' for LaTeX2e, 
+%% copyright (C) 2004 Uwe L\"uck, 
+%% http://www.contact-ednotes.sty.de.vu 
+%% --author-maintained; 
+%% math support for `lineno.sty' and `ednotes.sty'. 
+%% 
+\def\fileversion{v0.2b} \def\filedate{2005/01/10}
+%% This program can be redistributed and/or modified under the 
+%% terms of the LaTeX Project Public License distributed from 
+%% CTAN archives in directory macros/latex/base/lppl.txt; either
+%% version 1.3a of the License, or any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% There is NO WARRANTY. 
+%% This code is very EXPERIMENTAL! 
+%%
+%% Please report bugs, problems, and suggestions via 
+%% 
+%%   http://www.contact-ednotes.sty@web.de 
+% 
+%% * MAIN FEATURE * 
+% 
+% lineno.sty's \linelabel and ednotes.sty's commands are enabled 
+% to work in math mode if it's "entered in outer mode" 
+% (including `displaymath' and `equation' environments). 
+% (lineno.sty is the package by Stephan Boettcher.) 
+% They will even work in tabular environments that are adjusted 
+% to notes by package `edtable.sty'. 
+% 
+% CAVEATS: 
+% -- Does not work yet in environments like LaTeX's 
+% `eqnarray'. (This could probably repaired along the lines 
+% of Edtable.sty--we're short of time and will try later.) 
+% -- Useful error messages when (i) math mode is entered from 
+% inner mode or when (ii) a math display gets not line number 
+% are missing at present. 
+% 
+%% * USAGE: *
+% 
+% * Most simple: * 
+% --If you are working with ednotes and want to use its 
+% commands in math mode, load ednotes.sty--version 0.8 
+% onwards--with its package option `mathnotes'. 
+% --If you don't work with ednotes, only with lineno, you 
+% get the main feature of making \linelabel work in math mode 
+% by loading lineno.sty--version 4.1 onwards--with its 
+% package option `mathrefs'. 
+% 
+% * Switch off and on: * 
+% To reduce danger resulting from missing error messages 
+% ("caveat" above), you may switch these new math facilities 
+% off by \NoNotesToMath where you don't expect to need them. 
+% You may switch them on again by \NotesToMath where you want 
+% to use them, being aware of the danger. Both commands work 
+% locally, so you can replace one of them by enclosing it in 
+% a group. E.g., even, after \NoNotesToMath you can use an 
+% environment as follows: 
+%   \begin{NotesToMath}
+%     <text> 
+%   \end{NotesToMath} 
+% (I am not quite sure that this is useful.)
+% 
+% * Customize ellipsis: * 
+% ednotes' \lemmaellipsis is changed to expand to 
+% \mathlemmaellipsis when entering math, and this is preset 
+% to be LaTeX's \mathellipsis. (This is three dots as 
+% \mathinner.) You can change this by redefining 
+% \mathlemmaellipsis, e.g.: 
+%   \renewcommand{\mathlemmaellipsis}{\cdots}
+% If you need \cdots as the ellipsis at a single place only, 
+% you may, of course, use the `<...>' option of \<, e.g.: 
+%   $ x = \Anote{a\<<\cdots>bcd\>e}{Indeed?} - y $
+% 
+% * Customize note mode: *
+% For variant readings, you may want that the note is 
+% usually set in math mode--so you may want that you 
+% needn't type the dollar signs in the note text. 
+% Note that you can do this by customizing \notefmt, 
+% and you can do this by customizing \Anotefmt (e.g.) 
+% to have this feature for \Anote only. 
+% 
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{ednmath0}[\filedate\space\fileversion\space 
+  math support for lineno/ednotes (ul)] 
+% 
+%% User commands: 
+\def\NotesToMath{\let\@LN@mathhook\@LN@labelinmath
+  \@bsphack \@esphack 
+% For \begin{NotesToMath}
+} 
+\def\NoNotesToMath{\@bsphack
+  \def\@LN@mathhook{\@parmoderr\@gobble}% 
+  \@esphack 
+} 
+\def\endNotesToMath{\@bsphack\@Esphack}
+\let\endNoNotesToMath\endNotesToMath 
+% 
+%% Core code for lineno.sty: 
+\@ifundefined{@LN@postlabel}{% 
+  \PackageError{ednmath0}{% 
+    Bad lineno.sty version% 
+  }{% 
+    lineno.sty from 2004/08/16 or later 
+    must be loaded earlier.% 
+  }%
+}{% 
+  \def\@LN@labelinmath#1{% 
+    \ifmmode 
+      \@LN@postlabel{#1}% 
+    \else 
+      \@parmoderr 
+    \fi 
+  }
+} 
+% 
+%% Core code for ednotes.sty: 
+\@ifundefined{@EN@note}{% 
+% v0.01 sent a warning in this case. Considered superfluous now. 
+}{% 
+  \def\@EN@themathlemmatag{%
+    \ifmmode 
+      \toks@\expandafter{\@EN@lemmatag}% 
+      \edef\@EN@lemmatag{%
+        $% 
+          \def\noexpand\lemmaellipsis{% 
+            \noexpand\mathlemmaellipsis}% 
+          \the\toks@ 
+        $% 
+      }% 
+%       \expandafter \def \expandafter \@EN@lemmatag 
+%         \expandafter {\expandafter $\expandafter 
+%         \def \expandafter \lemmaellipsis \expandafter {% 
+%           \expandafter \mathlemmaellipsis \expandafter }% 
+%         \@EN@lemmatag $}% 
+    \fi 
+  } 
+% To be sure, \lemmaellipsis doesn't need to be changed when 
+% ednotes `\<...\>' feature is not used. Though I prefer to 
+% use one hook only in ednotes for both situations, with and 
+% without `\<...\>'. 
+% 
+% The final \unskip in ednotes' \@EN@lemmatag would undo a final 
+% \quad. That's OK: outside math the same happens. 
+% In v0.01, \NoNotesToMath undid ednotes changes for math mode. 
+% However, re-appearence of \linelabel error messages suffices. 
+% 
+% Now add lemma switch to the left of \[No]NotesToMath: 
+  \toks@\expandafter{\NotesToMath}
+  \edef\NotesToMath{% 
+    \let \noexpand\@EN@mathlemmatag \noexpand\@EN@themathlemmatag 
+    \the\toks@
+  }
+%  \typeout{\string\NotesToMath: \meaning\NotesToMath}
+  \toks@\expandafter{\NoNotesToMath}
+  \edef\NoNotesToMath{% 
+    \let \noexpand\@EN@mathlemmatag \relax 
+    \the\toks@
+  }
+%  \typeout{\string\NoNotesToMath: \meaning\NoNotesToMath}
+} 
+% We need no extra device for a choice for users whether the *note* 
+% should be set in math mode or in horizontal mode by default 
+% (which might depend on the kind ["layer"] of notes). 
+% This can be done already by customization of ednotes' \notefmt. 
+% However, we might change ednotes' default \notefmt to default 
+%   \renewcommand*{\notefmt}[1]{$#1$}
+% 
+\let\mathlemmaellipsis\mathellipsis 
+%% TODO: Since when has LaTeX provided \mathellipsis? 
+%% -> \Needs... 
+% 
+% Default: 
+\NotesToMath
+% 
+\endinput 
+
+%% TODO: Without \linenumberdisplaymath, in displaymath, 
+%% an error should be shown. Use, e.g., that in a displaymath 
+%% \ifinner is false. 
+%% TODO: E.g., by changing \everymath, perhaps can be warned 
+%% that the math group is in a box already, so the vertical 
+%% items will get lost. 
+%% TODO: Adjust `eqnarray' (in Edtable?) as well. 
+
+%% VERSION HISTORY: 
+v0.01 2004/08/16  First version, sent to Christian. 
+v0.02 2004/08/16  Considerably simplified for ednotes. 
+      2004/08/19  Added ellipsis stuff, documentation, and 
+                  instructions. Uncapitalized package names. 
+                  Added \end[No]NotesToMath. 
+      2004/08/20  Added \@bsphack and \@esphack; corrected 
+                  ednotes extension (too much deleted, completely 
+                  wrong), introducing \@EN@themathlemmatag. 
+v0.02b .../08/31  Rearranged preamble concerning maintenance. 
+v0.1  2004/09/20  Removed mentions of `linenox0.sty'. 
+v0.2  2004/10/07  Removed another mention of `linenox0.sty'; 
+                  Instructions: `lineno' or `ednotes.sty' option. 
+v0.2a 2004/11/07  LPPL v1.3a. 
+v0.2b 2005/01/10  Contact via http. 
+
+
