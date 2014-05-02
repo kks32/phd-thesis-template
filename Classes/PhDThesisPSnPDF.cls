@@ -178,6 +178,7 @@ supported!}
 \if@print
     % For Print version
     \hypersetup{
+      backref=page,
       final=true,
       plainpages=false, 
       pdfstartview=FitV,
@@ -214,7 +215,8 @@ supported!}
 \else
     % For PDF Online version
     \hypersetup{
-      final=true
+      backref=page,
+      final=true,
       plainpages=false,
       pdfstartview=FitV, 
       pdftoolbar=true, 
@@ -245,13 +247,14 @@ supported!}
     \hypersetup{pdfpagelayout=OneColumn}
 \fi
 
-
+% ****************************** Draft Mode ************************************
 \ifPHD@draft
-\usepackage[switch,pagewise,mathlines]{lineno}
+\RequirePackage[switch,pagewise,mathlines]{lineno}
 \renewcommand{\frontmatter}{\nolinenumbers}
 \renewcommand{\mainmatter}{\linenumbers}
 \renewcommand{\backmatter}{\linenumbers}
 
+\RequirePackage[first,bottomafter,timestamp,light]{draftcopy}
 \fi
 
 % ******************************************************************************
