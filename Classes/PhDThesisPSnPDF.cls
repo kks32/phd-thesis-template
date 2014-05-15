@@ -178,7 +178,6 @@ supported!}
 \if@print
     % For Print version
     \hypersetup{
-      backref=page,
       final=true,
       plainpages=false, 
       pdfstartview=FitV,
@@ -215,7 +214,6 @@ supported!}
 \else
     % For PDF Online version
     \hypersetup{
-      backref=page,
       final=true,
       plainpages=false,
       pdfstartview=FitV, 
