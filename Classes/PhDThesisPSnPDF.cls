@@ -755,12 +755,6 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 \fi
 }
 
-
-% ******************************** Line Spacing ********************************
-% Set spacing as 1.5 line spacing for the PhD Thesis
-\onehalfspace
-
-
 % ******************** To compute empty space in title page ********************
 % Boxes below are used to space differt contents on the title page
 \newcommand{\computeTitlePageSpacing}{
