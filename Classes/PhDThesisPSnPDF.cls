@@ -295,6 +295,8 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 %******************************* Print / Online ********************************
 % Defines a print / online version to define page-layout and hyperrefering 
 
+% Moved below other usepackage definitions to fix PDFLaTeX footnote warning
+% Based on the suggestion by John Plaice
 \ifsetDVI
 \special{papersize=\the\paperwidth,\the\paperheight}
 \RequirePackage[dvips,unicode=true]{hyperref}
