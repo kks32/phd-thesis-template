@@ -164,86 +164,6 @@ supported!}
   \fi
 \fi
 
-%* ***************************** Print / Online ********************************
-% Defines a print / online version to define page-layout and hyperrefering 
-\ifsetDVI
-\special{papersize=\the\paperwidth,\the\paperheight}
-\RequirePackage[dvips,unicode=true]{hyperref}
-\else
-\RequirePackage[unicode=true]{hyperref}
-\pdfpagewidth=\the\paperwidth
-\pdfpageheight=\the\paperheight
-\fi
-
-\if@print
-    % For Print version
-    \hypersetup{
-      final=true,
-      plainpages=false, 
-      pdfstartview=FitV,
-      pdftoolbar=true, 
-      pdfmenubar=true,
-      bookmarksopen=true,
-      bookmarksnumbered=true, 
-      breaklinks=true, 
-      linktocpage, 
-      colorlinks=true, 
-      linkcolor=black,
-      urlcolor=black, 
-      citecolor=black, 
-      anchorcolor=black
-    }
-    \ifPHD@custommargin
-        \setMarginfalse
-    \else
-        \ifsetDVI
-        % Odd and Even side Margin for binding and set viewmode for PDF
-	\RequirePackage[dvips,paper=\PHD@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
-        \else
-	\RequirePackage[pdftex,paper=\PHD@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
-        \fi
-	\setMargintrue
-    \fi
-
-    \if@twoside 
-        \hypersetup{pdfpagelayout=TwoPageRight}
-    \else 
-    	\hypersetup{pdfpagelayout=OneColumn}
-    \fi
-
-\else
-    % For PDF Online version
-    \hypersetup{
-      final=true,
-      plainpages=false,
-      pdfstartview=FitV, 
-      pdftoolbar=true, 
-      pdfmenubar=true,
-      bookmarksopen=true,
-      bookmarksnumbered=true,
-      breaklinks=true,
-      linktocpage, 
-      colorlinks=true, 
-      linkcolor=blue, 
-      urlcolor=blue,
-      citecolor=blue, 
-      anchorcolor=green
-    }
-    
-    \ifPHD@custommargin
-        \setMarginfalse
-    \else
-	% No Margin staggering on Odd and Even side 
-        \ifsetDVI
-	\RequirePackage[dvips,paper=\PHD@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75]{geometry} 
-        \else
-	\RequirePackage[pdftex,paper=\PHD@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75]{geometry} 
-        \fi
-        \setMargintrue
-    \fi
-
-    \hypersetup{pdfpagelayout=OneColumn}
-\fi
 
 
 % ******************************************************************************
@@ -334,6 +254,7 @@ and define the natbib package or biblatex package with required style in the Pre
 \fi
 
 
+
 % *********************** To copy ligatures and Fonts **************************
 \RequirePackage{textcomp}
 
@@ -371,6 +292,89 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 \pdfgentounicode=1
 
 
+%******************************* Print / Online ********************************
+% Defines a print / online version to define page-layout and hyperrefering 
+
+\ifsetDVI
+\special{papersize=\the\paperwidth,\the\paperheight}
+\RequirePackage[dvips,unicode=true]{hyperref}
+\else
+\RequirePackage[unicode=true]{hyperref}
+\pdfpagewidth=\the\paperwidth
+\pdfpageheight=\the\paperheight
+\fi
+
+\if@print
+    % For Print version
+    \hypersetup{
+      final=true,
+      plainpages=false, 
+      pdfstartview=FitV,
+      pdftoolbar=true, 
+      pdfmenubar=true,
+      bookmarksopen=true,
+      bookmarksnumbered=true, 
+      breaklinks=true, 
+      linktocpage, 
+      colorlinks=true, 
+      linkcolor=black,
+      urlcolor=black, 
+      citecolor=black, 
+      anchorcolor=black
+    }
+    \ifPHD@custommargin
+        \setMarginfalse
+    \else
+        \ifsetDVI
+        % Odd and Even side Margin for binding and set viewmode for PDF
+	\RequirePackage[dvips,paper=\PHD@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
+        \else
+	\RequirePackage[pdftex,paper=\PHD@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
+        \fi
+	\setMargintrue
+    \fi
+
+    \if@twoside 
+        \hypersetup{pdfpagelayout=TwoPageRight}
+    \else 
+    	\hypersetup{pdfpagelayout=OneColumn}
+    \fi
+
+\else
+    % For PDF Online version
+    \hypersetup{
+      final=true,
+      plainpages=false,
+      pdfstartview=FitV, 
+      pdftoolbar=true, 
+      pdfmenubar=true,
+      bookmarksopen=true,
+      bookmarksnumbered=true,
+      breaklinks=true,
+      linktocpage, 
+      colorlinks=true, 
+      linkcolor=blue, 
+      urlcolor=blue,
+      citecolor=blue, 
+      anchorcolor=green
+    }
+    
+    \ifPHD@custommargin
+        \setMarginfalse
+    \else
+	% No Margin staggering on Odd and Even side 
+        \ifsetDVI
+	\RequirePackage[dvips,paper=\PHD@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75]{geometry} 
+        \else
+	\RequirePackage[pdftex,paper=\PHD@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75]{geometry} 
+        \fi
+        \setMargintrue
+    \fi
+
+    \hypersetup{pdfpagelayout=OneColumn}
+\fi
+
+
 % ************************ URL Package and Definition **************************
 \RequirePackage{url}
 % Redefining urlstyle to use smaller fontsize in References with URLs
@@ -385,6 +389,7 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 \ifsetDVI
 \RequirePackage{breakurl} % to split the url over multiple lines
 \fi
+
 
 % ******************************************************************************
 % **************************** Pre-defined Settings ****************************

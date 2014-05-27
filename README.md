@@ -517,6 +517,8 @@ If you are generating a separate abstract for your thesis submission, ignore thi
 
 ## Acknowlegments
 
+*   John Plaice - Bug fixes
+
 *   Alex Ridge - original idea, code concepts & testing
 
 *   Steven Kaneti - code concepts
