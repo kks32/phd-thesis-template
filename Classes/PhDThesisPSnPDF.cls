@@ -763,7 +763,9 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 }
 
 % ******************** To compute empty space in title page ********************
-% Boxes below are used to space differt contents on the title page
+% Boxes below are used to space different contents on the title page
+% Based on https://github.com/cambridge/thesis
+
 \newcommand{\computeTitlePageSpacing}{
 
 
