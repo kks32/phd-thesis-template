@@ -762,6 +762,16 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 \fi
 }
 
+
+% ******************************** Line Spacing ********************************
+% Set spacing as 1.5 line spacing for the PhD Thesis
+% In practice, fortunately, nobody knows really what “one-and-a-half spaced
+% type” means exactly (in terms of millimetres baseline distance). The following 
+% LaTeX setting has routinely been considered perfectly acceptable: 
+
+\renewcommand\baselinestretch{1.2}
+
+
 % ******************** To compute empty space in title page ********************
 % Boxes below are used to space different contents on the title page
 % Based on https://github.com/cambridge/thesis
