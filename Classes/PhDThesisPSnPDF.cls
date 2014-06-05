@@ -169,17 +169,6 @@ supported!}
 % ******************************************************************************
 % ******************************** Packages ************************************
 % ******************************************************************************
-
-% ****************************** Draft Mode ************************************
-\ifPHD@draft
-\RequirePackage[switch,pagewise,mathlines]{lineno}
-\renewcommand{\frontmatter}{\nolinenumbers}
-\renewcommand{\mainmatter}{\linenumbers}
-\renewcommand{\backmatter}{\linenumbers}
-
-\RequirePackage[first,bottomafter,timestamp,light]{draftcopy}
-\fi
-
 % ************************** Layout and Formatting *****************************
 \renewcommand\pdfshellescape{1}
 \RequirePackage{lscape}   % Supports Landscape Layout
@@ -211,6 +200,66 @@ supported!}
 	\DeclareGraphicsExtensions{.eps, .ps}
 	\graphicspath{{Figs/Vector/}{Figs/}}
 \fi
+
+
+
+% ******************************* Time Stamp ***********************************
+% Compute the timestamp based on an idea of
+% Tim Piessens \texttt{<Tim.Piessens@esat.kuleuven.ac.be>}.
+
+\newcount\PHD@hour \newcount\PHD@minute
+\PHD@hour=\time
+\divide \PHD@hour by 60
+\PHD@minute=\time
+\count@=\PHD@hour
+\multiply \count@ by -60
+\advance \PHD@minute by \count@
+\newcommand{\PHD@daytime}{
+  \today\space -- \space %
+  \ifnum\PHD@hour=0 00\else\ifnum\PHD@hour<10 0\fi%
+  \number\PHD@hour\fi:\ifnum\PHD@minute<10 0\fi\number\PHD@minute
+}
+
+% ******************************* Draft Mode ***********************************
+\ifPHD@draft
+\RequirePackage[switch,pagewise,mathlines]{lineno}
+\renewcommand{\frontmatter}{\nolinenumbers}
+\renewcommand{\mainmatter}{\linenumbers}
+\renewcommand{\backmatter}{\linenumbers}
+
+% Creates a Watermark Draft at the specified location.
+% The settings can be tweaked in the preamble
+
+\RequirePackage{everypage}
+% Draft text
+\newcommand\drafttext{Draft}
+\newcommand\SetDraftText[1]{%
+  \renewcommand\drafttext{#1}}
+% Draft Version
+\newcommand\draftVersion{Version 1.0}
+\newcommand\SetDraftVersion[1]{%
+  \renewcommand\draftVersion[#1]}
+
+\newcommand\DraftContent{%
+\hspace*{\fill}
+\Large
+\textcolor[gray]{0.9}{%
+% \hfill {\drafttext} \hfill {\PHD@daytime}  \hfill {\draftVersion}  \hfill
+\hspace{\stretch{1}} {\drafttext} \hspace{\stretch{1}} {\PHD@daytime} \hspace{\stretch{1}} {\draftVersion} \hspace{\stretch{1}}
+\hspace*{\fill}}}
+
+%\AddEverypageHook{%
+%\begin{tikzpicture}[overlay, remember picture]
+%\path (current page.north east) ++(-1,-1) node[below left] {\DraftContent};
+%\end{tikzpicture}
+%}
+
+\RequirePackage[color=gray, scale=1.5, placement=top]{background}
+\backgroundsetup{contents=\DraftContent, vshift=-1em}
+
+\fi
+
+
 
 
 % ******************************* Bibliography *********************************
@@ -438,6 +487,7 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 \fancyhead[LE]{ {\bfseries\thepage} \hspace{0.25em} | \hspace{0.25em} \nouppercase \leftmark}
 
 
+
 \else
 \ifPHD@pageStyleII
 % Style 2: Sets Page Number at the Bottom with Chapter/Section Name on LO/RE
@@ -452,12 +502,14 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 \else
 % Default Style: Sets Page Number at the Top (LE/RO) with Chapter/Section Name
 % on LO/RE and an empty footer
+
 \renewcommand{\chaptermark}[1]{\markboth {##1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection\ ##1}}
 \fancyhf{}
 \fancyhead[LO]{\nouppercase \rightmark}
 \fancyhead[LE,RO]{\bfseries\thepage}
 \fancyhead[RE]{\nouppercase \leftmark}
+
 \fi
 
 \fi
