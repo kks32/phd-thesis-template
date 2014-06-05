@@ -574,7 +574,7 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 % construction of the title page and other preamble.
 
 % The year and term the degree will be officially conferred
-\newcommand{\@degreedate}{}
+\newcommand{\@degreedate}{\the\year}
 \newcommand{\degreedate}[1]{\renewcommand{\@degreedate}{#1}}
 
 % The full (unabbreviated) name of the degree
