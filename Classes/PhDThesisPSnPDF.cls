@@ -32,7 +32,7 @@
 \DeclareOption{index}{\PHD@indextrue}
 
 % ******************************* Font Option **********************************
-\newif\ifsetFont\setFontfalse                 % Font is not set 
+\newif\ifsetFont\setFontfalse                 % Font is not set
 
 \newif\ifPHD@times\PHD@timesfalse             % Times with Math Support
 \DeclareOption{times}{\PHD@timestrue}
@@ -77,7 +77,7 @@
 
 \newif\ifPHD@abstract\PHD@abstractfalse % Enable Separate Abstract
 \DeclareOption{abstract}{
-  \PHD@abstracttrue     
+  \PHD@abstracttrue
   \ClassWarning{PhDThesisPSnPDF}{You have chosen an option that generates only
 the Title page and an abstract with PhD title and author name, if this was
 intentional, ignore this warning. Congratulations on submitting your thesis!!
@@ -91,7 +91,7 @@ recompile. Good luck with your writing!}
 
 \newif\ifPHD@chapter\PHD@chapterfalse % Enable Separate Abstract
 \DeclareOption{chapter}{
-  \PHD@chaptertrue     
+  \PHD@chaptertrue
   \ClassWarning{PhDThesisPSnPDF}{You have chosen an option that generates only selected chapters with references, if this was intentional, ignore this warning. If not, please remove the option `chapter' from the document class and recompile. Good luck with your writing!}
 }
 
@@ -130,18 +130,21 @@ PhD thesis guidelines recommend using A4 or A5paper}
 \DeclareOption{twoside}{\PassOptionsToClass{\CurrentOption}{book}}%
 
 % Draft Mode
-\DeclareOption{draft}{\PassOptionsToClass{\CurrentOption}{book}\PHD@drafttrue}%
+\DeclareOption{draft}{\PassOptionsToClass{\CurrentOption}{book}}%
+\DeclareOption{draftmode}{\PassOptionsToClass{draft}{book}\PHD@drafttrue}%
 
 % Line Numbers
-\DeclareOption{lineno}{\PHD@drafttrue}
-\DeclareOption{nolineno}{\PHD@draftfalse}
+\newif\ifPHD@lineno\PHD@linenotrue
+\DeclareOption{lineno}{\PHD@linenotrue}
+\DeclareOption{nolineno}{\PHD@linenofalse}
+
 
 % Generates Warning for unknown options
 \DeclareOption*{
   \ClassWarning{PhDThesisPSnPDF}{Unknown or non-standard option
 '\CurrentOption'. I'll see if I can load it from the book class. If you get a
 warning unused global option(s): `\CurrentOption` then the option is not
-supported!} 
+supported!}
   \PassOptionsToClass{\CurrentOption}{book}
 }
 
@@ -187,10 +190,10 @@ supported!}
 \RequirePackage[title,titletoc]{appendix}
 
 % *************************** Graphics and Figures *****************************
-\RequirePackage[usenames, dvipsnames]{color} 
-\ifpdf 
+\RequirePackage[usenames, dvipsnames]{color}
+\ifpdf
         % Convert eps figures to pdf
-        \RequirePackage{epstopdf} 
+        \RequirePackage{epstopdf}
         \RequirePackage[pdftex]{graphicx}
 	\DeclareGraphicsExtensions{.png, .jpg, .pdf}
 	\pdfcompresslevel=9
@@ -214,48 +217,54 @@ supported!}
 \count@=\PHD@hour
 \multiply \count@ by -60
 \advance \PHD@minute by \count@
-\newcommand{\PHD@daytime}{
-  \today\space -- \space %
+\newcommand{\PHD@daytime}{%
+  \today\space--\space%
   \ifnum\PHD@hour=0 00\else\ifnum\PHD@hour<10 0\fi%
   \number\PHD@hour\fi:\ifnum\PHD@minute<10 0\fi\number\PHD@minute
 }
 
 % ******************************* Draft Mode ***********************************
-\ifPHD@draft
-\RequirePackage[switch,pagewise,mathlines]{lineno}
-\renewcommand{\frontmatter}{\nolinenumbers}
-\renewcommand{\mainmatter}{\linenumbers}
-\renewcommand{\backmatter}{\linenumbers}
-
 % Creates a Watermark Draft at the specified location.
 % The settings can be tweaked in the preamble
 
-\RequirePackage{everypage}
 % Draft text
 \newcommand\drafttext{Draft}
 \newcommand\SetDraftText[1]{%
   \renewcommand\drafttext{#1}}
 % Draft Version
-\newcommand\draftVersion{Version 1.0}
+\newcommand\draftVersion{v1.0}
 \newcommand\SetDraftVersion[1]{%
   \renewcommand\draftVersion[#1]}
-
+% Draft Content
 \newcommand\DraftContent{%
 \hspace*{\fill}
 \Large
-\textcolor[gray]{0.9}{%
-% \hfill {\drafttext} \hfill {\PHD@daytime}  \hfill {\draftVersion}  \hfill
-\hspace{\stretch{1}} {\drafttext} \hspace{\stretch{1}} {\PHD@daytime} \hspace{\stretch{1}} {\draftVersion} \hspace{\stretch{1}}
+\textcolor[gray]{0.75}{%
+{\drafttext}\space-\space{\draftVersion}\hspace{\stretch{1}}{\PHD@daytime}
 \hspace*{\fill}}}
 
-%\AddEverypageHook{%
-%\begin{tikzpicture}[overlay, remember picture]
-%\path (current page.north east) ++(-1,-1) node[below left] {\DraftContent};
-%\end{tikzpicture}
-%}
+% If Draft Mode is active
+\ifPHD@draft
 
-\RequirePackage[color=gray, scale=1.5, placement=top]{background}
-\backgroundsetup{contents=\DraftContent, vshift=-1em}
+\ifPHD@lineno
+\RequirePackage[switch,pagewise,mathlines]{lineno}
+\renewcommand{\frontmatter}{\nolinenumbers}
+\renewcommand{\mainmatter}{\linenumbers}
+\renewcommand{\backmatter}{\linenumbers}
+\fi
+
+
+
+\RequirePackage{everypage}
+\RequirePackage[absolute]{textpos}
+\AddEverypageHook{%
+% Text at the Bottom
+% \begin{textblock*}{\paperwidth}[0.,2.5](0\paperwidth,{\paperheight-{\voffset}})
+% Text at the top
+\begin{textblock*}{\paperwidth}[0.,2.5](0\paperwidth,{1in+\voffset-\topmargin})
+\DraftContent
+\end{textblock*}
+}
 
 \fi
 
@@ -342,7 +351,7 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 
 
 %******************************* Print / Online ********************************
-% Defines a print / online version to define page-layout and hyperrefering 
+% Defines a print / online version to define page-layout and hyperrefering
 
 % Moved below other usepackage definitions to fix PDFLaTeX footnote warning
 % Based on the suggestion by John Plaice
@@ -359,18 +368,18 @@ font in the preamble.tex file by specifying `customfont' in the class options}
     % For Print version
     \hypersetup{
       final=true,
-      plainpages=false, 
+      plainpages=false,
       pdfstartview=FitV,
-      pdftoolbar=true, 
+      pdftoolbar=true,
       pdfmenubar=true,
       bookmarksopen=true,
-      bookmarksnumbered=true, 
-      breaklinks=true, 
-      linktocpage, 
-      colorlinks=true, 
+      bookmarksnumbered=true,
+      breaklinks=true,
+      linktocpage,
+      colorlinks=true,
       linkcolor=black,
-      urlcolor=black, 
-      citecolor=black, 
+      urlcolor=black,
+      citecolor=black,
       anchorcolor=black
     }
     \ifPHD@custommargin
@@ -385,9 +394,9 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 	\setMargintrue
     \fi
 
-    \if@twoside 
+    \if@twoside
         \hypersetup{pdfpagelayout=TwoPageRight}
-    \else 
+    \else
     	\hypersetup{pdfpagelayout=OneColumn}
     \fi
 
@@ -396,28 +405,28 @@ font in the preamble.tex file by specifying `customfont' in the class options}
     \hypersetup{
       final=true,
       plainpages=false,
-      pdfstartview=FitV, 
-      pdftoolbar=true, 
+      pdfstartview=FitV,
+      pdftoolbar=true,
       pdfmenubar=true,
       bookmarksopen=true,
       bookmarksnumbered=true,
       breaklinks=true,
-      linktocpage, 
-      colorlinks=true, 
-      linkcolor=blue, 
+      linktocpage,
+      colorlinks=true,
+      linkcolor=blue,
       urlcolor=blue,
-      citecolor=blue, 
+      citecolor=blue,
       anchorcolor=green
     }
-    
+
     \ifPHD@custommargin
         \setMarginfalse
     \else
-	% No Margin staggering on Odd and Even side 
+	% No Margin staggering on Odd and Even side
         \ifsetDVI
-	\RequirePackage[dvips,paper=\PHD@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75]{geometry} 
+	\RequirePackage[dvips,paper=\PHD@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75]{geometry}
         \else
-	\RequirePackage[pdftex,paper=\PHD@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75]{geometry} 
+	\RequirePackage[pdftex,paper=\PHD@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75]{geometry}
         \fi
         \setMargintrue
     \fi
@@ -603,7 +612,7 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 \newcommand{\subject}[1]{\renewcommand{\@subject}{#1}}
 
 
-% These macros define an environment for front matter that is always 
+% These macros define an environment for front matter that is always
 % single column even in a double-column document.
 \newenvironment{alwayssingle}{%
        \@restonecolfalse\if@twocolumn\@restonecoltrue\onecolumn
@@ -652,7 +661,7 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 % Submission Text
 {\large \submissiontext \par}
 \vspace*{1ex}
-{\large \textit {\@degree} \par} 
+{\large \textit {\@degree} \par}
 
 
 \end{center}
@@ -684,7 +693,7 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 
 
 % ******************************* Declaration **********************************
-% The declaration environment puts a large, bold, centered 
+% The declaration environment puts a large, bold, centered
 % "Declaration" label at the top of the page.
 
 \newenvironment{declaration}{
@@ -702,7 +711,7 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 
 
 % ****************************** Acknowledgements ********************************
-% The acknowledgements environment puts a large, bold, centered 
+% The acknowledgements environment puts a large, bold, centered
 % "Acknowledgements" label at the top of the page.
 
 \newenvironment{acknowledgements}{
@@ -739,7 +748,7 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 \newcommand{\printnomencl}[1][]{
 \ifthenelse{\equal {#1}{}}
 {\printnomenclature}
-{\printnomenclature[#1]} 
+{\printnomenclature[#1]}
 \addcontentsline{toc}{chapter}{\nomname}
 }
 
@@ -808,7 +817,7 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 \else
 % Normal abstract in the thesis
 	\cleardoublepage
-	\setsinglecolumn 
+	\setsinglecolumn
 	\chapter*{\centering \Large Abstract}
 	\thispagestyle{empty}
 \fi
@@ -818,8 +827,8 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 % ******************************** Line Spacing ********************************
 % Set spacing as 1.5 line spacing for the PhD Thesis
 % In practice, fortunately, nobody knows really what “one-and-a-half spaced
-% type” means exactly (in terms of millimetres baseline distance). The following 
-% LaTeX setting has routinely been considered perfectly acceptable: 
+% type” means exactly (in terms of millimetres baseline distance). The following
+% LaTeX setting has routinely been considered perfectly acceptable:
 
 \renewcommand\baselinestretch{1.2}
 
