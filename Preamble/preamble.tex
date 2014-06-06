@@ -5,8 +5,7 @@
 % Set {innerside margin / outerside margin / topmargin / bottom margin}  and
 % other page dimensions
 
-\ifsetMargin
-\else
+\ifsetCustomMargin
     \RequirePackage[left=37mm,right=30mm,top=35mm,bottom=30mm]{geometry}
     \setFancyHdr % To apply fancy header after geometry package is loaded
 \fi

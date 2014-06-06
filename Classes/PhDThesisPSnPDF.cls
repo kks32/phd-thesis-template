@@ -67,7 +67,7 @@
 \DeclareOption{PageStyleII}{\PHD@pageStyleIItrue}
 
 % ***************************** Custom Margins  ********************************
-\newif\ifsetMargin\setMarginfalse % Margins are not set
+\newif\ifsetCustomMargin\setCustomMarginfalse % Margins are not set
 
 \newif\ifPHD@custommargin\PHD@custommarginfalse % Custom margin
 \DeclareOption{custommargin}{\PHD@custommargintrue}
@@ -429,7 +429,7 @@ font in the preamble.tex file by specifying `customfont' in the class options}
       anchorcolor=black
     }
     \ifPHD@custommargin
-        \setMarginfalse
+        \setCustomMargintrue
     \else
         \ifsetDVI
         % Odd and Even side Margin for binding and set viewmode for PDF
@@ -437,7 +437,7 @@ font in the preamble.tex file by specifying `customfont' in the class options}
         \else
 	\RequirePackage[pdftex,paper=\PHD@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
         \fi
-	\setMargintrue
+	\setCustomMarginfalse
     \fi
 
     \if@twoside
@@ -466,7 +466,7 @@ font in the preamble.tex file by specifying `customfont' in the class options}
     }
 
     \ifPHD@custommargin
-        \setMarginfalse
+        \setCustomMargintrue
     \else
 	% No Margin staggering on Odd and Even side
         \ifsetDVI
@@ -474,7 +474,7 @@ font in the preamble.tex file by specifying `customfont' in the class options}
         \else
 	\RequirePackage[pdftex,paper=\PHD@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75]{geometry}
         \fi
-        \setMargintrue
+        \setCustomMarginfalse
     \fi
 
     \hypersetup{pdfpagelayout=OneColumn}
@@ -580,7 +580,8 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 }
 
 % If Margin has been set (default margin print/online version)
-\ifsetMargin
+\ifsetCustomMargin
+\else
 \setFancyHdr % Apply fancy header settings otherwise apply it in preamble
 \fi
 
