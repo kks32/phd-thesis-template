@@ -67,10 +67,8 @@
 \DeclareOption{PageStyleII}{\PHD@pageStyleIItrue}
 
 % ***************************** Custom Margins  ********************************
-\newif\ifsetCustomMargin\setCustomMarginfalse % Margins are not set
-
-\newif\ifPHD@custommargin\PHD@custommarginfalse % Custom margin
-\DeclareOption{custommargin}{\PHD@custommargintrue}
+\newif\ifsetCustomMargin\setCustomMarginfalse % Set Custom Margin
+\DeclareOption{custommargin}{\setCustomMargintrue}
 
 % **************************** Separate Abstract  ******************************
 \newif \ifdefineAbstract\defineAbstractfalse %To enable Separate abstract
@@ -428,8 +426,8 @@ font in the preamble.tex file by specifying `customfont' in the class options}
       citecolor=black,
       anchorcolor=black
     }
-    \ifPHD@custommargin
-        \setCustomMargintrue
+    \ifsetCustomMargin
+    % Margin to be define in preamble using geometry package
     \else
         \ifsetDVI
         % Odd and Even side Margin for binding and set viewmode for PDF
@@ -437,7 +435,6 @@ font in the preamble.tex file by specifying `customfont' in the class options}
         \else
 	\RequirePackage[pdftex,paper=\PHD@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
         \fi
-	\setCustomMarginfalse
     \fi
 
     \if@twoside
@@ -465,8 +462,8 @@ font in the preamble.tex file by specifying `customfont' in the class options}
       anchorcolor=green
     }
 
-    \ifPHD@custommargin
-        \setCustomMargintrue
+    \ifsetCustomMargin
+    % Margin to be define in preamble using geometry package
     \else
 	% No Margin staggering on Odd and Even side
         \ifsetDVI
@@ -474,7 +471,6 @@ font in the preamble.tex file by specifying `customfont' in the class options}
         \else
 	\RequirePackage[pdftex,paper=\PHD@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75]{geometry}
         \fi
-        \setCustomMarginfalse
     \fi
 
     \hypersetup{pdfpagelayout=OneColumn}
@@ -542,7 +538,6 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 \fancyhead[LE]{ {\bfseries\thepage} \hspace{0.25em} | \hspace{0.25em} \nouppercase \leftmark}
 
 
-
 \else
 \ifPHD@pageStyleII
 % Style 2: Sets Page Number at the Bottom with Chapter/Section Name on LO/RE
@@ -557,18 +552,15 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 \else
 % Default Style: Sets Page Number at the Top (LE/RO) with Chapter/Section Name
 % on LO/RE and an empty footer
-
 \renewcommand{\chaptermark}[1]{\markboth {##1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection\ ##1}}
 \fancyhf{}
 \fancyhead[LO]{\nouppercase \rightmark}
 \fancyhead[LE,RO]{\bfseries\thepage}
 \fancyhead[RE]{\nouppercase \leftmark}
-
 \fi
 
 \fi
-
 }
 
 \setlength{\headheight}{14.5pt}
@@ -581,6 +573,10 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 
 % If Margin has been set (default margin print/online version)
 \ifsetCustomMargin
+\AtBeginDocument{
+\@ifpackageloaded{geometry}{true}{\ClassWarning{PhDThesisPSnPDF}{%
+  Custom margin is chosen, but geometry package is not loaded. Please load the
+  `geometry' package in the preamble.}}}
 \else
 \setFancyHdr % Apply fancy header settings otherwise apply it in preamble
 \fi
