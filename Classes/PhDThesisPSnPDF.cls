@@ -131,9 +131,9 @@ PhD thesis guidelines recommend using A4 or A5paper}
 
 % Draft Mode
 \DeclareOption{draft}{\PassOptionsToClass{\CurrentOption}{book} 
-\ClassWarning{PhDThesisPSnPDF}{Draft Mode is ON. Don't forget to turn it off for your final version.}}%
+\ClassWarning{PhDThesisPSnPDF}{Draft is ON. You can use `draftmode' instead, which adds watermark with timestamp and line numbering. Don't forget to turn `draft' off for your final version.}}%
 \DeclareOption{draftmode}{\PassOptionsToClass{draft}{book}\PHD@drafttrue 
-\ClassWarning{PhDThesisPSnPDF}{Draft Mode is ON. Don't forget to turn it off for your final version.}}%
+\ClassWarning{PhDThesisPSnPDF}{Draft Mode is ON. Don't forget to turn it off for your final version.}}% 
 
 % Line Numbers
 \newif\ifPHD@lineno\PHD@linenotrue
@@ -232,6 +232,8 @@ supported!}
 \newcommand\SetDraftVersion[1]{}
 % Initializing Draft Content
 \newcommand\SetDraftWMPosition[1]{}
+% Initializing Draft Gray Scale
+\newcommand\SetDraftGrayScale[1]{}
 
 
 % If Draft Mode is active
@@ -257,11 +259,16 @@ supported!}
 \newcommand\draftVersion{v1.0}
 \renewcommand\SetDraftVersion[1]{%
   \renewcommand\draftVersion{#1}}
+% Draft Gray Scale
+\newcommand\draftGrayScale{0.75}
+\renewcommand\SetDraftGrayScale[1]{%
+  \renewcommand\draftGrayScale{#1}}
+
 % Draft Content
 \newcommand\DraftContent{%
 \hspace*{\fill}
 \Large
-\textcolor[gray]{0.75}{%
+\textcolor[gray]{\draftGrayScale}{%
 {\drafttext}\space-\space{\draftVersion}\hspace{\stretch{1}}{\PHD@daytime}
 \hspace*{\fill}}}
 
@@ -285,7 +292,7 @@ supported!}
              {\ifthenelse{\equal{\draftposition}{top}}
                {\renewcommand\draftnodeanchor{1in+\voffset-\topmargin}} %Top
                {\ClassWarning{PDThesisPSnPDF}{Unrecognised draft position
-                 using default value of top}
+                   using default value of top}
                  \renewcommand\draftnodeanchor{1in+\voffset-\topmargin}}} %Top
 
   \AddEverypageHook{%
@@ -304,7 +311,7 @@ supported!}
 % Draft Content
 \renewcommand\SetDraftWMPosition[1]{\ClassWarning{PhDThesisPSnPDF}{DraftMode is inactive, to use SetDraftWMPosition include `draftmode' in the document class options.}}
 
-
+\renewcommand\SetDraftGrayScale[1]{\ClassWarning{PhDThesisPSnPDF}{DraftMode is inactive, to use SetDraftWMPosition include `draftmode' in the document class options.}}
 \fi
 
 
