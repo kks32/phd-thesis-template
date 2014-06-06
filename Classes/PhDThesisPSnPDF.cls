@@ -130,8 +130,10 @@ PhD thesis guidelines recommend using A4 or A5paper}
 \DeclareOption{twoside}{\PassOptionsToClass{\CurrentOption}{book}}%
 
 % Draft Mode
-\DeclareOption{draft}{\PassOptionsToClass{\CurrentOption}{book}}%
-\DeclareOption{draftmode}{\PassOptionsToClass{draft}{book}\PHD@drafttrue}%
+\DeclareOption{draft}{\PassOptionsToClass{\CurrentOption}{book} 
+\ClassWarning{PhDThesisPSnPDF}{Draft Mode is ON. Don't forget to turn it off for your final version.}}%
+\DeclareOption{draftmode}{\PassOptionsToClass{draft}{book}\PHD@drafttrue 
+\ClassWarning{PhDThesisPSnPDF}{Draft Mode is ON. Don't forget to turn it off for your final version.}}%
 
 % Line Numbers
 \newif\ifPHD@lineno\PHD@linenotrue
@@ -224,28 +226,18 @@ supported!}
 }
 
 % ******************************* Draft Mode ***********************************
-% Creates a Watermark Draft at the specified location.
-% The settings can be tweaked in the preamble
+% Initializing Draft Text
+\newcommand\SetDraftText[1]{}
+% Initializing Draft Version
+\newcommand\SetDraftVersion[1]{}
+% Initializing Draft Content
+\newcommand\SetDraftWMPosition[1]{}
 
-% Draft text
-\newcommand\drafttext{Draft}
-\newcommand\SetDraftText[1]{%
-  \renewcommand\drafttext{#1}}
-% Draft Version
-\newcommand\draftVersion{v1.0}
-\newcommand\SetDraftVersion[1]{%
-  \renewcommand\draftVersion[#1]}
-% Draft Content
-\newcommand\DraftContent{%
-\hspace*{\fill}
-\Large
-\textcolor[gray]{0.75}{%
-{\drafttext}\space-\space{\draftVersion}\hspace{\stretch{1}}{\PHD@daytime}
-\hspace*{\fill}}}
 
 % If Draft Mode is active
 \ifPHD@draft
 
+% Line numbering (can be switched off)
 \ifPHD@lineno
 \RequirePackage[switch,pagewise,mathlines]{lineno}
 \renewcommand{\frontmatter}{\nolinenumbers}
@@ -254,17 +246,64 @@ supported!}
 \fi
 
 
+% Creates a Watermark Draft at the specified location.
+% The settings can be tweaked in the preamble
 
+% Draft text
+\newcommand\drafttext{Draft}
+\renewcommand\SetDraftText[1]{%
+  \renewcommand\drafttext{#1}}
+% Draft Version
+\newcommand\draftVersion{v1.0}
+\renewcommand\SetDraftVersion[1]{%
+  \renewcommand\draftVersion{#1}}
+% Draft Content
+\newcommand\DraftContent{%
+\hspace*{\fill}
+\Large
+\textcolor[gray]{0.75}{%
+{\drafttext}\space-\space{\draftVersion}\hspace{\stretch{1}}{\PHD@daytime}
+\hspace*{\fill}}}
+
+% Adding watermark in draft mode with time stamp
 \RequirePackage{everypage}
 \RequirePackage[absolute]{textpos}
+% Default values for draft watermark
+\newcommand\draftposition{top}
+\newcommand\draftnodeanchor{1in+\voffset-\topmargin}
 \AddEverypageHook{%
-% Text at the Bottom
-% \begin{textblock*}{\paperwidth}[0.,2.5](0\paperwidth,{\paperheight-{\voffset}})
-% Text at the top
-\begin{textblock*}{\paperwidth}[0.,2.5](0\paperwidth,{1in+\voffset-\topmargin})
+\begin{textblock*}{\paperwidth}[0.,2.5](0\paperwidth,\draftnodeanchor)
 \DraftContent
 \end{textblock*}
 }
+
+% Conditional evaluation to position the draft water mark  (top / bottom)
+\renewcommand\SetDraftWMPosition[1]{%
+  \renewcommand\draftposition{#1}
+  \ifthenelse{\equal{\draftposition}{bottom}}
+             {\renewcommand\draftnodeanchor{\paperheight-\voffset}} %Bottom
+             {\ifthenelse{\equal{\draftposition}{top}}
+               {\renewcommand\draftnodeanchor{1in+\voffset-\topmargin}} %Top
+               {\ClassWarning{PDThesisPSnPDF}{Unrecognised draft position
+                 using default value of top}
+                 \renewcommand\draftnodeanchor{1in+\voffset-\topmargin}}} %Top
+
+  \AddEverypageHook{%
+    \begin{textblock*}{\paperwidth}[0.,2.5](0\paperwidth,\draftnodeanchor)
+      \DraftContent
+    \end{textblock*}
+  }
+}
+
+% If NOT Draft Mode
+\else 
+
+\renewcommand\SetDraftText[1]{\ClassWarning{PhDThesisPSnPDF}{DraftMode is inactive, to use SetDraftText include `draftmode' in the document class options.}}
+% Draft Version
+\renewcommand\SetDraftVersion[1]{\ClassWarning{PhDThesisPSnPDF}{DraftMode is inactive, to use SetDraftVersion include `draftmode' in the document class options.}}
+% Draft Content
+\renewcommand\SetDraftWMPosition[1]{\ClassWarning{PhDThesisPSnPDF}{DraftMode is inactive, to use SetDraftWMPosition include `draftmode' in the document class options.}}
+
 
 \fi
 
