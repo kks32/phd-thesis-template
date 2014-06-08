@@ -5,8 +5,8 @@
 % Set {innerside margin / outerside margin / topmargin / bottom margin}  and
 % other page dimensions
 \ifsetCustomMargin
-   \RequirePackage[left=37mm,right=30mm,top=35mm,bottom=30mm]{geometry}
-   \setFancyHdr % To apply fancy header after geometry package is loaded
+  \RequirePackage[left=37mm,right=30mm,top=35mm,bottom=30mm]{geometry}
+  \setFancyHdr % To apply fancy header after geometry package is loaded
 \fi
 
 % *****************************************************************************
@@ -15,9 +15,9 @@
 % Add `customfont' in the document class option to use this section
 
 \ifsetCustomFont
-    % Set your custom font here and use `customfont' in options. Leave empty to
-    % load computer modern font (default LaTeX font).
-    \RequirePackage{libertine}
+  % Set your custom font here and use `customfont' in options. Leave empty to
+  % load computer modern font (default LaTeX font).
+  \RequirePackage{libertine}
 \fi
 
 % *****************************************************************************
@@ -93,7 +93,7 @@
 
 % Add `custombib' in the document class option to use this section
 \ifuseCustomBib
-   \RequirePackage[square, sort, numbers, authoryear]{natbib} % CustomBib
+   %\RequirePackage[square, sort, numbers, authoryear]{natbib} % CustomBib
 
 % If you would like to use biblatex for your reference management, as opposed to the default `natbibpackage` pass the option `custombib` in the document class. Comment out the previous line to make sure you don't load the natbib package. Uncomment the following lines and specify the location of references.bib file
 

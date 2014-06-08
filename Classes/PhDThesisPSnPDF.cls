@@ -365,28 +365,42 @@ supported!}
         \ClassWarning{PhDThesisPSnPDF}{Bibliography has already been loaded.
           Check document class options.}
       \else      % Load Custombib from preamble
+        \message{custombib option is chosen}
         \useCustomBibtrue
-        \setBibtrue % Need to evaluate is bibliography is loaded
+        \AtBeginDocument{
+          \@ifpackageloaded{natbib}{true}{
+            \@ifpackageloaded{biblatex}{true}{
+              \ClassWarning{PhDThesisPSnPDF}{%
+                Custom bibliography is chosen, but no corresponding package 
+                (biblatex/natbib) has been loaded. Please load the
+                appropriate bibliography package in the preamble.}
+            }
+          }
+        }
+        \setBibtrue
       \fi
     \else                                     % set default to numbered
+      \message{custombib option is NOT chosen} 
       \ifPHD@biblatex
         \RequirePackage[backend=biber, style=numeric-comp,
           citestyle=numeric, sorting=none, natbib=true]{biblatex}
-        \setBiBLaTeXtrue
+        \setBiBLaTeXfalse
       \else
         \RequirePackage[numbers,sort&compress]{natbib} 
       \fi
-      \setBibtrue
-      \ClassWarning{PhDThesisPSnPDF}{No bibliography style was specified.
-         Default numbered style is used. If you would like to use a 
-         different style, use `authoryear' or `numbered' in the options in
-         documentclass or use `custombib` and define the natbib package or
-         biblatex package with required style in the Preamble.tex file}
+      \setBibfalse
     \fi % custombib
   \fi % numbered
 \fi % author year
 
-
+\ifsetBib
+\else
+\ClassWarning{PhDThesisPSnPDF}{No bibliography style was specified.
+  Default numbered style is used. If you would like to use a 
+  different style, use `authoryear' or `numbered' in the options in
+  documentclass or use `custombib` and define the natbib package or
+  biblatex package with required style in the Preamble.tex file}
+\fi
 
 % *********************** To copy ligatures and Fonts **************************
 \RequirePackage{textcomp}
