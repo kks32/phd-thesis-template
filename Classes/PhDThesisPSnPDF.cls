@@ -56,8 +56,8 @@
 \newif\ifPHD@numbered\PHD@numberedfalse       % Numbered citiation
 \DeclareOption{numbered}{\PHD@numberedtrue}
 
-\newif\ifPHD@custombib\PHD@custombibfalse     % Custom Bibliography
-\DeclareOption{custombib}{\PHD@custombibtrue}
+\newif\ifuseCustomBib\useCustomBibfalse     % Custom Bibliography
+\DeclareOption{custombib}{\useCustomBibtrue}
 
 % ************************* Header / Footer Styling ****************************
 \newif\ifPHD@pageStyleI\PHD@pageStyleIfalse % Set Page StyleI
@@ -77,10 +77,10 @@
 \DeclareOption{abstract}{
   \PHD@abstracttrue
   \ClassWarning{PhDThesisPSnPDF}{You have chosen an option that generates only
-the Title page and an abstract with PhD title and author name, if this was
-intentional, ignore this warning. Congratulations on submitting your thesis!!
-If not, please remove the option `abstract' from the document class and
-recompile. Good luck with your writing!}
+    the Title page and an abstract with PhD title and author name, if this was
+    intentional, ignore this warning. Congratulations on submitting your thesis!
+    If not, please remove the option `abstract' from the document class and
+    recompile. Good luck with your writing!}
   \PassOptionsToClass{oneside}{book}
 }
 
@@ -331,45 +331,57 @@ supported!}
 
 % ******************************* Bibliography *********************************
 \ifPHD@authoryear
-\ifPHD@biblatex
-\RequirePackage[backend=biber, style=authoryear, citestyle=alphabetic, 
-  sorting=nty, natbib=true]{biblatex}
-\setBiBLaTeXtrue
-\else
-\RequirePackage[round, sort, numbers, authoryear]{natbib} %author year
-\fi
+    \ifsetBib
+      \ClassWarning{PhDThesisPSnPDF}{Bibliography has already been loaded.
+        Check document class options.}
+    \else
+      \ifPHD@biblatex
+        \RequirePackage[backend=biber, style=authoryear, citestyle=alphabetic, 
+          sorting=nty, natbib=true]{biblatex}
+        \setBiBLaTeXtrue
+      \else
+        \RequirePackage[round, sort, numbers, authoryear]{natbib} %author year
+      \fi
+    \fi
 \setBibtrue
 \else
      \ifPHD@numbered
-     \ifPHD@biblatex
-     \RequirePackage[backend=biber, style=numeric-comp, citestyle=numeric,
-       sorting=none, natbib=true]{biblatex}
-     \setBiBLaTeXtrue
-     \else
-     \RequirePackage[numbers,sort&compress]{natbib} % numbered citation
-     \fi
+       \ifsetBib
+         \ClassWarning{PhDThesisPSnPDF}{Bibliography has already been loaded.
+           Check document class options.}
+       \else
+         \ifPHD@biblatex
+           \RequirePackage[backend=biber, style=numeric-comp, 
+             citestyle=numeric, sorting=none, natbib=true]{biblatex}
+           \setBiBLaTeXtrue
+         \else
+           \RequirePackage[numbers,sort&compress]{natbib} % numbered citation
+         \fi
+       \fi
      \setBibtrue
      \else
-         \ifPHD@custombib
-             \setBibfalse
-         \ifPHD@biblatex
-             \setBiBLaTeXtrue
-         \fi
-         \else
+       \ifuseCustomBib
+          \ifsetBib
+            \ClassWarning{PhDThesisPSnPDF}{Bibliography has already been loaded.
+              Check document class options.}
+          \else
+            \useCustomBibtrue
+            \setBibtrue % Need to evaluate is bibliography is loaded
+          \fi
+          \else                                     % set default to numbered
              \ifPHD@biblatex
-                 \RequirePackage[backend=biber, style=numeric-comp,
-                   citestyle=numeric, sorting=none, natbib=true]{biblatex}
-                 \setBiBLaTeXtrue
+               \RequirePackage[backend=biber, style=numeric-comp,
+                 citestyle=numeric, sorting=none, natbib=true]{biblatex}
+               \setBiBLaTeXtrue
              \else
-                 \RequirePackage[numbers,sort&compress]{natbib} % Default
-                                                                %- numbered
+               \RequirePackage[numbers,sort&compress]{natbib} 
              \fi
-         \setBibtrue
-	 \ClassWarning{PhDThesisPSnPDF}{No bibliography style was specified.
-           Default numbered style is used. If you would like to use a different
-           style, use `authoryear' or `numbered' in the options in documentclass
-           or use `custombib` and define the natbib package or biblatex package
-           with required style in the Preamble.tex file}
+             \setBibtrue
+	     \ClassWarning{PhDThesisPSnPDF}{No bibliography style was specified.
+               Default numbered style is used. If you would like to use a 
+               different style, use `authoryear' or `numbered' in the options in
+               documentclass or use `custombib` and define the natbib package or
+               biblatex package with required style in the Preamble.tex file}
          \fi
      \fi
 \fi
@@ -457,9 +469,11 @@ supported!}
     \else
         \ifsetDVI
         % Odd and Even side Margin for binding and set viewmode for PDF
-	\RequirePackage[dvips,paper=\PHD@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
+	\RequirePackage[dvips,paper=\PHD@papersize,hmarginratio=1:1,
+          vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
         \else
-	\RequirePackage[pdftex,paper=\PHD@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
+	\RequirePackage[pdftex,paper=\PHD@papersize,hmarginratio=1:1,
+          vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
         \fi
     \fi
 
@@ -493,9 +507,11 @@ supported!}
     \else
 	% No Margin staggering on Odd and Even side
         \ifsetDVI
-	\RequirePackage[dvips,paper=\PHD@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75]{geometry}
+	\RequirePackage[dvips,paper=\PHD@papersize,hmarginratio=1:1,
+          vmarginratio=1:1,scale=0.75]{geometry}
         \else
-	\RequirePackage[pdftex,paper=\PHD@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75]{geometry}
+	\RequirePackage[pdftex,paper=\PHD@papersize,hmarginratio=1:1,
+          vmarginratio=1:1,scale=0.75]{geometry}
         \fi
     \fi
 
@@ -560,8 +576,10 @@ supported!}
 \renewcommand{\chaptermark}[1]{\markboth{##1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection\ ##1\ }}
 \fancyhf{}
-\fancyhead[RO]{\nouppercase \rightmark\hspace{0.25em} | \hspace{0.25em} \bfseries{\thepage}}
-\fancyhead[LE]{ {\bfseries\thepage} \hspace{0.25em} | \hspace{0.25em} \nouppercase \leftmark}
+\fancyhead[RO]{\nouppercase \rightmark\hspace{0.25em} | 
+  \hspace{0.25em} \bfseries{\thepage}}
+\fancyhead[LE]{ {\bfseries\thepage} \hspace{0.25em} | 
+  \hspace{0.25em} \nouppercase \leftmark}
 
 
 \else
