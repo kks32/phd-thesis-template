@@ -40,8 +40,8 @@
 \newif\ifPHD@fourier\PHD@fourierfalse         % Fourier with Math Support
 \DeclareOption{fourier}{\PHD@fouriertrue}
 
-\newif\ifPHD@customfont\PHD@customfontfalse   % Custom Font with Math Support
-\DeclareOption{customfont}{\PHD@customfonttrue}
+\newif\ifsetCustomFont\setCustomFontfalse  % Custom Font with Math Support
+\DeclareOption{customfont}{\setCustomFonttrue}
 
 % ******************************* Bibliography *********************************
 \newif\ifsetBib\setBibfalse                   % Custom Bibliography = true/false
@@ -90,7 +90,10 @@ recompile. Good luck with your writing!}
 \newif\ifPHD@chapter\PHD@chapterfalse % Enable Separate Abstract
 \DeclareOption{chapter}{
   \PHD@chaptertrue
-  \ClassWarning{PhDThesisPSnPDF}{You have chosen an option that generates only selected chapters with references, if this was intentional, ignore this warning. If not, please remove the option `chapter' from the document class and recompile. Good luck with your writing!}
+  \ClassWarning{PhDThesisPSnPDF}{You have chosen an option that generates only 
+    selected chapters with references, if this was intentional, ignore this
+    warning. If not, please remove the option `chapter' from the document class
+    and recompile. Good luck with your writing!}
 }
 
 \ProcessOptions\relax%
@@ -129,9 +132,12 @@ PhD thesis guidelines recommend using A4 or A5paper}
 
 % Draft Mode
 \DeclareOption{draft}{\PassOptionsToClass{\CurrentOption}{book} 
-\ClassWarning{PhDThesisPSnPDF}{Draft is ON. You can use `draftmode' instead, which adds watermark with timestamp and line numbering. Don't forget to turn `draft' off for your final version.}}%
+\ClassWarning{PhDThesisPSnPDF}{Draft is ON. You can use `draftmode' instead,
+  which adds watermark with timestamp and line numbering. Don't forget to turn 
+  `draft' off for your final version.}}%
 \DeclareOption{draftmode}{\PassOptionsToClass{draft}{book}\PHD@drafttrue 
-\ClassWarning{PhDThesisPSnPDF}{Draft Mode is ON. Don't forget to turn it off for your final version.}}% 
+\ClassWarning{PhDThesisPSnPDF}{Draft Mode is ON.
+  Don't forget to turn it off for your final version.}}% 
 
 % Line Numbers
 \newif\ifPHD@lineno\PHD@linenotrue
@@ -303,13 +309,21 @@ supported!}
 % If NOT Draft Mode
 \else 
 
-\renewcommand\SetDraftText[1]{\ClassWarning{PhDThesisPSnPDF}{DraftMode is inactive, to use SetDraftText include `draftmode' in the document class options.}}
+\renewcommand\SetDraftText[1]{\ClassWarning{PhDThesisPSnPDF}{DraftMode is
+    inactive, to use SetDraftText include `draftmode' in the document 
+    class options.}}
 % Draft Version
-\renewcommand\SetDraftVersion[1]{\ClassWarning{PhDThesisPSnPDF}{DraftMode is inactive, to use SetDraftVersion include `draftmode' in the document class options.}}
+\renewcommand\SetDraftVersion[1]{\ClassWarning{PhDThesisPSnPDF}{DraftMode is
+    inactive, to use SetDraftVersion include `draftmode' in the document
+    class options.}}
 % Draft Content
-\renewcommand\SetDraftWMPosition[1]{\ClassWarning{PhDThesisPSnPDF}{DraftMode is inactive, to use SetDraftWMPosition include `draftmode' in the document class options.}}
+\renewcommand\SetDraftWMPosition[1]{\ClassWarning{PhDThesisPSnPDF}{DraftMode
+    is inactive, to use SetDraftWMPosition include `draftmode' in the document
+    class options.}}
 
-\renewcommand\SetDraftGrayScale[1]{\ClassWarning{PhDThesisPSnPDF}{DraftMode is inactive, to use SetDraftWMPosition include `draftmode' in the document class options.}}
+\renewcommand\SetDraftGrayScale[1]{\ClassWarning{PhDThesisPSnPDF}{DraftMode is
+    inactive, to use SetDraftWMPosition include `draftmode' in the document
+    class options.}}
 \fi
 
 
@@ -318,7 +332,8 @@ supported!}
 % ******************************* Bibliography *********************************
 \ifPHD@authoryear
 \ifPHD@biblatex
-\RequirePackage[backend=biber, style=authoryear, citestyle=alphabetic, sorting=nty, natbib=true]{biblatex}
+\RequirePackage[backend=biber, style=authoryear, citestyle=alphabetic, 
+  sorting=nty, natbib=true]{biblatex}
 \setBiBLaTeXtrue
 \else
 \RequirePackage[round, sort, numbers, authoryear]{natbib} %author year
@@ -327,7 +342,8 @@ supported!}
 \else
      \ifPHD@numbered
      \ifPHD@biblatex
-     \RequirePackage[backend=biber, style=numeric-comp, citestyle=numeric, sorting=none, natbib=true]{biblatex}
+     \RequirePackage[backend=biber, style=numeric-comp, citestyle=numeric,
+       sorting=none, natbib=true]{biblatex}
      \setBiBLaTeXtrue
      \else
      \RequirePackage[numbers,sort&compress]{natbib} % numbered citation
@@ -335,22 +351,25 @@ supported!}
      \setBibtrue
      \else
          \ifPHD@custombib
-         \setBibfalse
+             \setBibfalse
          \ifPHD@biblatex
              \setBiBLaTeXtrue
          \fi
          \else
              \ifPHD@biblatex
-                 \RequirePackage[backend=biber, style=numeric-comp, citestyle=numeric, sorting=none, natbib=true]{biblatex}
+                 \RequirePackage[backend=biber, style=numeric-comp,
+                   citestyle=numeric, sorting=none, natbib=true]{biblatex}
                  \setBiBLaTeXtrue
              \else
-                 \RequirePackage[numbers,sort&compress]{natbib} % Default - numbered
+                 \RequirePackage[numbers,sort&compress]{natbib} % Default
+                                                                %- numbered
              \fi
          \setBibtrue
 	 \ClassWarning{PhDThesisPSnPDF}{No bibliography style was specified.
-Default numbered style is used. If you would like to use a different style, use
-`authoryear' or `numbered' in the options in documentclass or use `custombib`
-and define the natbib package or biblatex package with required style in the Preamble.tex file}
+           Default numbered style is used. If you would like to use a different
+           style, use `authoryear' or `numbered' in the options in documentclass
+           or use `custombib` and define the natbib package or biblatex package
+           with required style in the Preamble.tex file}
          \fi
      \fi
 \fi
@@ -362,24 +381,31 @@ and define the natbib package or biblatex package with required style in the Pre
 
 % Font Selection
 \ifPHD@times
-\RequirePackage{mathptmx}  % times roman, including math (where possible)
-\setFonttrue
+    \RequirePackage{mathptmx}  % times roman, including math (where possible)
+    \setCustomFontfalse
+    \setFonttrue
 \else
      \ifPHD@fourier
-     \RequirePackage{fourier} % Fourier
-     \setFonttrue
+         \RequirePackage{fourier} % Fourier
+         \setCustomFontfalse
+         \setFonttrue
      \else
-          \ifPHD@customfont
-          \setFontfalse
+          \ifsetCustomFont
+              \setFonttrue
           \else
-	  \ClassWarning{PhDThesisPSnPDf}{Using default font Latin Modern. If you
-would like to use other pre-defined fonts use `times' (The Cambridge University
-PhD thesis guidelines recommend using Times font)  or `fourier' or load a custom
-font in the preamble.tex file by specifying `customfont' in the class options}
-          \RequirePackage{lmodern}
-          \setFonttrue
+              \setFontfalse 
           \fi
     \fi
+\fi
+
+\ifsetFont
+\else % If Font is not set throw a warning.
+    \ClassWarning{PhDThesisPSnPDf}{Using default font Latin Modern. If you
+      would like to use other pre-defined fonts use `times' (The Cambridge 
+      University PhD thesis guidelines recommend using Times font)  or `fourier'
+      or load a custom font in the preamble.tex file by specifying `customfont' 
+      in the class options}
+    \RequirePackage{lmodern}
 \fi
 
 \RequirePackage[utf8]{inputenc}

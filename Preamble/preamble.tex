@@ -14,11 +14,9 @@
 
 % Add `customfont' in the document class option to use this section
 
-\ifsetFont
-\else
+\ifsetCustomFont
     % Set your custom font here and use `customfont' in options. Leave empty to
     % load computer modern font (default LaTeX font).
-
     \RequirePackage{libertine}
 \fi
 
