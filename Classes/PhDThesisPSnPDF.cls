@@ -331,60 +331,60 @@ supported!}
 
 % ******************************* Bibliography *********************************
 \ifPHD@authoryear
-    \ifsetBib
+  \ifsetBib % To check if any bibliography option has been loaded previously
+    \ClassWarning{PhDThesisPSnPDF}{Bibliography has already been loaded.
+      Check document class options.}
+  \else
+    \ifPHD@biblatex
+      \RequirePackage[backend=biber, style=authoryear, citestyle=alphabetic, 
+        sorting=nty, natbib=true]{biblatex}
+      \setBiBLaTeXtrue
+    \else
+      \RequirePackage[round, sort, numbers, authoryear]{natbib} %author year
+    \fi
+  \fi
+  \setBibtrue
+\else
+  \ifPHD@numbered
+    \ifsetBib % To check if any bibliography has been loaded previously
       \ClassWarning{PhDThesisPSnPDF}{Bibliography has already been loaded.
         Check document class options.}
     \else
       \ifPHD@biblatex
-        \RequirePackage[backend=biber, style=authoryear, citestyle=alphabetic, 
-          sorting=nty, natbib=true]{biblatex}
+        \RequirePackage[backend=biber, style=numeric-comp, 
+          citestyle=numeric, sorting=none, natbib=true]{biblatex}
         \setBiBLaTeXtrue
       \else
-        \RequirePackage[round, sort, numbers, authoryear]{natbib} %author year
+        \RequirePackage[numbers,sort&compress]{natbib} % numbered citation
       \fi
     \fi
-\setBibtrue
-\else
-     \ifPHD@numbered
-       \ifsetBib
-         \ClassWarning{PhDThesisPSnPDF}{Bibliography has already been loaded.
-           Check document class options.}
-       \else
-         \ifPHD@biblatex
-           \RequirePackage[backend=biber, style=numeric-comp, 
-             citestyle=numeric, sorting=none, natbib=true]{biblatex}
-           \setBiBLaTeXtrue
-         \else
-           \RequirePackage[numbers,sort&compress]{natbib} % numbered citation
-         \fi
-       \fi
-     \setBibtrue
-     \else
-       \ifuseCustomBib
-          \ifsetBib
-            \ClassWarning{PhDThesisPSnPDF}{Bibliography has already been loaded.
-              Check document class options.}
-          \else
-            \useCustomBibtrue
-            \setBibtrue % Need to evaluate is bibliography is loaded
-          \fi
-          \else                                     % set default to numbered
-             \ifPHD@biblatex
-               \RequirePackage[backend=biber, style=numeric-comp,
-                 citestyle=numeric, sorting=none, natbib=true]{biblatex}
-               \setBiBLaTeXtrue
-             \else
-               \RequirePackage[numbers,sort&compress]{natbib} 
-             \fi
-             \setBibtrue
-	     \ClassWarning{PhDThesisPSnPDF}{No bibliography style was specified.
-               Default numbered style is used. If you would like to use a 
-               different style, use `authoryear' or `numbered' in the options in
-               documentclass or use `custombib` and define the natbib package or
-               biblatex package with required style in the Preamble.tex file}
-         \fi
-     \fi
-\fi
+    \setBibtrue
+  \else
+    \ifuseCustomBib
+      \ifsetBib  % To check if any bibliography has been loaded previously
+        \ClassWarning{PhDThesisPSnPDF}{Bibliography has already been loaded.
+          Check document class options.}
+      \else      % Load Custombib from preamble
+        \useCustomBibtrue
+        \setBibtrue % Need to evaluate is bibliography is loaded
+      \fi
+    \else                                     % set default to numbered
+      \ifPHD@biblatex
+        \RequirePackage[backend=biber, style=numeric-comp,
+          citestyle=numeric, sorting=none, natbib=true]{biblatex}
+        \setBiBLaTeXtrue
+      \else
+        \RequirePackage[numbers,sort&compress]{natbib} 
+      \fi
+      \setBibtrue
+      \ClassWarning{PhDThesisPSnPDF}{No bibliography style was specified.
+         Default numbered style is used. If you would like to use a 
+         different style, use `authoryear' or `numbered' in the options in
+         documentclass or use `custombib` and define the natbib package or
+         biblatex package with required style in the Preamble.tex file}
+    \fi % custombib
+  \fi % numbered
+\fi % author year
 
 
 
@@ -393,22 +393,35 @@ supported!}
 
 % Font Selection
 \ifPHD@times
+  \ifsetFont  % To check if a font package has been previously loaded
+    \ClassWarning{PhDThesisPSnPDF}{Font has already been loaded. Please check 
+      the document class options.}
+  \else       % If no font has been loaded - Load Times
     \RequirePackage{mathptmx}  % times roman, including math (where possible)
-    \setCustomFontfalse
     \setFonttrue
+  \fi
 \else
-     \ifPHD@fourier
-         \RequirePackage{fourier} % Fourier
-         \setCustomFontfalse
-         \setFonttrue
-     \else
-          \ifsetCustomFont
-              \setFonttrue
-          \else
-              \setFontfalse 
-          \fi
+  \ifPHD@fourier
+    \ifsetFont  % To check if a font package has been previously loaded
+      \ClassWarning{PhDThesisPSnPDF}{Font has already been loaded. Please check 
+        the document class options.}
+    \else       % If no font has been loaded - Load Fourier
+      \RequirePackage{fourier} % Fourier
+      \setFonttrue
     \fi
-\fi
+  \else
+    \ifsetCustomFont
+      \ifsetFont % To check if a font package has been previously loaded
+        \ClassWarning{PhDThesisPSnPDF}{Font has already been loaded. Please check 
+          the document class options.}
+      \else      % If no font has been loaded - Load Custom Font
+        \setFonttrue
+      \fi
+    \else
+      \setFontfalse
+    \fi % custom font
+  \fi % Fourier font
+\fi % Times font
 
 \ifsetFont
 \else % If Font is not set throw a warning.
