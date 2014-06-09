@@ -75,16 +75,52 @@
 \newif\ifsetBiBLaTeX\setBiBLaTeXfalse         % BiBLaTeX = True / False
 
 \newif\ifPHD@biblatex\PHD@biblatexfalse       % BiBLaTeX
-\DeclareOption{biblatex}{\PHD@biblatextrue}
+\DeclareOption{biblatex}{
+  \ifsetBib
+    \ClassWarning{PhDThesisPSnPDF}{Bibliography selection conflict: A
+      bibliography style aleady specified. Please check the document class
+      options in case you have defined two bibliography styles.}
+  \else
+    \PHD@biblatextrue
+    \setBibtrue
+  \fi
+}
 
 \newif\ifPHD@authoryear\PHD@authoryearfalse   % Author-Year citation
-\DeclareOption{authoryear}{\PHD@authoryeartrue}
+\DeclareOption{authoryear}{
+  \ifsetBib
+    \ClassWarning{PhDThesisPSnPDF}{Bibliography selection conflict: A
+      bibliography style aleady specified. Please check the document class
+      options in case you have defined two bibliography styles.}
+  \else
+    \PHD@authoryeartrue
+    \setBibtrue
+  \fi
+}
 
 \newif\ifPHD@numbered\PHD@numberedfalse       % Numbered citiation
-\DeclareOption{numbered}{\PHD@numberedtrue}
+\DeclareOption{numbered}{
+  \ifsetBib
+    \ClassWarning{PhDThesisPSnPDF}{Bibliography selection conflict: A
+      bibliography style aleady specified. Please check the document class
+      options in case you have defined two bibliography styles.}
+  \else
+    \PHD@numberedtrue
+    \setBibtrue
+  \fi
+}
 
 \newif\ifuseCustomBib\useCustomBibfalse     % Custom Bibliography
-\DeclareOption{custombib}{\useCustomBibtrue}
+\DeclareOption{custombib}{
+  \ifsetBib
+    \ClassWarning{PhDThesisPSnPDF}{Bibliography selection conflict: A
+      bibliography style aleady specified. Please check the document class
+      options in case you have defined two bibliography styles.}
+  \else  
+    \useCustomBibtrue
+    \setBibtrue
+  \fi
+}
 
 % ************************* Header / Footer Styling ****************************
 \newif\ifPHD@pageStyleI\PHD@pageStyleIfalse % Set Page StyleI
@@ -139,6 +175,7 @@ footnotes.}
 \DeclareOption{11pt}{\renewcommand\PHD@ptsize{11pt}}%
 \DeclareOption{12pt}{\renewcommand\PHD@ptsize{12pt}}%
 \PassOptionsToClass{\PHD@ptsize}{book}%
+\message{PhDThesisPSnPDF: Font size is set as \PHD@ptsize}
 
 % Page Size
 \newcommand\PHD@papersize{a4paper} % Set Default as a4paper
@@ -147,7 +184,7 @@ footnotes.}
 \DeclareOption{a5paper}{\renewcommand\PHD@papersize{a5paper}}
 \DeclareOption{letterpaper}{
   \ClassWarning{PhDThesisPSnPDF}{The Cambridge University Engineering Deparment
-PhD thesis guidelines recommend using A4 or A5paper}
+    PhD thesis guidelines recommend using A4 or A5paper}
   \renewcommand\PHD@papersize{letterpaper}
 }
 
@@ -247,6 +284,8 @@ supported!}
 % ******************************* Time Stamp ***********************************
 % Compute the timestamp based on an idea of
 % Tim Piessens \texttt{<Tim.Piessens@esat.kuleuven.ac.be>}.
+
+\RequirePackage{datetime}
 
 \newcount\PHD@hour \newcount\PHD@minute
 \PHD@hour=\time
@@ -363,43 +402,25 @@ supported!}
 
 % ******************************* Bibliography *********************************
 \ifPHD@authoryear
-  \ifsetBib % To check if any bibliography option has been loaded previously
-    \ClassWarning{PhDThesisPSnPDF}{Bibliography has already been loaded.
-      Check document class options.}
+  \ifPHD@biblatex
+    \RequirePackage[backend=biber, style=authoryear, citestyle=alphabetic, 
+      sorting=nty, natbib=true]{biblatex}
+    \setBiBLaTeXtrue
   \else
-    \ifPHD@biblatex
-      \RequirePackage[backend=biber, style=authoryear, citestyle=alphabetic, 
-        sorting=nty, natbib=true]{biblatex}
-      \setBiBLaTeXtrue
-    \else
-      \RequirePackage[round, sort, numbers, authoryear]{natbib} %author year
-    \fi
+    \RequirePackage[round, sort, numbers, authoryear]{natbib} %author year
   \fi
-  \setBibtrue
 \else
   \ifPHD@numbered
-    \ifsetBib % To check if any bibliography has been loaded previously
-      \ClassWarning{PhDThesisPSnPDF}{Bibliography has already been loaded.
-        Check document class options.}
+    \ifPHD@biblatex
+      \RequirePackage[backend=biber, style=numeric-comp, 
+        citestyle=numeric, sorting=none, natbib=true]{biblatex}
+      \setBiBLaTeXtrue
     \else
-      \ifPHD@biblatex
-        \RequirePackage[backend=biber, style=numeric-comp, 
-          citestyle=numeric, sorting=none, natbib=true]{biblatex}
-        \setBiBLaTeXtrue
-      \else
-        \RequirePackage[numbers,sort&compress]{natbib} % numbered citation
-      \fi
+      \RequirePackage[numbers,sort&compress]{natbib} % numbered citation
     \fi
-    \setBibtrue
   \else
     \ifuseCustomBib
-      \ifsetBib  % To check if any bibliography has been loaded previously
-        \ClassWarning{PhDThesisPSnPDF}{Bibliography has already been loaded.
-          Check document class options.}
-      \else      % Load Custombib from preamble
-        \message{custombib option is chosen}
-        \useCustomBibtrue
-        \AtBeginDocument{
+       \AtBeginDocument{
           \@ifpackageloaded{natbib}{true}{
             \@ifpackageloaded{biblatex}{true}{
               \ClassWarning{PhDThesisPSnPDF}{%
@@ -409,17 +430,14 @@ supported!}
             }
           }
         }
-        \setBibtrue
-      \fi
-    \else                                     % set default to numbered
-      \message{custombib option is NOT chosen} 
+    \else                                            % set default to numbered
       \ifPHD@biblatex
         \RequirePackage[backend=biber, style=numeric-comp,
           citestyle=numeric, sorting=none, natbib=true]{biblatex}
         \setBiBLaTeXfalse
       \else
         \RequirePackage[numbers,sort&compress]{natbib} 
-      \fi
+      \fi % default
       \setBibfalse
     \fi % custombib
   \fi % numbered
@@ -440,27 +458,32 @@ supported!}
 \ifPHD@times
   \RequirePackage{mathptmx}  % times roman, including math (where possible)
   \setFonttrue
+  \message{PhDThesisPSnPDF: Using Times Roman font}
 \else
   \ifPHD@fourier
     \RequirePackage{fourier} % Fourier
     \setFonttrue
+    \message{PhDThesisPSnPDF: Using Fourier font}
   \else
     \ifsetCustomFont
-        \setFonttrue
+      \setFonttrue
+      \message{PhDThesisPSnPDF: Using custom font}
     \else
       \setFontfalse
+      \message{PhDThesisPSnPDF: No font is set}
     \fi % custom font
   \fi % Fourier font
 \fi % Times font
 
+% If Font is not set throw a warning.
 \ifsetFont
-\else % If Font is not set throw a warning.
-    \ClassWarning{PhDThesisPSnPDF}{Using default font Latin Modern. If you
-      would like to use other pre-defined fonts use `times' (The Cambridge 
-      University PhD thesis guidelines recommend using Times font)  or `fourier'
-      or load a custom font in the preamble.tex file by specifying `customfont' 
-      in the class options}
-    \RequirePackage{lmodern}
+\else
+  \ClassWarning{PhDThesisPSnPDF}{Using default font Latin Modern. If you
+    would like to use other pre-defined fonts use `times' (The Cambridge 
+    University PhD thesis guidelines recommend using Times font)  or `fourier'
+    or load a custom font in the preamble.tex file by specifying `customfont' 
+    in the class options}
+  \RequirePackage{lmodern}
 \fi
 
 \RequirePackage[utf8]{inputenc}
@@ -704,7 +727,7 @@ supported!}
 % construction of the title page and other preamble.
 
 % The year and term the degree will be officially conferred
-\newcommand{\@degreedate}{\the\year}
+\newcommand{\@degreedate}{\monthname[\the\month]\space\the\year}
 \newcommand{\degreedate}[1]{\renewcommand{\@degreedate}{#1}}
 
 % The full (unabbreviated) name of the degree
