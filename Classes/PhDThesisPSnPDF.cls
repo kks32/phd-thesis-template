@@ -35,13 +35,40 @@
 \newif\ifsetFont\setFontfalse                 % Font is not set
 
 \newif\ifPHD@times\PHD@timesfalse             % Times with Math Support
-\DeclareOption{times}{\PHD@timestrue}
+\DeclareOption{times}{
+  \ifsetFont
+    \ClassWarning{PhDThesisPSnPDF}{Font selection conflict: A font package was
+      aleady specified. Please check the document class options in case you 
+      have defined two fonts.}
+  \else
+    \PHD@timestrue
+    \setFonttrue
+  \fi
+}
 
 \newif\ifPHD@fourier\PHD@fourierfalse         % Fourier with Math Support
-\DeclareOption{fourier}{\PHD@fouriertrue}
+\DeclareOption{fourier}{
+  \ifsetFont
+    \ClassWarning{PhDThesisPSnPDF}{Font selection conflict: A font package was
+      aleady specified. Please check the document class options in case you 
+      have defined two fonts.}
+  \else
+    \PHD@fouriertrue
+    \setFonttrue
+  \fi
+}
 
-\newif\ifsetCustomFont\setCustomFontfalse  % Custom Font with Math Support
-\DeclareOption{customfont}{\setCustomFonttrue}
+\newif\ifsetCustomFont\setCustomFontfalse     % Custom Font with Math Support
+\DeclareOption{customfont}{
+  \ifsetFont
+    \ClassWarning{PhDThesisPSnPDF}{Font selection conflict: A font package was
+      aleady specified. Please check the document class options in case you 
+      have defined two fonts.}
+  \else
+    \setCustomFonttrue
+    \setFonttrue
+  \fi
+}
 
 % ******************************* Bibliography *********************************
 \newif\ifsetBib\setBibfalse                   % Custom Bibliography = true/false
@@ -404,33 +431,17 @@ supported!}
 
 % *********************** To copy ligatures and Fonts **************************
 \RequirePackage{textcomp}
-
 % Font Selection
 \ifPHD@times
-  \ifsetFont  % To check if a font package has been previously loaded
-    \ClassWarning{PhDThesisPSnPDF}{Font has already been loaded. Please check 
-      the document class options.}
-  \else       % If no font has been loaded - Load Times
-    \RequirePackage{mathptmx}  % times roman, including math (where possible)
-    \setFonttrue
-  \fi
+  \RequirePackage{mathptmx}  % times roman, including math (where possible)
+  \setFonttrue
 \else
   \ifPHD@fourier
-    \ifsetFont  % To check if a font package has been previously loaded
-      \ClassWarning{PhDThesisPSnPDF}{Font has already been loaded. Please check 
-        the document class options.}
-    \else       % If no font has been loaded - Load Fourier
-      \RequirePackage{fourier} % Fourier
-      \setFonttrue
-    \fi
+    \RequirePackage{fourier} % Fourier
+    \setFonttrue
   \else
     \ifsetCustomFont
-      \ifsetFont % To check if a font package has been previously loaded
-        \ClassWarning{PhDThesisPSnPDF}{Font has already been loaded. Please check 
-          the document class options.}
-      \else      % If no font has been loaded - Load Custom Font
         \setFonttrue
-      \fi
     \else
       \setFontfalse
     \fi % custom font
