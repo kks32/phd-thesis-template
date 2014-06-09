@@ -131,6 +131,7 @@
 
 % ***************************** Custom Margins  ********************************
 \newif\ifsetCustomMargin\setCustomMarginfalse % Set Custom Margin
+\newif\ifsetMargin\setMarginfalse % Set Custom Margin
 \DeclareOption{custommargin}{\setCustomMargintrue}
 
 % **************************** Separate Abstract  ******************************
@@ -584,6 +585,12 @@ supported!}
     \hypersetup{pdfpagelayout=OneColumn}
 \fi
 
+% Backward compatibility - setMargin is now replaced with customMargin
+\ifsetCustomMargin
+  \setMarginfalse
+\else
+  \setMargintrue
+\fi
 
 % ************************ URL Package and Definition **************************
 \RequirePackage{url}
