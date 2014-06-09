@@ -222,6 +222,11 @@ supported!}
 % Add appendices
 \RequirePackage[title,titletoc]{appendix}
 
+\renewcommand{\contentsname}{Table of contents}
+\renewcommand{\listfigurename}{List of figures}
+\renewcommand{\listtablename}{List of tables}
+
+
 % *************************** Graphics and Figures *****************************
 \RequirePackage[usenames, dvipsnames]{color}
 \ifpdf
@@ -450,7 +455,7 @@ supported!}
 
 \ifsetFont
 \else % If Font is not set throw a warning.
-    \ClassWarning{PhDThesisPSnPDf}{Using default font Latin Modern. If you
+    \ClassWarning{PhDThesisPSnPDF}{Using default font Latin Modern. If you
       would like to use other pre-defined fonts use `times' (The Cambridge 
       University PhD thesis guidelines recommend using Times font)  or `fourier'
       or load a custom font in the preamble.tex file by specifying `customfont' 
