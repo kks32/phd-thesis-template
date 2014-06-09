@@ -1,3 +1,13 @@
+ % arara: clean: { files: [thesis.aux, thesis.bbl, thesis.blg, thesis.dvi, thesis.fdb_latexmk, thesis.fls, thesis.idx, thesis.ilg, thesis.ind, thesis.lof, thesis.log, thesis.lot, thesis.nlo, thesis.nls, thesis.out, thesis.pdf, thesis.ps, thesis.toc]}
+% arara: latex:  { shell: yes }
+% arara: bibtex
+% arara: nomencl
+% arara: latex
+% arara: makeindex
+% arara: latex:  { shell: yes }
+% arara: dvips
+% arara: ps2pdf
+
 % ******************************* PhD Thesis Template **************************
 % Please have a look at the README.md file for info on how to use the template
 
@@ -25,6 +35,9 @@
 %
 % `draft': For draft mode without loading any images (same as draft in book)
 %
+% `draftmode': Special draft mode with line numbers, images, and water mark with
+% timestamp and custom text. Position of the text can also be modified.
+%
 % `abstract': To generate only the title page and abstract page with
 % dissertation title and name, to submit to the Student Registry
 %
@@ -42,7 +55,7 @@
 % `times' : Times font with math support. (The Cambridge University guidelines
 % recommend using times)
 %
-% `fourier': Utopia Font with Fourier Math font (Font has to be installed) 
+% `fourier': Utopia Font with Fourier Math font (Font has to be installed)
 %            It's a free font.
 %
 % `customfont': Use `customfont' option in the document class and load the
@@ -57,9 +70,9 @@
 % `numbered': (Default Option) For numbered and sorted citation e.g., [1,5,2]
 %
 % `custombib': Define your own bibliography style in the `preamble.tex' file.
-%              `\RequirePackage[square, sort, numbers, authoryear]{natbib}'. 
-%              This can be also used to load biblatex instead of natbib 
-%              (See Preamble) 
+%              `\RequirePackage[square, sort, numbers, authoryear]{natbib}'.
+%              This can be also used to load biblatex instead of natbib
+%              (See Preamble)
 %
 % **************************** Choosing the Page Style *************************
 %
@@ -81,14 +94,14 @@
 % Thesis title and author information, refernce file for biblatex
 \input{thesis-info}
 
-% ***************************** Abstract Separate ****************************** 
-% To printout only the titlepage and the abstract with the PhD title and the 
+% ***************************** Abstract Separate ******************************
+% To printout only the titlepage and the abstract with the PhD title and the
 % author name for submission to the Student Registry, use the `abstract' option in
-% the document class. 
+% the document class.
 
 \ifdefineAbstract
  \pagestyle{empty}
- \includeonly{Declaration/declaration, Abstract/abstract} 
+ \includeonly{Declaration/declaration, Abstract/abstract}
 \fi
 
 % ***************************** Chapter Mode ***********************************
@@ -98,7 +111,7 @@
 % To use choose `chapter' option in the document class
 
 \ifdefineChapter
- \includeonly{Chapter3/chapter3} 
+ \includeonly{Chapter3/chapter3}
 \fi
 
 % ******************************** Front Matter ********************************
@@ -123,7 +136,7 @@
 
 \listoffigures
 
-\listoftables 
+\listoftables
 
 % \printnomenclature[space] space can be set as 2.5cm between symbol and
 % description
@@ -144,13 +157,14 @@
 
 % ********************************** Back Matter *******************************
 % Backmatter should be commented out, if you are using appendices after References
-%\backmatter 
+%\backmatter
 
 % ********************************** Bibliography ******************************
 \begin{spacing}{0.9}
 
 % To use the conventional natbib style referencing
 % Bibliography style previews: http://nodonn.tipido.net/bibstyle.php
+% Reference styles: http://sites.stat.psu.edu/~surajit/present/bib.htm
 
 \bibliographystyle{apalike}
 %\bibliographystyle{plainnat} % use this to have URLs listed in References
@@ -158,9 +172,9 @@
 \bibliography{References/references} % Path to your References.bib file
 
 
-% If you would like to use BibLaTeX for your references, pass `custombib' as 
-% an option in the document class. The location of 'reference.bib' should be 
-% specified in the preamble.tex file in the custombib section. 
+% If you would like to use BibLaTeX for your references, pass `custombib' as
+% an option in the document class. The location of 'reference.bib' should be
+% specified in the preamble.tex file in the custombib section.
 % Comment out the lines related to natbib above and uncomment the following line.
 
 % \printbibliography[heading=bibintoc, title={References}]

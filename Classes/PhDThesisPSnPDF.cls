@@ -25,37 +25,102 @@
 \newif\if@print\@printfalse
 \DeclareOption{print}{\@printtrue}
 
+\newif\ifPHD@draft\PHD@draftfalse
+
 % ****************************** Define index **********************************
 \newif\ifPHD@index\PHD@indexfalse
 \DeclareOption{index}{\PHD@indextrue}
 
 % ******************************* Font Option **********************************
-\newif\ifsetFont\setFontfalse                 % Font is not set 
+\newif\ifsetFont\setFontfalse                 % Font is not set
 
 \newif\ifPHD@times\PHD@timesfalse             % Times with Math Support
-\DeclareOption{times}{\PHD@timestrue}
+\DeclareOption{times}{
+  \ifsetFont
+    \ClassWarning{PhDThesisPSnPDF}{Font selection conflict: A font package was
+      aleady specified. Please check the document class options in case you 
+      have defined two fonts.}
+  \else
+    \PHD@timestrue
+    \setFonttrue
+  \fi
+}
 
 \newif\ifPHD@fourier\PHD@fourierfalse         % Fourier with Math Support
-\DeclareOption{fourier}{\PHD@fouriertrue}
+\DeclareOption{fourier}{
+  \ifsetFont
+    \ClassWarning{PhDThesisPSnPDF}{Font selection conflict: A font package was
+      aleady specified. Please check the document class options in case you 
+      have defined two fonts.}
+  \else
+    \PHD@fouriertrue
+    \setFonttrue
+  \fi
+}
 
-\newif\ifPHD@customfont\PHD@customfontfalse   % Custom Font with Math Support
-\DeclareOption{customfont}{\PHD@customfonttrue}
+\newif\ifsetCustomFont\setCustomFontfalse     % Custom Font with Math Support
+\DeclareOption{customfont}{
+  \ifsetFont
+    \ClassWarning{PhDThesisPSnPDF}{Font selection conflict: A font package was
+      aleady specified. Please check the document class options in case you 
+      have defined two fonts.}
+  \else
+    \setCustomFonttrue
+    \setFonttrue
+  \fi
+}
 
 % ******************************* Bibliography *********************************
 \newif\ifsetBib\setBibfalse                   % Custom Bibliography = true/false
 \newif\ifsetBiBLaTeX\setBiBLaTeXfalse         % BiBLaTeX = True / False
 
 \newif\ifPHD@biblatex\PHD@biblatexfalse       % BiBLaTeX
-\DeclareOption{biblatex}{\PHD@biblatextrue}
+\DeclareOption{biblatex}{
+  \ifsetBib
+    \ClassWarning{PhDThesisPSnPDF}{Bibliography selection conflict: A
+      bibliography style aleady specified. Please check the document class
+      options in case you have defined two bibliography styles.}
+  \else
+    \PHD@biblatextrue
+    \setBibtrue
+  \fi
+}
 
 \newif\ifPHD@authoryear\PHD@authoryearfalse   % Author-Year citation
-\DeclareOption{authoryear}{\PHD@authoryeartrue}
+\DeclareOption{authoryear}{
+  \ifsetBib
+    \ClassWarning{PhDThesisPSnPDF}{Bibliography selection conflict: A
+      bibliography style aleady specified. Please check the document class
+      options in case you have defined two bibliography styles.}
+  \else
+    \PHD@authoryeartrue
+    \setBibtrue
+  \fi
+}
 
 \newif\ifPHD@numbered\PHD@numberedfalse       % Numbered citiation
-\DeclareOption{numbered}{\PHD@numberedtrue}
+\DeclareOption{numbered}{
+  \ifsetBib
+    \ClassWarning{PhDThesisPSnPDF}{Bibliography selection conflict: A
+      bibliography style aleady specified. Please check the document class
+      options in case you have defined two bibliography styles.}
+  \else
+    \PHD@numberedtrue
+    \setBibtrue
+  \fi
+}
 
-\newif\ifPHD@custombib\PHD@custombibfalse     % Custom Bibliography
-\DeclareOption{custombib}{\PHD@custombibtrue}
+\newif\ifuseCustomBib\useCustomBibfalse     % Custom Bibliography
+\DeclareOption{custombib}{
+  \ifsetBib
+    \ClassWarning{PhDThesisPSnPDF}{Bibliography selection conflict: A
+      bibliography style aleady specified. Please check the document class
+      options in case you have defined two bibliography styles.}
+  \else  
+    \useCustomBibtrue
+    \setBibtrue
+  \fi
+}
 
 % ************************* Header / Footer Styling ****************************
 \newif\ifPHD@pageStyleI\PHD@pageStyleIfalse % Set Page StyleI
@@ -65,22 +130,21 @@
 \DeclareOption{PageStyleII}{\PHD@pageStyleIItrue}
 
 % ***************************** Custom Margins  ********************************
-\newif\ifsetMargin\setMarginfalse % Margins are not set
-
-\newif\ifPHD@custommargin\PHD@custommarginfalse % Custom margin
-\DeclareOption{custommargin}{\PHD@custommargintrue}
+\newif\ifsetCustomMargin\setCustomMarginfalse % Set Custom Margin
+\newif\ifsetMargin\setMarginfalse % Set Custom Margin
+\DeclareOption{custommargin}{\setCustomMargintrue}
 
 % **************************** Separate Abstract  ******************************
 \newif \ifdefineAbstract\defineAbstractfalse %To enable Separate abstract
 
 \newif\ifPHD@abstract\PHD@abstractfalse % Enable Separate Abstract
 \DeclareOption{abstract}{
-  \PHD@abstracttrue     
+  \PHD@abstracttrue
   \ClassWarning{PhDThesisPSnPDF}{You have chosen an option that generates only
-the Title page and an abstract with PhD title and author name, if this was
-intentional, ignore this warning. Congratulations on submitting your thesis!!
-If not, please remove the option `abstract' from the document class and
-recompile. Good luck with your writing!}
+    the Title page and an abstract with PhD title and author name, if this was
+    intentional, ignore this warning. Congratulations on submitting your thesis!
+    If not, please remove the option `abstract' from the document class and
+    recompile. Good luck with your writing!}
   \PassOptionsToClass{oneside}{book}
 }
 
@@ -89,8 +153,11 @@ recompile. Good luck with your writing!}
 
 \newif\ifPHD@chapter\PHD@chapterfalse % Enable Separate Abstract
 \DeclareOption{chapter}{
-  \PHD@chaptertrue     
-  \ClassWarning{PhDThesisPSnPDF}{You have chosen an option that generates only selected chapters with references, if this was intentional, ignore this warning. If not, please remove the option `chapter' from the document class and recompile. Good luck with your writing!}
+  \PHD@chaptertrue
+  \ClassWarning{PhDThesisPSnPDF}{You have chosen an option that generates only 
+    selected chapters with references, if this was intentional, ignore this
+    warning. If not, please remove the option `chapter' from the document class
+    and recompile. Good luck with your writing!}
 }
 
 \ProcessOptions\relax%
@@ -109,6 +176,7 @@ footnotes.}
 \DeclareOption{11pt}{\renewcommand\PHD@ptsize{11pt}}%
 \DeclareOption{12pt}{\renewcommand\PHD@ptsize{12pt}}%
 \PassOptionsToClass{\PHD@ptsize}{book}%
+\message{PhDThesisPSnPDF: Font size is set as \PHD@ptsize}
 
 % Page Size
 \newcommand\PHD@papersize{a4paper} % Set Default as a4paper
@@ -117,7 +185,7 @@ footnotes.}
 \DeclareOption{a5paper}{\renewcommand\PHD@papersize{a5paper}}
 \DeclareOption{letterpaper}{
   \ClassWarning{PhDThesisPSnPDF}{The Cambridge University Engineering Deparment
-PhD thesis guidelines recommend using A4 or A5paper}
+    PhD thesis guidelines recommend using A4 or A5paper}
   \renewcommand\PHD@papersize{letterpaper}
 }
 
@@ -128,14 +196,26 @@ PhD thesis guidelines recommend using A4 or A5paper}
 \DeclareOption{twoside}{\PassOptionsToClass{\CurrentOption}{book}}%
 
 % Draft Mode
-\DeclareOption{draft}{\PassOptionsToClass{\CurrentOption}{book}}%
+\DeclareOption{draft}{\PassOptionsToClass{\CurrentOption}{book} 
+\ClassWarning{PhDThesisPSnPDF}{Draft is ON. You can use `draftmode' instead,
+  which adds watermark with timestamp and line numbering. Don't forget to turn 
+  `draft' off for your final version.}}%
+\DeclareOption{draftmode}{\PassOptionsToClass{draft}{book}\PHD@drafttrue 
+\ClassWarning{PhDThesisPSnPDF}{Draft Mode is ON.
+  Don't forget to turn it off for your final version.}}% 
+
+% Line Numbers
+\newif\ifPHD@lineno\PHD@linenotrue
+\DeclareOption{lineno}{\PHD@linenotrue}
+\DeclareOption{nolineno}{\PHD@linenofalse}
+
 
 % Generates Warning for unknown options
 \DeclareOption*{
   \ClassWarning{PhDThesisPSnPDF}{Unknown or non-standard option
 '\CurrentOption'. I'll see if I can load it from the book class. If you get a
 warning unused global option(s): `\CurrentOption` then the option is not
-supported!} 
+supported!}
   \PassOptionsToClass{\CurrentOption}{book}
 }
 
@@ -158,92 +238,11 @@ supported!}
   \fi
 \fi
 
-%* ***************************** Print / Online ********************************
-% Defines a print / online version to define page-layout and hyperrefering 
-\ifsetDVI
-\special{papersize=\the\paperwidth,\the\paperheight}
-\RequirePackage[dvips,unicode=true]{hyperref}
-\else
-\RequirePackage[unicode=true]{hyperref}
-\pdfpagewidth=\the\paperwidth
-\pdfpageheight=\the\paperheight
-\fi
-
-\if@print
-    % For Print version
-    \hypersetup{
-      plainpages=false, 
-      pdfstartview=FitV,
-      pdftoolbar=true, 
-      pdfmenubar=true,
-      bookmarksopen=true,
-      bookmarksnumbered=true, 
-      breaklinks=true, 
-      linktocpage, 
-      colorlinks=true, 
-      linkcolor=black,
-      urlcolor=black, 
-      citecolor=black, 
-      anchorcolor=black
-    }
-    \ifPHD@custommargin
-        \setMarginfalse
-    \else
-        \ifsetDVI
-        % Odd and Even side Margin for binding and set viewmode for PDF
-	\RequirePackage[dvips,paper=\PHD@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
-        \else
-	\RequirePackage[pdftex,paper=\PHD@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
-        \fi
-	\setMargintrue
-    \fi
-
-    \if@twoside 
-        \hypersetup{pdfpagelayout=TwoPageRight}
-    \else 
-    	\hypersetup{pdfpagelayout=OneColumn}
-    \fi
-
-\else
-    % For PDF Online version
-    \hypersetup{
-      plainpages=false,
-      pdfstartview=FitV, 
-      pdftoolbar=true, 
-      pdfmenubar=true,
-      bookmarksopen=true,
-      bookmarksnumbered=true,
-      breaklinks=true,
-      linktocpage, 
-      colorlinks=true, 
-      linkcolor=blue, 
-      urlcolor=blue,
-      citecolor=blue, 
-      anchorcolor=green
-    }
-    
-    \ifPHD@custommargin
-        \setMarginfalse
-    \else
-	% No Margin staggering on Odd and Even side 
-        \ifsetDVI
-	\RequirePackage[dvips,paper=\PHD@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75]{geometry} 
-        \else
-	\RequirePackage[pdftex,paper=\PHD@papersize,hmarginratio=1:1,vmarginratio=1:1,scale=0.75]{geometry} 
-        \fi
-        \setMargintrue
-    \fi
-
-    \hypersetup{pdfpagelayout=OneColumn}
-\fi
-
 
 
 % ******************************************************************************
 % ******************************** Packages ************************************
 % ******************************************************************************
-
-
 % ************************** Layout and Formatting *****************************
 \renewcommand\pdfshellescape{1}
 \RequirePackage{lscape}   % Supports Landscape Layout
@@ -261,11 +260,16 @@ supported!}
 % Add appendices
 \RequirePackage[title,titletoc]{appendix}
 
+\renewcommand{\contentsname}{Table of contents}
+\renewcommand{\listfigurename}{List of figures}
+\renewcommand{\listtablename}{List of tables}
+
+
 % *************************** Graphics and Figures *****************************
-\RequirePackage[usenames, dvipsnames]{color} 
-\ifpdf 
+\RequirePackage[usenames, dvipsnames]{color}
+\ifpdf
         % Convert eps figures to pdf
-        \RequirePackage{epstopdf} 
+        \RequirePackage{epstopdf}
         \RequirePackage[pdftex]{graphicx}
 	\DeclareGraphicsExtensions{.png, .jpg, .pdf}
 	\pdfcompresslevel=9
@@ -277,70 +281,210 @@ supported!}
 \fi
 
 
-% ******************************* Bibliography *********************************
-\ifPHD@authoryear
-\ifPHD@biblatex
-\RequirePackage[backend=biber, style=authoryear, citestyle=alphabetic, sorting=nty, natbib=true]{biblatex}
-\setBiBLaTeXtrue
-\else
-\RequirePackage[round, sort, numbers, authoryear]{natbib} %author year
-\fi
-\setBibtrue
-\else
-     \ifPHD@numbered
-     \ifPHD@biblatex
-     \RequirePackage[backend=biber, style=numeric-comp, citestyle=numeric, sorting=none, natbib=true]{biblatex}
-     \setBiBLaTeXtrue
-     \else
-     \RequirePackage[numbers,sort&compress]{natbib} % numbered citation
-     \fi
-     \setBibtrue
-     \else
-         \ifPHD@custombib
-         \setBibfalse
-         \ifPHD@biblatex
-             \setBiBLaTeXtrue
-         \fi
-         \else
-             \ifPHD@biblatex
-                 \RequirePackage[backend=biber, style=numeric-comp, citestyle=numeric, sorting=none, natbib=true]{biblatex}
-                 \setBiBLaTeXtrue
-             \else
-                 \RequirePackage[numbers,sort&compress]{natbib} % Default - numbered
-             \fi
-         \setBibtrue
-	 \ClassWarning{PhDThesisPSnPDF}{No bibliography style was specified.
-Default numbered style is used. If you would like to use a different style, use
-`authoryear' or `numbered' in the options in documentclass or use `custombib`
-and define the natbib package or biblatex package with required style in the Preamble.tex file}
-         \fi
-     \fi
+
+% ******************************* Time Stamp ***********************************
+% Compute the timestamp based on an idea of
+% Tim Piessens \texttt{<Tim.Piessens@esat.kuleuven.ac.be>}.
+
+\RequirePackage{datetime}
+
+\newcount\PHD@hour \newcount\PHD@minute
+\PHD@hour=\time
+\divide \PHD@hour by 60
+\PHD@minute=\time
+\count@=\PHD@hour
+\multiply \count@ by -60
+\advance \PHD@minute by \count@
+\newcommand{\PHD@daytime}{%
+  \today\space--\space%
+  \ifnum\PHD@hour=0 00\else\ifnum\PHD@hour<10 0\fi%
+  \number\PHD@hour\fi:\ifnum\PHD@minute<10 0\fi\number\PHD@minute
+}
+
+% ******************************* Draft Mode ***********************************
+% Initializing Draft Text
+\newcommand\SetDraftText[1]{}
+% Initializing Draft Version
+\newcommand\SetDraftVersion[1]{}
+% Initializing Draft Content
+\newcommand\SetDraftWMPosition[1]{}
+% Initializing Draft Gray Scale
+\newcommand\SetDraftGrayScale[1]{}
+
+
+% If Draft Mode is active
+\ifPHD@draft
+
+% Line numbering (can be switched off)
+\ifPHD@lineno
+\RequirePackage[switch,pagewise,mathlines]{lineno}
+\renewcommand{\frontmatter}{\nolinenumbers}
+\renewcommand{\mainmatter}{\linenumbers}
+\renewcommand{\backmatter}{\linenumbers}
 \fi
 
+
+% Creates a Watermark Draft at the specified location.
+% The settings can be tweaked in the preamble
+
+% Draft text
+\newcommand\drafttext{Draft}
+\renewcommand\SetDraftText[1]{%
+  \renewcommand\drafttext{#1}}
+% Draft Version
+\newcommand\draftVersion{v1.0}
+\renewcommand\SetDraftVersion[1]{%
+  \renewcommand\draftVersion{#1}}
+% Draft Gray Scale
+\newcommand\draftGrayScale{0.75}
+\renewcommand\SetDraftGrayScale[1]{%
+  \renewcommand\draftGrayScale{#1}}
+
+% Draft Content
+\newcommand\DraftContent{%
+\hspace*{\fill}
+\Large
+\textcolor[gray]{\draftGrayScale}{%
+{\drafttext}\space-\space{\draftVersion}\hspace{\stretch{1}}{\PHD@daytime}
+\hspace*{\fill}}}
+
+% Adding watermark in draft mode with time stamp
+\RequirePackage{everypage}
+\RequirePackage[absolute]{textpos}
+% Default values for draft watermark
+\newcommand\draftposition{top}
+\newcommand\draftnodeanchor{1in+\voffset-\topmargin}
+\AddEverypageHook{%
+\begin{textblock*}{\paperwidth}[0.,2.5](0\paperwidth,\draftnodeanchor)
+\DraftContent
+\end{textblock*}
+}
+
+% Conditional evaluation to position the draft water mark  (top / bottom)
+\renewcommand\SetDraftWMPosition[1]{%
+  \renewcommand\draftposition{#1}
+  \ifthenelse{\equal{\draftposition}{bottom}}
+             {\renewcommand\draftnodeanchor{\paperheight-\voffset}} %Bottom
+             {\ifthenelse{\equal{\draftposition}{top}}
+               {\renewcommand\draftnodeanchor{1in+\voffset-\topmargin}} %Top
+               {\ClassWarning{PDThesisPSnPDF}{Unrecognised draft position
+                   using default value of top}
+                 \renewcommand\draftnodeanchor{1in+\voffset-\topmargin}}} %Top
+
+  \AddEverypageHook{%
+    \begin{textblock*}{\paperwidth}[0.,2.5](0\paperwidth,\draftnodeanchor)
+      \DraftContent
+    \end{textblock*}
+  }
+}
+
+% If NOT Draft Mode
+\else 
+
+\renewcommand\SetDraftText[1]{\ClassWarning{PhDThesisPSnPDF}{DraftMode is
+    inactive, to use SetDraftText include `draftmode' in the document 
+    class options.}}
+% Draft Version
+\renewcommand\SetDraftVersion[1]{\ClassWarning{PhDThesisPSnPDF}{DraftMode is
+    inactive, to use SetDraftVersion include `draftmode' in the document
+    class options.}}
+% Draft Content
+\renewcommand\SetDraftWMPosition[1]{\ClassWarning{PhDThesisPSnPDF}{DraftMode
+    is inactive, to use SetDraftWMPosition include `draftmode' in the document
+    class options.}}
+
+\renewcommand\SetDraftGrayScale[1]{\ClassWarning{PhDThesisPSnPDF}{DraftMode is
+    inactive, to use SetDraftWMPosition include `draftmode' in the document
+    class options.}}
+\fi
+
+
+
+
+% ******************************* Bibliography *********************************
+\ifPHD@authoryear
+  \ifPHD@biblatex
+    \RequirePackage[backend=biber, style=authoryear, citestyle=alphabetic, 
+      sorting=nty, natbib=true]{biblatex}
+    \setBiBLaTeXtrue
+  \else
+    \RequirePackage[round, sort, numbers, authoryear]{natbib} %author year
+  \fi
+\else
+  \ifPHD@numbered
+    \ifPHD@biblatex
+      \RequirePackage[backend=biber, style=numeric-comp, 
+        citestyle=numeric, sorting=none, natbib=true]{biblatex}
+      \setBiBLaTeXtrue
+    \else
+      \RequirePackage[numbers,sort&compress]{natbib} % numbered citation
+    \fi
+  \else
+    \ifuseCustomBib
+       \AtBeginDocument{
+          \@ifpackageloaded{natbib}{true}{
+            \@ifpackageloaded{biblatex}{true}{
+              \ClassWarning{PhDThesisPSnPDF}{%
+                Custom bibliography is chosen, but no corresponding package 
+                (biblatex/natbib) has been loaded. Please load the
+                appropriate bibliography package in the preamble.}
+            }
+          }
+        }
+    \else                                            % set default to numbered
+      \ifPHD@biblatex
+        \RequirePackage[backend=biber, style=numeric-comp,
+          citestyle=numeric, sorting=none, natbib=true]{biblatex}
+        \setBiBLaTeXfalse
+      \else
+        \RequirePackage[numbers,sort&compress]{natbib} 
+      \fi % default
+      \setBibfalse
+    \fi % custombib
+  \fi % numbered
+\fi % author year
+
+\ifsetBib
+\else
+\ClassWarning{PhDThesisPSnPDF}{No bibliography style was specified.
+  Default numbered style is used. If you would like to use a 
+  different style, use `authoryear' or `numbered' in the options in
+  documentclass or use `custombib` and define the natbib package or
+  biblatex package with required style in the Preamble.tex file}
+\fi
 
 % *********************** To copy ligatures and Fonts **************************
 \RequirePackage{textcomp}
-
 % Font Selection
 \ifPHD@times
-\RequirePackage{mathptmx}  % times roman, including math (where possible)
-\setFonttrue
+  \RequirePackage{mathptmx}  % times roman, including math (where possible)
+  \setFonttrue
+  \message{PhDThesisPSnPDF: Using Times Roman font}
 \else
-     \ifPHD@fourier
-     \RequirePackage{fourier} % Fourier
-     \setFonttrue
-     \else
-          \ifPHD@customfont
-          \setFontfalse
-          \else
-	  \ClassWarning{PhDThesisPSnPDf}{Using default font Latin Modern. If you
-would like to use other pre-defined fonts use `times' (The Cambridge University
-PhD thesis guidelines recommend using Times font)  or `fourier' or load a custom
-font in the preamble.tex file by specifying `customfont' in the class options}
-          \RequirePackage{lmodern}
-          \setFonttrue
-          \fi
-    \fi
+  \ifPHD@fourier
+    \RequirePackage{fourier} % Fourier
+    \setFonttrue
+    \message{PhDThesisPSnPDF: Using Fourier font}
+  \else
+    \ifsetCustomFont
+      \setFonttrue
+      \message{PhDThesisPSnPDF: Using custom font}
+    \else
+      \setFontfalse
+      \message{PhDThesisPSnPDF: No font is set}
+    \fi % custom font
+  \fi % Fourier font
+\fi % Times font
+
+% If Font is not set throw a warning.
+\ifsetFont
+\else
+  \ClassWarning{PhDThesisPSnPDF}{Using default font Latin Modern. If you
+    would like to use other pre-defined fonts use `times' (The Cambridge 
+    University PhD thesis guidelines recommend using Times font)  or `fourier'
+    or load a custom font in the preamble.tex file by specifying `customfont' 
+    in the class options}
+  \RequirePackage{lmodern}
 \fi
 
 \RequirePackage[utf8]{inputenc}
@@ -354,6 +498,99 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 \pdfglyphtounicode{f_f_l}{FB04}
 \pdfgentounicode=1
 
+
+%******************************* Print / Online ********************************
+% Defines a print / online version to define page-layout and hyperrefering
+
+% Moved below other usepackage definitions to fix PDFLaTeX footnote warning
+% Based on the suggestion by John Plaice
+\ifsetDVI
+\special{papersize=\the\paperwidth,\the\paperheight}
+\RequirePackage[dvips,unicode=true]{hyperref}
+\else
+\RequirePackage[unicode=true]{hyperref}
+\pdfpagewidth=\the\paperwidth
+\pdfpageheight=\the\paperheight
+\fi
+
+\if@print
+    % For Print version
+    \hypersetup{
+      final=true,
+      plainpages=false,
+      pdfstartview=FitV,
+      pdftoolbar=true,
+      pdfmenubar=true,
+      bookmarksopen=true,
+      bookmarksnumbered=true,
+      breaklinks=true,
+      linktocpage,
+      colorlinks=true,
+      linkcolor=black,
+      urlcolor=black,
+      citecolor=black,
+      anchorcolor=black
+    }
+    \ifsetCustomMargin
+    % Margin to be define in preamble using geometry package
+    \else
+        \ifsetDVI
+        % Odd and Even side Margin for binding and set viewmode for PDF
+	\RequirePackage[dvips,paper=\PHD@papersize,hmarginratio=1:1,
+          vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
+        \else
+	\RequirePackage[pdftex,paper=\PHD@papersize,hmarginratio=1:1,
+          vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
+        \fi
+    \fi
+
+    \if@twoside
+        \hypersetup{pdfpagelayout=TwoPageRight}
+    \else
+    	\hypersetup{pdfpagelayout=OneColumn}
+    \fi
+
+\else
+    % For PDF Online version
+    \hypersetup{
+      final=true,
+      plainpages=false,
+      pdfstartview=FitV,
+      pdftoolbar=true,
+      pdfmenubar=true,
+      bookmarksopen=true,
+      bookmarksnumbered=true,
+      breaklinks=true,
+      linktocpage,
+      colorlinks=true,
+      linkcolor=blue,
+      urlcolor=blue,
+      citecolor=blue,
+      anchorcolor=green
+    }
+
+    \ifsetCustomMargin
+    % Margin to be define in preamble using geometry package
+    \else
+	% No Margin staggering on Odd and Even side
+        \ifsetDVI
+	\RequirePackage[dvips,paper=\PHD@papersize,hmarginratio=1:1,
+          vmarginratio=1:1,scale=0.75]{geometry}
+        \else
+	\RequirePackage[pdftex,paper=\PHD@papersize,hmarginratio=1:1,
+          vmarginratio=1:1,scale=0.75]{geometry}
+        \fi
+    \fi
+
+    \hypersetup{pdfpagelayout=OneColumn}
+\fi
+
+% Backward compatibility - setMargin is now replaced with customMargin
+\ifsetCustomMargin
+  \setMarginfalse
+\else
+  \setMargintrue
+\fi
 
 % ************************ URL Package and Definition **************************
 \RequirePackage{url}
@@ -369,6 +606,7 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 \ifsetDVI
 \RequirePackage{breakurl} % to split the url over multiple lines
 \fi
+
 
 % ******************************************************************************
 % **************************** Pre-defined Settings ****************************
@@ -386,6 +624,19 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 }
 \fi
 
+% ******************************** Line Spacing ********************************
+% Set spacing as 1.5 line spacing for the PhD Thesis
+% In practice, fortunately, nobody knows really what “one-and-a-half spaced
+% type” means exactly (in terms of millimetres baseline distance). The following
+% LaTeX setting has routinely been considered perfectly acceptable:
+
+\renewcommand\baselinestretch{1.2}
+
+% ******************************** Justification *******************************
+% Left aligned as per University identity guidelines
+\AtBeginDocument{
+\raggedright
+}
 
 % ************************** TOC and Hide Sections *****************************
 \newcommand{\nocontentsline}[3]{}
@@ -411,8 +662,10 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 \renewcommand{\chaptermark}[1]{\markboth{##1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection\ ##1\ }}
 \fancyhf{}
-\fancyhead[RO]{\nouppercase \rightmark\hspace{0.25em} | \hspace{0.25em} \bfseries{\thepage}}
-\fancyhead[LE]{ {\bfseries\thepage} \hspace{0.25em} | \hspace{0.25em} \nouppercase \leftmark}
+\fancyhead[RO]{\nouppercase \rightmark\hspace{0.25em} | 
+  \hspace{0.25em} \bfseries{\thepage}}
+\fancyhead[LE]{ {\bfseries\thepage} \hspace{0.25em} | 
+  \hspace{0.25em} \nouppercase \leftmark}
 
 
 \else
@@ -438,7 +691,6 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 \fi
 
 \fi
-
 }
 
 \setlength{\headheight}{14.5pt}
@@ -450,7 +702,12 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 }
 
 % If Margin has been set (default margin print/online version)
-\ifsetMargin
+\ifsetCustomMargin
+\AtBeginDocument{
+\@ifpackageloaded{geometry}{true}{\ClassWarning{PhDThesisPSnPDF}{%
+  Custom margin is chosen, but geometry package is not loaded. Please load the
+  `geometry' package in the preamble.}}}
+\else
 \setFancyHdr % Apply fancy header settings otherwise apply it in preamble
 \fi
 
@@ -490,7 +747,7 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 % construction of the title page and other preamble.
 
 % The year and term the degree will be officially conferred
-\newcommand{\@degreedate}{}
+\newcommand{\@degreedate}{\monthname[\the\month]\space\the\year}
 \newcommand{\degreedate}[1]{\renewcommand{\@degreedate}{#1}}
 
 % The full (unabbreviated) name of the degree
@@ -528,7 +785,7 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 \newcommand{\subject}[1]{\renewcommand{\@subject}{#1}}
 
 
-% These macros define an environment for front matter that is always 
+% These macros define an environment for front matter that is always
 % single column even in a double-column document.
 \newenvironment{alwayssingle}{%
        \@restonecolfalse\if@twocolumn\@restonecoltrue\onecolumn
@@ -577,7 +834,7 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 % Submission Text
 {\large \submissiontext \par}
 \vspace*{1ex}
-{\large \textit {\@degree} \par} 
+{\large \textit {\@degree} \par}
 
 
 \end{center}
@@ -609,7 +866,7 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 
 
 % ******************************* Declaration **********************************
-% The declaration environment puts a large, bold, centered 
+% The declaration environment puts a large, bold, centered
 % "Declaration" label at the top of the page.
 
 \newenvironment{declaration}{
@@ -627,7 +884,7 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 
 
 % ****************************** Acknowledgements ********************************
-% The acknowledgements environment puts a large, bold, centered 
+% The acknowledgements environment puts a large, bold, centered
 % "Acknowledgements" label at the top of the page.
 
 \newenvironment{acknowledgements}{
@@ -664,7 +921,7 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 \newcommand{\printnomencl}[1][]{
 \ifthenelse{\equal {#1}{}}
 {\printnomenclature}
-{\printnomenclature[#1]} 
+{\printnomenclature[#1]}
 \addcontentsline{toc}{chapter}{\nomname}
 }
 
@@ -733,20 +990,17 @@ font in the preamble.tex file by specifying `customfont' in the class options}
 \else
 % Normal abstract in the thesis
 	\cleardoublepage
-	\setsinglecolumn 
+	\setsinglecolumn
 	\chapter*{\centering \Large Abstract}
 	\thispagestyle{empty}
 \fi
 }
 
 
-% ******************************** Line Spacing ********************************
-% Set spacing as 1.5 line spacing for the PhD Thesis
-\onehalfspace
-
-
 % ******************** To compute empty space in title page ********************
-% Boxes below are used to space differt contents on the title page
+% Boxes below are used to space different contents on the title page
+% Based on https://github.com/cambridge/thesis
+
 \newcommand{\computeTitlePageSpacing}{
 
 
