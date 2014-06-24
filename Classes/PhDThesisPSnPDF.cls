@@ -704,7 +704,7 @@ supported!}
 % If Margin has been set (default margin print/online version)
 \ifsetCustomMargin
 \AtBeginDocument{
-\@ifpackageloaded{geometry}{true}{\ClassWarning{PhDThesisPSnPDF}{%
+\@ifpackageloaded{geometry}{}{\ClassWarning{PhDThesisPSnPDF}{%
   Custom margin is chosen, but geometry package is not loaded. Please load the
   `geometry' package in the preamble.}}}
 \else
