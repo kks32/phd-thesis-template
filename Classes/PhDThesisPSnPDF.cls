@@ -123,6 +123,11 @@
 }
 
 % ************************* Header / Footer Styling ****************************
+\newif\ifPHD@textJustify\PHD@textJustifyfalse % Set No Justification false
+\DeclareOption{justify}{\PHD@textJustifytrue}
+
+
+% ************************* Header / Footer Styling ****************************
 \newif\ifPHD@pageStyleI\PHD@pageStyleIfalse % Set Page StyleI
 \DeclareOption{PageStyleI}{\PHD@pageStyleItrue}
 
@@ -634,9 +639,16 @@ supported!}
 
 % ******************************** Justification *******************************
 % Left aligned as per University identity guidelines
+\ifPHD@textJustify
 \AtBeginDocument{
 \raggedright
 }
+\else
+\message{PhDThesisPSnPDF: The University identity guidelines recommend using 
+left aligned text. Please use `flushleft' in the documentclass option, if you
+wish to left align your text}
+\fi
+
 
 % ************************** TOC and Hide Sections *****************************
 \newcommand{\nocontentsline}[3]{}
