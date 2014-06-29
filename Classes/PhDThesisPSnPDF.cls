@@ -4,7 +4,7 @@
 %%                                                                            %%
 %% A PhD thesis LaTeX template for Cambridge University Engineering Department%%
 %%                                                                            %%
-%% Version: v1.0                                                              %%
+%% Version: v1.4                                                              %%
 %% Authors: Krishna Kumar                                                     %%
 %% Date: 2013/11/16 (inception)                                               %%
 %% License: MIT License (c) 2013 Krishna Kumar                                %%
