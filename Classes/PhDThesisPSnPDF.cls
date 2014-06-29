@@ -123,8 +123,8 @@
 }
 
 % ************************* Header / Footer Styling ****************************
-\newif\ifPHD@textJustify\PHD@textJustifyfalse % Set No Justification false
-\DeclareOption{justify}{\PHD@textJustifytrue}
+\newif\ifPHD@textJustify\PHD@textJustifytrue % Set Justification true
+\DeclareOption{flushleft}{\PHD@textJustifyfalse}
 
 
 % ************************* Header / Footer Styling ****************************
@@ -640,13 +640,13 @@ supported!}
 % ******************************** Justification *******************************
 % Left aligned as per University identity guidelines
 \ifPHD@textJustify
-\AtBeginDocument{
-\raggedright
-}
-\else
 \message{PhDThesisPSnPDF: The University identity guidelines recommend using 
 left aligned text. Please use `flushleft' in the documentclass option, if you
 wish to left align your text}
+\else
+\AtBeginDocument{
+\raggedright
+}
 \fi
 
 
