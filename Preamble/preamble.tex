@@ -23,8 +23,6 @@
 % *****************************************************************************
 % **************************** Custom Packages ********************************
 
-
-
 % ************************* Algorithms and Pseudocode **************************
 
 %\usepackage{algpseudocode}
@@ -81,6 +79,8 @@
 % \onehalfspacing
 % \singlespacing
 
+% ********************************* Verbatim ***********************************
+% \usepackage{fancyvbr}
 
 % ************************ Formatting / Footnote *******************************
 
@@ -176,3 +176,8 @@
 % Draft Text grayscale value (should be between 0-black and 1-white)
 % Default value is 0.75
 %\SetDraftGrayScale{0.8}
+
+
+% ******************************* SI Unitx set-up ******************************
+\sisetup{input-symbols = {()},  % do not treat "(" and ")" in any special way
+         group-digits  = false} % no grouping of digits

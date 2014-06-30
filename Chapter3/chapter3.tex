@@ -9,12 +9,8 @@
 
 \section{The layout of formal tables}
 This section has been modified from ``Publication quality tables in \LaTeX*''
- by Simon Fear.
-
-The layout of a table has been established over centuries of experience and 
-should only be altered in extraordinary circumstances. 
-
-When formatting a table, remember two simple guidelines at all times:
+by Simon Fear. When formatting a table, remember two simple guidelines at 
+all times:
 
 \begin{enumerate}
   \item Never, ever use vertical rules (lines).
@@ -38,7 +34,7 @@ typesetters and sub-editors:
       will serve just as well. If it won't, then repeat the value.
 \end{enumerate}
 
-A frequently seen mistake is to use `\textbackslash begin\{center\}' \dots `\textbackslash end\{center\}' inside a figure or table environment. This center environment can cause additional vertical space. If you want to avoid that just use `\textbackslash centering'
+A frequently seen mistake is to use \verb+\begin{center}+ \dots \verb+\end{center}+ inside a figure or table environment. This center environment can cause additional vertical space. If you want to avoid that just use \verb+\centering+
 
 
 \begin{table}
@@ -53,15 +49,15 @@ Dental measurement  & mean & SD  & mean & SD  \\ \hline
 \hline
 I1MD & 6.23 & 0.91 & 5.2  & 0.7  \\
 \hline 
-I1LL & 7.48 & 0.56 & 8.7  & 0.71 \\
+I1LL & 7.48 & 0.56 & 8.743  & 0.71 \\
 \hline 
 I2MD & 3.99 & 0.63 & 4.22 & 0.54 \\
 \hline 
-I2LL & 6.81 & 0.02 & 6.66 & 0.01 \\
+I2LL & 6.81 & 0.02 & 6.6 & 0.01 \\
 \hline 
-CMD & 13.47 & 0.09 & 10.55 & 0.05 \\
+CMD & 13.47 & 0.09 & 10.155 & 0.05 \\
 \hline 
-CBL & 11.88 & 0.05 & 13.11 & 0.04\\ 
+CBL & 11.88 & 0.05 & 13.1 & 0.04\\ 
 \hline 
 \end{tabular}
 \end{table}
@@ -78,19 +74,18 @@ CBL & 11.88 & 0.05 & 13.11 & 0.04\\
 \hline
 I1MD & 6.23 & 0.91 & 5.2  & 0.7  \\
 
-I1LL & 7.48 & 0.56 & 8.7  & 0.71 \\
+I1LL & 7.48 & 0.56 & 8.743  & 0.71 \\
 
 I2MD & 3.99 & 0.63 & 4.22 & 0.54 \\
 
 I2LL & 6.81 & 0.02 & 6.66 & 0.01 \\
 
-CMD & 13.47 & 0.09 & 10.55 & 0.05 \\
+CMD & 13.47 & 0.09 & 10.155 & 0.05 \\
 
-CBL & 11.88 & 0.05 & 13.11 & 0.04\\ 
+CBL & 11.88 & 0.05 & 13.1 & 0.04\\ 
 \hline 
 \end{tabular}
 \end{table}
-
 
 \begin{table}
 \caption{Even better looking table using booktabs}
@@ -104,15 +99,22 @@ CBL & 11.88 & 0.05 & 13.11 & 0.04\\
 \midrule
 I1MD & 6.23 & 0.91 & 5.2  & 0.7  \\
 
-I1LL & 7.48 & 0.56 & 8.7  & 0.71 \\
+I1LL & 7.48 & 0.56 & 8.743  & 0.71 \\
 
 I2MD & 3.99 & 0.63 & 4.22 & 0.54 \\
 
 I2LL & 6.81 & 0.02 & 6.66 & 0.01 \\
 
-CMD & 13.47 & 0.09 & 10.55 & 0.05 \\
+CMD & 13.47 & 0.09 & 10.155 & 0.05 \\
 
-CBL & 11.88 & 0.05 & 13.11 & 0.04\\ 
+CBL & 11.88 & 0.05 & 13.1 & 0.04\\ 
 \bottomrule
 \end{tabular}
 \end{table}
+
+\subsection{Aligning numbers along the decimal point}
+To align tables with numbers along the decimal point, you can use \verb+siunitx+
+package using \verb+S[table-format=y.x]+, where y is the number of digits before
+the decmial point and x is the number of digits after the decimal. For example, 
+\verb+S[table-format=2.7]+ denotes maximum of 2 digits before the decimal and 7 
+after the decimal.
