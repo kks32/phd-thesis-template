@@ -1,0 +1,7 @@
+before_install:
+  - sudo add-apt-repository -y ppa:texlive-backports/ppa
+  - sudo apt-get update
+install:
+  - sudo apt-get install texlive-full texlive
+script:
+  - make
