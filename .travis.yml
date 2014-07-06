@@ -5,7 +5,8 @@ install:
 #  - sudo apt-get install texlive-full texlive
    - sudo apt-get install -y texlive-latex-base 
    - sudo apt-get install -y texlive-latex-recommended texlive-latex-extra
-   - sudo apt-get install -u texlive-science texlive-fonts-extra
+   - sudo apt-get install -y texlive-science 
+   - sudo apt-get install -y texlive-fonts-recommended texlive-fonts-extra
 script:
   - make clean
   - make
