@@ -255,7 +255,7 @@ supported!}
 \RequirePackage{calc}     % To calculate vertical spacing
 
 % ************************* Conditional Statements *****************************
-\RequirePackage{ifthen}   % Used in LaTeX Class files for conditional statements
+\RequirePackage{ifthen}  % conditional statements
 \RequirePackage{ifpdf}    % Check for pdfLaTeX
 
 
@@ -852,11 +852,20 @@ wish to left align your text}
 \end{center}
 \vfill
 \large
-\begin{minipage}{0.49\textwidth}
-\flushleft\hspace*{\oddsidemargin}\@college
+\begin{minipage}[c]{\textwidth}
+\ifthenelse{\equal{\@college}{}}{
+% college is not defined
+\centering
+\@degreedate
+}{
+% college is defined
+\begin{minipage}{0.45\textwidth}
+\flushleft\@college
 \end{minipage}
-\begin{minipage}{0.49\textwidth}
+\begin{minipage}{0.45\textwidth}
 \flushright \@degreedate
+\end{minipage}
+} % college is defined
 \end{minipage}
 \end{singlespace}
 }
@@ -1065,12 +1074,18 @@ wish to left align your text}
 \begin{lrbox}{\PHD@collegedate}
 \begin{minipage}[c]{\textwidth}
 \large
+\ifthenelse{\equal{\@college}{}}{
+% college is not defined
+\@degreedate
+}{
+% college is defined
 \begin{minipage}{0.45\textwidth}
 \flushleft\@college
 \end{minipage}
 \begin{minipage}{0.45\textwidth}
 \flushright \@degreedate
 \end{minipage}
+} % college is defined
 \end{minipage}
 \end{lrbox}
 
