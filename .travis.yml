@@ -4,4 +4,5 @@ before_install:
 install:
   - sudo apt-get install texlive-full texlive
 script:
+  - make clean
   - make

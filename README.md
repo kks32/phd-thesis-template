@@ -2,6 +2,8 @@ CUED PhD thesis template
 ========================
 > A LaTeX PhD thesis template for Cambridge University Engineering Department.
 
+[![Build Status](https://api.travis-ci.org/kks32/phd-thesis-template.svg)](https://travis-ci.org/kks32/phd-thesis-template)
+
 ## Author(s)
 *   Krishna Kumar
 
