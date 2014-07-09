@@ -427,8 +427,8 @@ supported!}
   \else
     \ifuseCustomBib
        \AtBeginDocument{
-          \@ifpackageloaded{natbib}{true}{
-            \@ifpackageloaded{biblatex}{true}{
+          \@ifpackageloaded{natbib}{}{
+            \@ifpackageloaded{biblatex}{}{
               \ClassWarning{PhDThesisPSnPDF}{%
                 Custom bibliography is chosen, but no corresponding package 
                 (biblatex/natbib) has been loaded. Please load the
