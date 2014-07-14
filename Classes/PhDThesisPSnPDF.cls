@@ -758,6 +758,10 @@ wish to left align your text}
 % These macros are used to declare arguments needed for the
 % construction of the title page and other preamble.
 
+% Subtitle (optional)
+\newcommand{\@subtitle}{}
+\newcommand{\subtitle}[1]{\renewcommand{\@subtitle}{#1}}
+
 % The year and term the degree will be officially conferred
 \newcommand{\@degreedate}{\monthname[\the\month]\space\the\year}
 \newcommand{\degreedate}[1]{\renewcommand{\@degreedate}{#1}}
@@ -827,6 +831,13 @@ wish to left align your text}
 \begin{center}
 % Title
 {\Huge \bfseries{\@title} \par}
+\ifthenelse{\equal{\@subtitle}{}}{
+% subtitle is not defined
+}{
+\vspace*{1em}
+\centering \Large {\@subtitle}
+} % subtitle is defined
+
 \vspace{.25\PHD@titlepagespacing}
 
 % Crest
@@ -835,7 +846,7 @@ wish to left align your text}
 
 % Author
 {\Large \bfseries{\@author} \par}
-\vspace*{1ex}
+\vspace*{1em}
 
 % Department and University
 {\large \@dept \par}
@@ -1030,6 +1041,12 @@ wish to left align your text}
 \begin{lrbox}{\PHD@Title}
 \begin{minipage}[c]{0.98\textwidth}
 \centering \Huge \bfseries{\@title}
+\ifthenelse{\equal{\@subtitle}{}}{
+% subtitle is not defined
+}{
+\vspace*{1em}
+\centering \Large {\@subtitle}
+} % subtitle is defined
 \end{minipage}
 \end{lrbox}
 
@@ -1052,7 +1069,7 @@ wish to left align your text}
 \begin{lrbox}{\PHD@dept}
 \begin{minipage}[c]{\textwidth}
 \centering {\large \@dept \par}
-\vspace*{1ex}
+\vspace*{1em}
 {\large \@university \par}
 \end{minipage}
 \end{lrbox}
