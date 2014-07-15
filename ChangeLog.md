@@ -1,6 +1,6 @@
 ## Change log
 ### 2014/07/15 - Version 1.4
-> Commit 7b8d3fa53d598624bde506368c9b76170f66e8ef
+> Commit 330f82a439e179dc03fbbbe156f3e830ca1fdd68
 *   Option to have subtitle on front page
 *   College name is an optional argument
 *   Travis-CI integration
