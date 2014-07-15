@@ -4,11 +4,13 @@ CUED PhD thesis template
 
 [![Build Status](https://api.travis-ci.org/kks32/phd-thesis-template.svg)](https://travis-ci.org/kks32/phd-thesis-template)
 [![License MIT](http://img.shields.io/badge/license-MIT-brightgreen.svg)](license.md)
-
+[![Version](http://img.shields.io/badge/version-1.4-brightgreen.svg)](https://github.com/kks32/phd-thesis-template/releases/tag/latest-stable)
 ## Author(s)
 *   Krishna Kumar
 
 --------------------------------------------------------------------------------
+## Table of contents
+[TOC]
 
 ## Features
 
@@ -33,7 +35,6 @@ CUED PhD thesis template
 *   Draft mode: Draft water mark, timestamp, version numbering and line numbering
 
 *   A LyX Template is now available at [https://github.com/kks32/PhDThesisLyX/](https://github.com/kks32/PhDThesisLyX/)
-
 
 ## Building your thesis
 
@@ -145,8 +146,23 @@ It supports the following custom options in the documentclass in thesis.tex:
     timestamp and custom text. Position of the text can also be modified.
 
 *   `lineno`: Enables pagewise line numbering on the outer edge. You can switch-off line numbering by specifying `nolineno` in the options.
+*   `flushleft`: The University recommends using ragged right or flush left alignment for texts. The reason behind this is left justifying a text may exclude a certain readers. Dyslexic people find it hard to read justified text. You can enable `raggedright` option in the document class by passing `flushleft` argument. Default is flush left and right.
 
+### Title page
 
+The front page (title page) resizes to fit your title length. You can modify the options in `thesis-info.tex`.
+
+* `\subtitle` (optional): Adds a subtitle to your thesis.
+
+* `\college` (optional): This option adds the name of your college on the bottom left.
+
+If `\college` is defined, the bottom of the title page will look like this:
+
+        King's College 			   			                                            2014
+
+If `\college` is undefined or blank, the `degreedate` will be centered.
+
+                                                2014
 ### Abstract separate
 
 *  A separate abstract with the title of the PhD and the candidate name has to be submitted to the Student Registry. This can be generated using `abstract` option in the document class. Ignore subsequent warnings about skipping sections (if any).
@@ -330,14 +346,12 @@ The visual style of chapter headings can be modified using the `titlesec` packag
 
 ## Frequently Asked Questions
 
-### _Q1_: Where can I find the thesis formatting guidelines this class is based on?
+#### _Q1_: Where can I find the thesis formatting guidelines this class is based on?
 
 [https://www.admin.cam.ac.uk/students/studentregistry/exams/submission/phd/format.html](https://www.admin.cam.ac.uk/students/studentregistry/exams/submission/phd/format.html)
 
-[http://www.eng.cam.ac.uk/postgraduate/assets/library/document/p/original/planningphd.pdf](http://www.eng.cam.ac.uk/postgraduate/assets/library/document/p/original/planningphd.pdf)
 
-
-### _Q2_: Where can I find newer versions of the University of Cambridge crest/logos?
+#### _Q2_: Where can I find newer versions of the University of Cambridge crest/logos?
 
 The university updates its crest every now and then. You can find up-to-date
 logos on [this page](http://www.admin.cam.ac.uk/offices/communications/services/logos/)
@@ -345,7 +359,7 @@ logos on [this page](http://www.admin.cam.ac.uk/offices/communications/services/
 
 Download and exchange the new logos with `CUni.eps` and/or `CUni.pdf`. I'll try to keep the crest up to date.
 
-### _Q3_: Where can I find the guidelines to submit my thesis and requirements?
+#### _Q3_: Where can I find the guidelines to submit my thesis and requirements?
 
 [Preparing to submit:](https://www.admin.cam.ac.uk/students/studentregistry/exams/submission/phd/preparing.html)
 
@@ -353,7 +367,7 @@ Download and exchange the new logos with `CUni.eps` and/or `CUni.pdf`. I'll try 
 
 [Submitting the dissertation](https://www.admin.cam.ac.uk/students/studentregistry/exams/submission/phd/submitting.html)
 
-### _Q4_: How can I count the number of words in my thesis?
+#### _Q4_: How can I count the number of words in my thesis?
 
 You can run the following command (Linux/Unix):
     `ps2ascii thesis.pdf | wc -w` (eg., result 2713 words)
@@ -364,7 +378,7 @@ or
 or
     `texcount -inc *.tex` (eg., result 2341 words)
 
-### _Q5_: I found a bug in the template. Where do I report bugs?
+#### _Q5_: I found a bug in the template. Where do I report bugs?
 
 You can report issues at
 [our GitHub repository](https://github.com/kks32/phd-thesis-template).
@@ -376,32 +390,30 @@ You can also mail
 --------------------------------------------------------------------------------
 ## Troubleshooting warnings
 
-### _W1_: I get the LaTeX Warning: You have requested document class Classes/PhDThesisPSnPDF, but the document class provides PhDThesisPSnPDF, should I be concerned?
+#### _W1_: I get the LaTeX Warning: You have requested document class `Classes/PhDThesisPSnPDF`, but the document class provides `PhDThesisPSnPDF`, should I be concerned?
 
 No! Do nothing, or if you don't want any warning messages change the line near the top of the class file to \ProvidesClass{Classes/PhDthesisPSnPDF} if you're not going to install the class file in a more standard location. You can install it in a standard location like `/usr/share/texmf/tex/latex/` and run `texhash` to reconfigure.
 
-### _W2_:I get the package Fancyhdr Warning: \fancyhead's `E` option without twoside option is useless on input line \# or \#. What should I do?
+#### _W2_:I get the package Fancyhdr Warning: \fancyhead's `E` option without twoside option is useless on input line \# or \#. What should I do?
 
 Nothing. The warning is because the twoside option is also defined in the class, although only the oneside option is currently used.
 
-### _W3_: I get the Class PhDThesisPSnPDF Warning: Unknown or non-standard option 'something'. Will see if I can load it from the book class. If you get a warning unused global option(s): `something` then the option is not supported! on input line \#.
+#### _W3_: I get the Class PhDThesisPSnPDF Warning: Unknown or non-standard option 'something'. Will see if I can load it from the book class. If you get a warning unused global option(s): `something` then the option is not supported! on input line \#.
 
 You are either trying to use a undefined option or a non-standard option which is in the book class but not defined in the PhD Thesis Template. If it can be used it will be loaded and you will get no further warnings. If not, the option you chose is unavailable.
 
 
-### _W4_: I get LaTeX Warning: Unused global option(s):[something].
+#### _W4_: I get LaTeX Warning: Unused global option(s):[something].
 
 You are trying to load an option that is not supported in the PhDThesisClass and the Book Class. Are you sure you are using the right option? Check your spelling!
 
-### _W5_: I get I'm skipping whatever remains of this command line \# of file thesis.aux \@input{Chapter1/chapter1.aux}
+#### _W5_: I get I'm skipping whatever remains of this command line \# of file thesis.aux \@input{Chapter1/chapter1.aux}
 
 If you are generating a separate abstract for your thesis submission, ignore this warning and good luck with your submission. If you are compiling your thesis and see this warning, please remove the option `abstract` from the document class.
 
-
-
 --------------------------------------------------------------------------------
 
-## Known issue(s) / Bugs
+## Known issue(s) / Bugs / Feature requests
 
 *   Hyperlinks doesn't seem to be working in Post-Script file, however works on DVI and PDF (which is produced from the PS file), possibly viewer limitation than a code bug.
 
@@ -411,110 +423,18 @@ If you are generating a separate abstract for your thesis submission, ignore thi
 
     This issue occurs only when the papersize is not specified in the document class and you are compiling DVI >> PS >> PDF using an older version (5.97 or below) of dvips.
 
-*   If you find any let me know, or even better, patch it and contribute to the development of the LaTeX Template.
+*   Open issues can be tracked at [https://github.com/kks32/phd-thesis-template/issues](https://github.com/kks32/phd-thesis-template/issues). If you would like a new feature to be added to the template, please create an issue and label it as an enhancement.
+*   Please [fork me on github](https://github.com/kks32/phd-thesis-template/fork) and create a pull request, if you would like to contribute to the repo.
+
+
+## ChangeLog
+
+The history of releases can be viewed at [ChangeLog](ChangeLog.md)
 
 
 --------------------------------------------------------------------------------
 
-## TODO list
-
-*  Make example thesis a document on how to use the template and include general guidelines and good  practices.
-
---------------------------------------------------------------------------------
-## Change log
-
-### 2014/06/09 - Version 1.3
-> Commit 93723653eef19b8ca81d57df389b3a8efa652203
-*   Draftmode - watermark text, line numbering, version numbering
-*   Better error checking for documentclass options and log messages
-*   arara/LaTeX-mk support
-
-### 2014/03/24 - Version 1.2
-> Commit 4b709fed6cdfd5b3796152f9c59b619c72df491f
-*   Rearranged package order in preamble to support equation numbering using cref
-*   Removed dependencies on obsolete packages
-*   Restyled the URL fonts to use the same font as text
-
-### 2014/02/14 - Version 1.1.2
-> Commit a7f123bb220bf1e207b6e49e8b2978c203582e12
-*   Updates to abstract separate mode with no page numbers
-*   Declaration included in abstract mode for submission to student registry
-
-### 2014/02/10 - Version 1.1.1
-> Commit e7f34cfd71cbe1b590d615a00d99b8d05513e5ba
-*   Biblatex handled as a custombib option
-*   UTF8 and Fontencoding after font has been loaded
-
-### 2014/02/04 - Version 1.1
-> Commit 6e00ac94c2193882dd6f42686fc455cc66d829df
-*   BibLatex Support with bibtex backend
-*   Chapter mode for compiling only specified chapters and references
-
-### 2014/01/11 - Version 1.0
-> Commit 2f6918863e3c9d0a7e95bd2651ce7ef8ae38f90a
-*   Fixed an issue with the headers in Nomenclature section
-*   Removed deprecated codes, added functionality to tweak chapter headings in preamble.tex.
-*   Distributed under MIT license
-*   Acknowledgement and Cls file update
-*   Appendices after References
-
-### 2013/12/09 - Version 1.0 Beta Release 10.0
-> Commit 973492fe1f1805e4fef60ec54060621b3e90a3cd
-*   Fixed issues with DVI >> PS >> PDF and workaround, when papersize is not set for older versions of dvips (5.97 or lower).
-
-### 2013/12/08 - Version 1.0 Beta Release 9.0
-> Commit c11f98e26566af08cb9c4cacbdfddf6b28111886
-*   Wider text area (75% of page size), support for separate abstract for submission to the Student Registry, appendix
-
-### 2013/12/05 - Version 1.0 Beta Release 8.0
-> Commit 324d1a5609992028afb109b424573cd3a5e31849
-*   Update class file to support dvips driver when using dvi > PS output in hyperTeX. Removed deprecated codes from Declaration and class files
-
-### 2013/12/05 - Version 1.0 Beta Release 7.2
-> Commit 2f397eda12ef2b81314b67847e312f688095a379
-*   Update to margin dimensions (1:1 ratio is maintained) with a binding offset of 5mm on the print version. Replaced the hmargin ratio of 3:2 with 1:1 with a binding offset.
-
-### 2013/12/04 - Version 1.0 Beta Release 7.1
-> Commit 9cb782f26cc3573f8d3077db520ba84b5f295049
-*   Declaration with automatic insertion of the author and the degree date and conforming to the statments in the University guidelines
-
-### 2013/12/03 - Version 1.0 Beta Release 7.0
-> Commit 1f695d512ae5ce765398db4dc4b6381dc0351868
-*   Default font size is 12pt and the default paper size is A4, confirming to the University regulations in terms of font, font sizer, paper size and set them as defaults.
-
-### 2013/11/27 - Version 1.0 Beta Release 6.2
-> Commit a5f49d49a6cc39209d95f91e667fd7b359ab5227
-*   Update to the Makefile to remove PS files when running Makeclean
-
-### 2013/11/26 - Version 1.0 Beta Release 6.1
-> Commit e29a99406649dcce8f23b6d9df0b87eabd09fc0e
-*   Update to the Makefile to support PS to PDF conversion
-
-### 2013/11/26 - Version 1.0 Beta Release 6.0
-> Commit 187b9324420812326e62d963afa42e26532e82e7
-*   Included a Windows Batch file for LaTeX / Nomenclature compilation
-*   Supports \printnomencl[optional_argument]
-
-### 2013/11/26 - Version 1.0 Beta Release 5.0
-> Commit 76a733ee305ed4aae9d546492cef768512df2b13
-*   Supports DVI/PS
-*   Supports Custom Margin and FancyHdr update
-
-### 2013/11/24 - Version 1.0 Beta Release 0
-> Commit 73c8dd9ea82c21476d964ad5cdff1b71fe7327c8
-*   Author(s): Krishna Kumar
-*   Adaptive Title Page: Title page adapts to the length of the title
-*   Print / On-line version: Different layout and hyper-referncing styles
-*   Pre-defined and custom fonts (Times / Palatino / Latin Modern) with math support
-*   Pre-defined and custom bibliography style support (authoryear / numbered / custom)
-*   Custom page styles: 3 Different Header / Footer styles
-
-### 2013/11/14 - Inception
-> Author(s): Krishna Kumar
-
---------------------------------------------------------------------------------
-
-## Inspirations/Based on:
+## Inspirations/Based on
 
 *   Cambridge Computer Laboratory PhD Thesis Template [https://github.com/cambridge/thesis](https://github.com/cambridge/thesis)
 
