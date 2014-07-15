@@ -1,10 +1,16 @@
 ## Change log
+### 2014/07/15 - Version 1.4
+> Commit 7b8d3fa53d598624bde506368c9b76170f66e8ef
+*   Option to have subtitle on front page
+*   College name is an optional argument
+*   Travis-CI integration
 
 ### 2014/06/09 - Version 1.3
 > Commit 93723653eef19b8ca81d57df389b3a8efa652203
 *   Draftmode - watermark text, line numbering, version numbering
 *   Better error checking for documentclass options and log messages
 *   arara/LaTeX-mk support
+*   Option to choose `raggedright` for text
 
 ### 2014/03/24 - Version 1.2
 > Commit 4b709fed6cdfd5b3796152f9c59b619c72df491f
