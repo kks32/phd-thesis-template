@@ -82,7 +82,6 @@
       options in case you have defined two bibliography styles.}
   \else
     \PHD@biblatextrue
-    \setBibtrue
   \fi
 }
 
@@ -116,9 +115,15 @@
     \ClassWarning{PhDThesisPSnPDF}{Bibliography selection conflict: A
       bibliography style aleady specified. Please check the document class
       options in case you have defined two bibliography styles.}
-  \else  
-    \useCustomBibtrue
-    \setBibtrue
+  \else
+    \ifPHD@biblatex
+        \ClassWarning{PhDThesisPSnPDF}{Bibliography selection conflict: A
+          bibliography style aleady specified. Please check the document class
+          options in case you have defined two bibliography styles.}
+    \else
+      \useCustomBibtrue
+      \setBibtrue
+    \fi
   \fi
 }
 
@@ -326,7 +331,31 @@ supported!}
 \renewcommand{\frontmatter}{\nolinenumbers}
 \renewcommand{\mainmatter}{\linenumbers}
 \renewcommand{\backmatter}{\linenumbers}
-\fi
+
+% Fix display lineno issue in mathmode
+\newcommand*\patchAmsMathEnvironmentForLineno[1]{%
+  \expandafter\let\csname old#1\expandafter\endcsname\csname #1\endcsname
+  \expandafter\let\csname oldend#1\expandafter\endcsname\csname end#1\endcsname
+  \renewenvironment{#1}%
+     {\linenomath\csname old#1\endcsname}%
+     {\csname oldend#1\endcsname\endlinenomath}%
+}% 
+
+\newcommand*\patchBothAmsMathEnvironmentsForLineno[1]{%
+  \patchAmsMathEnvironmentForLineno{#1}%
+  \patchAmsMathEnvironmentForLineno{#1*}%
+}%
+
+\AtBeginDocument{%
+\patchBothAmsMathEnvironmentsForLineno{equation}%
+\patchBothAmsMathEnvironmentsForLineno{align}%
+\patchBothAmsMathEnvironmentsForLineno{flalign}%
+\patchBothAmsMathEnvironmentsForLineno{alignat}%
+\patchBothAmsMathEnvironmentsForLineno{gather}%
+\patchBothAmsMathEnvironmentsForLineno{multline}%
+}
+
+\fi % End \ifPDH@lineno
 
 
 % Creates a Watermark Draft at the specified location.
