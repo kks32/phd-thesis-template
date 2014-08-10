@@ -1,4 +1,10 @@
 ## Change log
+### 2014/08/11 - Version 1.4.1
+> Commit
+*   Fixed line numbering in draft mode with AMS Math environment
+*   Biblatex & custombib error catcher - bug fix
+*   Modification to the declaration text
+
 ### 2014/07/15 - Version 1.4
 > Commit 330f82a439e179dc03fbbbe156f3e830ca1fdd68
 *   Option to have subtitle on front page

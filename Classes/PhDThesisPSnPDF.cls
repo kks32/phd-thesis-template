@@ -4,7 +4,7 @@
 %%                                                                            %%
 %% A PhD thesis LaTeX template for Cambridge University Engineering Department%%
 %%                                                                            %%
-%% Version: v1.4                                                              %%
+%% Version: v1.4.1                                                            %%
 %% Authors: Krishna Kumar                                                     %%
 %% Date: 2013/11/16 (inception)                                               %%
 %% License: MIT License (c) 2013 Krishna Kumar                                %%
@@ -13,7 +13,7 @@
 
 % ************************** Class Identification ******************************
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{PhDThesisPSnPDF}[2013/12/10 version 1.0 by Krishna Kumar]
+\ProvidesClass{PhDThesisPSnPDF}[2014/08/11 version 1.4.1 by Krishna Kumar]
 \typeout{https://github.com/kks32/phd-thesis-template/}
 
 
