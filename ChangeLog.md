@@ -1,6 +1,6 @@
 ## Change log
 ### 2014/08/11 - Version 1.4.1
-> Commit
+> Commit fb70181ff9e00bfb50e3e3040d6b2cf15cd6ebfe
 *   Fixed line numbering in draft mode with AMS Math environment
 *   Biblatex & custombib error catcher - bug fix
 *   Modification to the declaration text
