@@ -357,6 +357,9 @@ supported!}
 
 \fi % End \ifPDH@lineno
 
+% Todo notes functionality
+\usepackage[colorinlistoftodos]{todonotes}
+\newcommand{\mynote}[1]{\todo[author={\@author},color=green!40]{#1}}
 
 % Creates a Watermark Draft at the specified location.
 % The settings can be tweaked in the preamble
@@ -414,6 +417,10 @@ supported!}
 
 % If NOT Draft Mode
 \else 
+
+% Todo notes are not displayed in production mode
+\newcommand{\mynote}[1]{}
+\newcommand{\listoftodos}{}
 
 \renewcommand\SetDraftText[1]{\ClassWarning{PhDThesisPSnPDF}{DraftMode is
     inactive, to use SetDraftText include `draftmode' in the document 
@@ -1146,3 +1153,4 @@ wish to left align your text}
 			- \totalheightof{\usebox{\PHD@collegedate}}
 }
 }
+

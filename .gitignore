@@ -1,3 +1,4 @@
+*.tdo*
 .DS_Store*
 *.aux*
 *.log*
