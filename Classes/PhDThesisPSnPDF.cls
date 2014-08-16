@@ -359,7 +359,7 @@ supported!}
 
 % Todo notes functionality
 \usepackage[colorinlistoftodos]{todonotes}
-\newcommand{\mynote}[1]{\todo[author={\@author},color=green!40]{#1}}
+\newcommand{\mynote}[1]{\todo[author={\@author},size=\small,inline,color=green!40]{#1}}
 
 % Creates a Watermark Draft at the specified location.
 % The settings can be tweaked in the preamble
