@@ -12,8 +12,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % ************************** Class Identification ******************************
+\newcommand\fileversion{1.4.1}
+\newcommand\filedate{2014/08/11}
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{PhDThesisPSnPDF}[2014/08/11 version 1.4.1 by Krishna Kumar]
+\ProvidesClass{PhDThesisPSnPDF}[\filedate\space A PhD thesis class file
+ by Krishna Kumar (v\fileversion)]
 \typeout{https://github.com/kks32/phd-thesis-template/}
 
 
@@ -539,6 +542,12 @@ supported!}
 \pdfglyphtounicode{f_f_l}{FB04}
 \pdfgentounicode=1
 
+% Don't break enumeration (etc.) across pages in an ugly manner
+\clubpenalty=10000
+\widowpenalty=10000
+
+% If building with PDFLaTeX, use microtype spacing adjustments
+\RequirePackage{microtype}
 
 %******************************* Print / Online ********************************
 % Defines a print / online version to define page-layout and hyperrefering
