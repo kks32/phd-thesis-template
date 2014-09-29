@@ -1046,6 +1046,7 @@ wish to left align your text}
     \renewcommand{\listoffigures}{}
     \renewcommand{\listoftables}{}
     \renewcommand{\printnomencl}{}
+    \renewcommand{\printnomencl}[1][2]{}
     \renewcommand{\printthesisindex}{}
     \renewcommand{\bibname}{}
     \renewcommand{\bibliography}[1]{\thispagestyle{empty}}
