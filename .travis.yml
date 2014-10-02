@@ -1,0 +1,14 @@
+before_install:
+   - sudo add-apt-repository -y ppa:texlive-backports/ppa
+   - sudo apt-get update
+install:
+   - sudo apt-get install -y texlive-latex-base 
+   - sudo apt-get install -y texlive-latex-recommended texlive-latex-extra
+   - sudo apt-get install -y texlive-science 
+   - sudo apt-get install -y texlive-fonts-recommended texlive-fonts-extra
+   - sudo apt-get install -y psutils
+script:
+   - make clean
+   - make BUILD_STRATEGY=latex
+   - make clean
+   - make

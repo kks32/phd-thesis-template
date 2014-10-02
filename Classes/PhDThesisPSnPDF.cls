@@ -4,7 +4,7 @@
 %%                                                                            %%
 %% A PhD thesis LaTeX template for Cambridge University Engineering Department%%
 %%                                                                            %%
-%% Version: v1.4                                                              %%
+%% Version: v1.4.1                                                            %%
 %% Authors: Krishna Kumar                                                     %%
 %% Date: 2013/11/16 (inception)                                               %%
 %% License: MIT License (c) 2013 Krishna Kumar                                %%
@@ -12,8 +12,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % ************************** Class Identification ******************************
+\newcommand\fileversion{1.4.1}
+\newcommand\filedate{2014/08/11}
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{PhDThesisPSnPDF}[2013/12/10 version 1.0 by Krishna Kumar]
+\ProvidesClass{PhDThesisPSnPDF}[\filedate\space A PhD thesis class file
+ by Krishna Kumar (v\fileversion)]
 \typeout{https://github.com/kks32/phd-thesis-template/}
 
 
@@ -82,7 +85,6 @@
       options in case you have defined two bibliography styles.}
   \else
     \PHD@biblatextrue
-    \setBibtrue
   \fi
 }
 
@@ -116,9 +118,15 @@
     \ClassWarning{PhDThesisPSnPDF}{Bibliography selection conflict: A
       bibliography style aleady specified. Please check the document class
       options in case you have defined two bibliography styles.}
-  \else  
-    \useCustomBibtrue
-    \setBibtrue
+  \else
+    \ifPHD@biblatex
+        \ClassWarning{PhDThesisPSnPDF}{Bibliography selection conflict: A
+          bibliography style aleady specified. Please check the document class
+          options in case you have defined two bibliography styles.}
+    \else
+      \useCustomBibtrue
+      \setBibtrue
+    \fi
   \fi
 }
 
@@ -255,7 +263,7 @@ supported!}
 \RequirePackage{calc}     % To calculate vertical spacing
 
 % ************************* Conditional Statements *****************************
-\RequirePackage{ifthen}   % Used in LaTeX Class files for conditional statements
+\RequirePackage{ifthen}  % conditional statements
 \RequirePackage{ifpdf}    % Check for pdfLaTeX
 
 
@@ -326,8 +334,35 @@ supported!}
 \renewcommand{\frontmatter}{\nolinenumbers}
 \renewcommand{\mainmatter}{\linenumbers}
 \renewcommand{\backmatter}{\linenumbers}
-\fi
 
+% Fix display lineno issue in mathmode
+\newcommand*\patchAmsMathEnvironmentForLineno[1]{%
+  \expandafter\let\csname old#1\expandafter\endcsname\csname #1\endcsname
+  \expandafter\let\csname oldend#1\expandafter\endcsname\csname end#1\endcsname
+  \renewenvironment{#1}%
+     {\linenomath\csname old#1\endcsname}%
+     {\csname oldend#1\endcsname\endlinenomath}%
+}% 
+
+\newcommand*\patchBothAmsMathEnvironmentsForLineno[1]{%
+  \patchAmsMathEnvironmentForLineno{#1}%
+  \patchAmsMathEnvironmentForLineno{#1*}%
+}%
+
+\AtBeginDocument{%
+\patchBothAmsMathEnvironmentsForLineno{equation}%
+\patchBothAmsMathEnvironmentsForLineno{align}%
+\patchBothAmsMathEnvironmentsForLineno{flalign}%
+\patchBothAmsMathEnvironmentsForLineno{alignat}%
+\patchBothAmsMathEnvironmentsForLineno{gather}%
+\patchBothAmsMathEnvironmentsForLineno{multline}%
+}
+
+\fi % End \ifPDH@lineno
+
+% Todo notes functionality
+\usepackage[colorinlistoftodos]{todonotes}
+\newcommand{\mynote}[1]{\todo[author={\@author},size=\small,inline,color=green!40]{#1}}
 
 % Creates a Watermark Draft at the specified location.
 % The settings can be tweaked in the preamble
@@ -386,6 +421,10 @@ supported!}
 % If NOT Draft Mode
 \else 
 
+% Todo notes are not displayed in production mode
+\newcommand{\mynote}[1]{}
+\newcommand{\listoftodos}{}
+
 \renewcommand\SetDraftText[1]{\ClassWarning{PhDThesisPSnPDF}{DraftMode is
     inactive, to use SetDraftText include `draftmode' in the document 
     class options.}}
@@ -427,8 +466,8 @@ supported!}
   \else
     \ifuseCustomBib
        \AtBeginDocument{
-          \@ifpackageloaded{natbib}{true}{
-            \@ifpackageloaded{biblatex}{true}{
+          \@ifpackageloaded{natbib}{}{
+            \@ifpackageloaded{biblatex}{}{
               \ClassWarning{PhDThesisPSnPDF}{%
                 Custom bibliography is chosen, but no corresponding package 
                 (biblatex/natbib) has been loaded. Please load the
@@ -503,6 +542,12 @@ supported!}
 \pdfglyphtounicode{f_f_l}{FB04}
 \pdfgentounicode=1
 
+% Don't break enumeration (etc.) across pages in an ugly manner
+\clubpenalty=10000
+\widowpenalty=10000
+
+% If building with PDFLaTeX, use microtype spacing adjustments
+\RequirePackage{microtype}
 
 %******************************* Print / Online ********************************
 % Defines a print / online version to define page-layout and hyperrefering
@@ -758,6 +803,10 @@ wish to left align your text}
 % These macros are used to declare arguments needed for the
 % construction of the title page and other preamble.
 
+% Subtitle (optional)
+\newcommand{\@subtitle}{}
+\newcommand{\subtitle}[1]{\renewcommand{\@subtitle}{#1}}
+
 % The year and term the degree will be officially conferred
 \newcommand{\@degreedate}{\monthname[\the\month]\space\the\year}
 \newcommand{\degreedate}[1]{\renewcommand{\@degreedate}{#1}}
@@ -827,6 +876,13 @@ wish to left align your text}
 \begin{center}
 % Title
 {\Huge \bfseries{\@title} \par}
+\ifthenelse{\equal{\@subtitle}{}}{
+% subtitle is not defined
+}{
+\vspace*{1em}
+\centering \Large {\@subtitle}
+} % subtitle is defined
+
 \vspace{.25\PHD@titlepagespacing}
 
 % Crest
@@ -835,7 +891,7 @@ wish to left align your text}
 
 % Author
 {\Large \bfseries{\@author} \par}
-\vspace*{1ex}
+\vspace*{1em}
 
 % Department and University
 {\large \@dept \par}
@@ -852,11 +908,20 @@ wish to left align your text}
 \end{center}
 \vfill
 \large
-\begin{minipage}{0.49\textwidth}
-\flushleft\hspace*{\oddsidemargin}\@college
+\begin{minipage}[c]{\textwidth}
+\ifthenelse{\equal{\@college}{}}{
+% college is not defined
+\centering
+\@degreedate
+}{
+% college is defined
+\begin{minipage}{0.45\textwidth}
+\flushleft\@college
 \end{minipage}
-\begin{minipage}{0.49\textwidth}
+\begin{minipage}{0.45\textwidth}
 \flushright \@degreedate
+\end{minipage}
+} % college is defined
 \end{minipage}
 \end{singlespace}
 }
@@ -981,6 +1046,7 @@ wish to left align your text}
     \renewcommand{\listoffigures}{}
     \renewcommand{\listoftables}{}
     \renewcommand{\printnomencl}{}
+    \renewcommand{\printnomencl}[1][2]{}
     \renewcommand{\printthesisindex}{}
     \renewcommand{\bibname}{}
     \renewcommand{\bibliography}[1]{\thispagestyle{empty}}
@@ -1021,6 +1087,12 @@ wish to left align your text}
 \begin{lrbox}{\PHD@Title}
 \begin{minipage}[c]{0.98\textwidth}
 \centering \Huge \bfseries{\@title}
+\ifthenelse{\equal{\@subtitle}{}}{
+% subtitle is not defined
+}{
+\vspace*{1em}
+\centering \Large {\@subtitle}
+} % subtitle is defined
 \end{minipage}
 \end{lrbox}
 
@@ -1043,7 +1115,7 @@ wish to left align your text}
 \begin{lrbox}{\PHD@dept}
 \begin{minipage}[c]{\textwidth}
 \centering {\large \@dept \par}
-\vspace*{1ex}
+\vspace*{1em}
 {\large \@university \par}
 \end{minipage}
 \end{lrbox}
@@ -1065,12 +1137,18 @@ wish to left align your text}
 \begin{lrbox}{\PHD@collegedate}
 \begin{minipage}[c]{\textwidth}
 \large
+\ifthenelse{\equal{\@college}{}}{
+% college is not defined
+\@degreedate
+}{
+% college is defined
 \begin{minipage}{0.45\textwidth}
 \flushleft\@college
 \end{minipage}
 \begin{minipage}{0.45\textwidth}
 \flushright \@degreedate
 \end{minipage}
+} % college is defined
 \end{minipage}
 \end{lrbox}
 
@@ -1085,3 +1163,4 @@ wish to left align your text}
 			- \totalheightof{\usebox{\PHD@collegedate}}
 }
 }
+

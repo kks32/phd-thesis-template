@@ -17,7 +17,7 @@
 \ifsetCustomFont
   % Set your custom font here and use `customfont' in options. Leave empty to
   % load computer modern font (default LaTeX font).
-  \RequirePackage{libertine}
+  \RequirePackage{helvet}
 \fi
 
 % *****************************************************************************
@@ -79,10 +79,12 @@
 % \onehalfspacing
 % \singlespacing
 
-% ********************************* Verbatim ***********************************
-% \usepackage{fancyvbr}
 
 % ************************ Formatting / Footnote *******************************
+
+% Don't break enumeration (etc.) across pages in an ugly manner (default 10000)
+%\clubpenalty=500
+%\widowpenalty=500
 
 %\usepackage[perpage]{footmisc} %Range of footnote options
 
@@ -98,11 +100,10 @@
 
 % If you would like to use biblatex for your reference management, as opposed to the default `natbibpackage` pass the option `custombib` in the document class. Comment out the previous line to make sure you don't load the natbib package. Uncomment the following lines and specify the location of references.bib file
 
-% \RequirePackage[backend=biber, style=numeric-comp, citestyle=numeric, sorting=nty, natbib=true]{biblatex}
-% \bibliography{References/references} %Location of references.bib only for biblatex
+%\RequirePackage[backend=biber, style=numeric-comp, citestyle=numeric, sorting=nty, natbib=true]{biblatex}
+%\bibliography{References/references} %Location of references.bib only for biblatex
 
 \fi
-
 
 % changes the default name `Bibliography` -> `References'
 \renewcommand{\bibname}{References}
