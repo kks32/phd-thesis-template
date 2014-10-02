@@ -209,7 +209,7 @@ footnotes.}
 \DeclareOption{twoside}{\PassOptionsToClass{\CurrentOption}{book}}%
 
 % Draft Mode
-\DeclareOption{draft}{\PassOptionsToClass{\CurrentOption}{book} 
+\DeclareOption{draft}{\PassOptionsToClass{\CurrentOption}{book}
 \ClassWarning{PhDThesisPSnPDF}{Draft is ON. You can use `draftmode' instead,
   which adds watermark with timestamp and line numbering. Don't forget to turn 
   `draft' off for your final version.}}%

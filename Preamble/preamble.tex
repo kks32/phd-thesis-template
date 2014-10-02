@@ -182,9 +182,13 @@
 %% Todo notes functionality
 %% Uncomment the following lines to have todonotes.
 
-%\usepackage[colorinlistoftodos]{todonotes}
-%\newcommand{\mynote}[1]{\todo[author=kks32,size=\small,inline,color=green!40]{#1}}
-
+%\ifsetDraft
+%	\usepackage[colorinlistoftodos]{todonotes}
+%	\newcommand{\mynote}[1]{\todo[author=kks32,size=\small,inline,color=green!40]{#1}}
+%\else
+%	\newcommand{\mynote}[1]{}
+%	\newcommand{\listoftodos}{}
+%\fi
 
 % Example todo: \mynote{Hey! I have a note}
 
