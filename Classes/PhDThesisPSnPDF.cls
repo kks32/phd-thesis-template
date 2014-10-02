@@ -28,7 +28,7 @@
 \newif\if@print\@printfalse
 \DeclareOption{print}{\@printtrue}
 
-\newif\ifPHD@draft\PHD@draftfalse
+\newif\ifsetDraft\setDraftfalse
 
 % ****************************** Define index **********************************
 \newif\ifPHD@index\PHD@indexfalse
@@ -213,7 +213,7 @@ footnotes.}
 \ClassWarning{PhDThesisPSnPDF}{Draft is ON. You can use `draftmode' instead,
   which adds watermark with timestamp and line numbering. Don't forget to turn 
   `draft' off for your final version.}}%
-\DeclareOption{draftmode}{\PassOptionsToClass{draft}{book}\PHD@drafttrue 
+\DeclareOption{draftmode}{\PassOptionsToClass{draft}{book}\setDrafttrue 
 \ClassWarning{PhDThesisPSnPDF}{Draft Mode is ON.
   Don't forget to turn it off for your final version.}}% 
 
@@ -326,7 +326,7 @@ supported!}
 
 
 % If Draft Mode is active
-\ifPHD@draft
+\ifsetDraft
 
 % Line numbering (can be switched off)
 \ifPHD@lineno
