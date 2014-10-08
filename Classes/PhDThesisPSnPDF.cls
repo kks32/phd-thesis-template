@@ -269,14 +269,13 @@ supported!}
 
 % *********************** Table of Contents & Appendices ***********************
 % add Bibliography, List of figures and tables to contents
-\RequirePackage{tocbibind}
+\RequirePackage[nottoc]{tocbibind}
 % Add appendices
 \RequirePackage[title,titletoc]{appendix}
 
 \renewcommand{\contentsname}{Table of contents}
 \renewcommand{\listfigurename}{List of figures}
 \renewcommand{\listtablename}{List of tables}
-
 
 % *************************** Graphics and Figures *****************************
 \RequirePackage[usenames, dvipsnames]{color}
@@ -548,6 +547,7 @@ supported!}
 
 % Moved below other usepackage definitions to fix PDFLaTeX footnote warning
 % Based on the suggestion by John Plaice
+
 \ifsetDVI
 \special{papersize=\the\paperwidth,\the\paperheight}
 \RequirePackage[dvips,unicode=true]{hyperref}
