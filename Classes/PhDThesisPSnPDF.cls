@@ -28,7 +28,7 @@
 \newif\if@print\@printfalse
 \DeclareOption{print}{\@printtrue}
 
-\newif\ifPHD@draft\PHD@draftfalse
+\newif\ifsetDraft\setDraftfalse
 
 % ****************************** Define index **********************************
 \newif\ifPHD@index\PHD@indexfalse
@@ -209,11 +209,11 @@ footnotes.}
 \DeclareOption{twoside}{\PassOptionsToClass{\CurrentOption}{book}}%
 
 % Draft Mode
-\DeclareOption{draft}{\PassOptionsToClass{\CurrentOption}{book} 
+\DeclareOption{draft}{\PassOptionsToClass{\CurrentOption}{book}
 \ClassWarning{PhDThesisPSnPDF}{Draft is ON. You can use `draftmode' instead,
   which adds watermark with timestamp and line numbering. Don't forget to turn 
   `draft' off for your final version.}}%
-\DeclareOption{draftmode}{\PassOptionsToClass{draft}{book}\PHD@drafttrue 
+\DeclareOption{draftmode}{\PassOptionsToClass{draft}{book}\setDrafttrue 
 \ClassWarning{PhDThesisPSnPDF}{Draft Mode is ON.
   Don't forget to turn it off for your final version.}}% 
 
@@ -326,7 +326,7 @@ supported!}
 
 
 % If Draft Mode is active
-\ifPHD@draft
+\ifsetDraft
 
 % Line numbering (can be switched off)
 \ifPHD@lineno
@@ -359,10 +359,6 @@ supported!}
 }
 
 \fi % End \ifPDH@lineno
-
-% Todo notes functionality
-\usepackage[colorinlistoftodos]{todonotes}
-\newcommand{\mynote}[1]{\todo[author={\@author},size=\small,inline,color=green!40]{#1}}
 
 % Creates a Watermark Draft at the specified location.
 % The settings can be tweaked in the preamble
@@ -421,9 +417,7 @@ supported!}
 % If NOT Draft Mode
 \else 
 
-% Todo notes are not displayed in production mode
-\newcommand{\mynote}[1]{}
-\newcommand{\listoftodos}{}
+
 
 \renewcommand\SetDraftText[1]{\ClassWarning{PhDThesisPSnPDF}{DraftMode is
     inactive, to use SetDraftText include `draftmode' in the document 
