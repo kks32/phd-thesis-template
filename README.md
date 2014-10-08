@@ -34,46 +34,6 @@ CUED PhD thesis template
 *   A LyX Template is now available at [https://github.com/kks32/PhDThesisLyX/](https://github.com/kks32/PhDThesisLyX/)
 
 --------------------------------------------------------------------------------
-## Table of contents
-
-- [CUED PhD thesis template](#cued-phd-thesis-template)
-  - [Building your thesis](#building-your-thesis)
-    - [Using latexmk (Unix/Linux/Windows)](#using-latexmk-unixlinuxwindows)
-    - [Using ARARA (Unix/Linux/Windows)](#using-arara-unixlinuxwindows)
-    - [Using the make file (Unix/Linux)](#using-the-make-file-unixlinux)
-    - [Shell script for PDFLaTeX (Unix/Linux)](#shell-script-for-pdflatex-unixlinux)
-    - [Using the batch file on Windows OS (PDFLaTeX)](#using-the-batch-file-on-windows-os-pdflatex)
-  - [Usage details](#usage-details)
-    - [Class options](#class-options)
-    - [Title page](#title-page)
-    - [Abstract separate](#abstract-separate)
-    - [Chapter mode](#chapter-mode)
-    - [Draft mode](#draft-mode)
-    - [Choosing the fonts](#choosing-the-fonts)
-    - [Choosing the bibliography style](#choosing-the-bibliography-style)
-    - [Choosing the page style](#choosing-the-page-style)
-    - [Changing the visual style of chapter headings](#changing-the-visual-style-of-chapter-headings)
-    - [Custom settings](#custom-settings)
-    - [Nomenclature definition](#nomenclature-definition)
-  - [General guidelines](#general-guidelines)
-  - [Frequently Asked Questions](#frequently-asked-questions)
-      - [_Q1_: Where can I find the thesis formatting guidelines this class is based on?](#_q1_-where-can-i-find-the-thesis-formatting-guidelines-this-class-is-based-on)
-      - [_Q2_: Where can I find newer versions of the University of Cambridge crest/logos?](#_q2_-where-can-i-find-newer-versions-of-the-university-of-cambridge-crestlogos)
-      - [_Q3_: Where can I find the guidelines to submit my thesis and requirements?](#_q3_-where-can-i-find-the-guidelines-to-submit-my-thesis-and-requirements)
-      - [_Q4_: How can I count the number of words in my thesis?](#_q4_-how-can-i-count-the-number-of-words-in-my-thesis)
-      - [_Q5_: I found a bug in the template. Where do I report bugs?](#_q5_-i-found-a-bug-in-the-template-where-do-i-report-bugs)
-  - [Troubleshooting warnings](#troubleshooting-warnings)
-      - [_W1_: I get the LaTeX Warning: You have requested document class `Classes/PhDThesisPSnPDF`, but the document class provides `PhDThesisPSnPDF`, should I be concerned?](#_w1_-i-get-the-latex-warning-you-have-requested-document-class-classesphdthesispsnpdf-but-the-document-class-provides-phdthesispsnpdf-should-i-be-concerned)
-      - [_W2_:I get the package Fancyhdr Warning: \fancyhead's `E` option without twoside option is useless on input line \# or \#. What should I do?](#_w2_i-get-the-package-fancyhdr-warning-\fancyheads-e-option-without-twoside-option-is-useless-on-input-line-\#-or-\#-what-should-i-do)
-      - [_W3_: I get the Class PhDThesisPSnPDF Warning: Unknown or non-standard option 'something'. Will see if I can load it from the book class. If you get a warning unused global option(s): `something` then the option is not supported! on input line \#.](#_w3_-i-get-the-class-phdthesispsnpdf-warning-unknown-or-non-standard-option-something-will-see-if-i-can-load-it-from-the-book-class-if-you-get-a-warning-unused-global-options-something-then-the-option-is-not-supported!-on-input-line-\#)
-      - [_W4_: I get LaTeX Warning: Unused global option(s):[something].](#_w4_-i-get-latex-warning-unused-global-optionssomething)
-      - [_W5_: I get I'm skipping whatever remains of this command line \# of file thesis.aux \@input{Chapter1/chapter1.aux}](#_w5_-i-get-im-skipping-whatever-remains-of-this-command-line-\#-of-file-thesisaux-\@inputchapter1chapter1aux)
-  - [Known issue(s) / Bugs / Feature requests](#known-issues--bugs--feature-requests)
-  - [ChangeLog](#changelog)
-  - [Inspirations/Based on](#inspirationsbased-on)
-  - [Acknowlegments](#acknowlegments)
-
---------------------------------------------------------------------------------
 
 ## Building your thesis
 
@@ -361,6 +321,26 @@ The visual style of chapter headings can be modified using the `titlesec` packag
 *   You can change the Title of Nomenclature to Notations or Symbols in the `preamble.tex` using:
 
         \renewcommand\nomname{Symbols}
+ 
+ TexStudio's default compile option doesn't include `nomenclature`, to compile your document with the nomenclature, do the following:
+ 
+		Options >> Configure TexStudio >> Build >> User Commands >> add user command
+In `add user command` type `makenomeclature:makenomenclature` on the left pane and `makeindex %.nlo -s nomencl.ist -o %.nls` on the execution side. Now you can run the user defined command `makenomenclature` from `Tools >> User >> makenomenclature`.
+
+Alternatively, you can use the `compile-thesis-windows.bat` file or run `make` on Unix / Linux / MacOS
+
+## To-do Notes
+
+To include custom to-do notes in your pdf document use  `\mynote{Hey! I have a note}` anywhere in your chapters. To activate this feature, you need to uncomment the following lines in `preamble.tex`. To-do notes will be available only in the `draftmode` and not in the final thesis.
+
+	\ifsetDraft
+		\usepackage[colorinlistoftodos]{todonotes}
+			\newcommand{\mynote}[1]
+			{\todo[author=kks32,size=\small,inline,color=green!40]{#1}}
+	\else
+		\newcommand{\mynote}[1]{}
+		\newcommand{\listoftodos}{}
+	\fi
 
 
 ## General guidelines

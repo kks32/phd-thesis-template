@@ -1,4 +1,10 @@
 ## Change log
+### 2014/10/08 - Version 1.4.2
+> Commit
+*   Added mynotes support in preamble
+*   Fixed printnomecl in abstractmode
+*   List of contents doesn't appear in TOC but appears in bookmarks
+
 ### 2014/08/11 - Version 1.4.1
 > Commit fb70181ff9e00bfb50e3e3040d6b2cf15cd6ebfe
 *   Fixed line numbering in draft mode with AMS Math environment
