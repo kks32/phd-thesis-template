@@ -28,7 +28,9 @@
 \newif\if@print\@printfalse
 \DeclareOption{print}{\@printtrue}
 
+% ****************************** Draft Option **********************************
 \newif\ifsetDraft\setDraftfalse
+\newif\ifsetDraftClassic\setDraftClassicfalse
 
 % ****************************** Define index **********************************
 \newif\ifPHD@index\PHD@indexfalse
@@ -209,13 +211,30 @@ footnotes.}
 \DeclareOption{twoside}{\PassOptionsToClass{\CurrentOption}{book}}%
 
 % Draft Mode
+
+\DeclareOption{draftclassic}{\PassOptionsToClass{draft}{book}
+  \setDraftClassictrue
+  \ClassWarning{PhDThesisPSnPDF}{Draft is ON. Don't forget to turn it
+    off in your final version. This is the classic version of draft.
+    Use `draft' for enhanced mode, which adds watermark with timestamp, 
+    line numbering, and version number.}}%
+
 \DeclareOption{draft}{\PassOptionsToClass{\CurrentOption}{book}
-\ClassWarning{PhDThesisPSnPDF}{Draft is ON. You can use `draftmode' instead,
-  which adds watermark with timestamp and line numbering. Don't forget to turn 
-  `draft' off for your final version.}}%
-\DeclareOption{draftmode}{\PassOptionsToClass{draft}{book}\setDrafttrue 
-\ClassWarning{PhDThesisPSnPDF}{Draft Mode is ON.
-  Don't forget to turn it off for your final version.}}% 
+  \setDrafttrue 
+  \ClassWarning{PhDThesisPSnPDF}{Draft is ON. Don't forget to turn it
+    off in your final version. This enhanced `draft' mode adds watermark 
+    with timestamp, line numbering, and version number. Use `draftclassic'
+    if you prefer the \cite{} lassic draft mode. To tweak options see
+    `preamble.tex'}}%
+
+
+% Deprecated option - use draft instead
+\DeclareOption{draftmode}{
+\ClassError{PhDThesisPSnPDF}{This option is deprecated. Use `draft' 
+  instead this option replaces `draftmode'. To use the classic version
+  of draft use `draftclassic`}
+\stop}% 
+
 
 % Line Numbers
 \newif\ifPHD@lineno\PHD@linenotrue
@@ -331,9 +350,16 @@ supported!}
 % Initializing Draft Gray Scale
 \newcommand\SetDraftGrayScale[1]{}
 
+% Classic Draft Mode
+\ifsetDraftClassic
+% Disable figures in `draftmode'\
+\setkeys{Gin}{draft=true}
+\fi
 
 % If Draft Mode is active
 \ifsetDraft
+% Disable figures in `draftmode'\
+\setkeys{Gin}{draft=false}
 
 % Line numbering (can be switched off)
 \ifPHD@lineno
@@ -423,8 +449,6 @@ supported!}
 
 % If NOT Draft Mode
 \else 
-
-
 
 \renewcommand\SetDraftText[1]{\ClassWarning{PhDThesisPSnPDF}{DraftMode is
     inactive, to use SetDraftText include `draftmode' in the document 
@@ -548,7 +572,7 @@ supported!}
 \widowpenalty=10000
 
 % If building with PDFLaTeX, use microtype spacing adjustments
-\RequirePackage{microtype}
+\RequirePackage[final]{microtype}
 
 %******************************* Print / Online ********************************
 % Defines a print / online version to define page-layout and hyperrefering
