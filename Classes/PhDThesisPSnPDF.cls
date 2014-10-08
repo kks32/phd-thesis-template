@@ -277,6 +277,14 @@ supported!}
 \renewcommand{\listfigurename}{List of figures}
 \renewcommand{\listtablename}{List of tables}
 
+% Hides Contents appearing from TOC, but adds it to bookmarks
+\let\temptableofcontents\tableofcontents
+\renewcommand{\tableofcontents}{
+  \cleardoublepage
+  \pdfbookmark[0]{\contentsname}{Contents}
+  \temptableofcontents
+}
+
 % *************************** Graphics and Figures *****************************
 \RequirePackage[usenames, dvipsnames]{color}
 \ifpdf
