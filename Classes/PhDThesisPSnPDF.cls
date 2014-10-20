@@ -892,6 +892,27 @@ wish to left align your text}
 % *************************** Front Matter Layout ******************************
 % ******************************************************************************
 
+% ******************************** titlepage  **********************************
+\renewenvironment{titlepage} % changed from "newenvironment"
+{%
+\if@twocolumn
+    \@restonecoltrue\onecolumn
+\else
+    \@restonecolfalse\newpage
+\fi
+    \thispagestyle{empty}
+    \setcounter{page}\z@
+}%
+{
+\if@restonecol
+	\twocolumn
+\else 
+	\newpage 
+\fi 
+\clearpage
+\setcounter{page}{2}
+}
+
 % ******************************** Title Page **********************************
 \renewcommand{\maketitle}{
 
