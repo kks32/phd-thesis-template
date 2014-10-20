@@ -898,6 +898,8 @@ wish to left align your text}
 % To compute the free vertical space in Title page
 \computeTitlePageSpacing
 
+\renewcommand*{\thepage}{i}
+
 \begin{singlespace}
 \begin{center}
 % Title
