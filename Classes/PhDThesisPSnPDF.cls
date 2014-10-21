@@ -893,8 +893,12 @@ wish to left align your text}
 % ******************************************************************************
 
 % ******************************** titlepage  **********************************
+
+% Fix issue of title page having same number as the next page in oneside option
+% Issue #24 https://github.com/kks32/phd-thesis-template/issues/24
 \renewenvironment{titlepage} % changed from "newenvironment"
 {%
+\begingroup
 \if@twocolumn
     \@restonecoltrue\onecolumn
 \else
@@ -905,13 +909,15 @@ wish to left align your text}
 }%
 {
 \if@restonecol
-	\twocolumn
+    \twocolumn
 \else 
-	\newpage 
+    \newpage 
 \fi 
+\endgroup
 \clearpage
-\setcounter{page}{2}
+\addtocounter{page}{1}
 }
+
 
 % ******************************** Title Page **********************************
 \renewcommand{\maketitle}{
@@ -919,6 +925,7 @@ wish to left align your text}
 % To compute the free vertical space in Title page
 \computeTitlePageSpacing
 
+% Fix for issue #24 https://github.com/kks32/phd-thesis-template/issues/24
 \renewcommand*{\thepage}{i}
 
 \begin{singlespace}
