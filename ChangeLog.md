@@ -1,6 +1,6 @@
 ## Change log
 ### 2014/10/08 - Version 1.4.2
-> Commit 
+> Commit 4f0f3394330bfca302b724ab1b3c06977f7e08f3
 *   Added mynotes support in preamble
 *   Fixed printnomecl in abstractmode
 *   Fixed issue with pagenumbering when using oneside option
