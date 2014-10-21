@@ -1,8 +1,10 @@
 ## Change log
 ### 2014/10/08 - Version 1.4.2
-> Commit
+> Commit 
 *   Added mynotes support in preamble
 *   Fixed printnomecl in abstractmode
+*   Fixed issue with pagenumbering when using oneside option
+*   Draftmode is deprecated, default `draft' supports linenumbering, watermark
 *   List of contents doesn't appear in TOC but appears in bookmarks
 
 ### 2014/08/11 - Version 1.4.1

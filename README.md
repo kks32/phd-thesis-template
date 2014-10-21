@@ -139,12 +139,13 @@ It supports the following custom options in the documentclass in thesis.tex:
 
 *   `chapter`: This option enables only the specified chapter and it's references. Useful for review and corrections.
 
-*   `draft`: This mode is similar to the default draft mode in the book class.
+*   `draft`: The default draft mode supports some special features such as line numbers, images, and water mark with
+    timestamp and custom text. Position of the text can be modified in `preamble.tex`.
 
-*   `draftmode`: Special draft mode with line numbers, images, and water mark with
-    timestamp and custom text. Position of the text can also be modified.
+*   `draftclassic`: This mode is similar to the default draft mode in the book class. Images are not loaded.
 
 *   `lineno`: Enables pagewise line numbering on the outer edge. You can switch-off line numbering by specifying `nolineno` in the options.
+
 *   `flushleft`: The University recommends using ragged right or flush left alignment for texts. The reason behind this is left justifying a text may exclude a certain readers. Dyslexic people find it hard to read justified text. You can enable `raggedright` option in the document class by passing `flushleft` argument. Default is flush left and right.
 
 ### Title page
@@ -182,10 +183,14 @@ If `\college` is undefined or blank, the `degreedate` will be centered.
 			\includeonly{Chapter3/chapter3}
 		\fi
 
-### Draft mode
+### Draft 
 
-`draftmode` adds a watermark `draft` text with timestamp and version number at the top or
-the bottom of the page. Pagewise line numbering is added on every page. `draftmode` settings can be tweaked in the `preamble.tex`
+`draft` adds a watermark `draft` text with timestamp and version number at the top or
+the bottom of the page. Pagewise line numbering is added on every page. `draft` settings can be tweaked in the `preamble.tex`.
+
+* Use `draftclassic` in the document class options to use the default book class draft mode.
+
+* To add figures in draft mode (default enabled), in the preamble set `\setkeys{Gin}{draft=false}`. `draft=true` disables figures
 
 * To change the watermark text
       \SetDraftText{DRAFT}
@@ -198,6 +203,7 @@ the bottom of the page. Pagewise line numbering is added on every page. `draftmo
 
 * Watermark grayscale value can be modified. Text grayscale value (should be between 0-black and 1-white). Default value is 0.75
       \SetDraftGrayScale{0.8}
+
 
 ### Choosing the fonts
 
@@ -331,7 +337,7 @@ Alternatively, you can use the `compile-thesis-windows.bat` file or run `make` o
 
 ## To-do Notes
 
-To include custom to-do notes in your pdf document use  `\mynote{Hey! I have a note}` anywhere in your chapters. To activate this feature, you need to uncomment the following lines in `preamble.tex`. To-do notes will be available only in the `draftmode` and not in the final thesis.
+To include custom to-do notes in your pdf document use  `\mynote{Hey! I have a note}` anywhere in your chapters. To activate this feature, you need to uncomment the following lines in `preamble.tex`. To-do notes will be available only in the `draft` or `draftclassic` and not in the final thesis.
 
 	\ifsetDraft
 		\usepackage[colorinlistoftodos]{todonotes}
