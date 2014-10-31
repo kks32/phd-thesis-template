@@ -1,0 +1,52 @@
+\chapter{My Third Chapter}
+
+% **************************** Define Graphics Path **************************
+\ifpdf
+    \graphicspath{{Chapter3/Figs/Raster/}{Chapter3/Figs/PDF/}{Chapter3/Figs/}}
+\else
+    \graphicspath{{Chapter3/Figs/Vector/}{Chapter3/Figs/}}
+\fi
+
+\section{First Section of the Third Chapter}
+And now I begin my third chapter here \dots
+
+And now to cite some more people~\citet{Rea85,Ancey1996}
+
+\subsection{First Subsection in the First Section}
+\dots and some more 
+
+\subsection{Second Subsection in the First Section}
+\dots and some more \dots
+
+\subsubsection{First subsub section in the second subsection}
+\dots and some more in the first subsub section otherwise it all looks the same
+doesn't it? well we can add some text to it \dots
+
+\subsection{Third Subsection in the First Section}
+\dots and some more \dots
+
+\subsubsection{First subsub section in the third subsection}
+\dots and some more in the first subsub section otherwise it all looks the same
+doesn't it? well we can add some text to it and some more and some more and
+some more and some more and some more and some more and some more \dots
+
+\subsubsection{Second subsub section in the third subsection}
+\dots and some more in the first subsub section otherwise it all looks the same
+doesn't it? well we can add some text to it \dots
+
+\section{Second Section of the Third Chapter}
+and here I write more \dots
+
+Now we can refer to the table using Table.~\ref{t:borders}.
+\begin{table}[h]
+\caption{Table with Borders}
+\centering
+\label{t:borders}
+\begin{tabular}{|l|c| r|}
+
+\hline
+1 & 2 & 3 \\ \hline
+4 & 5 & 6 \\ \hline
+7 & 8 & 9 \\ \hline
+\end{tabular}
+\end{table}

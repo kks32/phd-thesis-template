@@ -1,0 +1,147 @@
+% ******************************************************************************
+% ****************************** Custom Margin *********************************
+
+% Add `custommargin' in the document class options to use this section
+% Set {innerside margin / outerside margin / topmargin / bottom margin}  and
+% other page dimensions
+
+\ifsetMargin
+\else
+    \RequirePackage[left=37mm,right=30mm,top=35mm,bottom=30mm]{geometry}
+    \setFancyHdr % To apply fancy header after geometry package is loaded
+\fi
+
+% *****************************************************************************
+% ******************* Fonts (like different typewriter fonts etc.)*************
+
+% Add `customfont' in the document class option to use this section
+
+\ifsetFont
+\else
+    % Set your custom font here and use `customfont' in options. Leave empty to
+    % load computer modern font (default LaTeX font).  
+
+    \RequirePackage{libertine} 
+\fi
+
+% *****************************************************************************
+% **************************** Custom Packages ********************************
+
+
+% ************************* Algorithms and Pseudocode **************************
+
+%\usepackage{algpseudocode} 
+
+
+% ********************Captions and Hyperreferencing / URL **********************
+
+% Captions: This makes captions of figures use a boldfaced small font. 
+%\RequirePackage[small,bf]{caption}
+
+\RequirePackage[labelsep=space,tableposition=top]{caption} 
+\renewcommand{\figurename}{Fig.} %to support older versions of captions.sty
+
+% ************************ Formatting / Footnote *******************************
+
+%\usepackage[perpage]{footmisc} %Range of footnote options 
+
+
+% ****************************** Line Numbers **********************************
+
+%\RequirePackage{lineno}
+%\linenumbers
+
+% *************************** Graphics and figures *****************************
+
+%\usepackage{rotating}
+%\usepackage{wrapfig}
+%\usepackage{float}
+\usepackage{subfig} %note: subfig must be included after the `caption` package. 
+
+
+% ********************************** Table *************************************
+
+%\usepackage{longtable}
+%\usepackage{multicol}
+%\usepackage{multirow}
+%\usepackage{tabularx}
+
+
+% ***************************** Math and SI Units ******************************
+
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+%\usepackage{siunitx} % use this package module for SI units
+
+
+% *****************************************************************************
+% *************************** Bibliography  and References ********************
+
+%\usepackage{cleveref} %Referencing without need to explicitly state fig /table
+
+% Add `custombib' in the document class option to use this section
+\ifsetBib % True, Bibliography option is chosen in class options
+\else % If custom bibliography style chosen then load bibstyle here
+
+   \RequirePackage[square, sort, numbers, authoryear]{natbib} % CustomBib
+
+% If you would like to use biblatex for your reference management, as opposed to the default `natbibpackage` pass the option `custombib` in the document class. Comment out the previous line to make sure you don't load the natbib package. Uncomment the following lines and specify the location of references.bib file
+
+% \RequirePackage[backend=biber, style=numeric-comp, citestyle=numeric, sorting=nty, natbib=true]{biblatex}
+% \bibliography{References/references} %Location of references.bib only for biblatex
+
+\fi
+
+
+% changes the default name `Bibliography` -> `References'
+\renewcommand{\bibname}{References}
+
+
+% *****************************************************************************
+% *************** Changing the Visual Style of Chapter Headings ***************
+
+% Uncomment the section below. Requires titlesec package.
+
+%\RequirePackage{titlesec}
+%\newcommand{\PreContentTitleFormat}{\titleformat{\chapter}[display]{\scshape\Large}
+%{\Large\filleft{\chaptertitlename} \Huge\thechapter}
+%{1ex}{}
+%[\vspace{1ex}\titlerule]}
+%\newcommand{\ContentTitleFormat}{\titleformat{\chapter}[display]{\scshape\huge}
+%{\Large\filleft{\chaptertitlename} \Huge\thechapter}{1ex}
+%{\titlerule\vspace{1ex}\filright}
+%[\vspace{1ex}\titlerule]}
+%\newcommand{\PostContentTitleFormat}{\PreContentTitleFormat}
+%\PreContentTitleFormat
+
+
+% ******************************************************************************
+% ************************* User Defined Commands ******************************
+% ******************************************************************************
+
+% *********** To change the name of Table of Contents / LOF and LOT ************
+
+%\renewcommand{\contentsname}{My Table of Contents}
+%\renewcommand{\listfigurename}{My List of Figures}
+%\renewcommand{\listtablename}{My List of Tables}
+
+
+% ********************** TOC depth and numbering depth *************************
+
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
+
+% ******************************* Nomenclature *********************************
+
+% To change the name of the Nomenclature section, uncomment the following line
+
+%\renewcommand{\nomname}{Symbols}
+
+
+% ********************************* Appendix ***********************************
+
+% The default value of both \appendixtocname and \appendixpagename is `Appendices'. These names can all be changed via: 
+
+%\renewcommand{\appendixtocname}{List of appendices}
+%\renewcommand{\appendixname}{Appndx}
