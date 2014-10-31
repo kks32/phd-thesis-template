@@ -4,11 +4,9 @@
 % Add `custommargin' in the document class options to use this section
 % Set {innerside margin / outerside margin / topmargin / bottom margin}  and
 % other page dimensions
-
-\ifsetMargin
-\else
-    \RequirePackage[left=37mm,right=30mm,top=35mm,bottom=30mm]{geometry}
-    \setFancyHdr % To apply fancy header after geometry package is loaded
+\ifsetCustomMargin
+  \RequirePackage[left=37mm,right=30mm,top=35mm,bottom=30mm]{geometry}
+  \setFancyHdr % To apply fancy header after geometry package is loaded
 \fi
 
 % *****************************************************************************
@@ -16,54 +14,51 @@
 
 % Add `customfont' in the document class option to use this section
 
-\ifsetFont
-\else
-    % Set your custom font here and use `customfont' in options. Leave empty to
-    % load computer modern font (default LaTeX font).  
-
-    \RequirePackage{libertine} 
+\ifsetCustomFont
+  % Set your custom font here and use `customfont' in options. Leave empty to
+  % load computer modern font (default LaTeX font).
+  \RequirePackage{helvet}
 \fi
 
 % *****************************************************************************
 % **************************** Custom Packages ********************************
 
-
 % ************************* Algorithms and Pseudocode **************************
 
-%\usepackage{algpseudocode} 
+%\usepackage{algpseudocode}
 
 
 % ********************Captions and Hyperreferencing / URL **********************
 
-% Captions: This makes captions of figures use a boldfaced small font. 
+% Captions: This makes captions of figures use a boldfaced small font.
 %\RequirePackage[small,bf]{caption}
 
-\RequirePackage[labelsep=space,tableposition=top]{caption} 
+\RequirePackage[labelsep=space,tableposition=top]{caption}
 \renewcommand{\figurename}{Fig.} %to support older versions of captions.sty
 
-% ************************ Formatting / Footnote *******************************
-
-%\usepackage[perpage]{footmisc} %Range of footnote options 
-
-
-% ****************************** Line Numbers **********************************
-
-%\RequirePackage{lineno}
-%\linenumbers
 
 % *************************** Graphics and figures *****************************
 
 %\usepackage{rotating}
 %\usepackage{wrapfig}
+
+% Uncomment the following two lines to force Latex to place the figure.
+% Use [H] when including graphics. Note 'H' instead of 'h'
 %\usepackage{float}
-\usepackage{subfig} %note: subfig must be included after the `caption` package. 
+%\restylefloat{figure}
 
+% Subcaption package is also available in the sty folder you can use that by
+% uncommenting the following line
+% This is for people stuck with older versions of texlive
+%\usepackage{sty/caption/subcaption}
+\usepackage{subcaption}
 
-% ********************************** Table *************************************
+% ********************************** Tables ************************************
+\usepackage{booktabs} % For professional looking tables
+\usepackage{multirow}
 
-%\usepackage{longtable}
 %\usepackage{multicol}
-%\usepackage{multirow}
+%\usepackage{longtable}
 %\usepackage{tabularx}
 
 
@@ -72,7 +67,26 @@
 \usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{amssymb}
-%\usepackage{siunitx} % use this package module for SI units
+\usepackage{siunitx} % use this package module for SI units
+
+
+% ******************************* Line Spacing *********************************
+
+% Choose linespacing as appropriate. Default is one-half line spacing as per the
+% University guidelines
+
+% \doublespacing
+% \onehalfspacing
+% \singlespacing
+
+
+% ************************ Formatting / Footnote *******************************
+
+% Don't break enumeration (etc.) across pages in an ugly manner (default 10000)
+%\clubpenalty=500
+%\widowpenalty=500
+
+%\usepackage[perpage]{footmisc} %Range of footnote options
 
 
 % *****************************************************************************
@@ -81,18 +95,15 @@
 %\usepackage{cleveref} %Referencing without need to explicitly state fig /table
 
 % Add `custombib' in the document class option to use this section
-\ifsetBib % True, Bibliography option is chosen in class options
-\else % If custom bibliography style chosen then load bibstyle here
-
+\ifuseCustomBib
    \RequirePackage[square, sort, numbers, authoryear]{natbib} % CustomBib
 
 % If you would like to use biblatex for your reference management, as opposed to the default `natbibpackage` pass the option `custombib` in the document class. Comment out the previous line to make sure you don't load the natbib package. Uncomment the following lines and specify the location of references.bib file
 
-% \RequirePackage[backend=biber, style=numeric-comp, citestyle=numeric, sorting=nty, natbib=true]{biblatex}
-% \bibliography{References/references} %Location of references.bib only for biblatex
+%\RequirePackage[backend=biber, style=numeric-comp, citestyle=numeric, sorting=nty, natbib=true]{biblatex}
+%\bibliography{References/references} %Location of references.bib only for biblatex
 
 \fi
-
 
 % changes the default name `Bibliography` -> `References'
 \renewcommand{\bibname}{References}
@@ -100,6 +111,7 @@
 
 % *****************************************************************************
 % *************** Changing the Visual Style of Chapter Headings ***************
+% This section on visual style is from https://github.com/cambridge/thesis
 
 % Uncomment the section below. Requires titlesec package.
 
@@ -132,6 +144,7 @@
 \setcounter{secnumdepth}{2}
 \setcounter{tocdepth}{2}
 
+
 % ******************************* Nomenclature *********************************
 
 % To change the name of the Nomenclature section, uncomment the following line
@@ -141,7 +154,40 @@
 
 % ********************************* Appendix ***********************************
 
-% The default value of both \appendixtocname and \appendixpagename is `Appendices'. These names can all be changed via: 
+% The default value of both \appendixtocname and \appendixpagename is `Appendices'. These names can all be changed via:
 
 %\renewcommand{\appendixtocname}{List of appendices}
 %\renewcommand{\appendixname}{Appndx}
+
+% ******************************** Draft Mode **********************************
+
+% Uncomment to disable figures in `draftmode'
+%\setkeys{Gin}{draft=true}  % set draft to false to enable figures in `draft'
+
+% These options are active only during the draft mode
+% Default text is "Draft"
+%\SetDraftText{DRAFT}
+
+% Default Watermark location is top. Location (top/bottom)
+%\SetDraftWMPosition{bottom}
+
+% Draft Version - default is v1.0
+%\SetDraftVersion{v1.1}
+
+% Draft Text grayscale value (should be between 0-black and 1-white)
+% Default value is 0.75
+%\SetDraftGrayScale{0.8}
+
+
+%% Todo notes functionality
+%% Uncomment the following lines to have todonotes.
+
+%\ifsetDraft
+%	\usepackage[colorinlistoftodos]{todonotes}
+%	\newcommand{\mynote}[1]{\todo[author=kks32,size=\small,inline,color=green!40]{#1}}
+%\else
+%	\newcommand{\mynote}[1]{}
+%	\newcommand{\listoftodos}{}
+%\fi
+
+% Example todo: \mynote{Hey! I have a note}
