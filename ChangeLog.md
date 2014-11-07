@@ -1,6 +1,6 @@
 ## Change log
 ### 2014/10/08 - Version 1.4.3
-> Commit 
+> Commit df43fcdc7308feeea8c7dfe06ad24d45d5caca3e
 *   Fixed `\degree` command conflict - Issue #26
 
 ### 2014/10/08 - Version 1.4.2
