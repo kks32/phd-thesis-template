@@ -1,4 +1,8 @@
 ## Change log
+### 2014/10/08 - Version 1.4.3
+> Commit 
+*   Fixed `\degree` command conflict - Issue #26
+
 ### 2014/10/08 - Version 1.4.2
 > Commit 4f0f3394330bfca302b724ab1b3c06977f7e08f3
 *   Added mynotes support in preamble

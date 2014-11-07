@@ -838,8 +838,8 @@ wish to left align your text}
 \newcommand{\degreedate}[1]{\renewcommand{\@degreedate}{#1}}
 
 % The full (unabbreviated) name of the degree
-\newcommand{\@degree}{}
-\newcommand{\degree}[1]{\renewcommand{\@degree}{#1}}
+\newcommand{\@degreetitle}{}
+\newcommand{\degreetitle}[1]{\renewcommand{\@degreetitle}{#1}}
 
 % The name of your department(eg. Engineering, Maths, Physics)
 \newcommand{\@dept}{}
@@ -958,7 +958,7 @@ wish to left align your text}
 % Submission Text
 {\large \submissiontext \par}
 \vspace*{1ex}
-{\large \textit {\@degree} \par}
+{\large \textit {\@degreetitle} \par}
 
 
 \end{center}
@@ -1183,7 +1183,7 @@ wish to left align your text}
 \begin{center}
 \large \submissiontext \par
 \vspace*{1ex}
-\large \textit {\@degree} \par
+\large \textit {\@degreetitle} \par
 \end{center}
 \end{minipage}
 \end{lrbox}
