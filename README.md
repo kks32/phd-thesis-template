@@ -474,7 +474,3 @@ The history of releases can be viewed at [ChangeLog](ChangeLog.md)
 *   Tina Schwamb - testing and bug reports
 
 *   John Plaice - Bug fixes
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/kks32/phd-thesis-template/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
