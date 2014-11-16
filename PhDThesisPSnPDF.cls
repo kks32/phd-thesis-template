@@ -4,14 +4,14 @@
 %%                                                                            %%
 %% A PhD thesis LaTeX template for Cambridge University Engineering Department%%
 %%                                                                            %%
-%% Version: v2.0                                                              %%
+%% Version: v1.4.2                                                            %%
 %% Authors: Krishna Kumar                                                     %%
 %% Date: 2013/11/16 (inception)                                               %%
 %% License: MIT License (c) 2013 Krishna Kumar                                %%
 %% GitHub Repo: https://github.com/kks32/phd-thesis-template/                 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% ************************** Class Identification *****************************
+% ************************** Class Identification ******************************
 \newcommand\fileversion{1.4.2}
 \newcommand\filedate{2014/10/08}
 \NeedsTeXFormat{LaTeX2e}
@@ -20,32 +20,31 @@
 \typeout{https://github.com/kks32/phd-thesis-template/}
 
 
-% 
-%******************************************************************************
-% **************************** Class Definition *******************************
-%******************************************************************************
+% ******************************************************************************
+% **************************** Class Definition ********************************
+% ******************************************************************************
 
-% *********************** Define a Print/Online Version ***********************
+% *********************** Define a Print/Online Version ************************
 \newif\if@print\@printfalse
 \DeclareOption{print}{\@printtrue}
 
-% ****************************** Draft Option *********************************
+% ****************************** Draft Option **********************************
 \newif\ifsetDraft\setDraftfalse
 \newif\ifsetDraftClassic\setDraftClassicfalse
 
-% ****************************** Define index *********************************
+% ****************************** Define index **********************************
 \newif\ifPHD@index\PHD@indexfalse
 \DeclareOption{index}{\PHD@indextrue}
 
-% ******************************* Font Option *********************************
+% ******************************* Font Option **********************************
 \newif\ifsetFont\setFontfalse                 % Font is not set
 
 \newif\ifPHD@times\PHD@timesfalse             % Times with Math Support
 \DeclareOption{times}{
   \ifsetFont
-    \ClassWarning{PhDThesisPSnPDF}{Font selection conflict: A font 
-    package was already specified. Please check the document class options in 
-    case you have defined two fonts.}
+    \ClassWarning{PhDThesisPSnPDF}{Font selection conflict: A font package was
+      aleady specified. Please check the document class options in case you 
+      have defined two fonts.}
   \else
     \PHD@timestrue
     \setFonttrue
@@ -55,39 +54,37 @@
 \newif\ifPHD@fourier\PHD@fourierfalse         % Fourier with Math Support
 \DeclareOption{fourier}{
   \ifsetFont
-    \ClassWarning{PhDThesisPSnPDF}{Font selection conflict: A font 
-    package was already specified. Please check the document class options in 
-    case you have defined two fonts.}
+    \ClassWarning{PhDThesisPSnPDF}{Font selection conflict: A font package was
+      aleady specified. Please check the document class options in case you 
+      have defined two fonts.}
   \else
     \PHD@fouriertrue
     \setFonttrue
   \fi
 }
 
-\newif\ifsetCustomFont\setCustomFontfalse     % Custom Font with Math 
-%Support
+\newif\ifsetCustomFont\setCustomFontfalse     % Custom Font with Math Support
 \DeclareOption{customfont}{
   \ifsetFont
-    \ClassWarning{PhDThesisPSnPDF}{Font selection conflict: A font 
-    package was already specified. Please check the document class options in 
-    case you have defined two fonts.}
+    \ClassWarning{PhDThesisPSnPDF}{Font selection conflict: A font package was
+      aleady specified. Please check the document class options in case you 
+      have defined two fonts.}
   \else
     \setCustomFonttrue
     \setFonttrue
   \fi
 }
 
-% ******************************* Bibliography ********************************
-\newif\ifsetBib\setBibfalse                   % Custom Bibliography = 
-%true/false
+% ******************************* Bibliography *********************************
+\newif\ifsetBib\setBibfalse                   % Custom Bibliography = true/false
 \newif\ifsetBiBLaTeX\setBiBLaTeXfalse         % BiBLaTeX = True / False
 
 \newif\ifPHD@biblatex\PHD@biblatexfalse       % BiBLaTeX
 \DeclareOption{biblatex}{
   \ifsetBib
     \ClassWarning{PhDThesisPSnPDF}{Bibliography selection conflict: A
-      bibliography style already specified. Please check the document 
-      class options in case you have defined two bibliography styles.}
+      bibliography style aleady specified. Please check the document class
+      options in case you have defined two bibliography styles.}
   \else
     \PHD@biblatextrue
   \fi
@@ -97,8 +94,8 @@
 \DeclareOption{authoryear}{
   \ifsetBib
     \ClassWarning{PhDThesisPSnPDF}{Bibliography selection conflict: A
-      bibliography style already specified. Please check the document 
-      class options in case you have defined two bibliography styles.}
+      bibliography style aleady specified. Please check the document class
+      options in case you have defined two bibliography styles.}
   \else
     \PHD@authoryeartrue
     \setBibtrue
@@ -109,8 +106,8 @@
 \DeclareOption{numbered}{
   \ifsetBib
     \ClassWarning{PhDThesisPSnPDF}{Bibliography selection conflict: A
-      bibliography style already specified. Please check the document 
-      class options in case you have defined two bibliography styles.}
+      bibliography style aleady specified. Please check the document class
+      options in case you have defined two bibliography styles.}
   \else
     \PHD@numberedtrue
     \setBibtrue
@@ -121,13 +118,13 @@
 \DeclareOption{custombib}{
   \ifsetBib
     \ClassWarning{PhDThesisPSnPDF}{Bibliography selection conflict: A
-      bibliography style already specified. Please check the document 
-      class options in case you have defined two bibliography styles.}
+      bibliography style aleady specified. Please check the document class
+      options in case you have defined two bibliography styles.}
   \else
     \ifPHD@biblatex
         \ClassWarning{PhDThesisPSnPDF}{Bibliography selection conflict: A
-          bibliography style already specified. Please check the document 
-          class options in case you have defined two bibliography styles.}
+          bibliography style aleady specified. Please check the document class
+          options in case you have defined two bibliography styles.}
     \else
       \useCustomBibtrue
       \setBibtrue
@@ -135,68 +132,59 @@
   \fi
 }
 
-% ************************* Header / Footer Styling ***************************
+% ************************* Header / Footer Styling ****************************
 \newif\ifPHD@textJustify\PHD@textJustifytrue % Set Justification true
 \DeclareOption{flushleft}{\PHD@textJustifyfalse}
 
 
-% ************************* Header / Footer Styling ***************************
+% ************************* Header / Footer Styling ****************************
 \newif\ifPHD@pageStyleI\PHD@pageStyleIfalse % Set Page StyleI
 \DeclareOption{PageStyleI}{\PHD@pageStyleItrue}
 
 \newif\ifPHD@pageStyleII\PHD@pageStyleIIfalse % Set Page StyleII
 \DeclareOption{PageStyleII}{\PHD@pageStyleIItrue}
 
-% ***************************** Custom Margins ********************************
+% ***************************** Custom Margins  ********************************
 \newif\ifsetCustomMargin\setCustomMarginfalse % Set Custom Margin
 \newif\ifsetMargin\setMarginfalse % Set Custom Margin
 \DeclareOption{custommargin}{\setCustomMargintrue}
 
-% **************************** Separate Abstract ******************************
+% **************************** Separate Abstract  ******************************
 \newif \ifdefineAbstract\defineAbstractfalse %To enable Separate abstract
 
 \newif\ifPHD@abstract\PHD@abstractfalse % Enable Separate Abstract
 \DeclareOption{abstract}{
   \PHD@abstracttrue
-  \ClassWarning{PhDThesisPSnPDF}{You have chosen an option that 
-  generates only
-    the Title page and an abstract with PhD title and author name, if 
-    this was
-    intentional, ignore this warning. Congratulations on submitting your 
-    thesis!
-    If not, please remove the option `abstract' from the document class 
-    and
+  \ClassWarning{PhDThesisPSnPDF}{You have chosen an option that generates only
+    the Title page and an abstract with PhD title and author name, if this was
+    intentional, ignore this warning. Congratulations on submitting your thesis!
+    If not, please remove the option `abstract' from the document class and
     recompile. Good luck with your writing!}
   \PassOptionsToClass{oneside}{book}
 }
 
-% **************** Chapter Mode - To print only selected chapters *************
+% ****************** Chapter Mode - To print only selected chapters ************
 \newif \ifdefineChapter\defineChapterfalse %To enable Separate abstract
 
 \newif\ifPHD@chapter\PHD@chapterfalse % Enable Separate Abstract
 \DeclareOption{chapter}{
   \PHD@chaptertrue
-  \ClassWarning{PhDThesisPSnPDF}{You have chosen an option that 
-  generates only 
-    selected chapters with references, if this was intentional, ignore 
-    this
-    warning. If not, please remove the option `chapter' from the 
-    document class
+  \ClassWarning{PhDThesisPSnPDF}{You have chosen an option that generates only 
+    selected chapters with references, if this was intentional, ignore this
+    warning. If not, please remove the option `chapter' from the document class
     and recompile. Good luck with your writing!}
 }
 
 \ProcessOptions\relax%
 
-% *************************** Pre-defined Options *****************************
+% *************************** Pre-defined Options ******************************
 
 % Font Size
 \newcommand\PHD@ptsize{12pt} %Set Default Size as 12
 
 \DeclareOption{10pt}{
-  \ClassWarning{PhDThesisPSnPDF}{The Cambridge University PhD thesis 
-  guidelines
-recommend using a minimum font size of 11pt (12pt is preferred) and 10pt 
-for
+  \ClassWarning{PhDThesisPSnPDF}{The Cambridge University PhD thesis guidelines
+recommend using a minimum font size of 11pt (12pt is preferred) and 10pt for
 footnotes.}
   \renewcommand\PHD@ptsize{10pt}
 }
@@ -211,8 +199,7 @@ footnotes.}
 \DeclareOption{a4paper}{\renewcommand\PHD@papersize{a4paper}}
 \DeclareOption{a5paper}{\renewcommand\PHD@papersize{a5paper}}
 \DeclareOption{letterpaper}{
-  \ClassWarning{PhDThesisPSnPDF}{The Cambridge University Engineering 
-  Deparment
+  \ClassWarning{PhDThesisPSnPDF}{The Cambridge University Engineering Deparment
     PhD thesis guidelines recommend using A4 or A5paper}
   \renewcommand\PHD@papersize{letterpaper}
 }
@@ -236,8 +223,7 @@ footnotes.}
   \setDrafttrue 
   \ClassWarning{PhDThesisPSnPDF}{Draft is ON. Don't forget to turn it
     off in your final version. This enhanced `draft' mode adds watermark 
-    with timestamp, line numbering, and version number. Use 
-    `draftclassic'
+    with timestamp, line numbering, and version number. Use `draftclassic'
     if you prefer the \cite{} lassic draft mode. To tweak options see
     `preamble.tex'}}%
 
@@ -259,8 +245,7 @@ footnotes.}
 % Generates Warning for unknown options
 \DeclareOption*{
   \ClassWarning{PhDThesisPSnPDF}{Unknown or non-standard option
-'\CurrentOption'. I'll see if I can load it from the book class. If you 
-get a
+'\CurrentOption'. I'll see if I can load it from the book class. If you get a
 warning unused global option(s): `\CurrentOption` then the option is not
 supported!}
   \PassOptionsToClass{\CurrentOption}{book}
@@ -287,22 +272,21 @@ supported!}
 
 
 
-% 
-%******************************************************************************
-% ******************************** Packages ***********************************
-%******************************************************************************
-% ************************** Layout and Formatting ****************************
+% ******************************************************************************
+% ******************************** Packages ************************************
+% ******************************************************************************
+% ************************** Layout and Formatting *****************************
 \renewcommand\pdfshellescape{1}
 \RequirePackage{lscape}   % Supports Landscape Layout
 \RequirePackage{setspace} % Define line spacing in paragraph
 \RequirePackage{calc}     % To calculate vertical spacing
 
-% ************************* Conditional Statements ****************************
+% ************************* Conditional Statements *****************************
 \RequirePackage{ifthen}  % conditional statements
 \RequirePackage{ifpdf}    % Check for pdfLaTeX
 
 
-% ********************** Table of Contents & Appendices ***********************
+% *********************** Table of Contents & Appendices ***********************
 % add Bibliography, List of figures and tables to contents
 \RequirePackage[nottoc]{tocbibind}
 % Add appendices
@@ -320,7 +304,7 @@ supported!}
   \temptableofcontents
 }
 
-% *************************** Graphics and Figures ****************************
+% *************************** Graphics and Figures *****************************
 \RequirePackage[usenames, dvipsnames]{color}
 \ifpdf
         % Convert eps figures to pdf
@@ -337,7 +321,7 @@ supported!}
 
 
 
-% ******************************* Time Stamp **********************************
+% ******************************* Time Stamp ***********************************
 % Compute the timestamp based on an idea of
 % Tim Piessens \texttt{<Tim.Piessens@esat.kuleuven.ac.be>}.
 
@@ -356,7 +340,7 @@ supported!}
   \number\PHD@hour\fi:\ifnum\PHD@minute<10 0\fi\number\PHD@minute
 }
 
-% ******************************* Draft Mode **********************************
+% ******************************* Draft Mode ***********************************
 % Initializing Draft Text
 \newcommand\SetDraftText[1]{}
 % Initializing Draft Version
@@ -387,8 +371,7 @@ supported!}
 % Fix display lineno issue in mathmode
 \newcommand*\patchAmsMathEnvironmentForLineno[1]{%
   \expandafter\let\csname old#1\expandafter\endcsname\csname #1\endcsname
-  \expandafter\let\csname oldend#1\expandafter\endcsname\csname 
-  end#1\endcsname
+  \expandafter\let\csname oldend#1\expandafter\endcsname\csname end#1\endcsname
   \renewenvironment{#1}%
      {\linenomath\csname old#1\endcsname}%
      {\csname oldend#1\endcsname\endlinenomath}%
@@ -450,15 +433,12 @@ supported!}
 \renewcommand\SetDraftWMPosition[1]{%
   \renewcommand\draftposition{#1}
   \ifthenelse{\equal{\draftposition}{bottom}}
-             {\renewcommand\draftnodeanchor{\paperheight-\voffset}} 
-             %Bottom
+             {\renewcommand\draftnodeanchor{\paperheight-\voffset}} %Bottom
              {\ifthenelse{\equal{\draftposition}{top}}
-               {\renewcommand\draftnodeanchor{1in+\voffset-\topmargin}} 
-               %Top
+               {\renewcommand\draftnodeanchor{1in+\voffset-\topmargin}} %Top
                {\ClassWarning{PDThesisPSnPDF}{Unrecognised draft position
                    using default value of top}
-                 \renewcommand\draftnodeanchor{1in+\voffset-\topmargin}}}
-                  %Top
+                 \renewcommand\draftnodeanchor{1in+\voffset-\topmargin}}} %Top
 
   \AddEverypageHook{%
     \begin{textblock*}{\paperwidth}[0.,2.5](0\paperwidth,\draftnodeanchor)
@@ -474,20 +454,16 @@ supported!}
     inactive, to use SetDraftText include `draftmode' in the document 
     class options.}}
 % Draft Version
-\renewcommand\SetDraftVersion[1]{\ClassWarning{PhDThesisPSnPDF}{DraftMode
- is
+\renewcommand\SetDraftVersion[1]{\ClassWarning{PhDThesisPSnPDF}{DraftMode is
     inactive, to use SetDraftVersion include `draftmode' in the document
     class options.}}
 % Draft Content
 \renewcommand\SetDraftWMPosition[1]{\ClassWarning{PhDThesisPSnPDF}{DraftMode
-    is inactive, to use SetDraftWMPosition include `draftmode' in the 
-    document
+    is inactive, to use SetDraftWMPosition include `draftmode' in the document
     class options.}}
 
-\renewcommand\SetDraftGrayScale[1]{\ClassWarning{PhDThesisPSnPDF}{DraftMode
- is
-    inactive, to use SetDraftWMPosition include `draftmode' in the 
-    document
+\renewcommand\SetDraftGrayScale[1]{\ClassWarning{PhDThesisPSnPDF}{DraftMode is
+    inactive, to use SetDraftWMPosition include `draftmode' in the document
     class options.}}
 \fi
 
@@ -497,13 +473,11 @@ supported!}
 % ******************************* Bibliography *********************************
 \ifPHD@authoryear
   \ifPHD@biblatex
-    \RequirePackage[backend=biber, style=authoryear, 
-    citestyle=alphabetic, 
+    \RequirePackage[backend=biber, style=authoryear, citestyle=alphabetic, 
       sorting=nty, natbib=true]{biblatex}
     \setBiBLaTeXtrue
   \else
-    \RequirePackage[round, sort, numbers, authoryear]{natbib} %author 
-    %year
+    \RequirePackage[round, sort, numbers, authoryear]{natbib} %author year
   \fi
 \else
   \ifPHD@numbered
@@ -520,15 +494,13 @@ supported!}
           \@ifpackageloaded{natbib}{}{
             \@ifpackageloaded{biblatex}{}{
               \ClassWarning{PhDThesisPSnPDF}{%
-                You chose custom bibliography, but no corresponding 
-                package 
+                You chose custom bibliography, but no corresponding package 
                 (biblatex/natbib) has been loaded. Please load the
                 appropriate bibliography package in the preamble.}
             }
           }
         }
-    \else                                            % set default to 
-    %numbered
+    \else                                            % set default to numbered
       \ifPHD@biblatex
         \RequirePackage[backend=biber, style=numeric-comp,
           citestyle=numeric, sorting=none, natbib=true]{biblatex}
@@ -554,8 +526,7 @@ supported!}
 \RequirePackage{textcomp}
 % Font Selection
 \ifPHD@times
-  \RequirePackage{mathptmx}  % times roman, including math (where 
-  %possible)
+  \RequirePackage{mathptmx}  % times roman, including math (where possible)
   \setFonttrue
   \message{PhDThesisPSnPDF: Using Times Roman font}
 \else
@@ -579,9 +550,9 @@ supported!}
 \else
   \ClassWarning{PhDThesisPSnPDF}{Using default font Latin Modern. If you
     would like to use other pre-defined fonts use `times' (The Cambridge 
-    University PhD thesis guidelines recommend using Times font)  or 
-    `fourier' or load a custom font in the preamble.tex file by specifying 
-    `customfont' in the class options}
+    University PhD thesis guidelines recommend using Times font)  or `fourier'
+    or load a custom font in the preamble.tex file by specifying `customfont' 
+    in the class options}
   \RequirePackage{lmodern}
 \fi
 
@@ -603,12 +574,10 @@ supported!}
 % If building with PDFLaTeX, use microtype spacing adjustments
 \RequirePackage[final]{microtype}
 
-%******************************* Print / Online *******************************
-% Defines a print / online version to define page-layout and 
-%hyperrefering
+%******************************* Print / Online ********************************
+% Defines a print / online version to define page-layout and hyperrefering
 
-% Moved below other usepackage definitions to fix PDFLaTeX footnote 
-%warning
+% Moved below other usepackage definitions to fix PDFLaTeX footnote warning
 % Based on the suggestion by John Plaice
 
 \ifsetDVI
@@ -707,8 +676,7 @@ supported!}
  {\renewcommand{\UrlFont}{\normalsize}}}
 \urlstyle{leo}
 
-% option to split urls over multiple lines for latex >> DVIPS >> PDF 
-%option
+% option to split urls over multiple lines for latex >> DVIPS >> PDF option
 % PDFLaTeX does it automatically.
 
 \ifsetDVI
@@ -716,12 +684,11 @@ supported!}
 \fi
 
 
-% 
-%******************************************************************************
-% **************************** Pre-defined Settings ***************************
-%******************************************************************************
+% ******************************************************************************
+% **************************** Pre-defined Settings ****************************
+% ******************************************************************************
 
-% *************************** Setting PDF Meta-Data ***************************
+% *************************** Setting PDF Meta-Data ****************************
 \ifpdf
 \AtBeginDocument{
   \hypersetup{
@@ -733,23 +700,19 @@ supported!}
 }
 \fi
 
-% ******************************** Line Spacing *******************************
+% ******************************** Line Spacing ********************************
 % Set spacing as 1.5 line spacing for the PhD Thesis
-% In practice, fortunately, nobody knows really what “one-and-a-half 
-%spaced
-% type” means exactly (in terms of millimetres baseline distance). The 
-%following
+% In practice, fortunately, nobody knows really what “one-and-a-half spaced
+% type” means exactly (in terms of millimetres baseline distance). The following
 % LaTeX setting has routinely been considered perfectly acceptable:
 
 \renewcommand\baselinestretch{1.2}
 
-% ******************************** Justification ******************************
+% ******************************** Justification *******************************
 % Left aligned as per University identity guidelines
 \ifPHD@textJustify
-\message{PhDThesisPSnPDF: The University identity guidelines recommend 
-using 
-left aligned text. Please use `flushleft' in the documentclass option, 
-if you
+\message{PhDThesisPSnPDF: The University identity guidelines recommend using 
+left aligned text. Please use `flushleft' in the documentclass option, if you
 wish to left align your text}
 \else
 \AtBeginDocument{
@@ -758,7 +721,7 @@ wish to left align your text}
 \fi
 
 
-% ************************** TOC and Hide Sections ****************************
+% ************************** TOC and Hide Sections *****************************
 \newcommand{\nocontentsline}[3]{}
 \newcommand{\tochide}[2]{
 	\bgroup\let
@@ -768,13 +731,12 @@ wish to left align your text}
 \addtocontents{toc}{\protect\thispagestyle{empty}}
 
 
-% ***************************** Header Formatting *****************************
+% ***************************** Header Formatting ******************************
 % Custom Header with Chapter Number, Page Number and Section Numbering
 
 \RequirePackage{fancyhdr} % Define custom header
 
-% Set Fancy Header Command is defined to Load FancyHdr after Geometry is 
-%defined
+% Set Fancy Header Command is defined to Load FancyHdr after Geometry is defined
 \newcommand{\setFancyHdr}{
 
 \pagestyle{fancy}
@@ -791,8 +753,7 @@ wish to left align your text}
 
 \else
 \ifPHD@pageStyleII
-% Style 2: Sets Page Number at the Bottom with Chapter/Section Name on 
-%LO/RE
+% Style 2: Sets Page Number at the Bottom with Chapter/Section Name on LO/RE
 \renewcommand{\chaptermark}[1]{\markboth{##1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection\ ##1}}
 \fancyhf{}
@@ -802,8 +763,7 @@ wish to left align your text}
 
 
 \else
-% Default Style: Sets Page Number at the Top (LE/RO) with 
-%Chapter/Section Name
+% Default Style: Sets Page Number at the Top (LE/RO) with Chapter/Section Name
 % on LO/RE and an empty footer
 \renewcommand{\chaptermark}[1]{\markboth {##1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection\ ##1}}
@@ -828,14 +788,13 @@ wish to left align your text}
 \ifsetCustomMargin
 \AtBeginDocument{
 \@ifpackageloaded{geometry}{}{\ClassWarning{PhDThesisPSnPDF}{%
-  Custom margin is chosen, but geometry package is not loaded. Please 
-  load the
+  Custom margin is chosen, but geometry package is not loaded. Please load the
   `geometry' package in the preamble.}}}
 \else
 \setFancyHdr % Apply fancy header settings otherwise apply it in preamble
 \fi
 
-% *************** Clear Header Style on the Last Empty Odd pages **************
+% **************** Clear Header Style on the Last Empty Odd pages **************
 \renewcommand{\cleardoublepage}{\clearpage\if@twoside \ifodd\c@page\else%
 	\hbox{}%
 	\thispagestyle{empty}  % Empty header styles
@@ -843,35 +802,30 @@ wish to left align your text}
 	\if@twocolumn\hbox{}\newpage\fi\fi\fi}
 
 
-% ***************************** Roman Pages ***********************************
-% The romanpages environment set the page numbering to lowercase roman 
-%one
+% ******************************** Roman Pages *********************************
+% The romanpages environment set the page numbering to lowercase roman one
 % for the contents and figures lists. It also resets
-% page-numbering for the remainder of the dissertation (arabic, starting 
-%at 1).
+% page-numbering for the remainder of the dissertation (arabic, starting at 1).
 
 \newenvironment{romanpages}{
   \setcounter{page}{1}
   \renewcommand{\thepage}{\roman{page}}}
 {\newpage\renewcommand{\thepage}{\arabic{page}}}
 
-% ****************************** Appendices ***********************************
+% ******************************* Appendices **********************************
 % Appending the appendix name to the letter in TOC
 % Especially when backmatter is enabled
 
 %\renewcommand\backmatter{
 %    \def\chaptermark##1{\markboth{%
-%        \ifnum  \c@secnumdepth > \m@ne  \@chapapp\ \thechapter:  \fi  
-%##1}{%
-%        \ifnum  \c@secnumdepth > \m@ne  \@chapapp\ \thechapter:  \fi  
-%##1}}%
+%        \ifnum  \c@secnumdepth > \m@ne  \@chapapp\ \thechapter:  \fi  ##1}{%
+%        \ifnum  \c@secnumdepth > \m@ne  \@chapapp\ \thechapter:  \fi  ##1}}%
 %    \def\sectionmark##1{\relax}}
 
 
-% 
-%******************************************************************************
-% *************************** Macro Definitions *******************************
-%******************************************************************************
+% ******************************************************************************
+% **************************** Macro Definitions *******************************
+% ******************************************************************************
 % These macros are used to declare arguments needed for the
 % construction of the title page and other preamble.
 
@@ -909,8 +863,7 @@ wish to left align your text}
 \newcommand{\collegeshield}[1]{\renewcommand{\@collegeshield}{#1}\PHD@collegeshieldtrue}
 
 % Submission Text
-\newcommand{\submissiontext}{This dissertation is submitted for the 
-degree of }
+\newcommand{\submissiontext}{This dissertation is submitted for the degree of }
 
 
 % keywords (These keywords will appear in the PDF meta-information
@@ -940,15 +893,13 @@ degree of }
 }
 
 
-% 
-%******************************************************************************
-%*************************** Front Matter Layout ****************************** 
-%******************************************************************************
+% ******************************************************************************
+% *************************** Front Matter Layout ******************************
+% ******************************************************************************
 
-% ******************************** titlepage **********************************
+% ******************************** titlepage  **********************************
 
-% Fix issue of title page having same number as the next page in oneside 
-%option
+% Fix issue of title page having same number as the next page in oneside option
 % Issue #24 https://github.com/kks32/phd-thesis-template/issues/24
 \renewenvironment{titlepage} % changed from "newenvironment"
 {%
@@ -973,43 +924,34 @@ degree of }
 }
 
 
-% ******************************** Title Page *********************************
+% ******************************** Title Page **********************************
 \renewcommand{\maketitle}{
 
 % To compute the free vertical space in Title page
 \computeTitlePageSpacing
 
-% Fix for issue #24 
-%https://github.com/kks32/phd-thesis-template/issues/24
+% Fix for issue #24 https://github.com/kks32/phd-thesis-template/issues/24
 \renewcommand*{\thepage}{i}
 
 \begin{singlespace}
 \begin{center}
 
-% University Crest Long if college crest is defined
-\ifPHD@collegeshield%
-	{\usebox{\PHD@crest}}
-	\vspace{.15\PHD@titlepagespacing}
-\fi
+{\@crest \par}
+
+\vspace{.05\PHD@titlepagespacing}
 
 % Title
-
 {\usebox{\PHD@Title}} % subtitle is defined
 
+\vspace{.15\PHD@titlepagespacing}
 
 % Crest
 
 \ifPHD@collegeshield%
-	\vspace{.15\PHD@titlepagespacing}
-	{\usebox{\PHD@collegecrest}}
-	\vspace{.1\PHD@titlepagespacing}
-\else
-	\vspace{.25\PHD@titlepagespacing}
-	{\usebox{\PHD@crest}}
-	\vspace{.15\PHD@titlepagespacing}
+{\usebox{\PHD@collegeshieldbox}}
 \fi
 
-
+\vspace{.1\PHD@titlepagespacing}
 
 % Author
 {\usebox{\PHD@author}}
@@ -1044,7 +986,7 @@ degree of }
 
 
 
-% ******************************* Declaration *********************************
+% ******************************* Declaration **********************************
 % The declaration environment puts a large, bold, centered
 % "Declaration" label at the top of the page.
 
@@ -1062,7 +1004,7 @@ degree of }
 
 
 
-% **************************** Acknowledgements *******************************
+% ***************************** Acknowledgements *******************************
 % The acknowledgements environment puts a large, bold, centered
 % "Acknowledgements" label at the top of the page.
 
@@ -1075,7 +1017,7 @@ degree of }
 
 
 
-% ****************************** Nomenclature *********************************
+% ******************************* Nomenclature *********************************
 \RequirePackage{nomencl}
 \makenomenclature
 \renewcommand{\nomgroup}[1]{%
@@ -1105,7 +1047,7 @@ degree of }
 }
 
 
-% ***************************** Create the index ******************************
+% ***************************** Create the index *******************************
 \ifPHD@index
     \RequirePackage{makeidx}
     \makeindex
@@ -1117,18 +1059,15 @@ degree of }
     \newcommand{\printthesisindex}{}
 \fi
 
-%***************************** Chapter Mode **********************************
-% The chapter mode allows user to only print particular chapters with 
-%references
+% ***************************** Chapter Mode ***********************************
+% The chapter mode allows user to only print particular chapters with references
 % All other options are disabled by default
-% To include only specific chapters without TOC, LOF, Title and Front 
-%Matter
+% To include only specific chapters without TOC, LOF, Title and Front Matter
 % To send it to supervisior for changes
 
 \ifPHD@chapter
     \defineChaptertrue
-    % Disable the table of contents, figures, tables, index and 
-    %nomenclature
+    % Disable the table of contents, figures, tables, index and nomenclature
     \renewcommand{\maketitle}{}
     \renewcommand{\tableofcontents}{}
     \renewcommand{\listoffigures}{}
@@ -1139,17 +1078,14 @@ degree of }
     \defineChapterfalse
 \fi
 
-% ******************************** Abstract ***********************************
-% The abstract environment puts a large, bold, centered "Abstract" label 
-%at
-% the top of the page. Defines both abstract and separate abstract 
-%environment
+% ******************************** Abstract ************************************
+% The abstract environment puts a large, bold, centered "Abstract" label at
+% the top of the page. Defines both abstract and separate abstract environment
 
 % To include only the Title and the abstract pages for submission to BoGS
 \ifPHD@abstract
     \defineAbstracttrue
-    % Disable the table of contents, figures, tables, index and 
-    %nomenclature
+    % Disable the table of contents, figures, tables, index and nomenclature
     \renewcommand{\tableofcontents}{}
     \renewcommand{\listoffigures}{}
     \renewcommand{\listoftables}{}
@@ -1183,7 +1119,7 @@ degree of }
 }
 
 
-% ******************** To compute empty space in title page *******************
+% ******************** To compute empty space in title page ********************
 % Boxes below are used to space different contents on the title page
 % Based on https://github.com/cambridge/thesis
 
@@ -1193,77 +1129,75 @@ degree of }
 % Title Box
 \newsavebox{\PHD@Title}
 \begin{lrbox}{\PHD@Title}
-	\begin{minipage}[c]{0.98\textwidth}
-		\centering \Huge \bfseries{\@title}
-		\ifthenelse{\equal{\@subtitle}{}}{
-			% subtitle is not defined
-		}{
-			\\
-			\centering \Large {\@subtitle}
-		} % subtitle is defined
-	\end{minipage}
+\begin{minipage}[c]{0.98\textwidth}
+\centering \Huge \bfseries{\@title}
+\ifthenelse{\equal{\@subtitle}{}}{
+% subtitle is not defined
+}{
+\\
+\centering \Large {\@subtitle}
+} % subtitle is defined
+\end{minipage}
 \end{lrbox}
 
 % University Crest Box
 \newsavebox{\PHD@crest}
 \begin{lrbox}{\PHD@crest}
-	{\@crest \par}
+\@crest
 \end{lrbox}
 
-\newsavebox{\PHD@collegecrest}
-\begin{lrbox}{\PHD@collegecrest}
-	\ifPHD@collegeshield%
-		{\@collegeshield}
-	\else
-		% College shield is undefined
-	\fi
-\end{lrbox}
+\ifPHD@collegeshield%
+    \newsavebox{\PHD@collegeshieldbox}
+    \begin{lrbox}{\PHD@collegeshieldbox}
+    \includegraphics[width=0.25\textwidth]{\@collegeshield}
+    \end{lrbox}
+\fi
 
 % Author Box
 \newsavebox{\PHD@author}
 \begin{lrbox}{\PHD@author}
-	\begin{minipage}[c]{\textwidth}
-		\centering \Large \bfseries{\@author}
-	\end{minipage}
+\begin{minipage}[c]{\textwidth}
+\centering \Large \bfseries{\@author}
+\end{minipage}
 \end{lrbox}
 
 % Department Box
 \newsavebox{\PHD@dept}
 \begin{lrbox}{\PHD@dept}
-	\begin{minipage}[c]{\textwidth}
-		\centering {\large \@dept \par}
-		{\large \@university \par}
-	\end{minipage}
+\begin{minipage}[c]{\textwidth}
+\centering {\large \@dept \par}
+{\large \@university \par}
+\end{minipage}
 \end{lrbox}
 
 % Submission Box
 \newsavebox{\PHD@submission}
 \begin{lrbox}{\PHD@submission}
-	\begin{minipage}[c]{\textwidth}
-		\begin{center}
-			\large \submissiontext \par
-			\large \textit {\@degreetitle} \par
-		\end{center}
-	\end{minipage}
+\begin{minipage}[c]{\textwidth}
+\begin{center}
+\large \submissiontext \par
+\large \textit {\@degreetitle} \par
+\end{center}
+\end{minipage}
 \end{lrbox}
 
 % College and Date Box
 \newsavebox{\PHD@collegedate}
 \begin{lrbox}{\PHD@collegedate}
 \begin{minipage}[c]{\textwidth}
-	\large
-	\ifthenelse{\equal{\@college}{}}{
-		% college is not defined
-		\@degreedate
-	}{
-		% college is defined
-		\begin{minipage}{0.5\textwidth}
-			\flushleft\@college
-		\end{minipage}
-		\begin{minipage}{0.5\textwidth}
-			\flushright \@degreedate
-		\end{minipage}
-	} % college is defined
+\large
+\ifthenelse{\equal{\@college}{}}{
+% college is not defined
+\@degreedate
+}{
+% college is defined
+\begin{minipage}{0.45\textwidth}
+\flushleft\@college
+\end{minipage}
+\begin{minipage}{0.45\textwidth}
+\flushright \@degreedate
+\end{minipage}
+} % college is defined
 \end{minipage}
 \end{lrbox}
 
@@ -1272,7 +1206,7 @@ degree of }
 \setlength{\PHD@titlepagespacing}{ \textheight %
 			- \totalheightof{\usebox{\PHD@Title}}
 			- \totalheightof{\usebox{\PHD@crest}}
-			- \totalheightof{\usebox{\PHD@collegecrest}}
+			- \totalheightof{\usebox{\PHD@collegeshieldbox}}
 			- \totalheightof{\usebox{\PHD@author}}
 			- \totalheightof{\usebox{\PHD@dept}}
 			- \totalheightof{\usebox{\PHD@submission}}
