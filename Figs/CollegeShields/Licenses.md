@@ -13,11 +13,11 @@ Derivative files:
 
 Source:
 
-        https://en.wikipedia.org/wiki/File:Kingscollegearms-alternative.svg
+        Provided by the college / Vectorised by Krishna Kumar
 
 Licence:
 
-        Creative Commons Attribution-Share Alike 3.0 Unported
+        Public domain
 
 
 # Fitzwilliam College's shield
