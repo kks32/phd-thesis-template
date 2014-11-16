@@ -1257,10 +1257,10 @@ degree of }
 		\@degreedate
 	}{
 		% college is defined
-		\begin{minipage}{0.495\textwidth}
+		\begin{minipage}[b]{0.49\textwidth}
 			\flushleft\@college
 		\end{minipage}
-		\begin{minipage}{0.495\textwidth}
+		\begin{minipage}[b]{0.49\textwidth}
 			\flushright \@degreedate
 		\end{minipage}
 	} % college is defined
