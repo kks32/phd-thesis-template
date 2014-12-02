@@ -1074,8 +1074,8 @@ degree of }
 }
 
 
+% ******************************* Nomenclature *********************************
 
-% ****************************** Nomenclature *********************************
 \RequirePackage[intoc]{nomencl}
 \makenomenclature
 \renewcommand{\nomgroup}[1]{%
@@ -1096,7 +1096,8 @@ degree of }
 % To add nomenclature in the header
 \renewcommand{\nompreamble}{\markboth{\nomname}{\nomname}}
 
-% ***************************** Create the index ******************************
+
+% ***************************** Create the index *******************************
 \ifPHD@index
     \RequirePackage{makeidx}
     \makeindex
