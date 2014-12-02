@@ -12,7 +12,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % ************************** Class Identification *****************************
-\newcommand\fileversion{1.4.2}
+\newcommand\fileversion{2.0}
 \newcommand\filedate{2014/10/08}
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{PhDThesisPSnPDF}[\filedate\space A PhD thesis class file
@@ -1076,7 +1076,7 @@ degree of }
 
 
 % ****************************** Nomenclature *********************************
-\RequirePackage{nomencl}
+\RequirePackage[intoc]{nomencl}
 \makenomenclature
 \renewcommand{\nomgroup}[1]{%
 \ifthenelse{\equal{#1}{A}}{\item[\textbf{Roman Symbols}]}{%
@@ -1095,15 +1095,6 @@ degree of }
 
 % To add nomenclature in the header
 \renewcommand{\nompreamble}{\markboth{\nomname}{\nomname}}
-
-% Add nomenclature to contents and print out nomenclature
-\newcommand{\printnomencl}[1][]{
-\ifthenelse{\equal {#1}{}}
-{\printnomenclature}
-{\printnomenclature[#1]}
-\addcontentsline{toc}{chapter}{\nomname}
-}
-
 
 % ***************************** Create the index ******************************
 \ifPHD@index
