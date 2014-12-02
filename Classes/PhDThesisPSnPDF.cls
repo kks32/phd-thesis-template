@@ -1030,7 +1030,7 @@ wish to left align your text}
 
 
 % ******************************* Nomenclature *********************************
-\RequirePackage{nomencl}
+\RequirePackage[intoc]{nomencl}
 \makenomenclature
 \renewcommand{\nomgroup}[1]{%
 \ifthenelse{\equal{#1}{A}}{\item[\textbf{Roman Symbols}]}{%
@@ -1055,7 +1055,7 @@ wish to left align your text}
 \ifthenelse{\equal {#1}{}}
 {\printnomenclature}
 {\printnomenclature[#1]}
-\addcontentsline{toc}{chapter}{\nomname}
+%\addcontentsline{toc}{chapter}{\nomname}
 }
 
 
