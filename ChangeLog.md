@@ -2,6 +2,7 @@
 ### 2014/12/02 - Version 1.4.4
 > Commit 7f17bc3c682df2950e4dc09cd5e71278edc3fc6d
 *   Fixed pagenumbering issue in 2 page nomenclature - Issue #28
+
 ### 2014/10/08 - Version 1.4.3
 > Commit df43fcdc7308feeea8c7dfe06ad24d45d5caca3e
 *   Fixed `\degree` command conflict - Issue #26
