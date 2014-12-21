@@ -960,25 +960,25 @@ wish to left align your text}
 \vspace*{1ex}
 {\large \textit {\@degreetitle} \par}
 
-
 \end{center}
+
+% College and degree date
 \vfill
 \large
-\begin{minipage}[c]{\textwidth}
+
 \ifthenelse{\equal{\@college}{}}{
 % college is not defined
 \centering
 \@degreedate
 }{
-% college is defined
-\begin{minipage}{0.49\textwidth}
+  % college is defined
+\begin{minipage}[b]{0.49\textwidth}
 \flushleft\@college
 \end{minipage}
-\begin{minipage}{0.49\textwidth}
-\flushright \@degreedate
+\begin{minipage}[b]{0.49\textwidth}
+\flushright\@degreedate
 \end{minipage}
-} % college is defined
-\end{minipage}
+} % end-if- college is defined
 \end{singlespace}
 }
 
