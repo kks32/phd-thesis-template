@@ -4,7 +4,7 @@
 %%                                                                            %%
 %% A PhD thesis LaTeX template for Cambridge University Engineering Department%%
 %%                                                                            %%
-%% Version: v1.4.2                                                            %%
+%% Version: v1.4.5                                                            %%
 %% Authors: Krishna Kumar                                                     %%
 %% Date: 2013/11/16 (inception)                                               %%
 %% License: MIT License (c) 2013 Krishna Kumar                                %%
@@ -12,8 +12,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % ************************** Class Identification ******************************
-\newcommand\fileversion{1.4.2}
-\newcommand\filedate{2014/10/08}
+\newcommand\fileversion{1.4.5}
+\newcommand\filedate{2014/12/02}
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{PhDThesisPSnPDF}[\filedate\space A PhD thesis class file
  by Krishna Kumar (v\fileversion)]
@@ -971,10 +971,10 @@ wish to left align your text}
 \@degreedate
 }{
 % college is defined
-\begin{minipage}{0.45\textwidth}
+\begin{minipage}{0.49\textwidth}
 \flushleft\@college
 \end{minipage}
-\begin{minipage}{0.45\textwidth}
+\begin{minipage}{0.49\textwidth}
 \flushright \@degreedate
 \end{minipage}
 } % college is defined
@@ -1198,10 +1198,10 @@ wish to left align your text}
 \@degreedate
 }{
 % college is defined
-\begin{minipage}{0.45\textwidth}
+\begin{minipage}{0.49\textwidth}
 \flushleft\@college
 \end{minipage}
-\begin{minipage}{0.45\textwidth}
+\begin{minipage}{0.49\textwidth}
 \flushright \@degreedate
 \end{minipage}
 } % college is defined
