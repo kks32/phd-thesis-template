@@ -207,7 +207,8 @@ footnotes.}
 \PassOptionsToClass{\PHD@papersize}{book}%
 
 % Column layout
-\DeclareOption{oneside}{\PassOptionsToClass{\CurrentOption}{book}}%
+\newif\if@oneside\@onesidefalse
+\DeclareOption{oneside}{\PassOptionsToClass{\CurrentOption}{book}\@onesidetrue}%
 \DeclareOption{twoside}{\PassOptionsToClass{\CurrentOption}{book}}%
 
 % Draft Mode
@@ -896,6 +897,7 @@ wish to left align your text}
 
 % Fix issue of title page having same number as the next page in oneside option
 % Issue #24 https://github.com/kks32/phd-thesis-template/issues/24
+\if@oneside
 \renewenvironment{titlepage} % changed from "newenvironment"
 {%
 \begingroup
@@ -904,10 +906,11 @@ wish to left align your text}
 \else
     \@restonecolfalse\newpage
 \fi
-    \thispagestyle{empty}
-    \setcounter{page}\z@
+\thispagestyle{empty}
+\setcounter{page}\z@ 
 }%
 {
+
 \if@restonecol
     \twocolumn
 \else 
@@ -917,7 +920,7 @@ wish to left align your text}
 \clearpage
 \addtocounter{page}{1}
 }
-
+\fi
 
 % ******************************** Title Page **********************************
 \renewcommand{\maketitle}{
@@ -972,10 +975,10 @@ wish to left align your text}
 \@degreedate
 }{
   % college is defined
-\begin{minipage}[b]{0.49\textwidth}
+\begin{minipage}[b]{0.45\textwidth}
 \flushleft\@college
 \end{minipage}
-\begin{minipage}[b]{0.49\textwidth}
+\begin{minipage}[b]{0.45\textwidth}
 \flushright\@degreedate
 \end{minipage}
 } % end-if- college is defined
