@@ -1,6 +1,6 @@
 ## Change log
 ### 2014/12/02 - Version 1.4.5
-> Commit ee383958bd93d0291b574e31da2fa16811b10787
+> Commit 427230cae012194a2e433ec001677c43ffd8250e
 *   Fixed issue with the misaligned date and college in the frontpage.
 
 ### 2014/12/02 - Version 1.4.4
