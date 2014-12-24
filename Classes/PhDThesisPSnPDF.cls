@@ -220,7 +220,8 @@ footnotes.}
 \PassOptionsToClass{\PHD@papersize}{book}%
 
 % Column layout
-\DeclareOption{oneside}{\PassOptionsToClass{\CurrentOption}{book}}%
+\newif\if@oneside\@onesidefalse
+\DeclareOption{oneside}{\PassOptionsToClass{\CurrentOption}{book}\@onesidetrue}%
 \DeclareOption{twoside}{\PassOptionsToClass{\CurrentOption}{book}}%
 
 % Draft Mode
@@ -950,6 +951,7 @@ degree of }
 % Fix issue of title page having same number as the next page in oneside 
 %option
 % Issue #24 https://github.com/kks32/phd-thesis-template/issues/24
+\if@oneside
 \renewenvironment{titlepage} % changed from "newenvironment"
 {%
 \begingroup
@@ -971,6 +973,7 @@ degree of }
 \clearpage
 \addtocounter{page}{1}
 }
+\fi
 
 
 % ******************************** Title Page *********************************
