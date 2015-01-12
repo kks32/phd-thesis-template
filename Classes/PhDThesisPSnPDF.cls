@@ -527,7 +527,7 @@ supported!}
 \RequirePackage{textcomp}
 % Font Selection
 \ifPHD@times
-  \RequirePackage{mathptmx}  % times roman, including math (where possible)
+\renewcommand{\rmdefault}{ptm} % times
   \setFonttrue
   \message{PhDThesisPSnPDF: Using Times Roman font}
 \else
