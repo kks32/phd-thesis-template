@@ -44,6 +44,12 @@ This template supports `latexmk`. To generate DVI, PS and PDF run
     latexmk -dvi -ps -pdf thesis.tex
 
 
+### Using ARARA (Unix/Linux/Windows)
+
+This template supports `arara`. You can edit the arara commands in `thesis.tex` to suit your needs. Default is set to LATEX >> DVI >> PS2PDF with nomenclature and make index support.
+
+    arara -v thesis.tex
+
 ### Using the make file (Unix/Linux)
 
 The template supports PDF, DVI and PS formats. All three formats can be generated
@@ -177,7 +183,7 @@ If `\college` is undefined or blank, the `degreedate` will be centered.
 			\includeonly{Chapter3/chapter3}
 		\fi
 
-### Draft
+### Draft 
 
 `draft` adds a watermark `draft` text with timestamp and version number at the top or
 the bottom of the page. Pagewise line numbering is added on every page. `draft` settings can be tweaked in the `preamble.tex`.
@@ -321,9 +327,9 @@ The visual style of chapter headings can be modified using the `titlesec` packag
 *   You can change the Title of Nomenclature to Notations or Symbols in the `preamble.tex` using:
 
         \renewcommand\nomname{Symbols}
-
+ 
  TexStudio's default compile option doesn't include `nomenclature`, to compile your document with the nomenclature, do the following:
-
+ 
 		Options >> Configure TexStudio >> Build >> User Commands >> add user command
 In `add user command` type `makenomeclature:makenomenclature` on the left pane and `makeindex %.nlo -s nomencl.ist -o %.nls` on the execution side. Now you can run the user defined command `makenomenclature` from `Tools >> User >> makenomenclature`.
 
@@ -359,7 +365,7 @@ To include custom to-do notes in your pdf document use  `\mynote{Hey! I have a n
 
         \includegraphics[width=0.75\textwidth]{minion}
 
-*   Use a `-` to separate sort key from the prefixes, eg., `g-pi` dentes the Greek symbol `pi`.
+*   Use a `-` to separate sort key from the prefixes, eg., `g-pi` denotes the Greek symbol `pi`.
 
 -------------------------------------------------------------------------------
 
@@ -429,6 +435,10 @@ You are trying to load an option that is not supported in the PhDThesisClass and
 #### _W5_: I get I'm skipping whatever remains of this command line \# of file thesis.aux \@input{Chapter1/chapter1.aux}
 
 If you are generating a separate abstract for your thesis submission, ignore this warning and good luck with your submission. If you are compiling your thesis and see this warning, please remove the option `abstract` from the document class.
+
+#### _W6_: I get blank pages between chapters
+
+This is normal for a book class. Usually, a new chapter in a book always starts on the right hand side, which is why you see a blank page. You can remove the extra blank page by passing `openany` option to the documentclass. This works for double sided printing. However, if you are printing on a single side, please pass `oneside` option to the document class.
 
 --------------------------------------------------------------------------------
 
