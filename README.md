@@ -365,7 +365,7 @@ To include custom to-do notes in your pdf document use  `\mynote{Hey! I have a n
 
         \includegraphics[width=0.75\textwidth]{minion}
 
-*   Use a `-` to separate sort key from the prefixes, eg., `g-pi` dentes the Greek symbol `pi`.
+*   Use a `-` to separate sort key from the prefixes, eg., `g-pi` denotes the Greek symbol `pi`.
 
 -------------------------------------------------------------------------------
 
@@ -435,6 +435,10 @@ You are trying to load an option that is not supported in the PhDThesisClass and
 #### _W5_: I get I'm skipping whatever remains of this command line \# of file thesis.aux \@input{Chapter1/chapter1.aux}
 
 If you are generating a separate abstract for your thesis submission, ignore this warning and good luck with your submission. If you are compiling your thesis and see this warning, please remove the option `abstract` from the document class.
+
+#### _W6_: I get blank pages between chapters
+
+This is normal for a book class. Usually, a new chapter in a book always starts on the right hand side, which is why you see a blank page. You can remove the extra blank page by passing `openany` option to the documentclass. This works for double sided printing. However, if you are printing on a single side, please pass `oneside` option to the document class.
 
 --------------------------------------------------------------------------------
 
