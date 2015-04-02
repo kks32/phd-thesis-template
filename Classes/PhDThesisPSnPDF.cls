@@ -693,12 +693,6 @@ supported!}
     \hypersetup{pdfpagelayout=OneColumn}
 \fi
 
-% Backward compatibility - setMargin is now replaced with customMargin
-\ifsetCustomMargin
-  \setMarginfalse
-\else
-  \setMargintrue
-\fi
 
 % ************************ URL Package and Definition **************************
 \RequirePackage{url}
@@ -717,7 +711,7 @@ supported!}
 \fi
 
 
-% 
+
 %******************************************************************************
 % **************************** Pre-defined Settings ***************************
 %******************************************************************************
@@ -736,10 +730,8 @@ supported!}
 
 % ******************************** Line Spacing *******************************
 % Set spacing as 1.5 line spacing for the PhD Thesis
-% In practice, fortunately, nobody knows really what “one-and-a-half 
-%spaced
-% type” means exactly (in terms of millimetres baseline distance). The 
-%following
+% In practice, fortunately, nobody knows really what “one-and-a-half spaced
+% type” means exactly (in terms of millimetres baseline distance). The following
 % LaTeX setting has routinely been considered perfectly acceptable:
 
 \renewcommand\baselinestretch{1.2}
@@ -747,15 +739,13 @@ supported!}
 % ******************************** Justification ******************************
 % Left aligned as per University identity guidelines
 \ifPHD@textJustify
-\message{PhDThesisPSnPDF: The University identity guidelines recommend 
-using 
-left aligned text. Please use `flushleft' in the documentclass option, 
-if you
-wish to left align your text}
+	\message{PhDThesisPSnPDF: The University identity guidelines recommend 
+		using left aligned text. Please use `flushleft' in the documentclass 
+		option, if you wish to left align your text}
 \else
-\AtBeginDocument{
-\raggedright
-}
+	\AtBeginDocument{
+		\raggedright
+	}
 \fi
 
 
@@ -830,8 +820,7 @@ wish to left align your text}
 \AtBeginDocument{
 \@ifpackageloaded{geometry}{}{\ClassWarning{PhDThesisPSnPDF}{%
   Custom margin is chosen, but geometry package is not loaded. Please 
-  load the
-  `geometry' package in the preamble.}}}
+  load the `geometry' package in the preamble.}}}
 \else
 \setFancyHdr % Apply fancy header settings otherwise apply it in preamble
 \fi
@@ -841,35 +830,21 @@ wish to left align your text}
 	\hbox{}%
 	\thispagestyle{empty}  % Empty header styles
 	\newpage%
-	\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+	\if@twocolumn\hbox{}\newpage\fi\fi\fi
+}
 
 
 % ***************************** Roman Pages ***********************************
-% The romanpages environment set the page numbering to lowercase roman 
-%one
-% for the contents and figures lists. It also resets
-% page-numbering for the remainder of the dissertation (arabic, starting 
-%at 1).
+% The romanpages environment set the page numbering to lowercase roman one
+% for the contents and figures lists. It also resets page-numbering for the 
+% remainder of the dissertation (arabic, starting at 1).
 
 \newenvironment{romanpages}{
   \setcounter{page}{1}
   \renewcommand{\thepage}{\roman{page}}}
 {\newpage\renewcommand{\thepage}{\arabic{page}}}
 
-% ****************************** Appendices ***********************************
-% Appending the appendix name to the letter in TOC
-% Especially when backmatter is enabled
-
-%\renewcommand\backmatter{
-%    \def\chaptermark##1{\markboth{%
-%        \ifnum  \c@secnumdepth > \m@ne  \@chapapp\ \thechapter:  \fi  
-%##1}{%
-%        \ifnum  \c@secnumdepth > \m@ne  \@chapapp\ \thechapter:  \fi  
-%##1}}%
-%    \def\sectionmark##1{\relax}}
-
-
-% 
+ 
 %******************************************************************************
 % *************************** Macro Definitions *******************************
 %******************************************************************************
@@ -945,8 +920,6 @@ degree of }
 %******************************************************************************
 %*************************** Front Matter Layout ****************************** 
 %******************************************************************************
-
-% ******************************** titlepage **********************************
 
 % Fix issue of title page having same number as the next page in oneside 
 %option
