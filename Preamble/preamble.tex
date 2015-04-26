@@ -62,11 +62,7 @@
 %\usepackage{tabularx}
 
 
-% ***************************** Math and SI Units ******************************
-
-\usepackage{amsfonts}
-\usepackage{amsmath}
-\usepackage{amssymb}
+% *********************************** SI Units *********************************
 \usepackage{siunitx} % use this package module for SI units
 
 
@@ -109,23 +105,15 @@
 \renewcommand{\bibname}{References}
 
 
-% *****************************************************************************
-% *************** Changing the Visual Style of Chapter Headings ***************
-% This section on visual style is from https://github.com/cambridge/thesis
+% ******************************** Roman Pages *********************************
+% The romanpages environment set the page numbering to lowercase roman one
+% for the contents and figures lists. It also resets
+% page-numbering for the remainder of the dissertation (arabic, starting at 1).
 
-% Uncomment the section below. Requires titlesec package.
-
-%\RequirePackage{titlesec}
-%\newcommand{\PreContentTitleFormat}{\titleformat{\chapter}[display]{\scshape\Large}
-%{\Large\filleft{\chaptertitlename} \Huge\thechapter}
-%{1ex}{}
-%[\vspace{1ex}\titlerule]}
-%\newcommand{\ContentTitleFormat}{\titleformat{\chapter}[display]{\scshape\huge}
-%{\Large\filleft{\chaptertitlename} \Huge\thechapter}{1ex}
-%{\titlerule\vspace{1ex}\filright}
-%[\vspace{1ex}\titlerule]}
-%\newcommand{\PostContentTitleFormat}{\PreContentTitleFormat}
-%\PreContentTitleFormat
+\newenvironment{romanpages}{
+  \setcounter{page}{1}
+  \renewcommand{\thepage}{\roman{page}}}
+{\newpage\renewcommand{\thepage}{\arabic{page}}}
 
 
 % ******************************************************************************
@@ -159,7 +147,7 @@
 %\renewcommand{\appendixtocname}{List of appendices}
 %\renewcommand{\appendixname}{Appndx}
 
-% ******************************** Draft Mode **********************************
+% *********************** Configure Draft Mode **********************************
 
 % Uncomment to disable figures in `draftmode'
 %\setkeys{Gin}{draft=true}  % set draft to false to enable figures in `draft'
@@ -179,7 +167,7 @@
 %\SetDraftGrayScale{0.8}
 
 
-%% Todo notes functionality
+% ******************************** Todo Notes **********************************
 %% Uncomment the following lines to have todonotes.
 
 %\ifsetDraft

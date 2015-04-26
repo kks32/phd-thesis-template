@@ -270,19 +270,27 @@ supported!}
   \fi
 \fi
 
+
+
 % ******************************************************************************
 % ******************************** Packages ************************************
 % ******************************************************************************
 % ************************** Layout and Formatting *****************************
 
+\RequirePackage{ifxetex}
+\ifxetex
+  % XeLaTeX mode do nothing
+\else
+  \renewcommand\pdfshellescape{1}
+\fi
 \RequirePackage{lscape}   % Supports Landscape Layout
 \RequirePackage{setspace} % Define line spacing in paragraph
-\RequirePackage{calc}     % calculate vertical spacing
+\RequirePackage{calc}     % To calculate vertical spacing
 
 % ************************* Conditional Statements *****************************
-\RequirePackage{ifthen}   % Conditional statements
+\RequirePackage{ifthen}  % conditional statements
 \RequirePackage{ifpdf}    % Check for pdfLaTeX
-\RequirePackage{ifxetex}  % XeLaTeX
+
 
 % *********************** Table of Contents & Appendices ***********************
 % add Bibliography, List of figures and tables to contents
@@ -305,16 +313,16 @@ supported!}
 % *************************** Graphics and Figures *****************************
 \RequirePackage[usenames, dvipsnames]{color}
 \ifpdf
-  % Convert eps figures to pdf
-  \RequirePackage{epstopdf}
-  \RequirePackage[pdftex]{graphicx}
-  \DeclareGraphicsExtensions{.png, .jpg, .pdf}
-  \pdfcompresslevel=9
-  \graphicspath{{Figs/Raster/}{Figs/}}
+        % Convert eps figures to pdf
+        \RequirePackage{epstopdf}
+        \RequirePackage[pdftex]{graphicx}
+	\DeclareGraphicsExtensions{.png, .jpg, .pdf}
+	\pdfcompresslevel=9
+	\graphicspath{{Figs/Raster/}{Figs/}}
 \else
-  \RequirePackage{graphicx}
-  \DeclareGraphicsExtensions{.eps, .ps}
-  \graphicspath{{Figs/Vector/}{Figs/}}
+	\RequirePackage{graphicx}
+	\DeclareGraphicsExtensions{.eps, .ps}
+	\graphicspath{{Figs/Vector/}{Figs/}}
 \fi
 
 
@@ -467,6 +475,7 @@ supported!}
 
 
 
+
 % ******************************* Bibliography *********************************
 \ifPHD@authoryear
   \ifPHD@biblatex
@@ -519,13 +528,13 @@ supported!}
   biblatex package with required style in the Preamble.tex file}
 \fi
 
-% ********************************** Fonts **********************************
+% *********************** To copy ligatures and Fonts **************************
 \RequirePackage{textcomp}
 % Font Selection
 \ifPHD@times
   \ifxetex
   \else
-    \RequirePackage{mathptmx}  % times roman, including math (where possible)
+  \RequirePackage{mathptmx}  % times roman, including math (where possible)
   \fi
   \setFonttrue
   \message{PhDThesisPSnPDF: Using Times Roman font}
@@ -558,43 +567,42 @@ supported!}
 
 
 \ifxetex
-  % XeLaTeX
-  \usepackage{amsmath}
-  \usepackage{fontspec}
-  \usepackage[]{unicode-math}
-  \setmainfont[
-    Extension = .otf,
-    UprightFont = *-regular,
-    BoldFont = *-bold,
-    ItalicFont = *-italic,
-    BoldItalicFont = *-bolditalic,
-  ]{xits}
-  
-  \setmathfont[ 
-    Extension = .otf,
-    BoldFont = *bold,
-  ]{xits-math}
-  
-\else
-  % default: pdfLaTeX
-  \RequirePackage[utf8]{inputenc}
-  \RequirePackage[T1]{fontenc}
-  
-  % If building with PDFLaTeX, use microtype spacing adjustments
-  \RequirePackage[final]{microtype}
-  
-  \input{glyphtounicode}
-  \pdfglyphtounicode{f_f}{FB00}
-  \pdfglyphtounicode{f_i}{FB01}
-  \pdfglyphtounicode{f_l}{FB02}
-  \pdfglyphtounicode{f_f_i}{FB03}
-  \pdfglyphtounicode{f_f_l}{FB04}
-  \pdfgentounicode=1
+    % XeLaTeX
+    \usepackage{amsmath}
+    \usepackage{fontspec}
+    \usepackage[]{unicode-math}
+	\setmainfont[
+		 Extension = .otf,
+	   UprightFont = *-regular,
+	      BoldFont = *-bold,
+	    ItalicFont = *-italic,
+	BoldItalicFont = *-bolditalic,
+	]{xits}
+	
+	\setmathfont[ 
+	   Extension = .otf,
+	    BoldFont = *bold,
+	]{xits-math}
 
-  \RequirePackage{amsfonts}
-  \RequirePackage{amsmath}
-  \RequirePackage{amssymb}
+\else
+    % default: pdfLaTeX
+    \RequirePackage[utf8]{inputenc}
+    \RequirePackage[T1]{fontenc}
+
+    % If building with PDFLaTeX, use microtype spacing adjustments
+    \RequirePackage[final]{microtype}
+
+    \input{glyphtounicode}
+    \pdfglyphtounicode{f_f}{FB00}
+    \pdfglyphtounicode{f_i}{FB01}
+    \pdfglyphtounicode{f_l}{FB02}
+    \pdfglyphtounicode{f_f_i}{FB03}
+    \pdfglyphtounicode{f_f_l}{FB04}
+    \pdfgentounicode=1
 \fi
+
+
+
 
 % Don't break enumeration (etc.) across pages in an ugly manner
 \clubpenalty=10000
@@ -616,72 +624,72 @@ supported!}
 \fi
 
 \if@print
-  % For Print version
-  \hypersetup{
-    final=true,
-    plainpages=false,
-    pdfstartview=FitV,
-    pdftoolbar=true,
-    pdfmenubar=true,
-    bookmarksopen=true,
-    bookmarksnumbered=true,
-    breaklinks=true,
-    linktocpage,
-    colorlinks=true,
-    linkcolor=black,
-    urlcolor=black,
-    citecolor=black,
-    anchorcolor=black
-  }
-  \ifsetCustomMargin
-  % Margin to be define in preamble using geometry package
-  \else
-    \ifsetDVI
-      % Odd and Even side Margin for binding and set viewmode for PDF
-      \RequirePackage[dvips,paper=\PHD@papersize,hmarginratio=1:1,
-        vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
-    \else
-      \RequirePackage[pdftex,paper=\PHD@papersize,hmarginratio=1:1,
-        vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
-    \fi
-  \fi
-
-  \if@twoside
-    \hypersetup{pdfpagelayout=TwoPageRight}
-  \else
-    \hypersetup{pdfpagelayout=OneColumn}
-  \fi
-
-\else
-  % For PDF Online version
-  \hypersetup{
-    final=true,
-    plainpages=false,
-    pdfstartview=FitV,
-    pdftoolbar=true,
-    pdfmenubar=true,
-    bookmarksopen=true,
-    bookmarksnumbered=true,
-    breaklinks=true,
-    linktocpage,
-    colorlinks=true,
-    linkcolor=blue,
-    urlcolor=blue,
-    citecolor=blue,
-    anchorcolor=green
-  }
-
-  \ifsetCustomMargin
+    % For Print version
+    \hypersetup{
+      final=true,
+      plainpages=false,
+      pdfstartview=FitV,
+      pdftoolbar=true,
+      pdfmenubar=true,
+      bookmarksopen=true,
+      bookmarksnumbered=true,
+      breaklinks=true,
+      linktocpage,
+      colorlinks=true,
+      linkcolor=black,
+      urlcolor=black,
+      citecolor=black,
+      anchorcolor=black
+    }
+    \ifsetCustomMargin
     % Margin to be define in preamble using geometry package
     \else
-      % No Margin staggering on Odd and Even side
-      \ifsetDVI
-        \RequirePackage[paper=\PHD@papersize,hmarginratio=1:1,
+        \ifsetDVI
+        % Odd and Even side Margin for binding and set viewmode for PDF
+	\RequirePackage[dvips,paper=\PHD@papersize,hmarginratio=1:1,
+          vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
+        \else
+	\RequirePackage[pdftex,paper=\PHD@papersize,hmarginratio=1:1,
+          vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
+        \fi
+    \fi
+
+    \if@twoside
+        \hypersetup{pdfpagelayout=TwoPageRight}
+    \else
+    	\hypersetup{pdfpagelayout=OneColumn}
+    \fi
+
+\else
+    % For PDF Online version
+    \hypersetup{
+      final=true,
+      plainpages=false,
+      pdfstartview=FitV,
+      pdftoolbar=true,
+      pdfmenubar=true,
+      bookmarksopen=true,
+      bookmarksnumbered=true,
+      breaklinks=true,
+      linktocpage,
+      colorlinks=true,
+      linkcolor=blue,
+      urlcolor=blue,
+      citecolor=blue,
+      anchorcolor=green
+    }
+
+    \ifsetCustomMargin
+    % Margin to be define in preamble using geometry package
+    \else
+	% No Margin staggering on Odd and Even side
+        \ifsetDVI
+	\RequirePackage[paper=\PHD@papersize,hmarginratio=1:1,
           vmarginratio=1:1,scale=0.75]{geometry} % dvips
-      \else
-        \RequirePackage[pdftex,paper=\PHD@papersize,hmarginratio=1:1,
+        \else
+	\RequirePackage[pdftex,paper=\PHD@papersize,hmarginratio=1:1,
           vmarginratio=1:1,scale=0.75]{geometry}
-      \fi
+        \fi
     \fi
 
     \hypersetup{pdfpagelayout=OneColumn}
@@ -705,9 +713,9 @@ supported!}
 % option to split urls over multiple lines for latex >> DVIPS >> PDF option
 % PDFLaTeX does it automatically.
 
-%\ifsetDVI
+\ifsetDVI
 %\RequirePackage{breakurl} % to split the url over multiple lines
-%\fi
+\fi
 
 
 % ******************************************************************************
@@ -826,6 +834,27 @@ wish to left align your text}
 	\thispagestyle{empty}  % Empty header styles
 	\newpage%
 	\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+
+
+% ******************************** Roman Pages *********************************
+% The romanpages environment set the page numbering to lowercase roman one
+% for the contents and figures lists. It also resets
+% page-numbering for the remainder of the dissertation (arabic, starting at 1).
+
+\newenvironment{romanpages}{
+  \setcounter{page}{1}
+  \renewcommand{\thepage}{\roman{page}}}
+{\newpage\renewcommand{\thepage}{\arabic{page}}}
+
+% ******************************* Appendices **********************************
+% Appending the appendix name to the letter in TOC
+% Especially when backmatter is enabled
+
+%\renewcommand\backmatter{
+%    \def\chaptermark##1{\markboth{%
+%        \ifnum  \c@secnumdepth > \m@ne  \@chapapp\ \thechapter:  \fi  ##1}{%
+%        \ifnum  \c@secnumdepth > \m@ne  \@chapapp\ \thechapter:  \fi  ##1}}%
+%    \def\sectionmark##1{\relax}}
 
 
 % ******************************************************************************
