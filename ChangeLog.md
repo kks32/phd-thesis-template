@@ -1,6 +1,6 @@
 ## Change log
 ### 2015/06/20 - Version 2.0
-> Commit
+> Commit f4723434f92eedc163fdcb74c7ac04c8d842bc05
 *   XeLaTeX and LuaLaTeX support
 *   College crest + University crest support
 
