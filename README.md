@@ -1,6 +1,6 @@
 CUED PhD thesis template
 ========================
-> A LaTeX PhD thesis template for Cambridge University Engineering Department.
+> A LaTeX / XeLaTeX / LuaLaTeX PhD thesis template for Cambridge University Engineering Department.
 
 [![Build Status](https://api.travis-ci.org/kks32/phd-thesis-template.svg)](https://travis-ci.org/kks32/phd-thesis-template)
 [![License MIT](http://img.shields.io/badge/license-MIT-brightgreen.svg)](license.md)
@@ -12,6 +12,8 @@ CUED PhD thesis template
 ## Features
 
 *   Conforms to the Student Registry PhD dissertation guidelines and CUED PhD guidelines
+
+*   Supports LaTeX, XeLaTeX and LuaLaTeX
 
 *   Adaptive Title Page: Title page adapts to title length
 
@@ -35,7 +37,24 @@ CUED PhD thesis template
 
 --------------------------------------------------------------------------------
 
-## Building your thesis
+## Building your thesis - XeLaTeX
+
+### Using latexmk (Unix/Linux/Windows)
+
+This template supports `XeLaTeX` compilation chain. To generate  PDF run
+
+    latexmk -pdf -e '$pdflatex=q/xelatex %O %S/' thesis
+
+## Building your thesis - LuaLaTeX
+
+### Using latexmk (Unix/Linux/Windows)
+
+This template supports `XeLaTeX` compilation chain. To generate  PDF run
+
+    latexmk -pdflatex=lualatex -pdf thesis.tex 
+
+
+## Building your thesis - LaTeX / PDFLaTeX
 
 ### Using latexmk (Unix/Linux/Windows)
 
@@ -44,11 +63,6 @@ This template supports `latexmk`. To generate DVI, PS and PDF run
     latexmk -dvi -ps -pdf thesis.tex
 
 
-### Using ARARA (Unix/Linux/Windows)
-
-This template supports `arara`. You can edit the arara commands in `thesis.tex` to suit your needs. Default is set to LATEX >> DVI >> PS2PDF with nomenclature and make index support.
-
-    arara -v thesis.tex
 
 ### Using the make file (Unix/Linux)
 
@@ -94,6 +108,7 @@ Usage: `sh ./compile-thesis.sh [OPTIONS] [filename]`
     `compile-thesis-windows.bat`.
 
 *    Alternatively, double click on `compile-thesis-windows.bat`
+
 
 -------------------------------------------------------------------------------
 
@@ -183,7 +198,7 @@ If `\college` is undefined or blank, the `degreedate` will be centered.
 			\includeonly{Chapter3/chapter3}
 		\fi
 
-### Draft 
+### Draft
 
 `draft` adds a watermark `draft` text with timestamp and version number at the top or
 the bottom of the page. Pagewise line numbering is added on every page. `draft` settings can be tweaked in the `preamble.tex`.
@@ -327,9 +342,9 @@ The visual style of chapter headings can be modified using the `titlesec` packag
 *   You can change the Title of Nomenclature to Notations or Symbols in the `preamble.tex` using:
 
         \renewcommand\nomname{Symbols}
- 
+
  TexStudio's default compile option doesn't include `nomenclature`, to compile your document with the nomenclature, do the following:
- 
+
 		Options >> Configure TexStudio >> Build >> User Commands >> add user command
 In `add user command` type `makenomeclature:makenomenclature` on the left pane and `makeindex %.nlo -s nomencl.ist -o %.nls` on the execution side. Now you can run the user defined command `makenomenclature` from `Tools >> User >> makenomenclature`.
 
@@ -439,6 +454,10 @@ If you are generating a separate abstract for your thesis submission, ignore thi
 #### _W6_: I get blank pages between chapters
 
 This is normal for a book class. Usually, a new chapter in a book always starts on the right hand side, which is why you see a blank page. You can remove the extra blank page by passing `openany` option to the documentclass. This works for double sided printing. However, if you are printing on a single side, please pass `oneside` option to the document class.
+
+#### _W7_: My references aren't listed in the ordered in which I cite them
+
+This is controlled by the bibliography style. Please use `\bibliographystyle{unsrt}` in `thesis.tex` instead of `apalike`. This applicable only for numerically sorted references.
 
 --------------------------------------------------------------------------------
 

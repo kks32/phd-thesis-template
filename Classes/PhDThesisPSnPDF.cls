@@ -483,7 +483,7 @@ supported!}
         citestyle=numeric, sorting=none, natbib=true]{biblatex}
       \setBiBLaTeXtrue
     \else
-      \RequirePackage[numbers,sort&compress]{natbib} % numbered citation
+      \RequirePackage[numbers,compress]{natbib} % numbered citation
     \fi
   \else
     \ifuseCustomBib
@@ -503,7 +503,7 @@ supported!}
           citestyle=numeric, sorting=none, natbib=true]{biblatex}
         \setBiBLaTeXfalse
       \else
-        \RequirePackage[numbers,sort&compress]{natbib} 
+        \RequirePackage[numbers,compress]{natbib} 
       \fi % default
       \setBibfalse
     \fi % custombib
@@ -705,10 +705,12 @@ supported!}
 % option to split urls over multiple lines for latex >> DVIPS >> PDF option
 % PDFLaTeX does it automatically.
 
-%\ifsetDVI
-%\RequirePackage{breakurl} % to split the url over multiple lines
-%\fi
-
+\ifxetex % XeTeX doesn't require breakurl only dvi requires break url
+\else
+  \ifsetDVI
+    \RequirePackage{breakurl} % to split the url over multiple lines
+  \fi
+\fi  
 
 % ******************************************************************************
 % **************************** Pre-defined Settings ****************************

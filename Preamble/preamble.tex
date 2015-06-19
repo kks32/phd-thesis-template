@@ -17,7 +17,20 @@
 \ifsetCustomFont
   % Set your custom font here and use `customfont' in options. Leave empty to
   % load computer modern font (default LaTeX font).
-  \RequirePackage{helvet}
+  %\RequirePackage{helvet}
+
+  % For use with XeLaTeX
+  %  \setmainfont[
+  %    Path              = ./libertine/opentype/,
+  %    Extension         = .otf,
+  %    UprightFont = LinLibertine_R,
+  %    BoldFont = LinLibertine_RZ, % Linux Libertine O Regular Semibold
+  %    ItalicFont = LinLibertine_RI,
+  %    BoldItalicFont = LinLibertine_RZI, % Linux Libertine O Regular Semibold Italic
+  %  ]
+  %  {libertine}
+  %  % load font from system font
+  %  \newfontfamily\libertinesystemfont{Linux Libertine O}
 \fi
 
 % *****************************************************************************
