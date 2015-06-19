@@ -1210,7 +1210,7 @@ wish to left align your text}
 % College and Date Box
 \newsavebox{\PHD@collegedate}
 \begin{lrbox}{\PHD@collegedate}
-\begin{minipage}[c]{\textwidth}
+\begin{minipage}[c]{0.95\textwidth}
   \large
   \ifthenelse{\equal{\@college}{}}{
     % college is not defined
