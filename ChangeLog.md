@@ -1,4 +1,9 @@
 ## Change log
+### 2015/06/20 - Version 2.0
+> Commit
+*   XeLaTeX and LuaLaTeX support
+*   College crest + University crest support
+
 ### 2014/12/02 - Version 1.4.5
 > Commit 427230cae012194a2e433ec001677c43ffd8250e
 *   Fixed issue with the misaligned date and college in the frontpage.

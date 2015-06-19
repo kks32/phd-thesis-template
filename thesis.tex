@@ -1,13 +1,3 @@
- % arara: clean: { files: [thesis.aux, thesis.bbl, thesis.blg, thesis.dvi, thesis.fdb_latexmk, thesis.fls, thesis.idx, thesis.ilg, thesis.ind, thesis.lof, thesis.log, thesis.lot, thesis.nlo, thesis.nls, thesis.out, thesis.pdf, thesis.ps, thesis.toc]}
-% arara: latex:  { shell: yes }
-% arara: bibtex
-% arara: nomencl
-% arara: latex
-% arara: makeindex
-% arara: latex:  { shell: yes }
-% arara: dvips
-% arara: ps2pdf
-
 % ******************************* PhD Thesis Template **************************
 % Please have a look at the README.md file for info on how to use the template
 
@@ -33,9 +23,9 @@
 %
 % `index': For index at the end of the thesis
 %
-% `draft': For draft mode without loading any images (same as draft in book)
+% `draftclassic': For draft mode without loading any images (same as draft in book)
 %
-% `draftmode': Special draft mode with line numbers, images, and water mark with
+% `draft': Special draft mode with line numbers, images, and water mark with
 % timestamp and custom text. Position of the text can also be modified.
 %
 % `abstract': To generate only the title page and abstract page with
@@ -137,10 +127,10 @@
 
 \listoftables
 
-% \printnomencl[space] space can be set as 2em between symbol and description
-%\printnomencl[3em]
+% \printnomenclature[space] space can be set as 2em between symbol and description
+%\printnomenclature[3em]
 
-\printnomencl
+\printnomenclature
 
 % ******************************** Main Matter *********************************
 \mainmatter
@@ -167,6 +157,7 @@
 % Reference styles: http://sites.stat.psu.edu/~surajit/present/bib.htm
 
 \bibliographystyle{apalike}
+%\bibliographystyle{unsrt} % Use for unsorted references  
 %\bibliographystyle{plainnat} % use this to have URLs listed in References
 \cleardoublepage
 \bibliography{References/references} % Path to your References.bib file
