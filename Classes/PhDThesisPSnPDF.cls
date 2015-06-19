@@ -4,15 +4,15 @@
 %%                                                                            %%
 %% A PhD thesis LaTeX template for Cambridge University Engineering Department%%
 %%                                                                            %%
-%% Version: v2.0 Beta                                                         %%
+%% Version: v2.0                                                              %%
 %% Authors: Krishna Kumar                                                     %%
 %% License: MIT License (c) 2015 Krishna Kumar                                %%
 %% GitHub Repo: https://github.com/kks32/phd-thesis-template/                 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % ************************** Class Identification ******************************
-\newcommand\fileversion{2.0Beta}
-\newcommand\filedate{2015/04/26}
+\newcommand\fileversion{2.0}
+\newcommand\filedate{2015/06/19}
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{PhDThesisPSnPDF}[\filedate\space A PhD thesis class file
  by Krishna Kumar (v\fileversion)]
@@ -381,12 +381,12 @@ supported!}
 }%
 
 \AtBeginDocument{%
-\patchBothAmsMathEnvironmentsForLineno{equation}%
-\patchBothAmsMathEnvironmentsForLineno{align}%
-\patchBothAmsMathEnvironmentsForLineno{flalign}%
-\patchBothAmsMathEnvironmentsForLineno{alignat}%
-\patchBothAmsMathEnvironmentsForLineno{gather}%
-\patchBothAmsMathEnvironmentsForLineno{multline}%
+  \patchBothAmsMathEnvironmentsForLineno{equation}%
+  \patchBothAmsMathEnvironmentsForLineno{align}%
+  \patchBothAmsMathEnvironmentsForLineno{flalign}%
+  \patchBothAmsMathEnvironmentsForLineno{alignat}%
+  \patchBothAmsMathEnvironmentsForLineno{gather}%
+  \patchBothAmsMathEnvironmentsForLineno{multline}%
 }
 
 \fi % End \ifPDH@lineno
@@ -397,23 +397,30 @@ supported!}
 % Draft text
 \newcommand\drafttext{Draft}
 \renewcommand\SetDraftText[1]{%
-  \renewcommand\drafttext{#1}}
+  \renewcommand\drafttext{#1}
+}
+
 % Draft Version
 \newcommand\draftVersion{v1.0}
 \renewcommand\SetDraftVersion[1]{%
-  \renewcommand\draftVersion{#1}}
+  \renewcommand\draftVersion{#1}
+}
+
 % Draft Gray Scale
 \newcommand\draftGrayScale{0.75}
 \renewcommand\SetDraftGrayScale[1]{%
-  \renewcommand\draftGrayScale{#1}}
+  \renewcommand\draftGrayScale{#1}
+}
 
 % Draft Content
 \newcommand\DraftContent{%
-\hspace*{\fill}
-\Large
-\textcolor[gray]{\draftGrayScale}{%
-{\drafttext}\space-\space{\draftVersion}\hspace{\stretch{1}}{\PHD@daytime}
-\hspace*{\fill}}}
+  \hspace*{\fill}
+  \Large
+  \textcolor[gray]{\draftGrayScale}{%
+    {\drafttext}\space-\space{\draftVersion}\hspace{\stretch{1}}{\PHD@daytime}
+    \hspace*{\fill}
+  }
+}
 
 % Adding watermark in draft mode with time stamp
 \RequirePackage{everypage}
@@ -422,23 +429,23 @@ supported!}
 \newcommand\draftposition{top}
 \newcommand\draftnodeanchor{1in+\voffset-\topmargin}
 \AddEverypageHook{%
-\begin{textblock*}{\paperwidth}[0.,2.5](0\paperwidth,\draftnodeanchor)
-\DraftContent
-\end{textblock*}
+  \begin{textblock*}{\paperwidth}[0.,2.5](0\paperwidth,\draftnodeanchor)
+    \DraftContent
+  \end{textblock*}
 }
 
 % Conditional evaluation to position the draft water mark  (top / bottom)
 \renewcommand\SetDraftWMPosition[1]{%
   \renewcommand\draftposition{#1}
   \ifthenelse{\equal{\draftposition}{bottom}}
-             {\renewcommand\draftnodeanchor{\paperheight-\voffset}} %Bottom
-             {\ifthenelse{\equal{\draftposition}{top}}
-               {\renewcommand\draftnodeanchor{1in+\voffset-\topmargin}} %Top
-               {\ClassWarning{PDThesisPSnPDF}{Unrecognised draft position
-                   using default value of top}
-                 \renewcommand\draftnodeanchor{1in+\voffset-\topmargin}}} %Top
-
-  \AddEverypageHook{%
+    {\renewcommand\draftnodeanchor{\paperheight-\voffset}} %Bottom
+    {\ifthenelse{\equal{\draftposition}{top}}
+      {\renewcommand\draftnodeanchor{1in+\voffset-\topmargin}} %Top
+      {\ClassWarning{PDThesisPSnPDF}{Unrecognised draft position
+          using default value of top}
+        \renewcommand\draftnodeanchor{1in+\voffset-\topmargin}}} %Top
+    
+    \AddEverypageHook{%
     \begin{textblock*}{\paperwidth}[0.,2.5](0\paperwidth,\draftnodeanchor)
       \DraftContent
     \end{textblock*}
@@ -864,6 +871,11 @@ wish to left align your text}
 \newcommand{\@crest}{}
 \newcommand{\crest}[1]{\renewcommand{\@crest}{#1}}
 
+% Defining the college crest
+\newif\ifPHD@collegeshield\PHD@collegeshieldfalse
+\newcommand{\@collegeshield}{}
+\newcommand{\collegeshield}[1]{\renewcommand{\@collegeshield}{#1}\PHD@collegeshieldtrue}
+
 % Submission Text
 \newcommand{\submissiontext}{This dissertation is submitted for the degree of }
 
@@ -912,8 +924,8 @@ wish to left align your text}
 \else
     \@restonecolfalse\newpage
 \fi
-\thispagestyle{empty}
-\setcounter{page}\z@ 
+    \thispagestyle{empty}
+    \setcounter{page}\z@
 }%
 {
 
@@ -939,55 +951,47 @@ wish to left align your text}
 
 \begin{singlespace}
 \begin{center}
-% Title
-{\Huge \bfseries{\@title} \par}
-\ifthenelse{\equal{\@subtitle}{}}{
-% subtitle is not defined
-}{
-\vspace*{1em}
-\centering \Large {\@subtitle}
-} % subtitle is defined
 
-\vspace{.25\PHD@titlepagespacing}
+% University Crest Long if college crest is defined
+\ifPHD@collegeshield%
+	{\usebox{\PHD@crest}}
+	\vspace{.15\PHD@titlepagespacing}
+\fi
+
+% Title
+{\usebox{\PHD@Title}} % subtitle is defined
+
 
 % Crest
-{\@crest \par}
-\vspace{.2\PHD@titlepagespacing}
+
+\ifPHD@collegeshield%
+	\vspace{.15\PHD@titlepagespacing}
+	{\usebox{\PHD@collegecrest}}
+	\vspace{.1\PHD@titlepagespacing}
+\else
+	\vspace{.25\PHD@titlepagespacing}
+	{\usebox{\PHD@crest}}
+	\vspace{.15\PHD@titlepagespacing}
+\fi
+
+
 
 % Author
-{\Large \bfseries{\@author} \par}
+{\usebox{\PHD@author}}
 \vspace*{1em}
 
 % Department and University
-{\large \@dept \par}
-\vspace*{1ex}
-{\large \@university \par}
+{\usebox{\PHD@dept}}
 \vspace{.2\PHD@titlepagespacing}
 
 % Submission Text
-{\large \submissiontext \par}
-\vspace*{1ex}
-{\large \textit {\@degreetitle} \par}
+{\usebox{\PHD@submission}}
 
 \end{center}
 
 % College and degree date
 \vfill
-\large
-
-\ifthenelse{\equal{\@college}{}}{
-% college is not defined
-\centering
-\@degreedate
-}{
-  % college is defined
-\begin{minipage}[b]{0.45\textwidth}
-\flushleft\@college
-\end{minipage}
-\begin{minipage}[b]{0.45\textwidth}
-\flushright\@degreedate
-\end{minipage}
-} % end-if- college is defined
+{\usebox{\PHD@collegedate}}
 \end{singlespace}
 }
 
@@ -1123,24 +1127,23 @@ wish to left align your text}
 \newenvironment{abstract} {
 \ifPHD@abstract
 % Separate abstract as per Student Registry guidelines
-	\thispagestyle{empty}
-	\setsinglecolumn
-	\begin{center}
-		{ \Large {\bfseries {\@title}} \par}
-		{{\large \vspace*{1em} \@author} \par}
-	\end{center}
-
+  \thispagestyle{empty}
+  \setsinglecolumn
+  \begin{center}
+    { \Large {\bfseries {\@title}} \par}
+    {{\large \vspace*{1em} \@author} \par}
+  \end{center}
 \else
 % Normal abstract in the thesis
-	\cleardoublepage
-	\setsinglecolumn
-	\chapter*{\centering \Large Abstract}
-	\thispagestyle{empty}
+  \cleardoublepage
+  \setsinglecolumn
+  \chapter*{\centering \Large Abstract}
+  \thispagestyle{empty}
 \fi
 }
 
 
-% ******************** To compute empty space in title page ********************
+% ******************** To compute empty space in title page *******************
 % Boxes below are used to space different contents on the title page
 % Based on https://github.com/cambridge/thesis
 
@@ -1150,70 +1153,77 @@ wish to left align your text}
 % Title Box
 \newsavebox{\PHD@Title}
 \begin{lrbox}{\PHD@Title}
-\begin{minipage}[c]{0.98\textwidth}
-\centering \Huge \bfseries{\@title}
-\ifthenelse{\equal{\@subtitle}{}}{
-% subtitle is not defined
-}{
-\vspace*{1em}
-\centering \Large {\@subtitle}
-} % subtitle is defined
-\end{minipage}
+  \begin{minipage}[c]{0.98\textwidth}
+    \centering \Huge \bfseries{\@title}
+    \ifthenelse{\equal{\@subtitle}{}}{
+      % subtitle is not defined
+    }{
+      \\
+      \centering \Large {\@subtitle}
+    } % subtitle is defined
+  \end{minipage}
 \end{lrbox}
 
 % University Crest Box
 \newsavebox{\PHD@crest}
 \begin{lrbox}{\PHD@crest}
-\@crest
+  {\@crest \par}
+\end{lrbox}
+
+\newsavebox{\PHD@collegecrest}
+\begin{lrbox}{\PHD@collegecrest}
+  \ifPHD@collegeshield%
+    {\@collegeshield}
+  \else
+    % College shield is undefined
+  \fi
 \end{lrbox}
 
 % Author Box
 \newsavebox{\PHD@author}
 \begin{lrbox}{\PHD@author}
-\begin{minipage}[c]{\textwidth}
-\centering \Large \bfseries{\@author}
-\end{minipage}
+  \begin{minipage}[c]{\textwidth}
+    \centering \Large \bfseries{\@author}
+  \end{minipage}
 \end{lrbox}
 
 % Department Box
 \newsavebox{\PHD@dept}
 \begin{lrbox}{\PHD@dept}
-\begin{minipage}[c]{\textwidth}
-\centering {\large \@dept \par}
-\vspace*{1em}
-{\large \@university \par}
-\end{minipage}
+  \begin{minipage}[c]{\textwidth}
+    \centering {\large \@dept \par}
+	       {\large \@university \par}
+  \end{minipage}
 \end{lrbox}
 
 % Submission Box
 \newsavebox{\PHD@submission}
 \begin{lrbox}{\PHD@submission}
-\begin{minipage}[c]{\textwidth}
-\begin{center}
-\large \submissiontext \par
-\vspace*{1ex}
-\large \textit {\@degreetitle} \par
-\end{center}
-\end{minipage}
+  \begin{minipage}[c]{\textwidth}
+    \begin{center}
+      \large \submissiontext \par
+      \large \textit {\@degreetitle} \par
+    \end{center}
+  \end{minipage}
 \end{lrbox}
 
 % College and Date Box
 \newsavebox{\PHD@collegedate}
 \begin{lrbox}{\PHD@collegedate}
 \begin{minipage}[c]{\textwidth}
-\large
-\ifthenelse{\equal{\@college}{}}{
-% college is not defined
-\@degreedate
-}{
-% college is defined
-\begin{minipage}{0.49\textwidth}
-\flushleft\@college
-\end{minipage}
-\begin{minipage}{0.49\textwidth}
-\flushright \@degreedate
-\end{minipage}
-} % college is defined
+  \large
+  \ifthenelse{\equal{\@college}{}}{
+    % college is not defined
+    \@degreedate
+  }{
+    % college is defined
+    \begin{minipage}[b]{0.49\textwidth}
+      \flushleft\@college
+    \end{minipage}
+    \begin{minipage}[b]{0.49\textwidth}
+      \flushright \@degreedate
+    \end{minipage}
+  } % college is defined
 \end{minipage}
 \end{lrbox}
 
@@ -1222,6 +1232,7 @@ wish to left align your text}
 \setlength{\PHD@titlepagespacing}{ \textheight %
 			- \totalheightof{\usebox{\PHD@Title}}
 			- \totalheightof{\usebox{\PHD@crest}}
+			- \totalheightof{\usebox{\PHD@collegecrest}}
 			- \totalheightof{\usebox{\PHD@author}}
 			- \totalheightof{\usebox{\PHD@dept}}
 			- \totalheightof{\usebox{\PHD@submission}}

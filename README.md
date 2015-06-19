@@ -17,9 +17,13 @@ CUED PhD thesis template
 
 *   Adaptive Title Page: Title page adapts to title length
 
+*   Title page with both College and University crests.
+
 *   Print / On-line version: Different layout and hyper-referencing styles
 
 *   Pre-defined and custom fonts (Times / Fourier / Latin Modern) with math support
+
+*   Supports system fonts (XeLaTeX)
 
 *   Pre-defined and custom bibliography style support (authoryear / numbered / custom)
 
@@ -51,7 +55,7 @@ This template supports `XeLaTeX` compilation chain. To generate  PDF run
 
 This template supports `XeLaTeX` compilation chain. To generate  PDF run
 
-    latexmk -pdflatex=lualatex -pdf thesis.tex 
+    latexmk -pdflatex=lualatex -pdf thesis.tex
 
 
 ## Building your thesis - LaTeX / PDFLaTeX
@@ -173,11 +177,16 @@ The front page (title page) resizes to fit your title length. You can modify the
 
 If `\college` is defined, the bottom of the title page will look like this:
 
-        King's College 			   			                                            2014
+        King's College 			                                         2014
 
 If `\college` is undefined or blank, the `degreedate` will be centered.
 
-                                                2014
+                                        2014
+
+The template offers support to having both the college and university crests or just one of the crests.
+
+* `\collegeshield` (optional): Includes college crest in addition to the university crest. This reformats the front page layout.
+
 ### Abstract separate
 
 *  A separate abstract with the title of the PhD and the candidate name has to be submitted to the Student Registry. This can be generated using `abstract` option in the document class. Ignore subsequent warnings about skipping sections (if any).
@@ -418,7 +427,25 @@ or
 or
     `texcount -inc *.tex` (eg., result 2341 words)
 
-#### _Q5_: I found a bug in the template. Where do I report bugs?
+#### _Q5_: How do I use a system font (libertine)?
+
+To use a system font (open type) font with XeLaTeX, please select `customfont` option in the `documentclass` in `thesis.tex`. Add the path and font name to the custom font definition in `preamble.tex`
+
+    \ifsetCustomFont
+      \setmainfont[
+        Path              = ./libertine/opentype/,
+        Extension         = .otf,
+        UprightFont = LinLibertine_R,
+        BoldFont = LinLibertine_RZ, % Regular Semibold
+        ItalicFont = LinLibertine_RI,
+        BoldItalicFont = LinLibertine_RZI, % Regular Semibold Italic
+      ] {libertine}
+      \newfontfamily\libertinesystemfont{Linux Libertine O}
+    \fi
+
+Please use XeLaTeX tool chain with LaTeXmk.
+
+#### _Q6_: I found a bug in the template. Where do I report bugs?
 
 You can report issues at
 [our GitHub repository](https://github.com/kks32/phd-thesis-template).
