@@ -987,11 +987,12 @@ wish to left align your text}
 % Submission Text
 {\usebox{\PHD@submission}}
 
-\end{center}
-
 % College and degree date
 \vfill
 {\usebox{\PHD@collegedate}}
+    
+\end{center}
+
 \end{singlespace}
 }
 
@@ -1210,11 +1211,13 @@ wish to left align your text}
 % College and Date Box
 \newsavebox{\PHD@collegedate}
 \begin{lrbox}{\PHD@collegedate}
-\begin{minipage}[c]{0.95\textwidth}
+\begin{minipage}[c]{\textwidth}
   \large
   \ifthenelse{\equal{\@college}{}}{
     % college is not defined
-    \@degreedate
+    \begin{center}
+      \@degreedate
+    \end{center}
   }{
     % college is defined
     \begin{minipage}[b]{0.49\textwidth}
