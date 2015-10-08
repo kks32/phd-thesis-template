@@ -1,4 +1,8 @@
 ## Change log
+### 2015/06/20 - Version 2.0.1
+> Commit 0e0d1e617acb42b034870ea325271cce8d3d8d8e
+*   Fixed centering of year on front page - Issue #16
+
 ### 2015/06/20 - Version 2.0
 > Commit f4723434f92eedc163fdcb74c7ac04c8d842bc05
 *   XeLaTeX and LuaLaTeX support
