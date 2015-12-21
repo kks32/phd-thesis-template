@@ -1,4 +1,8 @@
 ## Change log
+### 2015/06/20 - Version 2.1
+> Commit 
+*   Support for including supervisor and/or advisor
+
 ### 2015/06/20 - Version 2.0.1
 > Commit 0e0d1e617acb42b034870ea325271cce8d3d8d8e
 *   Fixed centering of year on front page - Issue #16

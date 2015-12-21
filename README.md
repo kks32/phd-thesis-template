@@ -38,6 +38,8 @@ CUED PhD thesis template
 
 *   Draft mode: Draft water mark, timestamp, version numbering and line numbering
 
+*   Add supervisor and/or advisor to your PhD thesis or MPhil report
+
 *   A LyX Template is now available at [https://github.com/kks32/PhDThesisLyX/](https://github.com/kks32/PhDThesisLyX/)
 
 --------------------------------------------------------------------------------
