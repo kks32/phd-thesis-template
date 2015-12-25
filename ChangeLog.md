@@ -1,6 +1,6 @@
 ## Change log
 ### 2015/06/20 - Version 2.1
-> Commit 
+> Commit a5feb0732d7f13fa9703fddcee703224c00b83dd
 *   Support for including supervisor and/or advisor
 
 ### 2015/06/20 - Version 2.0.1
