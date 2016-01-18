@@ -52,7 +52,7 @@ CUED PhD thesis template
 
 This template supports `XeLaTeX` compilation chain. To generate  PDF run
 
-    latexmk -pdf -e '$pdflatex=q/xelatex %O %S/' thesis
+    latexmk -xelatex thesis.tex
 
 ## Building your thesis - LuaLaTeX
 
