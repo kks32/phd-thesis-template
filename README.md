@@ -410,10 +410,10 @@ To include custom to-do notes in your pdf document use  `\mynote{Hey! I have a n
 #### _Q2_: Where can I find newer versions of the University of Cambridge crest/logos?
 
 The university updates its crest every now and then. You can find up-to-date
-logos on [this page](http://www.admin.cam.ac.uk/offices/communications/services/logos/)
+logos on [this page](http://www.cam.ac.uk/brand-resources/about-the-logo/logo-downloads)
 (subject to change without notice).
 
-Download and exchange the new logos with `CUni.eps` and/or `CUni.pdf`. I'll try to keep the crest up to date.
+Download and exchange the new logos with `University_Crest.eps` and/or `University_Crest.pdf`. I'll try to keep the crest up to date.
 
 #### _Q3_: Where can I find the guidelines to submit my thesis and requirements?
 
