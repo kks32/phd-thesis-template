@@ -3,22 +3,29 @@ This file contains licences accompanying the images in this folder.
 # King's College's shield
 
 Files:
-
         Kings.svg
 
 Derivative files:
-
         Kings.eps
         Kings.pdf
 
 Source:
-
         Provided by the college / Vectorised by Krishna Kumar
 
 Licence:
-
         Public domain
 
+# Gonville and Caius College's shield
+
+Files:
+        Gonville_and_Caius.jpg
+Source:
+
+        Provided by the college
+
+Licence:
+
+        Not specified
 
 # Fitzwilliam College's shield
 
