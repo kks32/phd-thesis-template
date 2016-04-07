@@ -1237,7 +1237,7 @@ wish to left align your text}
     \ifthenelse{\equal{\@advisor}{}}{
       % advisor is not defined
     }{
-      \centering \large {\@advisorrole \parbox[t]{0.4\textwidth}{\@advisor}}
+      \centering \Large {\@advisorrole \parbox[t]{0.4\textwidth}{\@advisor}}
       \vspace{0.5em}
     } % advisor is defined
   \end{minipage}
