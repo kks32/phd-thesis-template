@@ -1025,7 +1025,6 @@ wish to left align your text}
 \end{singlespace}
 }
 
-
 % ********************************* Dedication *********************************
 % The dedication environment makes sure the dedication gets its
 % own page, centered
@@ -1214,6 +1213,7 @@ wish to left align your text}
 \begin{lrbox}{\PHD@author}
   \begin{minipage}[c]{\textwidth}
     \centering \Large \bfseries{\@author}
+      \vspace{0.5em}   
   \end{minipage}
 \end{lrbox}
 
@@ -1224,7 +1224,8 @@ wish to left align your text}
     \ifthenelse{\equal{\@supervisor}{}}{
       % supervisor is not defined
     }{
-      \centering \Large {\@supervisorrole \@supervisor}
+      \centering \Large {\@supervisorrole \parbox[t]{0.4\textwidth}{\@supervisor}}
+      \vspace{0.5em}
     } % supervisor is defined
   \end{minipage}
 \end{lrbox}
@@ -1236,7 +1237,8 @@ wish to left align your text}
     \ifthenelse{\equal{\@advisor}{}}{
       % advisor is not defined
     }{
-      \centering \Large {\@advisorrole \@advisor}
+      \centering \Large {\@advisorrole \parbox[t]{0.4\textwidth}{\@advisor}}
+      \vspace{0.5em}
     } % advisor is defined
   \end{minipage}
 \end{lrbox}
