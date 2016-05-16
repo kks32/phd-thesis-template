@@ -4,15 +4,15 @@
 %%                                                                            %%
 %% A PhD thesis LaTeX template for Cambridge University Engineering Department%%
 %%                                                                            %%
-%% Version: v2.0                                                              %%
+%% Version: v2.1                                                              %%
 %% Authors: Krishna Kumar                                                     %%
 %% License: MIT License (c) 2015 Krishna Kumar                                %%
 %% GitHub Repo: https://github.com/kks32/phd-thesis-template/                 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % ************************** Class Identification ******************************
-\newcommand\fileversion{2.0}
-\newcommand\filedate{2015/06/20}
+\newcommand\fileversion{2.1}
+\newcommand\filedate{2015/12/21}
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{PhDThesisPSnPDF}[\filedate\space A PhD thesis class file
  by Krishna Kumar (v\fileversion)]
@@ -876,9 +876,26 @@ wish to left align your text}
 \newcommand{\@collegeshield}{}
 \newcommand{\collegeshield}[1]{\renewcommand{\@collegeshield}{#1}\PHD@collegeshieldtrue}
 
+% Supervisor
+\newif\ifPHD@supervisor\PHD@supervisorfalse
+\newcommand{\@supervisor}{}
+\newcommand{\supervisor}[1]{\renewcommand{\@supervisor}{#1}\PHD@supervisortrue}
+
+% Supervisor Title (Supervisor - Default, can be changed)
+\newcommand{\@supervisorrole}{Supervisor: }
+\newcommand{\supervisorrole}[1]{\renewcommand{\@supervisorrole}{#1}}
+
+% Advisor
+\newif\ifPHD@advisor\PHD@advisorfalse
+\newcommand{\@advisor}{}
+\newcommand{\advisor}[1]{\renewcommand{\@advisor}{#1}\PHD@advisortrue}
+
+% Advisor Title (Advisor - Default, can be changed)
+\newcommand{\@advisorrole}{Advisor: }
+\newcommand{\advisorrole}[1]{\renewcommand{\@advisorrole}{#1}}
+
 % Submission Text
 \newcommand{\submissiontext}{This dissertation is submitted for the degree of }
-
 
 % keywords (These keywords will appear in the PDF meta-information
 % called `pdfkeywords`.)
@@ -980,6 +997,18 @@ wish to left align your text}
 {\usebox{\PHD@author}}
 \vspace*{1em}
 
+% Supervisor
+\ifPHD@supervisor%
+{\usebox{\PHD@supervisor}}
+\vspace*{0.5em}
+\fi
+
+% Advisor
+\ifPHD@advisor%
+{\usebox{\PHD@advisor}}
+\vspace*{0.5em}
+\fi
+
 % Department and University
 {\usebox{\PHD@dept}}
 \vspace{.2\PHD@titlepagespacing}
@@ -987,11 +1016,12 @@ wish to left align your text}
 % Submission Text
 {\usebox{\PHD@submission}}
 
-\end{center}
-
 % College and degree date
 \vfill
 {\usebox{\PHD@collegedate}}
+    
+\end{center}
+
 \end{singlespace}
 }
 
@@ -1187,6 +1217,30 @@ wish to left align your text}
   \end{minipage}
 \end{lrbox}
 
+% Supervisor Box
+\newsavebox{\PHD@supervisor}
+\begin{lrbox}{\PHD@supervisor}
+  \begin{minipage}[c]{\textwidth}
+    \ifthenelse{\equal{\@supervisor}{}}{
+      % supervisor is not defined
+    }{
+      \centering \Large {\@supervisorrole \@supervisor}
+    } % supervisor is defined
+  \end{minipage}
+\end{lrbox}
+
+% Advisor Box
+\newsavebox{\PHD@advisor}
+\begin{lrbox}{\PHD@advisor}
+  \begin{minipage}[c]{\textwidth}
+    \ifthenelse{\equal{\@advisor}{}}{
+      % advisor is not defined
+    }{
+      \centering \Large {\@advisorrole \@advisor}
+    } % advisor is defined
+  \end{minipage}
+\end{lrbox}
+
 % Department Box
 \newsavebox{\PHD@dept}
 \begin{lrbox}{\PHD@dept}
@@ -1210,11 +1264,13 @@ wish to left align your text}
 % College and Date Box
 \newsavebox{\PHD@collegedate}
 \begin{lrbox}{\PHD@collegedate}
-\begin{minipage}[c]{0.95\textwidth}
+\begin{minipage}[c]{\textwidth}
   \large
   \ifthenelse{\equal{\@college}{}}{
     % college is not defined
-    \@degreedate
+    \begin{center}
+      \@degreedate
+    \end{center}
   }{
     % college is defined
     \begin{minipage}[b]{0.49\textwidth}
@@ -1234,6 +1290,8 @@ wish to left align your text}
 			- \totalheightof{\usebox{\PHD@crest}}
 			- \totalheightof{\usebox{\PHD@collegecrest}}
 			- \totalheightof{\usebox{\PHD@author}}
+                   	- \totalheightof{\usebox{\PHD@supervisor}}
+                   	- \totalheightof{\usebox{\PHD@advisor}}
 			- \totalheightof{\usebox{\PHD@dept}}
 			- \totalheightof{\usebox{\PHD@submission}}
 			- \totalheightof{\usebox{\PHD@collegedate}}
