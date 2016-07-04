@@ -6,7 +6,7 @@ CUED PhD thesis template
 
 [![Build Status](https://api.travis-ci.org/kks32/phd-thesis-template.svg)](https://travis-ci.org/kks32/phd-thesis-template)
 [![License MIT](http://img.shields.io/badge/license-MIT-brightgreen.svg)](license.md)
-[![Version](http://img.shields.io/badge/version-2.0-brightgreen.svg)](https://github.com/kks32/phd-thesis-template/releases/latest)
+[![Version](http://img.shields.io/badge/version-2.2-brightgreen.svg)](https://github.com/kks32/phd-thesis-template/releases/latest)
 
 ## Author(s)
 *   Krishna Kumar
