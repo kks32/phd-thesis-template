@@ -928,43 +928,13 @@ wish to left align your text}
 % *************************** Front Matter Layout ******************************
 % ******************************************************************************
 
-% ******************************** titlepage  **********************************
-
-% Fix issue of title page having same number as the next page in oneside option
-% Issue #24 https://github.com/kks32/phd-thesis-template/issues/24
-\if@oneside
-\renewenvironment{titlepage} % changed from "newenvironment"
-{%
-\begingroup
-\if@twocolumn
-    \@restonecoltrue\onecolumn
-\else
-    \@restonecolfalse\newpage
-\fi
-    \thispagestyle{empty}
-    \setcounter{page}\z@
-}%
-{
-
-\if@restonecol
-    \twocolumn
-\else 
-    \newpage 
-\fi 
-\endgroup
-\clearpage
-\addtocounter{page}{1}
-}
-\fi
-
 % ******************************** Title Page **********************************
 \renewcommand{\maketitle}{
 
 % To compute the free vertical space in Title page
 \computeTitlePageSpacing
 
-% Fix for issue #24 https://github.com/kks32/phd-thesis-template/issues/24
-\renewcommand*{\thepage}{i}
+\thispagestyle{empty}
 
 \begin{singlespace}
 \begin{center}
