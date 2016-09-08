@@ -342,13 +342,13 @@ supported!}
 
 % Classic Draft Mode
 \ifsetDraftClassic
-% Disable figures in `draftmode'\
+% Disable figures in `draft'\
 \setkeys{Gin}{draft=true}
 \fi
 
 % If Draft Mode is active
 \ifsetDraft
-% Disable figures in `draftmode'\
+% Disable figures in `draft'\
 \setkeys{Gin}{draft=false}
 
 % Line numbering (can be switched off)
@@ -462,23 +462,23 @@ supported!}
   }
 }
 
-% If NOT Draft Mode
+% If NOT Draft
 \else 
 
-\renewcommand\SetDraftText[1]{\ClassWarning{PhDThesisPSnPDF}{DraftMode is
-    inactive, to use SetDraftText include `draftmode' in the document 
+\renewcommand\SetDraftText[1]{\ClassWarning{PhDThesisPSnPDF}{Draft is
+    inactive, to use SetDraftText include `draft' in the document 
     class options.}}
 % Draft Version
-\renewcommand\SetDraftVersion[1]{\ClassWarning{PhDThesisPSnPDF}{DraftMode is
-    inactive, to use SetDraftVersion include `draftmode' in the document
+\renewcommand\SetDraftVersion[1]{\ClassWarning{PhDThesisPSnPDF}{Draft is
+    inactive, to use SetDraftVersion include `draft' in the document
     class options.}}
 % Draft Content
-\renewcommand\SetDraftWMPosition[1]{\ClassWarning{PhDThesisPSnPDF}{DraftMode
-    is inactive, to use SetDraftWMPosition include `draftmode' in the document
+\renewcommand\SetDraftWMPosition[1]{\ClassWarning{PhDThesisPSnPDF}{Draft
+    is inactive, to use SetDraftWMPosition include `draft' in the document
     class options.}}
 
-\renewcommand\SetDraftGrayScale[1]{\ClassWarning{PhDThesisPSnPDF}{DraftMode is
-    inactive, to use SetDraftWMPosition include `draftmode' in the document
+\renewcommand\SetDraftGrayScale[1]{\ClassWarning{PhDThesisPSnPDF}{Draft is
+    inactive, to use SetDraftWMPosition include `draft' in the document
     class options.}}
 \fi
 
