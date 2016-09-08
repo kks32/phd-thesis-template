@@ -1,4 +1,10 @@
 ## Change log
+### 2016/07/04 - Version 2.2.1
+> Commit 
+*   Removed deprecated unused function romanpages defined in `preamble.tex`.
+*   https://tex.stackexchange.com/questions/328438/roman-numbering-not-enumerating-latex-error
+*   Fixes issue #101.
+
 ### 2016/07/04 - Version 2.2
 > Commit 68c4499d170bf167d2410741d573cdf9402d6e80
 *   Support for including multiple supervisor and/or advisor
