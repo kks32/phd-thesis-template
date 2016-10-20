@@ -1204,7 +1204,7 @@ wish to left align your text}
     \ifthenelse{\equal{\@supervisor}{}}{
       % supervisor is not defined
     }{
-      \centering \Large {\@supervisorrole \parbox[t]{0.4\textwidth}{\@supervisor}}
+      \centering \Large {\@supervisorrole \@supervisor}
       \vspace{0.5em}
     } % supervisor is defined
   \end{minipage}
@@ -1217,7 +1217,7 @@ wish to left align your text}
     \ifthenelse{\equal{\@advisor}{}}{
       % advisor is not defined
     }{
-      \centering \Large {\@advisorrole \parbox[t]{0.4\textwidth}{\@advisor}}
+      \centering \Large {\@advisorrole \@advisor}
       \vspace{0.5em}
     } % advisor is defined
   \end{minipage}
