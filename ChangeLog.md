@@ -1,4 +1,8 @@
 ## Change log
+### 2016/10/20 - Version 2.2.2
+> Commit 7867b367fe6c9523461f5bcd91a8f4f5e92badb2
+*   Fixes issue of non-centered style for advisors and supervisors
+
 ### 2016/07/04 - Version 2.2.1
 > Commit ef6e4394f3dd5a7442c2f48f3196d7d0a15d077f
 *   Removed deprecated unused function romanpages defined in `preamble.tex`.
