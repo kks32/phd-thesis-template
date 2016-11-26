@@ -14,7 +14,7 @@
 \newcommand\fileversion{2.2.2}
 \newcommand\filedate{2016/10/20}
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{PhDThesisPSnPDF}[\filedate\space A PhD thesis class file
+\ProvidesClass{Classes/PhDThesisPSnPDF}[\filedate\space A PhD thesis class file
  by Krishna Kumar (v\fileversion)]
 \typeout{https://github.com/kks32/phd-thesis-template/}
 
@@ -895,11 +895,6 @@ wish to left align your text}
 \newcommand{\@supervisorrole}{Supervisor: }
 \newcommand{\supervisorrole}[1]{\renewcommand{\@supervisorrole}{#1}}
 
-% Supervisor width to align
-\newcommand{\@supervisorlinewidth}{0.35\textwidth}
-\newcommand{\supervisorlinewidth}[1]{\renewcommand{\@supervisorlinewidth}{#1}}
-
-
 % Advisor
 \newif\ifPHD@advisor\PHD@advisorfalse
 \newcommand{\@advisor}{}
@@ -908,10 +903,6 @@ wish to left align your text}
 % Advisor Title (Advisor - Default, can be changed)
 \newcommand{\@advisorrole}{Advisor: }
 \newcommand{\advisorrole}[1]{\renewcommand{\@advisorrole}{#1}}
-
-% Advisor width to align
-\newcommand{\@advisorlinewidth}{0.25\textwidth}
-\newcommand{\advisorlinewidth}[1]{\renewcommand{\@advisorlinewidth}{#1}}
 
 % Submission Text
 \newcommand{\submissiontext}{This dissertation is submitted for the degree of }
@@ -1213,12 +1204,7 @@ wish to left align your text}
     \ifthenelse{\equal{\@supervisor}{}}{
       % supervisor is not defined
     }{
-      \begin{center}
-        \makebox[\widthof{supervisorrole} + \@supervisorlinewidth][c]{
-          \Large
-          \@supervisorrole \parbox[t]{\@supervisorlinewidth}{\@supervisor}
-        }
-      \end{center}
+      \centering \Large {\@supervisorrole \@supervisor}
       \vspace{0.5em}
     } % supervisor is defined
   \end{minipage}
@@ -1231,12 +1217,7 @@ wish to left align your text}
     \ifthenelse{\equal{\@advisor}{}}{
       % advisor is not defined
     }{
-      \begin{center}
-        \makebox[\widthof{advisorrole} + \@advisorlinewidth][c]{
-          \Large
-          \@advisorrole \parbox[t]{\@advisorlinewidth}{\@advisor}
-        }
-      \end{center}
+      \centering \Large {\@advisorrole \@advisor}
       \vspace{0.5em}
     } % advisor is defined
   \end{minipage}
