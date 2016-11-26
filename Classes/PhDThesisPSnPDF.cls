@@ -14,7 +14,7 @@
 \newcommand\fileversion{2.2.2}
 \newcommand\filedate{2016/10/20}
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{PhDThesisPSnPDF}[\filedate\space A PhD thesis class file
+\ProvidesClass{Classes/PhDThesisPSnPDF}[\filedate\space A PhD thesis class file
  by Krishna Kumar (v\fileversion)]
 \typeout{https://github.com/kks32/phd-thesis-template/}
 
@@ -1204,7 +1204,8 @@ wish to left align your text}
     \ifthenelse{\equal{\@supervisor}{}}{
       % supervisor is not defined
     }{
-      \centering \Large {\@supervisorrole \@supervisor}
+	\centering
+		\Large{\@supervisorrole} \parbox[t]{200pt}{\@supervisor}
       \vspace{0.5em}
     } % supervisor is defined
   \end{minipage}
@@ -1216,8 +1217,9 @@ wish to left align your text}
   \begin{minipage}[c]{\textwidth}
     \ifthenelse{\equal{\@advisor}{}}{
       % advisor is not defined
-    }{
-      \centering \Large {\@advisorrole \@advisor}
+    }{ 
+	\centering
+		\Large{\@advisorrole} \parbox[t]{200pt}{\@advisor}
       \vspace{0.5em}
     } % advisor is defined
   \end{minipage}
