@@ -622,7 +622,7 @@ supported!}
   \ifsetCustomMargin
   % Margin to be define in preamble using geometry package
   \else
-    \RequirePackage[dvips,paper=\PHD@papersize,hmarginratio=1:1,
+    \RequirePackage[paper=\PHD@papersize,hmarginratio=1:1,
       vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
   \fi
 
