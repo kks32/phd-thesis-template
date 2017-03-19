@@ -1,4 +1,8 @@
 ## Change log
+### 2016/03/19 - Version 2.3
+> Commit 
+*   Fixes #118 and #119 on option processing and font sizes
+
 ### 2016/10/20 - Version 2.2.2
 > Commit 7867b367fe6c9523461f5bcd91a8f4f5e92badb2
 *   Fixes issue of non-centered style for advisors and supervisors
