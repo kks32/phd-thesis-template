@@ -674,7 +674,7 @@ supported!}
   % PDFLaTeX does it automatically.
 \else
   % dvips
-  \RequirePackage[anythingbreaks]{breakurl} % to split the url over multiple lines
+  \RequirePackage{breakurl} % to split the url over multiple lines
 \fi
   
 % ******************************************************************************
