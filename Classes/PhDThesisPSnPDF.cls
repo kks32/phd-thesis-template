@@ -4,15 +4,15 @@
 %%                                                                            %%
 %% A PhD thesis LaTeX template for Cambridge University Engineering Department%%
 %%                                                                            %%
-%% Version: v2.2                                                              %%
+%% Version: v2.3                                                             %%
 %% Authors: Krishna Kumar                                                     %%
 %% License: MIT License (c) 2016 Krishna Kumar                                %%
 %% GitHub Repo: https://github.com/kks32/phd-thesis-template/                 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % ************************** Class Identification ******************************
-\newcommand\fileversion{2.2}
-\newcommand\filedate{2016/07/04}
+\newcommand\fileversion{2.3}
+\newcommand\filedate{2016/03/19}
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{PhDThesisPSnPDF}[\filedate\space A PhD thesis class file
  by Krishna Kumar (v\fileversion)]
@@ -26,10 +26,6 @@
 % *********************** Define a Print/Online Version ************************
 \newif\if@print\@printfalse
 \DeclareOption{print}{\@printtrue}
-
-% ****************************** Draft Option **********************************
-\newif\ifsetDraft\setDraftfalse
-\newif\ifsetDraftClassic\setDraftClassicfalse
 
 % ****************************** Define index **********************************
 \newif\ifPHD@index\PHD@indexfalse
@@ -175,7 +171,6 @@
 }
 
 % *************************** Pre-defined Options ******************************
-
 % Font Size
 \DeclareOption{10pt}{
   \ClassWarning{PhDThesisPSnPDF}{The University of Cambridge PhD thesis guidelines
@@ -204,8 +199,10 @@ footnotes.}
 \DeclareOption{oneside}{\PassOptionsToClass{\CurrentOption}{book}\@onesidetrue}%
 \DeclareOption{twoside}{\PassOptionsToClass{\CurrentOption}{book}}%
 
+% ****************************** Draft Option **********************************
+\newif\ifsetDraft\setDraftfalse
+\newif\ifsetDraftClassic\setDraftClassicfalse
 % Draft Mode
-
 \DeclareOption{draftclassic}{\PassOptionsToClass{draft}{book}
   \setDraftClassictrue
   \ClassWarning{PhDThesisPSnPDF}{Draft is ON. Don't forget to turn it
@@ -237,23 +234,9 @@ supported!}
   \PassOptionsToClass{\CurrentOption}{book}
 }
 
-% Determine whether to run pdftex or dvips
+% Process options and load class
 \ProcessOptions\relax%
 \LoadClass{book}%
-
-\newif\ifsetDVI\setDVIfalse
-\ifx\pdfoutput\undefined
-  % we are not running PDFLaTeX
-  \setDVItrue
-\else % we are running PDFLaTeX
-  \ifnum \pdfoutput>0
-    %PDF-Output
-    \setDVIfalse
-  \else
-    %DVI-output
-    \setDVItrue
-  \fi
-\fi
 
 % ******************************************************************************
 % ******************************** Packages ************************************
@@ -616,13 +599,6 @@ supported!}
 % Moved below other usepackage definitions to fix PDFLaTeX footnote warning
 % Based on the suggestion by John Plaice
 
-\ifsetDVI
-  \special{papersize=\the\paperwidth,\the\paperheight}
-\else
-  \pdfpagewidth=\the\paperwidth
-  \pdfpageheight=\the\paperheight
-\fi
-
 \RequirePackage[unicode=true]{hyperref}
 
 \if@print
@@ -646,14 +622,8 @@ supported!}
   \ifsetCustomMargin
   % Margin to be define in preamble using geometry package
   \else
-    \ifsetDVI
-      % Odd and Even side Margin for binding and set viewmode for PDF
-      \RequirePackage[dvips,paper=\PHD@papersize,hmarginratio=1:1,
-        vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
-    \else
-      \RequirePackage[pdftex,paper=\PHD@papersize,hmarginratio=1:1,
-        vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
-    \fi
+    \RequirePackage[dvips,paper=\PHD@papersize,hmarginratio=1:1,
+      vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
   \fi
 
   \if@twoside
@@ -685,23 +655,10 @@ supported!}
     % Margin to be define in preamble using geometry package
     \else
       % No Margin staggering on Odd and Even side
-      \ifsetDVI
-        \RequirePackage[paper=\PHD@papersize,hmarginratio=1:1,
-          vmarginratio=1:1,scale=0.75]{geometry} % dvips
-      \else
-        \RequirePackage[pdftex,paper=\PHD@papersize,hmarginratio=1:1,
-          vmarginratio=1:1,scale=0.75]{geometry}
-      \fi
+      \RequirePackage[paper=\PHD@papersize,hmarginratio=1:1,
+        vmarginratio=1:1,scale=0.75]{geometry} % dvips
     \fi
-
     \hypersetup{pdfpagelayout=OneColumn}
-\fi
-
-% Backward compatibility - setMargin is now replaced with customMargin
-\ifsetCustomMargin
-  \setMarginfalse
-\else
-  \setMargintrue
 \fi
 
 % ************************ URL Package and Definition **************************
@@ -713,15 +670,13 @@ supported!}
 \urlstyle{leo}
 
 % option to split urls over multiple lines for latex >> DVIPS >> PDF option
-% PDFLaTeX does it automatically.
-
-\ifxetex % XeTeX doesn't require breakurl only dvi requires break url
+\ifpdf
+  % PDFLaTeX does it automatically.
 \else
-  \ifsetDVI
-    \RequirePackage{breakurl} % to split the url over multiple lines
-  \fi
-\fi  
-
+  % dvips
+  \RequirePackage[anythingbreaks]{breakurl} % to split the url over multiple lines
+\fi
+  
 % ******************************************************************************
 % **************************** Pre-defined Settings ****************************
 % ******************************************************************************
