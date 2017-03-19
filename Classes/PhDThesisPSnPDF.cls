@@ -174,23 +174,17 @@
     and recompile. Good luck with your writing!}
 }
 
-\ProcessOptions\relax%
-
 % *************************** Pre-defined Options ******************************
 
 % Font Size
-\newcommand\PHD@ptsize{12pt} %Set Default Size as 12
-
 \DeclareOption{10pt}{
   \ClassWarning{PhDThesisPSnPDF}{The University of Cambridge PhD thesis guidelines
 recommend using a minimum font size of 11pt (12pt is preferred) and 10pt for
 footnotes.}
-  \renewcommand\PHD@ptsize{10pt}
+  \DeclareOption{11pt}{\PassOptionsToClass{10pt}{book}}%
 }
-\DeclareOption{11pt}{\renewcommand\PHD@ptsize{11pt}}%
-\DeclareOption{12pt}{\renewcommand\PHD@ptsize{12pt}}%
-\PassOptionsToClass{\PHD@ptsize}{book}%
-\message{PhDThesisPSnPDF: Font size is set as \PHD@ptsize}
+\DeclareOption{11pt}{\PassOptionsToClass{11pt}{book}}%
+\DeclareOption{12pt}{\PassOptionsToClass{12pt}{book}}%
 
 % Page Size
 \newcommand\PHD@papersize{a4paper} % Set Default as a4paper
@@ -245,20 +239,19 @@ supported!}
 
 % Determine whether to run pdftex or dvips
 \ProcessOptions\relax%
+\LoadClass{book}%
+
 \newif\ifsetDVI\setDVIfalse
 \ifx\pdfoutput\undefined
   % we are not running PDFLaTeX
   \setDVItrue
-  \LoadClass[dvips,fleqn,openright]{book}%
 \else % we are running PDFLaTeX
   \ifnum \pdfoutput>0
     %PDF-Output
     \setDVIfalse
-    \LoadClass[pdftex,fleqn,openright]{book}%
   \else
     %DVI-output
     \setDVItrue
-    \LoadClass[fleqn,openright]{book}%
   \fi
 \fi
 
@@ -625,12 +618,12 @@ supported!}
 
 \ifsetDVI
   \special{papersize=\the\paperwidth,\the\paperheight}
-  \RequirePackage[unicode=true]{hyperref}  % extra option dvips
 \else
-  \RequirePackage[unicode=true]{hyperref}
   \pdfpagewidth=\the\paperwidth
   \pdfpageheight=\the\paperheight
 \fi
+
+\RequirePackage[unicode=true]{hyperref}
 
 \if@print
   % For Print version
