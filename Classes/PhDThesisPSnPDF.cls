@@ -176,7 +176,7 @@
   \ClassWarning{PhDThesisPSnPDF}{The University of Cambridge PhD thesis guidelines
 recommend using a minimum font size of 11pt (12pt is preferred) and 10pt for
 footnotes.}
-  \DeclareOption{11pt}{\PassOptionsToClass{10pt}{book}}%
+  \PassOptionsToClass{10pt}{book}%
 }
 \DeclareOption{11pt}{\PassOptionsToClass{11pt}{book}}%
 \DeclareOption{12pt}{\PassOptionsToClass{12pt}{book}}%
