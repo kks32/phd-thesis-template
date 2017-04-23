@@ -1,4 +1,8 @@
 ## Change log
+### 2016/04/23 - Version 2.3.1
+> Commit 
+*   Fixes #124 Pagestyle options
+
 ### 2016/03/19 - Version 2.3
 > Commit 665937d81ff7c561569bbec240b4fa703063be3f
 *   Fixes #118 and #119 on option processing and font sizes
