@@ -267,7 +267,7 @@ the bottom of the page. Pagewise line numbering is added on every page. `draft` 
 
 ### Choosing the page style
 
-`PhDThesisPSnPDF` defines 3 different page styles (header and footer). The following definition is for `twoside` layout.
+`PhDThesisPSnPDF` defines 3 different page styles (header and footer). The following definition is for `twoside` layout. To choose a page style, include it in the `documentclass` options: `\documentclass[PageStyleI]{Classes/PhDThesisPSnPDF}`.
 
 * `default (leave empty)`: For Page Numbers in Header (Left Even, Right Odd) and Chapter Name in Header (Right Even) and Section #. Section Name (Left Odd). Blank Footer.
 
