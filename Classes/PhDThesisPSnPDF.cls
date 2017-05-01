@@ -331,21 +331,13 @@ supported!}
 \ifPHD@lineno
 \RequirePackage[switch,pagewise,mathlines]{lineno}
 \renewcommand{\frontmatter}{%
-  \if@openright
-    \cleardoublepage
-  \else
-    \clearpage
-  \fi
+  \cleardoublepage
   \@mainmatterfalse
   \pagenumbering{roman}
   \nolinenumbers
 }
 \renewcommand{\mainmatter}{%
-  \if@openright
-    \cleardoublepage
-  \else
-    \clearpage
-  \fi
+  \cleardoublepage
   \@mainmattertrue
   \pagenumbering{arabic}
   \linenumbers
