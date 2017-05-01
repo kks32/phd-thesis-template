@@ -265,7 +265,7 @@ supported!}
 % Hides Contents appearing from TOC, but adds it to bookmarks
 \let\temptableofcontents\tableofcontents
 \renewcommand{\tableofcontents}{
-  \cleardoublepage
+  %\cleardoublepage
   \pdfbookmark[0]{\contentsname}{Contents}
   \temptableofcontents
 }
@@ -331,13 +331,21 @@ supported!}
 \ifPHD@lineno
 \RequirePackage[switch,pagewise,mathlines]{lineno}
 \renewcommand{\frontmatter}{%
-  \cleardoublepage
+  \if@openright
+    \cleardoublepage
+  \else
+    \clearpage
+  \fi
   \@mainmatterfalse
   \pagenumbering{roman}
   \nolinenumbers
 }
 \renewcommand{\mainmatter}{%
-  \cleardoublepage
+  \if@openright
+    \cleardoublepage
+  \else
+    \clearpage
+  \fi
   \@mainmattertrue
   \pagenumbering{arabic}
   \linenumbers
@@ -883,14 +891,6 @@ wish to left align your text}
 \newcommand{\@subject}{}
 \newcommand{\subject}[1]{\renewcommand{\@subject}{#1}}
 
-
-% These macros define an environment for front matter that is always
-% single column even in a double-column document.
-\newenvironment{alwayssingle}{%
-       \@restonecolfalse\if@twocolumn\@restonecoltrue\onecolumn
-       \else\newpage\fi}
-       {\if@restonecol\twocolumn\else\newpage\fi}
-
 % Set single column even under two column layout
 \newcommand{\setsinglecolumn}{
 \if@twocolumn
@@ -977,12 +977,11 @@ wish to left align your text}
 
 \newenvironment{dedication}
 {
-\cleardoublepage
 \setsinglecolumn
 \vspace*{0.2\textheight}
 \thispagestyle{empty}
 \centering
-}
+}{}
 
 
 
@@ -991,7 +990,6 @@ wish to left align your text}
 % "Declaration" label at the top of the page.
 
 \newenvironment{declaration}{
-\cleardoublepage
 \setsinglecolumn
 \chapter*{\centering \Large Declaration}
 \thispagestyle{empty}
@@ -1009,11 +1007,10 @@ wish to left align your text}
 % "Acknowledgements" label at the top of the page.
 
 \newenvironment{acknowledgements}{
-\cleardoublepage
 \setsinglecolumn
 \chapter*{\centering \Large Acknowledgements}
 \thispagestyle{empty}
-}
+}{}
 
 
 
@@ -1110,12 +1107,11 @@ wish to left align your text}
   \end{center}
 \else
 % Normal abstract in the thesis
-  \cleardoublepage
   \setsinglecolumn
   \chapter*{\centering \Large Abstract}
   \thispagestyle{empty}
 \fi
-}
+}{}
 
 
 % ******************** To compute empty space in title page *******************
