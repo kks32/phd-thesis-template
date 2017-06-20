@@ -4,7 +4,7 @@
 %%                                                                            %%
 %% A PhD thesis LaTeX template for Cambridge University Engineering Department%%
 %%                                                                            %%
-%% Version: v2.3.1                                                             %%
+%% Version: v2.3.2                                                            %%
 %% Authors: Krishna Kumar                                                     %%
 %% License: MIT License (c) 2016 Krishna Kumar                                %%
 %% GitHub Repo: https://github.com/kks32/phd-thesis-template/                 %%
@@ -12,7 +12,7 @@
 
 % ************************** Class Identification ******************************
 \newcommand\fileversion{2.3.1}
-\newcommand\filedate{2016/04/23}
+\newcommand\filedate{2017/06/20}
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{PhDThesisPSnPDF}[\filedate\space A PhD thesis class file
  by Krishna Kumar (v\fileversion)]
@@ -734,10 +734,17 @@ wish to left align your text}
   \renewcommand{\chaptermark}[1]{\markboth{##1}{}}
   \renewcommand{\sectionmark}[1]{\markright{\thesection\ ##1\ }}
   \fancyhf{}
-  \fancyhead[RO]{\nouppercase \rightmark\hspace{0.25em} | 
-    \hspace{0.25em} \bfseries{\thepage}}
-  \fancyhead[LE]{ {\bfseries\thepage} \hspace{0.25em} | 
-    \hspace{0.25em} \nouppercase \leftmark}
+  \if@twoside
+    \fancyhead[RO]{\nouppercase \rightmark\hspace{0.25em} | 
+      \hspace{0.25em} \bfseries{\thepage}}
+    \fancyhead[LE]{ {\bfseries\thepage} \hspace{0.25em} | 
+      \hspace{0.25em} \nouppercase \leftmark}
+  \else
+    \fancyhead[R]{\nouppercase \rightmark\hspace{0.25em} | 
+      \hspace{0.25em} \bfseries{\thepage}}
+    \fancyhead[L]{ {\bfseries\thepage} \hspace{0.25em} | 
+      \hspace{0.25em} \nouppercase \leftmark}
+  \fi
 }
 
 % Style 2: Sets Page Number at the Bottom with Chapter/Section Name on LO/RE
@@ -745,9 +752,15 @@ wish to left align your text}
   \renewcommand{\chaptermark}[1]{\markboth{##1}{}}
   \renewcommand{\sectionmark}[1]{\markright{\thesection\ ##1}}
   \fancyhf{}
-  \fancyhead[RO]{\bfseries\nouppercase \rightmark}
-  \fancyhead[LE]{\bfseries \nouppercase \leftmark}
-  \fancyfoot[C]{\thepage}
+  \if@twoside
+    \fancyhead[RO]{\bfseries\nouppercase \rightmark}
+    \fancyhead[LE]{\bfseries \nouppercase \leftmark}
+    \fancyfoot[C]{\thepage}
+  \else
+    \fancyhead[R]{\bfseries\nouppercase \rightmark}
+    \fancyhead[L]{\bfseries \nouppercase \leftmark}
+    \fancyfoot[C]{\thepage}
+  \fi
 }
 
 
@@ -772,9 +785,15 @@ wish to left align your text}
     \renewcommand{\chaptermark}[1]{\markboth {##1}{}}
     \renewcommand{\sectionmark}[1]{\markright{\thesection\ ##1}}
     \fancyhf{}
-    \fancyhead[LO]{\nouppercase \rightmark}
-    \fancyhead[LE,RO]{\bfseries\thepage}
-    \fancyhead[RE]{\nouppercase \leftmark}
+    \if@twoside
+      \fancyhead[LO]{\nouppercase \rightmark}
+      \fancyhead[LE,RO]{\bfseries\thepage}
+      \fancyhead[RE]{\nouppercase \leftmark}
+    \else
+      % oneside; left: chapter name, right: page number
+      \fancyhead[L]{\nouppercase \leftmark}
+      \fancyhead[R]{\bfseries\thepage}
+    \fi
   \fi
 \fi
 }
