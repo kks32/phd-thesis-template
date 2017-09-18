@@ -1,12 +1,8 @@
 before_install:
-   - sudo add-apt-repository -y ppa:texlive-backports/ppa
    - sudo apt-get update
 install:
-   - sudo apt-get install -y texlive-latex-base 
-   - sudo apt-get install -y texlive-latex-recommended texlive-latex-extra
-   - sudo apt-get install -y texlive-science 
-   - sudo apt-get install -y texlive-fonts-recommended texlive-fonts-extra
-   - sudo apt-get install -y psutils
+   - sudo apt-get install ghostscript
+   - curl -L https://github.com/holgern/travis-texlive/releases/download/2017-07-05_09/texlive.tar.xz | tar -JxC ~
 script:
    - make clean
    - make BUILD_STRATEGY=latex
