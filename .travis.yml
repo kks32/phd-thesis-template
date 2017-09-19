@@ -2,7 +2,7 @@ before_install:
    - sudo apt-get update
 install:
    - sudo apt-get install ghostscript
-   - curl -L https://github.com/holgern/travis-texlive/releases/download/2017-07-05_09/texlive.tar.xz | tar -JxC ~
+   - curl -L https://github.com/holgern/travis-texlive/releases/download/2017-09-18_02/texlive.tar.xz | tar -JxC ~
    - PATH=$HOME/texlive/bin/x86_64-linux:$PATH
 script:
    - make clean
