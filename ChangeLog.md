@@ -1,4 +1,8 @@
 ## Change log
+### 2018/04/03 - Version 2.3.2
+> Commit 85a8d91bcd9e97a7b5bda63d1913f07470dbdcfd
+*   Fixes #154 XeLaTeX compilation issues on unix
+
 ### 2016/04/23 - Version 2.3.1
 > Commit 7e4d9a261dd4e5dbdbf75c642ce2bbaa7e87429b
 *   Fixes #124 Pagestyle options
