@@ -20,6 +20,7 @@
 *make
 *.d
 *.btmp*
+*.xdv*
 *.fls*
 *.glo*
 *.idx*

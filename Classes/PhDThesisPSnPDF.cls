@@ -674,7 +674,10 @@ supported!}
   % PDFLaTeX does it automatically.
 \else
   % dvips
-  \RequirePackage{breakurl} % to split the url over multiple lines
+  \ifxetex
+  \else % If not XeLaTeX
+    \RequirePackage{breakurl} % to split the url over multiple lines
+  \fi
 \fi
   
 % ******************************************************************************
