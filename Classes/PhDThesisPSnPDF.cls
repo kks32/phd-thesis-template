@@ -38,7 +38,7 @@
 \DeclareOption{times}{
   \ifsetFont
     \ClassWarning{PhDThesisPSnPDF}{Font selection conflict: A font package was
-      aleady specified. Please check the document class options in case you 
+      already specified. Please check the document class options in case you 
       have defined two fonts.}
   \else
     \PHD@timestrue
@@ -674,7 +674,10 @@ supported!}
   % PDFLaTeX does it automatically.
 \else
   % dvips
-  \RequirePackage{breakurl} % to split the url over multiple lines
+  \ifxetex
+  \else % If not XeLaTeX
+    \RequirePackage{breakurl} % to split the url over multiple lines
+  \fi
 \fi
   
 % ******************************************************************************
