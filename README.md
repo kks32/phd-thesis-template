@@ -153,7 +153,7 @@ The class file, `PhDThesisPSnPDF`, is based on the standard `book` class
 
 It supports the following custom options in the documentclass in thesis.tex:
 
-(Usage `\documentclass[a4paper,11pt,print]{Classes/PhDThesisPSnPDF}`)
+(Usage `\documentclass[a4paper,11pt,print]{PhDThesisPSnPDF}`)
 
 *   `a4paper` (default as per the University guidelines) or `a5paper`: Paper size
 
@@ -287,7 +287,7 @@ the bottom of the page. Pagewise line numbering is added on every page. `draft` 
 
 ### Choosing the page style
 
-`PhDThesisPSnPDF` defines 3 different page styles (header and footer). The following definition is for `twoside` layout. To choose a page style, include it in the `documentclass` options: `\documentclass[PageStyleI]{Classes/PhDThesisPSnPDF}`. Alternatively, page style can be changed by adding `\pagestyle{PageStyleI}` or `\pagestyle{PageStyleII}` in `thesis.tex`. Note: Using `\pagestyle` command will override `documentclass` options when used globally.
+`PhDThesisPSnPDF` defines 3 different page styles (header and footer). The following definition is for `twoside` layout. To choose a page style, include it in the `documentclass` options: `\documentclass[PageStyleI]{PhDThesisPSnPDF}`. Alternatively, page style can be changed by adding `\pagestyle{PageStyleI}` or `\pagestyle{PageStyleII}` in `thesis.tex`. Note: Using `\pagestyle` command will override `documentclass` options when used globally.
 
 * `default (leave empty)`: For Page Numbers in Header (Left Even, Right Odd) and Chapter Name in Header (Right Even) and Section #. Section Name (Left Odd). Blank Footer.
 
@@ -484,9 +484,9 @@ You can also mail
 --------------------------------------------------------------------------------
 ## Troubleshooting warnings
 
-#### _W1_: I get the LaTeX Warning: You have requested document class `Classes/PhDThesisPSnPDF`, but the document class provides `PhDThesisPSnPDF`, should I be concerned?
+#### _W1_: I get the LaTeX Warning: You have requested document class `PhDThesisPSnPDF`, but the document class provides `PhDThesisPSnPDF`, should I be concerned?
 
-No! Do nothing, or if you don't want any warning messages change the line near the top of the class file to \ProvidesClass{Classes/PhDthesisPSnPDF} if you're not going to install the class file in a more standard location. You can install it in a standard location like `/usr/share/texmf/tex/latex/` and run `texhash` to reconfigure.
+No! Do nothing, or if you don't want any warning messages change the line near the top of the class file to \ProvidesClass{PhDThesisPSnPDF} if you're not going to install the class file in a more standard location. You can install it in a standard location like `/usr/share/texmf/tex/latex/` and run `texhash` to reconfigure.
 
 #### _W2_:I get the package Fancyhdr Warning: \fancyhead's `E` option without twoside option is useless on input line \# or \#. What should I do?
 
