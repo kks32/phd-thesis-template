@@ -126,3 +126,25 @@ Source:
 Licence:
 
         GNU Free Documentation License, Version 1.2 or any later version
+
+
+# Downing College's shield
+
+File:
+
+        Downing.svg
+        
+Derivative files:
+
+        Downing.eps  (rsvg-convert -f pdf -o Downing.pdf src/Downing.svg)
+        Downing.pdf  (rsvg-convert -f eps -o Downing.eps src/Downing.svg)
+        
+Source:
+
+        https://en.wikipedia.org/wiki/File:Downing_Crest.svg
+        
+License:
+
+        GNU Fre Documentation License, Version 1.2 or any later version or
+        Creative Commons Attribution-Share Alike 3.0 Unported or
+        Creative Commons Attribution 2.5 Generic
