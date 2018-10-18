@@ -4236,3 +4236,8 @@ endef
 -include $(HOME)/.latex-makefile/Targets.ini
 #
 # vim: noet sts=0 sw=8 ts=8
+
+.PHONY: hooks
+hooks:
+	./hooks/install.sh
+

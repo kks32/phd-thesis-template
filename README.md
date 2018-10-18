@@ -399,6 +399,21 @@ To include custom to-do notes in your pdf document use  `\mynote{Hey! I have a n
 		\newcommand{\listoftodos}{}
 	\fi
 
+## Git hooks
+
+You rarely want to commit changes to your TeX files which are not reflected in the PDF included in the repo.
+You can automate this process, among other things, with a git hook.
+Install the hook with `make hooks` (or see how to do it in `./hooks/install.sh`).
+Now every time you commit, if any files affecting your build have changed in this commit
+and those changes are more recent than the last modification of `thesis.pdf`,
+the default `make` target will be run and changes to `thesis.pdf` will be `git add`ed.
+
+Currently, changes to any tex/pdf/eps/png/cls files are picked up.
+This can be changed in `./hooks/pre-commit`.
+
+Skip the hook with `git commit --no-verify`.
+
+`bash`-only.
 
 ## General guidelines
 [Why is it important to follow good practices and not get killed by a Velociraptor ;)](http://www.xkcd.com/292/)
