@@ -153,7 +153,7 @@ The class file, `PhDThesisPSnPDF`, is based on the standard `book` class
 
 It supports the following custom options in the documentclass in thesis.tex:
 
-(Usage `\documentclass[a4paper,11pt,print]{Classes/PhDThesisPSnPDF}`)
+(Usage `\documentclass[a4paper,11pt,print]{PhDThesisPSnPDF}`)
 
 *   `a4paper` (default as per the University guidelines) or `a5paper`: Paper size
 
@@ -287,7 +287,7 @@ the bottom of the page. Pagewise line numbering is added on every page. `draft` 
 
 ### Choosing the page style
 
-`PhDThesisPSnPDF` defines 3 different page styles (header and footer). The following definition is for `twoside` layout. To choose a page style, include it in the `documentclass` options: `\documentclass[PageStyleI]{Classes/PhDThesisPSnPDF}`. Alternatively, page style can be changed by adding `\pagestyle{PageStyleI}` or `\pagestyle{PageStyleII}` in `thesis.tex`. Note: Using `\pagestyle` command will override `documentclass` options when used globally.
+`PhDThesisPSnPDF` defines 3 different page styles (header and footer). The following definition is for `twoside` layout. To choose a page style, include it in the `documentclass` options: `\documentclass[PageStyleI]{PhDThesisPSnPDF}`. Alternatively, page style can be changed by adding `\pagestyle{PageStyleI}` or `\pagestyle{PageStyleII}` in `thesis.tex`. Note: Using `\pagestyle` command will override `documentclass` options when used globally.
 
 * `default (leave empty)`: For Page Numbers in Header (Left Even, Right Odd) and Chapter Name in Header (Right Even) and Section #. Section Name (Left Odd). Blank Footer.
 
@@ -499,32 +499,28 @@ You can also mail
 --------------------------------------------------------------------------------
 ## Troubleshooting warnings
 
-#### _W1_: I get the LaTeX Warning: You have requested document class `Classes/PhDThesisPSnPDF`, but the document class provides `PhDThesisPSnPDF`, should I be concerned?
-
-No! Do nothing, or if you don't want any warning messages change the line near the top of the class file to \ProvidesClass{Classes/PhDthesisPSnPDF} if you're not going to install the class file in a more standard location. You can install it in a standard location like `/usr/share/texmf/tex/latex/` and run `texhash` to reconfigure.
-
-#### _W2_:I get the package Fancyhdr Warning: \fancyhead's `E` option without twoside option is useless on input line \# or \#. What should I do?
+#### _W1_:I get the package Fancyhdr Warning: \fancyhead's `E` option without twoside option is useless on input line \# or \#. What should I do?
 
 Nothing. The warning is because the twoside option is also defined in the class, although only the oneside option is currently used.
 
-#### _W3_: I get the Class PhDThesisPSnPDF Warning: Unknown or non-standard option 'something'. Will see if I can load it from the book class. If you get a warning unused global option(s): `something` then the option is not supported! on input line \#.
+#### _W2_: I get the Class PhDThesisPSnPDF Warning: Unknown or non-standard option 'something'. Will see if I can load it from the book class. If you get a warning unused global option(s): `something` then the option is not supported! on input line \#.
 
 You are either trying to use a undefined option or a non-standard option which is in the book class but not defined in the PhD Thesis Template. If it can be used it will be loaded and you will get no further warnings. If not, the option you chose is unavailable.
 
 
-#### _W4_: I get LaTeX Warning: Unused global option(s):[something].
+#### _W3_: I get LaTeX Warning: Unused global option(s):[something].
 
 You are trying to load an option that is not supported in the PhDThesisClass and the Book Class. Are you sure you are using the right option? Check your spelling!
 
-#### _W5_: I get I'm skipping whatever remains of this command line \# of file thesis.aux \@input{Chapter1/chapter1.aux}
+#### _W4_: I get I'm skipping whatever remains of this command line \# of file thesis.aux \@input{Chapter1/chapter1.aux}
 
 If you are generating a separate abstract for your thesis submission, ignore this warning and good luck with your submission. If you are compiling your thesis and see this warning, please remove the option `abstract` from the document class.
 
-#### _W6_: I get blank pages between chapters
+#### _W5_: I get blank pages between chapters
 
 This is normal for a book class. Usually, a new chapter in a book always starts on the right hand side, which is why you see a blank page. You can remove the extra blank page by passing `openany` option to the documentclass. This works for double sided printing. However, if you are printing on a single side, please pass `oneside` option to the document class.
 
-#### _W7_: My references aren't listed in the ordered in which I cite them
+#### _W6_: My references aren't listed in the ordered in which I cite them
 
 This is controlled by the bibliography style. Please use `\bibliographystyle{unsrt}` in `thesis.tex` instead of `apalike`. This applicable only for numerically sorted references.
 
