@@ -1,0 +1,22 @@
+#!/bin/bash
+# look at all staged files with the given extensions;
+# if any were modified more recently than your target,
+# rebuild the target with the default `make` task,
+# and `git add` the changed target file.
+
+set -e
+
+# extensions of files which may affect what your target looks like
+extensions="tex|pdf|png|bib|eps|cls"
+
+# your target file
+tgt="thesis.pdf"
+
+for fpath in $(git diff --cached --name-only --diff-filter=ACM | grep -P "\.${extensions}" | grep -v "${tgt}")
+do
+    if test ${fpath} -nt ${tgt}; then
+        make
+        git add ${tgt}
+        break
+    fi
+done
