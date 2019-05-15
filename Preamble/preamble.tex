@@ -190,6 +190,21 @@
 
 % Example todo: \mynote{Hey! I have a note}
 
+% ******************************** Highlighting Changes **********************************
+%% Uncomment the following lines to be able to highlight text/modifications.
+%\ifsetDraft
+%  \usepackage{color, soul}
+%  \newcommand{\hlc}[2][yellow]{{\sethlcolor{#1} \hl{#2}}}
+%  \newcommand{\hlfix}[2]{\texthl{#1}\todo{#2}}
+%\else
+%  \newcommand{\hlc}[2]{}
+%  \newcommand{\hlfix}[2]{}
+%\fi
+
+% Example highlight 1: \hlc{Text to be highlighted}
+% Example highlight 2: \hlc[green]{Text to be highlighted in green colour}
+% Example highlight 3: \hlfix{Original Text}{Fixed Text}
+
 % *****************************************************************************
 % ******************* Better enumeration my MB*************
 \usepackage{enumitem}
