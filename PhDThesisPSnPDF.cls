@@ -4,15 +4,15 @@
 %%                                                                            %%
 %% A PhD thesis LaTeX template for Cambridge University Engineering Department%%
 %%                                                                            %%
-%% Version: v2.4                                                              %%
+%% Version: v2.5                                                              %%
 %% Authors: Krishna Kumar                                                     %%
 %% License: MIT License (c) 2016-2018 Krishna Kumar                           %%
 %% GitHub Repo: https://github.com/kks32/phd-thesis-template/                 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % ************************** Class Identification ******************************
-\newcommand\fileversion{2.4}
-\newcommand\filedate{2018/04/12}
+\newcommand\fileversion{2.5}
+\newcommand\filedate{2020/12/02}
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{PhDThesisPSnPDF}[\filedate\space A PhD thesis class file
  by Krishna Kumar (v\fileversion)]
@@ -224,6 +224,11 @@ footnotes.}
 \DeclareOption{lineno}{\PHD@linenotrue}
 \DeclareOption{nolineno}{\PHD@linenofalse}
 
+% Declare new Boolean variable to allow separate toggle 
+% to include author name and title in abstract,
+% i.e. Cambridge BGS style
+\newif\ifntabstract\ntabstractfalse
+\DeclareOption{ntabstract}{\ntabstracttrue}
 
 % Generates Warning for unknown options
 \DeclareOption*{
@@ -622,8 +627,12 @@ supported!}
   \ifsetCustomMargin
   % Margin to be define in preamble using geometry package
   \else
-    \RequirePackage[paper=\PHD@papersize,hmarginratio=1:1,
-      vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
+      % Edited DYC 2020 so print and online versions have the same
+	  % body space per page
+     \RequirePackage[paper=\PHD@papersize,hmarginratio=1:1,
+	  vmarginratio=1:1,vscale=0.75,width=157mm,bindingoffset=5mm]{geometry}  
+%    \RequirePackage[paper=\PHD@papersize,hmarginratio=1:1,
+%      vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
   \fi
 
   \if@twoside
@@ -655,8 +664,12 @@ supported!}
     % Margin to be define in preamble using geometry package
     \else
       % No Margin staggering on Odd and Even side
+      % Edited DYC 2020 so print and online versions have the same
+      % body space per page
       \RequirePackage[paper=\PHD@papersize,hmarginratio=1:1,
-        vmarginratio=1:1,scale=0.75]{geometry} % dvips
+        vmarginratio=1:1,vscale=0.75,width=157mm]{geometry} % dvips
+%      \RequirePackage[paper=\PHD@papersize,hmarginratio=1:1,
+%        vmarginratio=1:1,scale=0.75]{geometry} % dvips
     \fi
     \hypersetup{pdfpagelayout=OneColumn}
 \fi
@@ -1102,10 +1115,11 @@ wish to left align your text}
 % The abstract environment puts a large, bold, centered "Abstract" label at
 % the top of the page. Defines both abstract and separate abstract environment
 
-% To include only the Title and the abstract pages for submission to BoGS
+% To include only the abstract pages for submission to BoGS
 \ifPHD@abstract
     \defineAbstracttrue
-    % Disable the table of contents, figures, tables, index and nomenclature
+    % Disable the title, table of contents, figures, tables, index and nomenclature
+    \renewcommand{\maketitle}{} % Added by DYC 2020
     \renewcommand{\tableofcontents}{}
     \renewcommand{\listoffigures}{}
     \renewcommand{\listoftables}{}
@@ -1114,14 +1128,18 @@ wish to left align your text}
     \renewcommand{\printthesisindex}{}
     \renewcommand{\bibname}{}
     \renewcommand{\bibliography}[1]{\thispagestyle{empty}}
+    
+    % Turn on name and title on abstract (DYC 2020)
+    \ntabstracttrue
 \else
     \defineAbstractfalse
 \fi
 
-
 \newenvironment{abstract} {
-\ifPHD@abstract
-% Separate abstract as per Student Registry guidelines
+\ifntabstract
+% Print name and title on abstract, whether when
+% abstract is standalone or toggled by ntabstract option
+% (per Student Registry guidelines)
   \thispagestyle{empty}
   \setsinglecolumn
   \begin{center}
