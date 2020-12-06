@@ -557,16 +557,16 @@ supported!}
   \usepackage[]{unicode-math}
   \setmainfont[
     Extension = .otf,
-    UprightFont = *-regular,
-    BoldFont = *-bold,
-    ItalicFont = *-italic,
-    BoldItalicFont = *-bolditalic,
-  ]{xits}
+    UprightFont = *-Regular,
+    BoldFont = *-Bold,
+    ItalicFont = *-Italic,
+    BoldItalicFont = *-BoldItalic,
+  ]{XITS}
   
   \setmathfont[ 
     Extension = .otf,
-    BoldFont = *bold,
-  ]{xits-math}
+    BoldFont = XITSMath-Bold,
+  ]{XITSMath-Regular}
   
 \else
   % default: pdfLaTeX
