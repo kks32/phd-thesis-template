@@ -35,7 +35,7 @@ fileinfo	:= LaTeX Makefile
 author		:= Chris Monson
 version		:= 2.2.1-alpha10
 #
-.DEFAULT_GOAL	:= all
+.DEFAULT_GOAL	:= all-gls
 # Note that the user-global version is imported *after* the source directory,
 # so that you can use stuff like ?= to get proper override behavior.
 .PHONY: Makefile GNUmakefile Makefile.ini $(HOME)/.latex-makefile/Makefile.ini
@@ -4241,3 +4241,6 @@ endef
 hooks:
 	./hooks/install.sh
 
+.PHONY: all-gls
+all-gls: all
+	makeglossaries thesis; $(MAKE) all;

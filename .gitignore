@@ -37,3 +37,11 @@ thesis.run.xml*
 *run.xml*
 *.latexmkrc*
 *_latexmk*
+
+# glossary/ acronyms
+
+*.acr
+*.alg
+*.acn
+*.glg
+*.gls

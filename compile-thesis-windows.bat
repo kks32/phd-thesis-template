@@ -25,6 +25,7 @@ makeindex "%FILENAME%.idx"
 makeindex "%FILENAME%.nlo" -s nomencl.ist -o "%FILENAME%".nls
 pdflatex -interaction=nonstopmode "%FILENAME%.tex"
 makeindex "%FILENAME%.nlo" -s nomencl.ist -o "%FILENAME%".nls
+makeglossaries %FILENAME%
 pdflatex -interaction=nonstopmode "%FILENAME%.tex"
 
 
