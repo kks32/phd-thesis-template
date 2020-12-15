@@ -631,8 +631,6 @@ supported!}
 	  % body space per page
      \RequirePackage[paper=\PHD@papersize,hmarginratio=1:1,
 	  vmarginratio=1:1,vscale=0.75,width=157mm,bindingoffset=5mm]{geometry}  
-%    \RequirePackage[paper=\PHD@papersize,hmarginratio=1:1,
-%      vmarginratio=1:1,scale=0.75,bindingoffset=5mm]{geometry}
   \fi
 
   \if@twoside
@@ -668,8 +666,6 @@ supported!}
       % body space per page
       \RequirePackage[paper=\PHD@papersize,hmarginratio=1:1,
         vmarginratio=1:1,vscale=0.75,width=157mm]{geometry} % dvips
-%      \RequirePackage[paper=\PHD@papersize,hmarginratio=1:1,
-%        vmarginratio=1:1,scale=0.75]{geometry} % dvips
     \fi
     \hypersetup{pdfpagelayout=OneColumn}
 \fi
