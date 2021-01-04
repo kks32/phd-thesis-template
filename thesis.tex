@@ -31,6 +31,9 @@
 % `abstract': To generate only the title page and abstract page with
 % dissertation title and name, to submit to the Student Registry
 %
+% `nontabstract': To remove name and title from abstract page 
+% when bound into thesis
+%
 % `chapter`: This option enables only the specified chapter and it's references
 %  Useful for review and corrections.
 %
@@ -87,13 +90,13 @@
 \input{thesis-info}
 
 % ***************************** Abstract Separate ******************************
-% To printout only the titlepage and the abstract with the PhD title and the
+% To printout only the abstract with the PhD title and the
 % author name for submission to the Student Registry, use the `abstract' option in
 % the document class.
 
 \ifdefineAbstract
  \pagestyle{empty}
- \includeonly{Declaration/declaration, Abstract/abstract}
+ \includeonly{Abstract/abstract}
 \fi
 
 % ***************************** Chapter Mode ***********************************
@@ -104,6 +107,8 @@
 
 \ifdefineChapter
  \includeonly{Chapter3/chapter3}
+% You can put multiple files into this command, e.g.
+% \includeonly{Declaration/declaration, Chapter3/chapter3}
 \fi
 
 % ******************************** Front Matter ********************************
@@ -115,8 +120,8 @@
 
 \include{Dedication/dedication}
 \include{Declaration/declaration}
-\include{Acknowledgement/acknowledgement}
 \include{Abstract/abstract}
+\include{Acknowledgement/acknowledgement}
 
 % *********************** Adding TOC and List of Figures ***********************
 
@@ -126,10 +131,8 @@
 
 \listoftables
 
-% \printnomenclature[space] space can be set as 2em between symbol and description
-%\printnomenclature[3em]
-
-\printnomenclature
+% \printnomencl[space] space can be set as 2em between symbol and description
+\printnomencl[3em]
 
 % ******************************** Main Matter *********************************
 \mainmatter
@@ -167,7 +170,9 @@
 % specified in the preamble.tex file in the custombib section.
 % Comment out the lines related to natbib above and uncomment the following line.
 
-%\printbibliography[heading=bibintoc, title={References}]
+%\ifdefineAbstract\else \printbibliography[heading=bibintoc, title={References}] \fi
+% The if command on the previous line is required because 
+% biber package is invoked after calling the class definition
 
 
 \end{spacing}

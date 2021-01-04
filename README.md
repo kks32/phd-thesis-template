@@ -183,6 +183,8 @@ It supports the following custom options in the documentclass in thesis.tex:
 
 *   `abstract`: This option enables only the thesis title page and the abstract with title and author to be printed.
 
+*   `nontabstract`: This option prints the heading "Abstract" rather than your name and thesis title onto the abstract page of your thesis when the whole thesis is compiled.
+
 *   `chapter`: This option enables only the specified chapter and it's references. Useful for review and corrections.
 
 *   `draft`: The default draft mode supports some special features such as line numbers, images, and water mark with
