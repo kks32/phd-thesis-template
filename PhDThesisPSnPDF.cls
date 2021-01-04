@@ -1125,9 +1125,6 @@ wish to left align your text}
     \renewcommand{\printthesisindex}{}
     \renewcommand{\bibname}{}
     \renewcommand{\bibliography}[1]{\thispagestyle{empty}}
-    
-    % Turn on name and title on abstract (DYC 2020)
-    \ntabstracttrue
 \else
     \defineAbstractfalse
 \fi
