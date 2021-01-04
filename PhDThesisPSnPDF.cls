@@ -227,8 +227,9 @@ footnotes.}
 % Declare new Boolean variable to allow separate toggle 
 % to include author name and title in abstract,
 % i.e. Cambridge BGS style
-\newif\ifntabstract\ntabstractfalse
+\newif\ifntabstract\ntabstracttrue
 \DeclareOption{ntabstract}{\ntabstracttrue}
+\DeclareOption{nontabstract}{\ntabstractfalse}
 
 % Generates Warning for unknown options
 \DeclareOption*{
@@ -1143,7 +1144,8 @@ wish to left align your text}
     {{\large \vspace*{1em} \@author} \par}
   \end{center}
 \else
-% Normal abstract in the thesis
+% Normal abstract in the thesis,
+% toggled by nontabstract option
   \cleardoublepage
   \setsinglecolumn
   \chapter*{\centering \Large \@abstracttitle}
