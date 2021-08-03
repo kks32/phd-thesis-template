@@ -941,10 +941,6 @@ wish to left align your text}
 	\vspace{.15\PHD@titlepagespacing}
 \fi
 
-% Title
-{\usebox{\PHD@Title}} % subtitle is defined
-
-
 % Crest
 
 \ifPHD@collegeshield%
@@ -957,7 +953,13 @@ wish to left align your text}
 	\vspace{.15\PHD@titlepagespacing}
 \fi
 
+% Title
+{\usebox{\PHD@Title}} % subtitle is defined
 
+
+	\vspace{.15\PHD@titlepagespacing}
+	{\usebox{\PHD@collegecrest}}
+	\vspace{.1\PHD@titlepagespacing}
 
 % Author
 {\usebox{\PHD@author}}
