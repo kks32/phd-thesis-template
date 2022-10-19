@@ -1,7 +1,7 @@
 % ******************************* PhD Thesis Template **************************
 % Please have a look at the README.md file for info on how to use the template
 
-\documentclass[a4paper,12pt,times,numbered,print,index]{PhDThesisPSnPDF}
+\documentclass[a4paper,12pt,times,numbered,print]{PhDThesisPSnPDF}
 
 % ******************************************************************************
 % ******************************* Class Options ********************************
@@ -106,6 +106,8 @@
  \includeonly{Chapter3/chapter3}
 \fi
 
+\input{Glossary/glossary}
+
 % ******************************** Front Matter ********************************
 \begin{document}
 
@@ -125,6 +127,11 @@
 \listoffigures
 
 \listoftables
+
+% Only one of glossary (including acronyms) and nomenclature should be used, for clarity
+
+\printglossary[title=Glossary]
+\printglossary[type=\acronymtype]
 
 % \printnomenclature[space] space can be set as 2em between symbol and description
 %\printnomenclature[3em]

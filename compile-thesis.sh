@@ -75,6 +75,7 @@ elif [ $1 = $compile ]; then
 	makeindex $filename.nlo -s nomencl.ist -o $filename.nls
 	pdflatex -interaction=nonstopmode $filename.tex
 	makeindex $filename.nlo -s nomencl.ist -o $filename.nls
+	makeglossaries $filename
 	pdflatex -interaction=nonstopmode $filename.tex
 	echo "Success!"
 	exit
