@@ -936,19 +936,20 @@ wish to left align your text}
 \begin{center}
 
 % University Crest Long if college crest is defined
-\ifPHD@collegeshield%
-	{\usebox{\PHD@crest}}
-	\vspace{.15\PHD@titlepagespacing}
-\fi
+% \ifPHD@collegeshield%
+% 	{\usebox{\PHD@crest}}
+% 	\vspace{.15\PHD@titlepagespacing}
+% \fi
 
 % Title
 {\usebox{\PHD@Title}} % subtitle is defined
 
 
-% Crest
+% Crests - both university & college!
 
 \ifPHD@collegeshield%
-	\vspace{.15\PHD@titlepagespacing}
+	\vspace{.75\PHD@titlepagespacing}
+  {\usebox{\PHD@crest}}
 	{\usebox{\PHD@collegecrest}}
 	\vspace{.1\PHD@titlepagespacing}
 \else
@@ -980,10 +981,11 @@ wish to left align your text}
 \vspace{.2\PHD@titlepagespacing}
 
 % Submission Text
+\vfill
 {\usebox{\PHD@submission}}
 
 % College and degree date
-\vfill
+\vspace*{1em}
 {\usebox{\PHD@collegedate}}
     
 \end{center}
