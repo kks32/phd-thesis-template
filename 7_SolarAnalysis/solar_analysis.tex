@@ -1,0 +1,31 @@
+\chapter{Solar Oscillation Analysis}
+
+\section{Analysis Methodology}
+     \begin{itemize}
+        \item Start with observational principle: changes in oscillation parameters lead to change in the energy spectrum of neutrinos elastically-scattering in the detector, and hence a change in the observed energy spectra of elastically-scattered electrons within the detector. Demonstrate basic impact on modifying $\Delta m^{2}_{21}$ and $\theta_{12}$.
+        \item Want to maximise the sensitivity to measuring these two parameters. Energy spectrum of signal is background-free above $\sim\SI{5}{\MeV}$, but rate is substantially larger at lower energies. If one can minimise backgrounds at the lower energies, then there should be hopes of obtaining a measurement with greater precision!
+        \item Set up analysis approach: a Bayesian analysis using MCMC. Explain why this was chosen at a high level first: allows for us to perform a relatively complex analysis with multidimensional PDFs, numerous backgrounds, systematics, constraints on parameters, all whilst allowing us to obtain well-defined measures of uncertainty on our final results.
+        \item Test statistic: binned extended log-likelihood. Explain why this is fundamentally the ``right''  test statistic to use. Allows for handling of constraints and systematics.
+        \item Give an overview of how an MCMC works. Key idea: exploring parameter space in such a way as to reproduce posterior density distribution. Clever! Helps to avoid ``curse of dimensionality'' that often arises in fits with numerous parameters. Must also explain how we work in a fundamentally Bayesian, not frequentist, statistical approach.
+        \item Explain background processes we'll be dealing with: can be distinguished by event topology, energy spectrum, and position distribution.
+        \item Explain cuts that I am using for the analysis. Demonstrate how these attempt to maximise our signal sensitivity. Leads nicely into choice of 2D fit in both energy and radius (cubed).
+        \item Describe implementation of neutrino oscillations within the fitting procedure: flat priors on the oscillation parameters, but a strong constraint from the solar flux. Explain choices of constraint that are possible. MCMC varies oscillation parameters and flux scaling factor, which then modifies the solar signal PDFs through a de-facto systematic that is a function of true neutrino energy, a 3\textsuperscript{rd} ``bookkeeping'' dimension in the signal's PDFs only. Neutrino oscillations simulated via PSelmaa, which accounts for MSW effect in both the Sun and the Earth. For computational speed, at run-time we actually use a lookup table with linear interpolation for the survival probability as a function of parameters.
+        \item Implementation of systematics: we handle them generally as linear transformations acting on the vector of bin data. Clever! Which systematics do we expect to be particularly important for this analysis? Well, mismodelling in detector optics etc. can lead to changes in the measured energy spectrum of processes, which can be decomposed into an energy scale term and an energy smearing term to first order. Systematics also possible in the radial dimension (expected to be less important?) 
+        
+     \end{itemize}
+
+\section{Analysis on Scintillator-Phase data}
+\begin{itemize}
+    \item Description of dataset chosen for analysis: full-scint data that satisfies the ``gold'' list of run selection requirements, between 1\textsuperscript{st} June 2022 and March 2023. Starting date chosen to ensure radon levels have stabilised within the centre of the detector.
+    \item Impact of cuts on data and MC. Show tables (the full details maybe in an appendix) indicating this.
+    \item Describe the constraints chosen to apply to the fit, and why they can be justified.
+    \item Running \& validation of MCMC fitting. Show plots of parameter values versus step, to demonstrate that the step sizes have been tuned sufficiently. Show auto-correlation plots, to motivate a sensible ``burn-in'' size. Show posterior density plots for each nuisance parameter, to check that they all look sensible and have sufficient statistics. Show plot of correlation coefficients between parameters, and look at any correlations that are particularly interesting.
+    \item Look at the data versus MC plot in energy, radius, and both. Is there a good fit to data? Any clear disagreements?
+    \item Show 2D contour plot for oscillation parameter posterior density. Note salient features. Show 1D posterior densities for each oscillation parameter. Derive measurement result for $\theta_{12}$.
+    \item Show impact of modifying certain constraints on the final results of the measurement of $\theta_{12}$.
+\end{itemize}
+
+\section{Sensitivity Projections}
+
+
+\section{Conclusions}

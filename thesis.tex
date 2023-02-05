@@ -1,7 +1,7 @@
 % ******************************* PhD Thesis Template **************************
 % Please have a look at the README.md file for info on how to use the template
 
-\documentclass[a4paper,12pt,times,numbered,print,index]{PhDThesisPSnPDF}
+\documentclass[a4paper,12pt,custombib,print,draft,index]{PhDThesisPSnPDF}
 
 % ******************************************************************************
 % ******************************* Class Options ********************************
@@ -113,10 +113,9 @@
 
 \maketitle
 
-\include{Dedication/dedication}
-\include{Declaration/declaration}
-\include{Acknowledgement/acknowledgement}
-\include{Abstract/abstract}
+\include{0_Dedication/dedication}
+\include{0_Acknowledgement/acknowledgement}
+\include{0_Abstract/abstract}
 
 % *********************** Adding TOC and List of Figures ***********************
 
@@ -129,18 +128,19 @@
 % \printnomenclature[space] space can be set as 2em between symbol and description
 %\printnomenclature[3em]
 
-\printnomenclature
+% \printnomenclature
 
 % ******************************** Main Matter *********************************
 \mainmatter
 
-\include{Chapter1/chapter1}
-\include{Chapter2/chapter2}
-\include{Chapter3/chapter3}
-%\include{Chapter4/chapter4}
-%\include{Chapter5/chapter5}
-%\include{Chapter6/chapter6}
-%\include{Chapter7/chapter7}
+\include{1_NeutrinoTheory/chapter1}
+\include{2_Detector/chapter2}
+\include{3_ScatteringTheory/chapter3}
+% \include{Chapter4/chapter4}
+\include{5_SMELLIESimulation/beam_profiling}
+% \include{Chapter6/chapter6}
+\include{7_SolarAnalysis/solar_analysis}
+% \include{Chapter8/chapter8}
 
 
 
@@ -155,7 +155,8 @@
 % Bibliography style previews: http://nodonn.tipido.net/bibstyle.php
 % Reference styles: http://sites.stat.psu.edu/~surajit/present/bib.htm
 
-\bibliographystyle{apalike}
+% \bibliographystyle{apalike}
+\bibliographystyle{References/h-physrev5}
 %\bibliographystyle{unsrt} % Use for unsorted references  
 %\bibliographystyle{plainnat} % use this to have URLs listed in References
 \cleardoublepage
@@ -167,21 +168,21 @@
 % specified in the preamble.tex file in the custombib section.
 % Comment out the lines related to natbib above and uncomment the following line.
 
-%\printbibliography[heading=bibintoc, title={References}]
+% \printbibliography[heading=bibintoc, title={References}]
 
 
 \end{spacing}
 
 % ********************************** Appendices ********************************
 
-\begin{appendices} % Using appendices environment for more functunality
+% \begin{appendices} % Using appendices environment for more functunality
 
-\include{Appendix1/appendix1}
-\include{Appendix2/appendix2}
+% \include{Appendix1/appendix1}
+% \include{Appendix2/appendix2}
 
-\end{appendices}
+% \end{appendices}
 
 % *************************************** Index ********************************
-\printthesisindex % If index is present
+% \printthesisindex % If index is present
 
 \end{document}
