@@ -59,7 +59,28 @@ Although every effort has been made to make the scintillator cocktail that fills
 
 Of particular note are the decays of \ce{^{212}Bi} and \ce{^{214}Bi}. Both are capable of either $\alpha\textrm{-}$ or $\beta\textrm{-decays}$ to \ce{Tl} or \ce{Po} isotopes, respectively. For the former, it is the subsequent $\beta$-decay of the \ce{Tl} that can have a reconstructed energy above $E_{\textrm{min}}$. For the latter, the \ce{Bi} decay is the part of the pair of decays that can lie above $E_{\textrm{min}}$. Although the $\alpha$-decays here certainly have Q-values well above \SI{2}{\MeV}, the liquid scintillator quenches the observed energy well below $E_{\mathrm{min}}$. The so-called ``\ce{Bi-Po}'' decays are particularly special because the lifetimes of \ce{^{212}Po} and \ce{^{214}Po} are \SI{300}{\nano\second} and \SI{164}{\micro\second}, respectively, which are short enough to allow for highly-effective coincidence tagging.
 
-There are two classes of \ce{Bi-Po} event in the detector: ``out-of-window'' events for which the \ce{Bi} and \ce{Po} occur in separate event windows, and ``in-window'' events whereby the \ce{Bi} and \ce{Po} occur within the same event window. These lead to two distinct strategies for tagging these kinds of events. For out-of-window \ce{Bi-Po}s, 
+There are two classes of \ce{Bi-Po} event in the detector: ``out-of-window'' events for which the \ce{Bi} and \ce{Po} occur in separate event windows, and ``in-window'' events whereby the \ce{Bi} and \ce{Po} occur within the same event window. These lead to two distinct strategies for tagging these kinds of events. For out-of-window \ce{Bi-Po}s, we look for a delayed coincidence of two events. Using the tagging algorithm suggested in~\cite{} % Jeanne's BiPo tagging DocDB
+as a starting point, the chosen procedure was as follows. There must be two events that trigger the detector within \SI{4}{\micro\second} of one another, and both have a valid \texttt{scintFit} position reconstruction within \SI{2}{\metre} of one another. The delayed candidate event must also have at least 100 cleaned PMT hits. %Must ensure cleaned nhits has been explained earlier
+This very broad coincidence tagging procedure was designed to ensure that the cut was as \textit{efficient} in tagging (and hence, rejecting) \ce{Bi-Po}s as possible, whilst negligibly impacting the solar signal. This is in contrast to the cuts chosen by Rafael Hunt-Stokes in~\cite{}, % Raf's BiPo tagging tech note on DocDB
+which try and obtain a highly \textit{pure} sample of \ce{Bi-Po} tags.
+
+Of course, the above delayed coincidence procedure cannot catch any of the in-window \ce{Bi-Po} events. For these, we use a different approach. Because two decays happened in the same event window, we expect to see two distinct peaks in the event's time residual spectrum. In order to look for this event topology, a likelihood-ratio classifier was run over events, first developed by Eric Marzec~\cite{} % Eric's tech note on DocDB
+and re-coordinated for the \SI{2.2}{\gram\per\litre} LABPPO scintillator optics by Ziping Ye~\cite{}. % Ziping's presentation on DocDB
+This classifier calculates the likelihood ratio between the null hypothesis of a \onbb{} event (a proxy in this analysis for single-site events such as our \beight{} signal) and the alternative hypothesis of an in-window \ce{Bi-Po} event. The more negative the value of the result, \texttt{alphabeta212}, the greater the evidence there is for rejecting the null hypothesis of a single-site event. Events with $\texttt{alphabeta212} < 0$ % WRITE FINAL CHOICE OF CUT!
+were then rejected.
+
+Combining both out-of-window and in-window \ce{Bi-Po} tagging, the impact on \ce{^{212}Bi-Po}, \ce{^{214}Bi-Po}, and \beight{} $\nu_e$ events can be seen in Fig.~\ref{fig:bipo_tagging_efficiency}. We consider here only events that pass all other cuts used in this analysis: see section~\ref{} % link to cuts subsection
+for the specifics of the cuts used. Because of the different lifetimes of the decays, \ce{^{214}Bi-Po} decays predominantly fall out-of-window whilst \ce{^{212}Bi-Po} events are typically in-window. This explains why the out-of-window tagging is substantially better at cutting \ce{^{214}Bi-Po} decays, whereas the in-window tagging far better tags \ce{^{212}Bi-Po} decays. Overall, within the analysis region of interest, the two combined cuts are able to tag TODO\% % CALCULATE
+of \ce{^{214}Bi-Po} triggered events, TODO\% % CALCULATE
+of \ce{^{212}Bi-Po} triggered events, whilst retaining TODO\% % CALCULATE
+of \beight{} $\nu_e$ signal events.
+
+\begin{figure}
+    \centering
+    % \includegraphics[]{}
+    \caption[]{}
+    \label{fig:bipo_tagging_efficiency}
+\end{figure}
 
 \subsubsection{Cosmogenic Isotopes}
 
