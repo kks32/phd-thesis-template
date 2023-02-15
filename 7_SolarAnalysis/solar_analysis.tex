@@ -47,7 +47,7 @@ of $\sin^{2}\theta_{13} = 0.0222$ and $\Delta m^{2}_{13} = +\SI{2.515e-3}{\eV\sq
 \subsection{Background Processes}
 Sadly, elastically-scattered electrons from \beight{} neutrinos are not the only events we see in the SNO+ detector during the scintillator phase. There are a number of background processes that our signal must compete against. Below a reconstructed energy of $\sim\SI{2}{\MeV}$, it is known that various backgrounds completely swamp any possible \beight{} signal, and so for this analysis we only consider processes that can generate reconstructed energies of at least $E_{\textrm{min}} = \SI{2}{\MeV}$. The following subsections explain each of these backgrounds, as well as methods that have been used to mitigate them as much as possible.
 
-\subsubsection{Internal Uranium- and Thorium-Chain Backgrounds}
+\subsubsection{Internal Uranium- and Thorium-Chain Backgrounds}\label{sec:u_th_internals}
 Although every effort has been made to make the scintillator cocktail that fills SNO+ to be as radio-pure as possible, there inevitably remain trace amounts of the radioactive isotopes that derive from the decay chains of the \ce{^{238}U} and \ce{^{232}Th} isotopes. Fig.~\ref{fig:u_th_decay_chains} shows these two decay chains. Fortunately, only a fraction of the radioactive isotopes in these chains actually are capable of generating events in the detector with energies above $E_{\textrm{min}}$: these have been highlighted in Fig.~\ref{fig:u_th_decay_chains} in gold.
 
 \begin{figure}
@@ -70,7 +70,7 @@ This classifier calculates the likelihood ratio between the null hypothesis of a
 were then rejected.
 
 Combining both out-of-window and in-window \ce{Bi-Po} tagging, the impact on \ce{^{212}Bi-Po}, \ce{^{214}Bi-Po}, and \beight{} $\nu_e$ events can be seen in Fig.~\ref{fig:bipo_tagging_efficiency}. We consider here only events that pass all other cuts used in this analysis: see section~\ref{} % link to cuts subsection
-for the specifics of the cuts used. Because of the different lifetimes of the decays, \ce{^{214}Bi-Po} decays predominantly fall out-of-window whilst \ce{^{212}Bi-Po} events are typically in-window. This explains why the out-of-window tagging is substantially better at cutting \ce{^{214}Bi-Po} decays, whereas the in-window tagging far better tags \ce{^{212}Bi-Po} decays. Overall, within the analysis region of interest, the two combined cuts are able to tag TODO\% % CALCULATE
+for the specifics of the cuts used. Because of the different lifetimes of the decays, \ce{^{214}Bi-Po} decays predominantly fall out-of-window whilst \ce{^{212}Bi-Po} events are typically in-window. This explains why the out-of-window tagging is substantially better at cutting \ce{^{214}Bi-Po} decays, whereas the in-window tagging far better tags \ce{^{212}Bi-Po} decays. Overall, within the analysis region of interest (ROI), the two combined cuts are able to tag TODO\% % CALCULATE
 of \ce{^{214}Bi-Po} triggered events, TODO\% % CALCULATE
 of \ce{^{212}Bi-Po} triggered events, whilst retaining TODO\% % CALCULATE
 of \beight{} $\nu_e$ signal events.
@@ -82,8 +82,72 @@ of \beight{} $\nu_e$ signal events.
     \label{fig:bipo_tagging_efficiency}
 \end{figure}
 
-\subsubsection{Cosmogenic Isotopes}
+\subsubsection{\alphan{} Reactions}
+The impact of \ce{^{238}U}- and\ce{^{232}Th}-chain isotopes does not simply at their direct decays. It is possible for the $\alpha$s generated during these decays to undergo their own interactions with nuclei in the detector. Within the organic scintillator of SNO+, the dominant interaction of this type is when an $\alpha$ collides with a \ce{^{13}C} nucleus, emitting a neutron: \ce{\alpha{} + ^{13}C -> ^{16}O + n}. This is known as an \alphan{} reaction.
 
+The topology of this reaction in the detector is a delayed coincidence, as shown in Fig.~\ref{fig:alpha_n_drawing}. % Iwan's alpha-n sketch
+For the prompt signal, there is the light emitted from the $\alpha$ just before, and the \ce{n} just after the \alphan{}. The neutron then thermalises and gets captured by another nucleus --- usually hydrogen in SNO+ --- which creates an excited state that then eventually decays, creating a \ce{\gamma} that creates the delayed signal in the detector~\cite{}. % cite an explanation of alpha-n reactions
+
+\begin{figure}
+    \centering
+    % \includegraphics[]{}
+    \caption[]{}
+    \label{fig:alpha_n_drawing}
+\end{figure}
+
+As can be seen in Fig.~\ref{fig:alpha_n_coincidence_cut_impact}, \alphan{} interactions can lead to events reconstructed at a wide variety of energies, which could be an issue for this analysis. However, because they are delayed coincidence events with a typical decay time of $\sim\SI{100}{\nano\second}$, the aforementioned out-of-window \ce{Bi-Po} tagging algorithm also efficiently tags \alphan{} events. Looking again at Fig.~\ref{fig:alpha_n_coincidence_cut_impact}, simply by using the out-of-window \ce{Bi-Po} tagger without any further modifications TODO\% of events in the ROI are cut.
+
+\begin{figure}
+    \centering
+    % \includegraphics[]{}
+    \caption[]{}
+    \label{fig:alpha_n_coincidence_cut_impact}
+\end{figure}
+
+
+\subsubsection{External Backgrounds}
+All materials within the SNO+ detector are radioactive, not just the liquid scintillator cocktail. This includes the acrylic, ropes, external water, and PMTs. These components have had their radiopurity ``assayed'' (that is, measured) throughout the detector's lifetime, often back to the construction of the original SNO detector itself. The materials other than the liquid scintillator are known to have far higher background levels, especially in the important \ce{^{238}U}- and \ce{^{232}Th}-chain backgrounds~\cite{}. % good ref for this
+To distinguish between the inherent backgrounds within the scintillator, and the backgrounds from materials at larger radii, we use the terminology ``internal'' and ``external'', respectively.
+
+Although there are numerous external backgrounds, with a suitably accurate and precise position reconstruction algorithm they can be suitably handled. The simplest approach is with a so-called ``fiducial volume'' (FV) cut: just throw out all events that reconstruct beyond some radius. The only external background events that will reach within the FV are those that have reconstructed very poorly, or have some long-distance radiation that manages to deposit radiation close to the centre of the AV. % FOM cut?
+Because $\alpha$ and $\beta$ radiation can only travel short distances through the detector, it is only $\gamma$ % and neutron?
+radiation that can realistically travel far enough into the detector to be able to reconstruct anywhere near the centre. Moreover, the intensity of this $\gamma$ radiation attenuates exponentially towards the centre of the detector, meaning only a tiny fraction of the total number of external events reconstruct within a \SI{3.5}{\metre} FV, say. This strong radial-dependence can be seen in Fig.~\ref{fig:external_radial_dependence}.
+
+\begin{figure}
+    \centering
+    % \includegraphics[]{}
+    \caption[]{}
+    \label{fig:external_radial_dependence}
+\end{figure}
+
+What this figure also demonstrates is that our solar signal has a completely different radial dependence to these backgrounds. As a result, if one considers not just the energy of events but also their reconstructed radius, then it is possible to get an additional handle on the external backgrounds. The FV cut can then be pushed further out to larger radii, allowing one to gain more signal statistics.
+
+Work by Tereza Kroupova~\cite{} % Tereza's thesis & full-scint re-coordination
+allows for additional means of distinguishing external backgrounds from the solar signal. The underlying assumption in the reconstruction of SNO+ events is that there was an electron at a single point, which is entirely valid for \beight{} elastic scattering events. However, external backgrounds can fail this assumption in two ways. Firstly, these radioactive decays often generate $\gamma$ radiation in addition to the main $\alpha$/$\beta$ particle, which creates a multi-site event. Because the \texttt{scintFit} position reconstruction algorithm is not prepared for a distribution of energy depositions in the scintillator, the \tres{} distribution will broaden. This allows an event classifier to be built that distinguishes between the \tres{} distributions of single-site events and externals, known as the ``external background timing classifier''. Secondly, because external backgrounds that do reconstruct close to the centre of the detector typically have a $\gamma$ that travelled a long distance towards the centre of the detector, we expect the earliest light that hits the PMTs to arrive most often along the direction of the reconstructed position vector. A distribution of PMT hits for a given event as a function of their angular distribution relative to the direction of position reconstruction can be built, and compared to the expected distributions for single-site and external background events. This is known as the ``external background topological classifier''. Much like the classifier described in Section~\ref{sec:u_th_internals}, the single-site events used for comparison were \onbb{} events, but these have a similar single-site structure to the solar signal of interest in this analysis.
+
+Fig.~\ref{fig:external_classifier_corr} shows the correlation between the two classifier results for both a typical external background, and \beight{} $\nu_{e}$ events. % DESCRIPTION OF PLOT, HOW A CUT COULD WORK!!
+
+\begin{figure}
+    \centering
+    % \includegraphics[]{}
+    \caption[]{}
+    \label{fig:external_classifier_corr}
+\end{figure}
+
+\subsubsection{Cosmogenic Isotopes}
+The final source of background events are radioactive isotopes that form via collisions of cosmic rays with atomic nuclei, known as cosmogenic isotopes. Most of these isotopes are short-lived~\cite{}, % cite Borexino/KamLAND(?) paper handling cosmogenics
+with lifetimes $\mathcal{O}(\SI{1}{\second})$. Fortunately, the depth of SNO+ means that our rate of cosmic ray muons interacting with the detector is only 3 an hour~\cite{}. % cite Lorna/Katharine; Q: confident only muons? What about other kinds of cosmic rays? Presumably nothing else can penetrate this far with high enough rates
+Because the rate is so low relative to other experiments, relatively straightforward approaches to tagging and removing cosmic ray muons and their cosmogenic followers can be utilised without substantial loss of livetime. Events are tagged as a cosmic ray muon if they create a sufficient number of hits in the outward-looking PMTs above background levels, as well as many hits within the detector itself. The details of this tagging for the scintillator-fill were put in place by Lorna Nolan~\cite{}, % Lorna's thesis(?); Katharine's contribution?
+modifying the existing algorithms used in the water-phase~\cite{} % Billy's Thesis
+and in SNO~\cite{}. % Appropriate SNO citation (old thesis?)
+After a tagged cosmic muon event, all events for the next \SI{20}{\second} are then vetoed as a means of rejecting followers. This simple cut is enough to remove the vast majority of expected cosmogenic events in the scintillator-phase. % CITATION?
+The expected impact on loss of livetime, and hence quantity of signal events, is 3 lots of \SI{20}{\second} vetoes an hour, that is to say 1/60\textsuperscript{th} of the signal is lost via this cut.
+
+There is one cosmogenic isotope with a long-enough half-life that even the \SI{20}{\second} muon follower veto is not sufficient to remove all events. This is \ce{^{11}C}, which \ce{\beta+}-decays to stable \ce{^{11}B} with a half-life of \SI{20.4}{\minute}. The maximum possible energy deposited in this decay is \SI{1.982}{\MeV}~\cite{}, % CITATION
+just below $E_{\textrm{min}}$, so only a small fraction of \ce{^{11}C} events end up in the ROI: the ones with very high energies that get their energy reconstruction falsely-inflated by some amount. As a result, this background is expected to be very much sub-dominant to all other backgrounds in this analysis. Because this background is important to consider for some other analyses, a triple-coincidence tagging algorithm is being built by Katharine Dixon~\cite{}, % Katharine C11 citation
+but not used for this analysis.% Maybe this changes? will see if constraint needed.
+
+\subsection{The Log-likelihood Test Statistic}
 
      \begin{itemize}
         % \item Start with observational principle: changes in oscillation parameters lead to change in the energy spectrum of neutrinos elastically-scattering in the detector, and hence a change in the observed energy spectra of elastically-scattered electrons within the detector. Demonstrate basic impact on modifying $\Delta m^{2}_{21}$ and $\theta_{12}$.
@@ -91,7 +155,7 @@ of \beight{} $\nu_e$ signal events.
         \item Set up analysis approach: a Bayesian analysis using MCMC. Explain why this was chosen at a high level first: allows for us to perform a relatively complex analysis with multidimensional PDFs, numerous backgrounds, systematics, constraints on parameters, all whilst allowing us to obtain well-defined measures of uncertainty on our final results.
         \item Test statistic: binned extended log-likelihood. Explain why this is fundamentally the ``right''  test statistic to use. Allows for handling of constraints and systematics.
         \item Give an overview of how an MCMC works. Key idea: exploring parameter space in such a way as to reproduce posterior density distribution. Clever! Helps to avoid ``curse of dimensionality'' that often arises in fits with numerous parameters. Must also explain how we work in a fundamentally Bayesian, not frequentist, statistical approach.
-        \item Explain background processes we'll be dealing with: can be distinguished by event topology, energy spectrum, and position distribution.
+        % \item Explain background processes we'll be dealing with: can be distinguished by event topology, energy spectrum, and position distribution.
         \item Explain cuts that I am using for the analysis. Demonstrate how these attempt to maximise our signal sensitivity. Leads nicely into choice of 2D fit in both energy and radius (cubed).
         \item Describe implementation of neutrino oscillations within the fitting procedure: flat priors on the oscillation parameters, but a strong constraint from the solar flux. Explain choices of constraint that are possible. MCMC varies oscillation parameters and flux scaling factor, which then modifies the solar signal PDFs through a de-facto systematic that is a function of true neutrino energy, a 3\textsuperscript{rd} ``bookkeeping'' dimension in the signal's PDFs only. Neutrino oscillations simulated via PSelmaa, which accounts for MSW effect in both the Sun and the Earth. For computational speed, at run-time we actually use a lookup table with linear interpolation for the survival probability as a function of parameters.
         \item Implementation of systematics: we handle them generally as linear transformations acting on the vector of bin data. Clever! Which systematics do we expect to be particularly important for this analysis? Well, mismodelling in detector optics etc. can lead to changes in the measured energy spectrum of processes, which can be decomposed into an energy scale term and an energy smearing term to first order. Systematics also possible in the radial dimension (expected to be less important?) 
