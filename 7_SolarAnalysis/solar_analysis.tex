@@ -44,7 +44,7 @@ of $\sin^{2}\theta_{13} = 0.0222$ and $\Delta m^{2}_{13} = +\SI{2.515e-3}{\eV\sq
     \label{fig:pee_osc_param_dependence}
 \end{figure}
 
-\subsection{Background Processes}
+\subsection{Background Processes}\label{sec:background_processes}
 Sadly, elastically-scattered electrons from \beight{} neutrinos are not the only events we see in the SNO+ detector during the scintillator phase. There are a number of background processes that our signal must compete against. Below a reconstructed energy of $\sim\SI{2}{\MeV}$, it is known that various backgrounds completely swamp any possible \beight{} signal, and so for this analysis we only consider processes that can generate reconstructed energies of at least $E_{\textrm{min}} = \SI{2}{\MeV}$. The following subsections explain each of these backgrounds, as well as methods that have been used to mitigate them as much as possible.
 
 \subsubsection{Internal Uranium- and Thorium-Chain Backgrounds}\label{sec:u_th_internals}
@@ -145,9 +145,45 @@ The expected impact on loss of livetime, and hence quantity of signal events, is
 
 There is one cosmogenic isotope with a long-enough half-life that even the \SI{20}{\second} muon follower veto is not sufficient to remove all events. This is \ce{^{11}C}, which \ce{\beta+}-decays to stable \ce{^{11}B} with a half-life of \SI{20.4}{\minute}. The maximum possible energy deposited in this decay is \SI{1.982}{\MeV}~\cite{}, % CITATION
 just below $E_{\textrm{min}}$, so only a small fraction of \ce{^{11}C} events end up in the ROI: the ones with very high energies that get their energy reconstruction falsely-inflated by some amount. As a result, this background is expected to be very much sub-dominant to all other backgrounds in this analysis. Because this background is important to consider for some other analyses, a triple-coincidence tagging algorithm is being built by Katharine Dixon~\cite{}, % Katharine C11 citation
-but not used for this analysis.% Maybe this changes? will see if constraint needed.
+but not used for this analysis currently.% Maybe this changes? will see if constraint needed.
 
 \subsection{The Log-likelihood Test Statistic}
+At the highest level, this analysis involves taking the data observed in the scintillator-fill after applying a certain set of cuts, along with simulated PDFs for all processes believed to build up the observed data with those same cuts applied, and then attempting to fit the combined energy and radial distributions of the MC to that of the data. Given a set of PDFs, to try and match the distribution of observables in data we can modify a number of parameters. These consist of the normalisations of each PDF (i.e. the total number of events observed due to that process), and any systematic parameters that could modify the shapes of these distributions. For this analysis, the neutrino oscillation parameters act as \textit{de facto} systematic parameters, as they modify the shape of the \beight{} PDFs. Of course, unlike usual systematics the oscillation parameters are what we are actively trying to measure, instead of being a nuisance.
+
+In order to perform a fit to data in this way, we must first answer a set of questions:
+\begin{enumerate}
+    \item Which signal and background processes must we consider?\label{q:signal_v_background}
+    \item In addition to their normalisations, are there any further parameters necessary to specify the distributions of the PDFs for each of the processes? Systematics and oscillation parameters are good examples.
+    \item What is our test statistic?\label{q:test_statistic}
+    \item What algorithm do we use to try and find the best-fit result?
+    \item How do we measure uncertainties on these best-fit values for each parameter?
+\end{enumerate}
+In section~\ref{sec:background_processes}, question~\ref{q:signal_v_background} was answered for this analysis. We now give the answer to question~\ref{q:test_statistic}; all other questions on this list will be answered shortly.
+
+The test statistic used for this analysis is the \textit{binned extended log-likelihood.} Once the data and MC PDFs have been binned in both the observables of interest, it is assumed that the expected number of events in a given bin $j$ is governed by a Poisson distribution:
+
+\begin{equation}
+    P_{j}\left(n_{j} | \lambda_{j}\right) = \frac{\lambda_{j}^{n_{j}}e^{-\lambda_{j}}}{n_{j}!},
+\end{equation}
+where $P_{j}\left(n_{j} | \lambda_{j}\right)$ is the probability of observing $n_{j}$ events in bin $j$, given an expectation of $\lambda_{j}$ events in total from signal and background processes in that bin. This $\lambda_{j}$ can be decomposed into each of the expected rates for each process, $i$:
+
+\begin{equation}
+    \lambda_{j} = \sum_{i=1}^{N_{PDFs}} \mathcal{N}_{i}P_{ij}\left(\bm{\theta}\right),
+\end{equation}
+where $N_{\textrm{PDF}}$ is the number of PDFs being considered in the analysis, $\mathcal{N}_{i}$ is the normalisation parameter of the $i^{\textrm{th}}$ PDF, and $P_{ij}\left(\bm{\theta}\right)$ is the probability of observing an event of process type $j$ in bin $i$, assuming a set of non-normalisation parameters $\bm{\theta}$. By combining the probabilities of all the bins together, and also adding the possibility of constraining any of the normalisation or systematic parameters $\bm{\mathcal{N}}$ or $\bm{\theta}$, the total probability for a given set of processes assuming these parameters to give rise to the data seen is:
+
+\begin{align}
+    P\left(\bm{n} | \bm{\mathcal{N}}, \bm{\theta}\right) = 
+    L\left(\bm{\mathcal{N}}, \bm{\theta} | \bm{n}\right) &= 
+    \prod_{j=1}^{N_{\textrm{bins}}} \frac{\left[\sum_{i=1}^{N_{PDFs}} \mathcal{N}_{i}P_{ij}\left(\bm{\theta}\right)\right]^{n_{j}}e^{-\sum_{i=1}^{N_{PDFs}} \mathcal{N}_{i}P_{ij}\left(\bm{\theta}\right)}}{n_{j}!}\nonumber\\
+    &\cdot\prod_{k=1}^{N_{\mathcal{N}'}}\frac{e^{-\frac{\left(\mathcal{N}_{k}' - \mathcal{N}_{k}^{\mathrm{nom}}\right)^2}{2(\sigma_{k}^{\mathcal{N}})^{2}}}}{\sqrt{2\pi\sigma_{k}^{\mathcal{N}}}}
+    \cdot\prod_{\ell=1}^{N_{\theta'}}\frac{e^{-\frac{\left(\theta_{\ell}' - \theta_{\ell}^{\mathrm{nom}}\right)^2}{2(\sigma_{\ell}^{\theta})^{2}}}}{\sqrt{2\pi\sigma_{\ell}^{\theta}}}.
+\end{align}
+Here, $N_{\mathrm{bins}}$ is the total number of bins being considered in the analysis. Gaussian constraints\footnote{} %
+on a subset of the normalisations have been included, $\left\{\mathcal{N}'\right\}$, of which there are $N_{\mathcal{N}'}$ in total. For each of these normalisations, indexed by $k$, there is an associated nominal value $\mathcal{N}_{k}^{\mathrm{nom}}$ and width $\sigma_{k}^{\mathcal{N}}$. There are similar constraints on a subset of the systematic parameters, with similarly-named variables.
+
+
+
 
      \begin{itemize}
         % \item Start with observational principle: changes in oscillation parameters lead to change in the energy spectrum of neutrinos elastically-scattering in the detector, and hence a change in the observed energy spectra of elastically-scattered electrons within the detector. Demonstrate basic impact on modifying $\Delta m^{2}_{21}$ and $\theta_{12}$.
