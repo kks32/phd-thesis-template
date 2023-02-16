@@ -20,7 +20,7 @@ def main():
     ax.grid(True)
     ax.set_ylim(0, 1.1*np.max(df['pages']))
     ax.set_xlabel("Date")
-    ax.set_xlim(datetime.date(2023,1,1), datetime.date.today())
+    ax.set_xlim(datetime.date(2023,1,1), datetime.date.today()+ datetime.timedelta(days=1))
     ax.xaxis.set_major_formatter(mdates.ConciseDateFormatter(ax.xaxis.get_major_locator()))
     plt.legend()
     plt.show()
