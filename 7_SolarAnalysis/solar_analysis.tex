@@ -260,7 +260,24 @@ linear algebra package for efficient matrix manipulation.
 
 There is a problem that can arise when considering the impact of systematics near the edge of the analysis ROI. Many systematics such as shifts, scalings, and convolutions use information about the contents of nearby bins to determine the contents of a particular bin. However, for bins near the edge some of that information does not exist --- it has been lost to the cuts that define the ROI. This can lead to a bias in the generation of the modified PDFs, and therefore also the posterior distribution.
 
-As an example, consider the impact of an energy scale systematic on the energy distribution of \ce{^{234m}Pa} events in the detector. Because the events seen for this process in the ROI are merely the high-energy tail,
+As an example, consider the impact of an energy scale systematic on the energy distribution of \ce{^{234m}Pa} events in the detector, shown in Fig.~\ref{fig:energy_scaling_example}. Because the events seen for this process in the ROI are merely the high-energy tail, any systematic energy scaling $E'_{\textrm{reco}} := \beta E_{\textrm{reco}}$ should have a large impact on the number of events observed at the low end of the ROI. However, given that the information about data below $E_{\textrm{min}}$ is lost to the ROI cuts, any energy scaling of $\beta>1$ will not be applied correctly at all.
+
+\begin{figure}
+    \centering
+    % \includegraphics[]{}
+    \caption[]{}
+    \label{fig:energy_scaling_example}
+\end{figure}
+
+The solution to this problem is defining a ``buffer region'' of bins on either side of the ROI, which allow for tracking of events in and out of the ROI due to systematics, but aren't considered when calculating the likelihood. This is also shown in Fig.~\ref{fig:energy_scaling_example}. After the scaling systematic is applied, although incorrect bin values are found in the buffer region, this is fine because we are no longer calculating the likelihood with those bins. Note that because of this modification, the normalisation parameters we put into the model no longer represent the expected number of events in the ROI. Instead, they represent the number of events expected in both the ROI and buffer region, before any systematics have been applied.
+
+
+\subsection{Including Oscillations in the Fit}
+Within the analysis MCMC code, the process of neutrino oscillations are thought of as a \textit{de facto} systematic that acts only on the \beight{} $\nu_{e}$ and $\nu_{x}$ signal spectra. Three parameters relevant to the signal are floated within the MCMC fit: \dmsq{}, \tonetwo{}, and $\Phi_{\ce{^{8}B}}$, the unoscillated \ce{^{8}B} flux relative to the expected rate. For the two signal PDFs, a third ``bookkeeping'' dimension is added on top of reconstructed energy and radius: the true neutrino energy, $E_{\nu}$. This is necessary for correctly applying oscillations, as the oscillation probability is a function of the neutrino's energy, not the scattered electron's. Before the fit, these 3D PDFs are given normalisations corresponding to the expectation of the number of events for each type, $\nu_{e}$ and $\nu_{x}$, after cuts but before oscillations have been applied. Strictly speaking there should be zero $\nu_{x}$ events before neutrino oscillations: the pre-oscillation rate used here is the post-cut number of events expected if 100\% of the neutrinos oscillated to the $\nu_{x}$ type.
+
+During the MCMC fit, for a given set of parameters $\bm{\theta} = \left(\dmsq{}, \tonetwo{}, \Phi_{\ce{^{8}B}}\right)$ the following is performed to oscillate the signal PDFs. Firstly, the normalisations are scaled by the factor $\Phi_{\ce{^{8}B}}$. Then, for each $E_{\nu}$ bin the survival probability $P_{ee}\left(E_{\nu}, \dmsq{}, \tonetwo{}\right)$ is calculated. Each bin then has their probability scaled by either $P_{ee}$ or $1-P_{ee}$, for the $\nu_{e}$ and $\nu_{x}$ respectively.
+
+
 
 
      \begin{itemize}
@@ -268,7 +285,7 @@ As an example, consider the impact of an energy scale systematic on the energy d
         \item Want to maximise the sensitivity to measuring these two parameters. Energy spectrum of signal is background-free above $\sim\SI{5}{\MeV}$, but rate is substantially larger at lower energies. If one can minimise backgrounds at the lower energies, then there should be hopes of obtaining a measurement with greater precision!
         % \item Set up analysis approach: a Bayesian analysis using MCMC. Explain why this was chosen at a high level first: allows for us to perform a relatively complex analysis with multidimensional PDFs, numerous backgrounds, systematics, constraints on parameters, all whilst allowing us to obtain well-defined measures of uncertainty on our final results.
         % \item Test statistic: binned extended log-likelihood. Explain why this is fundamentally the ``right''  test statistic to use. Allows for handling of constraints and systematics.
-        \item Give an overview of how an MCMC works. Key idea: exploring parameter space in such a way as to reproduce posterior density distribution. Clever! Helps to avoid ``curse of dimensionality'' that often arises in fits with numerous parameters. Must also explain how we work in a fundamentally Bayesian, not frequentist, statistical approach.
+        % \item Give an overview of how an MCMC works. Key idea: exploring parameter space in such a way as to reproduce posterior density distribution. Clever! Helps to avoid ``curse of dimensionality'' that often arises in fits with numerous parameters. Must also explain how we work in a fundamentally Bayesian, not frequentist, statistical approach.
         % \item Explain background processes we'll be dealing with: can be distinguished by event topology, energy spectrum, and position distribution.
         \item Explain cuts that I am using for the analysis. Demonstrate how these attempt to maximise our signal sensitivity. Leads nicely into choice of 2D fit in both energy and radius (cubed).
         \item Describe implementation of neutrino oscillations within the fitting procedure: flat priors on the oscillation parameters, but a strong constraint from the solar flux. Explain choices of constraint that are possible. MCMC varies oscillation parameters and flux scaling factor, which then modifies the solar signal PDFs through a de-facto systematic that is a function of true neutrino energy, a 3\textsuperscript{rd} ``bookkeeping'' dimension in the signal's PDFs only. Neutrino oscillations simulated via PSelmaa, which accounts for MSW effect in both the Sun and the Earth. For computational speed, at run-time we actually use a lookup table with linear interpolation for the survival probability as a function of parameters.
