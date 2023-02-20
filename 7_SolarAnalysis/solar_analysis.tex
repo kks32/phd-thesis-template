@@ -168,44 +168,45 @@ where $P_{j}\left(n_{j} | \lambda_{j}\right)$ is the probability of observing $n
 \begin{equation}
     \lambda_{j} = \sum_{i=1}^{N_{\textrm{PDFs}}} \mathcal{N}_{i}P_{ij}\left(\bm{\theta}\right),
 \end{equation}
-where $N_{\textrm{PDF}}$ is the number of PDFs being considered in the analysis, $\mathcal{N}_{i}$ is the normalisation parameter of the $i^{\textrm{th}}$ PDF, and $P_{ij}\left(\bm{\theta}\right)$ is the probability of observing an event of process type $j$ in bin $i$, assuming a set of non-normalisation parameters $\bm{\theta}$. By combining the probabilities of all the bins together, and also adding the possibility of constraining any of the normalisation or systematic parameters $\bm{\mathcal{N}}$ or $\bm{\theta}$, the total probability for a given set of processes assuming these parameters to give rise to the data seen is:
+where $N_{\textrm{PDF}}$ is the number of PDFs being considered in the analysis, $\mathcal{N}_{i}$ is the normalisation parameter of the $i^{\textrm{th}}$ PDF, and $P_{ij}\left(\bm{\theta}\right)$ is the probability of observing an event of process type $j$ in bin $i$, assuming a set of non-normalisation parameters $\bm{\theta}$. By combining the probabilities of all the bins together, %and also adding the possibility of constraining any of the normalisation or systematic parameters $\bm{\mathcal{N}}$ or $\bm{\theta}$, 
+the total probability for a given set of processes assuming these parameters to give rise to the data seen is:
 \begin{align}
     P\left(\bm{n} | \bm{\mathcal{N}}, \bm{\theta}\right) = 
     L\left(\bm{\mathcal{N}}, \bm{\theta} | \bm{n}\right) &= 
-    \prod_{j=1}^{N_{\textrm{bins}}} \frac{\left[\sum_{i=1}^{N_{\textrm{PDFs}}} \mathcal{N}_{i}P_{ij}\left(\bm{\theta}\right)\right]^{n_{j}}e^{-\sum_{i=1}^{N_{\textrm{PDFs}}} \mathcal{N}_{i}P_{ij}\left(\bm{\theta}\right)}}{n_{j}!}\nonumber\\
-    &\cdot\prod_{k=1}^{N_{\mathcal{N}'}}\frac{e^{-\frac{\left(\mathcal{N}_{k}' - \mathcal{N}_{k}^{\mathrm{nom}}\right)^2}{2(\sigma_{k}^{\mathcal{N}})^{2}}}}{\sqrt{2\pi\sigma_{k}^{\mathcal{N}}}}
-    \cdot\prod_{\ell=1}^{N_{\theta'}}\frac{e^{-\frac{\left(\theta_{\ell}' - \theta_{\ell}^{\mathrm{nom}}\right)^2}{2(\sigma_{\ell}^{\theta})^{2}}}}{\sqrt{2\pi\sigma_{\ell}^{\theta}}}.
+    \prod_{j=1}^{N_{\textrm{bins}}} \frac{\left[\sum_{i=1}^{N_{\textrm{PDFs}}} \mathcal{N}_{i}P_{ij}\left(\bm{\theta}\right)\right]^{n_{j}}e^{-\sum_{i=1}^{N_{\textrm{PDFs}}} \mathcal{N}_{i}P_{ij}\left(\bm{\theta}\right)}}{n_{j}!},
+    % \nonumber\\
+    % &\cdot\prod_{k=1}^{N_{\mathcal{N}'}}\frac{e^{-\frac{\left(\mathcal{N}_{k}' - \mathcal{N}_{k}^{\mathrm{nom}}\right)^2}{2(\sigma_{k}^{\mathcal{N}})^{2}}}}{\sqrt{2\pi\sigma_{k}^{\mathcal{N}}}}
+    % \cdot\prod_{\ell=1}^{N_{\theta'}}\frac{e^{-\frac{\left(\theta_{\ell}' - \theta_{\ell}^{\mathrm{nom}}\right)^2}{2(\sigma_{\ell}^{\theta})^{2}}}}{\sqrt{2\pi\sigma_{\ell}^{\theta}}}
 \end{align}
-Here, $N_{\mathrm{bins}}$ is the total number of bins being considered in the analysis. Gaussian constraints
-\footnote{% note about Bayesian interpretation of constraints
-    As we shall see in section~\ref{}, % reference to Bayesian analysis explanation section
-    because this analysis uses a Bayesian statistical approach, it is more appropriate to talk of these constraints as non-uniform ``priors'' for the parameters.
-} 
-on a subset of the normalisations have been included, $\left\{\mathcal{N}'\right\}$, of which there are $N_{\mathcal{N}'}$ in total. For each of these normalisations, indexed by $k$, there is an associated nominal value $\mathcal{N}_{k}^{\mathrm{nom}}$ and width $\sigma_{k}^{\mathcal{N}}$. There are similar constraints on a subset of the systematic parameters, with similarly-named variables.
-
+where $N_{\mathrm{bins}}$ is the total number of bins being considered in the analysis. 
+% Gaussian constraints
+% \footnote{% note about Bayesian interpretation of constraints
+%     As we shall see in section~\ref{}, % reference to Bayesian analysis explanation section
+%     because this analysis uses a Bayesian statistical approach, it is more appropriate to talk of these constraints as non-uniform ``priors'' for the parameters.
+% } 
+% on a subset of the normalisations have been included, $\left\{\mathcal{N}'\right\}$, of which there are $N_{\mathcal{N}'}$ in total. For each of these normalisations, indexed by $k$, there is an associated nominal value $\mathcal{N}_{k}^{\mathrm{nom}}$ and width $\sigma_{k}^{\mathcal{N}}$. There are similar constraints on a subset of the systematic parameters, with similarly-named variables.
 This probability can be re-framed as the likelihood of the vectors of parameters $\bm{\mathcal{N}}$ and $\bm{\theta}$ given the vector of number of events in each bin, $\bm{n}$: $L\left(\bm{\mathcal{N}}, \bm{\theta} | \bm{n}\right)$. It is rare to see the likelihood as-is, instead, for computational purposes the log-likelihood is used instead, $\mathcal{L}\left(\bm{\mathcal{N}}, \bm{\theta} | \bm{n}\right) := \ln{L}\left(\bm{\mathcal{N}}, \bm{\theta} | \bm{n}\right)$. We can then get to the formula actually used for this analysis:
 \begin{align}
     \mathcal{L}\left(\bm{\mathcal{N}}, \bm{\theta} | \bm{n}\right) &=
     -\sum_{i=1}^{N_{\mathrm{PDFs}}}\mathcal{N}_{i} 
-    + \sum_{j=1}^{N_{\mathrm{bins}}}n_{j}\ln{\left(\sum_{i=1}^{N_{\textrm{PDFs}}} \mathcal{N}_{i}P_{ij}\left(\bm{\theta}\right)\right)}\nonumber\\
-    &-\sum_{k=1}^{N_{\mathcal{N}'}}\frac{\left(\mathcal{N}_{k}' - \mathcal{N}_{k}^{\mathrm{nom}}\right)^2}{2(\sigma_{k}^{\mathcal{N}})^{2}}
-    -\sum_{\ell=1}^{N_{\theta'}}\frac{\left(\theta_{\ell}' - \theta_{\ell}^{\mathrm{nom}}\right)^2}{2(\sigma_{\ell}^{\theta})^{2}}.
+    + \sum_{j=1}^{N_{\mathrm{bins}}}n_{j}\ln{\left(\sum_{i=1}^{N_{\textrm{PDFs}}} \mathcal{N}_{i}P_{ij}\left(\bm{\theta}\right)\right)}.%\nonumber\\
+    % &-\sum_{k=1}^{N_{\mathcal{N}'}}\frac{\left(\mathcal{N}_{k}' - \mathcal{N}_{k}^{\mathrm{nom}}\right)^2}{2(\sigma_{k}^{\mathcal{N}})^{2}}
+    % -\sum_{\ell=1}^{N_{\theta'}}\frac{\left(\theta_{\ell}' - \theta_{\ell}^{\mathrm{nom}}\right)^2}{2(\sigma_{\ell}^{\theta})^{2}}.
 \end{align}
 
 
-\subsection{The Bayesian Statistical Approach \& MCMC}
+\subsection{The Bayesian Statistical Approach}
 There are two main schools of statistical inference, ``Frequentist'' and ``Bayesian''. In the former, probabilities describe the fraction of times a situation can be found within the whole ensemble of possible worlds. For the latter, we care not about an ensemble of worlds but instead our degree of belief in this current one. We update our beliefs as we acquire knowledge of the world through Bayes' Theorem:
 \begin{equation}
     P\left(\bm{\mu}|\bm{x}\right) = \frac{\mathcal{L}\left(\bm{\mu}|\bm{x}\right)P\left(\bm{\mu}\right)}{P\left(\bm{x}\right)}.
 \end{equation}
 Here, $\bm{\mu}$ is the set of parameters that model our system, $P\left(\bm{\mu}\right)$ is our \textit{prior} (pre-existing) distribution for those model parameters, and $\bm{x}$ is the data taken in our experiment. The updated, \textit{posterior} distribution $P\left(\bm{\mu}|\bm{x}\right)$ is then the prior multiplied by the likelihood of parameters $\bm{\mu}$ given observations $\bm{x}$, $L\left(\bm{\mu}|\bm{x}\right)$, and divided by the total probability $P\left(\bm{x}\right)$ of observing $\bm{x}$ under any circumstance.
 
-Both approaches to statistics are widely-used in statistical analysis, in both particle physics and beyond. The Bayesian approach was used for this analysis, as it was believed that this helps keep transparent what assumptions are being made in the analysis. More precisely, the suggestions made by Biller \& Oser in~\cite{} % Steve's stats paper 
-are followed: for parameters that do not have some pre-existing constraint, a flat prior is used. For the bulk of this analysis, uniform priors are assumed on the neutrino oscillation parameters \dmsq{} and \tonetwo{}, as the magnitudes of these parameters are now well-established. There is no major reason to prefer a flat prior in \tonetwo{} as opposed to $\tan^2$\tonetwo{} or $\sin^2$\tonetwo{}; we will see the impact of these different choices of prior in section~\ref{}. % IMPACT OF PRIOR REFERENCE!
+Both approaches to statistics are widely-used in statistical analysis, in both particle physics and beyond. The Bayesian approach was used for this analysis, as it was believed that this helps keep transparent what assumptions are being made in the analysis. 
 
 Now, if one is able to determine the overall posterior distribution, then it is possible to derive best-fit values with uncertainties for all parameters in the fit. This is done by ``marginalising'' the posterior distribution, i.e. integrating over all parameters other than the one of interest. A sensible best-fit value is then the modal marginalised posterior density, the highest value in the marginalised distribution. The uncertainty on this value is derived from the spread of the marginalised posterior, by the calculation of the $1\sigma$ Credible Interval (CI): this is the set of values for a given parameter which has a total posterior probability of 68.3\%, and contain the best-fit value. There are in fact an infinite number of CIs that satisfy this property; for this analysis, the values are chosen in decreasing order of marginalised posterior probability density.
-
-Of course, all of this assumes that one can accurately determine the posterior density distribution. Whilst the likelihood and prior distribution are straightforward enough to calculate, often-times $P\left(\bm{x}\right)$, which acts as a normalisation, is very challenging to determine. This is because calculating this normalisation involves integrating the likelihood over all the parameter space, and if there are a large number of parameters this can become enormously numerically complex. An alternative approach is needed!
+\subsection{Markov Chain Monte Carlo}
+Of course, all of this assumes that one can accurately determine the posterior density distribution. Whilst the likelihood and prior distribution are straightforward enough to calculate, often-times $P\left(\bm{x}\right)$ (which acts as a normalisation) is very challenging to determine. This is because calculating this normalisation involves integrating the likelihood over all the parameter space, and if there are a large number of parameters this can become enormously numerically complex. An alternative approach is needed!
 
 That alternative comes in the form of \textit{Markov Chain Monte Carlo}, MCMC. A Markov Chain is any mathematical system for which the next state of the system is dependent only on its current state; the system is in some sense ``memoryless''. For a large class of Markov Chains --- those that are ``ergodic'' and ``aperiodic'' --- one can prove that regardless of the initial position on the chain, the probability distribution converges to the same distribution~\cite{}. % CITE Feller, W. (1968). An Introduction to Probability Theory and its Applications
 MCMC uses such a Markov Chain which attempts to converge towards the posterior density distribution in particular. In MCMC, after choosing the initial position in the parameter space, successive states are chosen at random with a probability dependent only on the properties of the current position in parameter space and the proposed position. The convergence property of Markov Chains means that the set of steps made in the parameter space after some initial number of steps will have a distribution that converges to that of the posterior density distribution.
@@ -234,13 +235,39 @@ There are a number of MCMC algorithms, and the particular one used in this analy
 \end{align}
 $R\left(\bm{\mu}'|\bm{\mu}\right)$ is the probability density that position $\bm{\mu}'$ is proposed as a step from position $\bm{\mu}$, and vice versa for $R\left(\bm{\mu}|\bm{\mu}'\right)$. In most cases, because of the use of the same multivariate Gaussian in choosing proposals, $\frac{R\left(\bm{\mu}|\bm{\mu}'\right)}{R\left(\bm{\mu}'|\bm{\mu}\right)} = 1$ simply. This component only becomes important at the edges of the parameter space, preventing the sampling probability being incorrectly impacted if a proposed step goes outside the allowed parameter space.
 
-It is the detailed balance condition that ensures convergence of the MCMC algorithm to specifically the posterior density distribution. Crucially, because it is only dependent on the ratio of posterior densities, the hard-to-calculate normalisation $P\left(\bm{x}\right)$ in both posterior terms cancels out, meaning one only needs to calculate the likelihood and priors for each step, as well as $\frac{R\left(\bm{\mu}|\bm{\mu}'\right)}{R\left(\bm{\mu}'|\bm{\mu}\right)}$.
+It is the detailed balance condition that ensures convergence of the MCMC algorithm to specifically the posterior density distribution. Crucially, because it is only dependent on the ratio of posterior densities, the hard-to-calculate normalisation $P\left(\bm{x}\right)$ in both posterior density terms cancels out, meaning one only needs to calculate the likelihood and priors for each step, as well as $\frac{R\left(\bm{\mu}|\bm{\mu}'\right)}{R\left(\bm{\mu}'|\bm{\mu}\right)}$.
+
+The specific implementation of MCMC used for this analysis is that of \texttt{OXO}, a C++ analysis framework first developed by Jack Dunger~\cite{}. % Jack's thesis
+\texttt{OXO} is able to run the Metropolis-Hastings algorithm on multidimensional binned data, using the log-likelihood defined in~\ref{sec:test_statistic}. This framework also allows one to include systematic parameters that can float within the fit, and define non-uniform priors for normalisations and systematics that have constraints: the details of this will be discussed shortly.
+
+\subsection{Choosing Priors}
+For this analysis, the suggestions made by Biller \& Oser in~\cite{} % Steve's stats paper 
+about choosing prior distributions are followed: for parameters that do not have some pre-existing constraint, a flat prior is used. A nice consequence of this choice is that $\ln{\frac{P\left(\bm{\mu}'\right)}{P\left(\bm{\mu}\right)}} = 0$, so the actual value of the prior for these variables never needs to be calculated when running the MCMC algorithm. For the bulk of this analysis, uniform priors are assumed on the neutrino oscillation parameters \dmsq{} and \tonetwo{}, as the magnitudes of these parameters are now well-established. There is no major reason to prefer a flat prior in \tonetwo{} as opposed to $\tan^2$\tonetwo{} or $\sin^2$\tonetwo{}; we will see the impact of these different choices of prior in section~\ref{}. % IMPACT OF PRIOR REFERENCE!
+
+For parameters with existing asymmetric constraints $\beta^{+\sigma_{+}}_{-\sigma_{-}}$, this analysis uses an asymmetric Gaussian prior, equivalent to the logarithm of the prior being an asymmetric quadratic:
+\begin{equation}
+    \ln{P\left(\mu\right)} = \mathcal{A} -
+    \begin{cases}
+        \frac{\left(\mu-\beta\right)^{2}}{2\sigma_{+}^{2}} & \textrm{if } \mu\geq\beta,\\
+        \frac{\left(\mu-\beta\right)^{2}}{2\sigma_{-}^{2}} & \textrm{if } \mu<\beta.
+    \end{cases}
+\end{equation}
+Here, $\mathcal{A}$ is the logarithm of the prior's normalisation constant, and cancels out in the detailed balance condition. For parameters with symmetric constraints, $\sigma_{+}=\sigma_{-}$, then $\ln{P\left(\mu\right)}$ reduces to a quadratic with maximum at $\mu = \beta$.
+
+\subsection{Including Systematics in the Fit}
+One important implementation detail is how systematics are applied within the MCMC fitting process. Once systematics are added to the fit, at every step the binned PDFs for all the processes considered in the fit must get modified appropriately, which can become extremely computationally-intensive if not approached carefully. The strategy used in the \texttt{OXO} framework starts by thinking of the contents of a binned PDF as a vector of bin probabilities, $\bm{\mathrm{p}} = \left(p_{1}, p_{2}, ..., p_{N_{\textrm{bins}}}\right)^{T}$. Then, we can think of a systematic acting on the PDF as a linear transformation, and hence a matrix $S$ acting on this vector: $\bm{\mathrm{p}'} = S\bm{\mathrm{p}}$. We only need to calculate this matrix once for a given set of systematic parameter values, and can then use the same matrix on all the PDFs in the fit. Furthermore, when multiple systematics are applied, the matrix for each systematic can then be combined via matrix multiplication into one single ``detector response'' matrix. \texttt{OXO} uses the \texttt{Armadillo}~\cite{} % Armadillo software citation
+linear algebra package for efficient matrix manipulation.
+
+There is a problem that can arise when considering the impact of systematics near the edge of the analysis ROI. Many systematics such as shifts, scalings, and convolutions use information about the contents of nearby bins to determine the contents of a particular bin. However, for bins near the edge some of that information does not exist --- it has been lost to the cuts that define the ROI. This can lead to a bias in the generation of the modified PDFs, and therefore also the posterior distribution.
+
+As an example, consider the impact of an energy scale systematic on the energy distribution of \ce{^{234m}Pa} events in the detector. Because the events seen for this process in the ROI are merely the high-energy tail,
+
 
      \begin{itemize}
         % \item Start with observational principle: changes in oscillation parameters lead to change in the energy spectrum of neutrinos elastically-scattering in the detector, and hence a change in the observed energy spectra of elastically-scattered electrons within the detector. Demonstrate basic impact on modifying $\Delta m^{2}_{21}$ and $\theta_{12}$.
         \item Want to maximise the sensitivity to measuring these two parameters. Energy spectrum of signal is background-free above $\sim\SI{5}{\MeV}$, but rate is substantially larger at lower energies. If one can minimise backgrounds at the lower energies, then there should be hopes of obtaining a measurement with greater precision!
-        \item Set up analysis approach: a Bayesian analysis using MCMC. Explain why this was chosen at a high level first: allows for us to perform a relatively complex analysis with multidimensional PDFs, numerous backgrounds, systematics, constraints on parameters, all whilst allowing us to obtain well-defined measures of uncertainty on our final results.
-        \item Test statistic: binned extended log-likelihood. Explain why this is fundamentally the ``right''  test statistic to use. Allows for handling of constraints and systematics.
+        % \item Set up analysis approach: a Bayesian analysis using MCMC. Explain why this was chosen at a high level first: allows for us to perform a relatively complex analysis with multidimensional PDFs, numerous backgrounds, systematics, constraints on parameters, all whilst allowing us to obtain well-defined measures of uncertainty on our final results.
+        % \item Test statistic: binned extended log-likelihood. Explain why this is fundamentally the ``right''  test statistic to use. Allows for handling of constraints and systematics.
         \item Give an overview of how an MCMC works. Key idea: exploring parameter space in such a way as to reproduce posterior density distribution. Clever! Helps to avoid ``curse of dimensionality'' that often arises in fits with numerous parameters. Must also explain how we work in a fundamentally Bayesian, not frequentist, statistical approach.
         % \item Explain background processes we'll be dealing with: can be distinguished by event topology, energy spectrum, and position distribution.
         \item Explain cuts that I am using for the analysis. Demonstrate how these attempt to maximise our signal sensitivity. Leads nicely into choice of 2D fit in both energy and radius (cubed).
