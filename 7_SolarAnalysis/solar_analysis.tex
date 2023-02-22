@@ -11,7 +11,7 @@ This chapter begins by explaining how it is possible to measure the solar oscill
 
 \section{Analysis Methodology}\label{sec:analysis_method}
 \subsection{Observational Principle}
-How can we measure neutrino oscillation parameters via solar neutrinos in the SNO+ detector? As discussed in~\label{}, % link to theory section on solar oscillations
+How can we measure neutrino oscillation parameters via solar neutrinos in the SNO+ detector? As discussed in Chapter~\ref{chap:theory}, % link to theory section on solar oscillations
 it is possible to detect all flavours of neutrino through elastic scattering with electrons in the detector. If this interaction was purely neutral-current, then there would be no way of telling the flavour-state of an interacting neutrino. However, electron neutrinos are able to interact through an additional charged-current mode. This modifies the cross-section for electron neutrinos, and means that as the survival probability for electron neutrinos generated from the Sun, $P_{ee}$, is modified, the interaction probability of neutrinos with the detector will also.
 
 Of course, we do not directly measure neutrino energies in the detector --- only the associated scattered electron. If there were no correlation between the observed electron energy and its associated neutrino, then the only effect of neutrino oscillations would be to change the overall observed rate of events due to this process. There would be no change in the shape of the event's energy spectrum, even though neutrino oscillations are a function of neutrino energy. Fortunately, there is some dependence of the neutrino's energy on that of the scattered electron. This dependence can be seen in Fig.~\ref{fig:nu_elec_energy_dependence} for \beight{} electron neutrinos interacting in SNO+. % Expected analytical dependence?
@@ -83,7 +83,7 @@ of \beight{} $\nu_e$ signal events.
 \end{figure}
 
 \subsubsection{\alphan{} Reactions}
-The impact of \ce{^{238}U}- and\ce{^{232}Th}-chain isotopes does not simply at their direct decays. It is possible for the $\alpha$s generated during these decays to undergo their own interactions with nuclei in the detector. Within the organic scintillator of SNO+, the dominant interaction of this type is when an $\alpha$ collides with a \ce{^{13}C} nucleus, emitting a neutron: \ce{\alpha{} + ^{13}C -> ^{16}O + n}. This is known as an \alphan{} reaction.
+The impact of \ce{^{238}U}- and\ce{^{232}Th}-chain isotopes does not simply end at their direct decays. It is possible for the $\alpha$s generated during these decays to undergo their own interactions with nuclei in the detector. Within the organic scintillator of SNO+, the dominant interaction of this type is when an $\alpha$ collides with a \ce{^{13}C} nucleus, emitting a neutron: \ce{\alpha{} + ^{13}C -> ^{16}O + n}. This is known as an \alphan{} reaction.
 
 The topology of this reaction in the detector is a delayed coincidence, as shown in Fig.~\ref{fig:alpha_n_drawing}. % Iwan's alpha-n sketch
 For the prompt signal, there is the light emitted from the $\alpha$ just before, and the \ce{n} just after the \alphan{}. The neutron then thermalises and gets captured by another nucleus --- usually hydrogen in SNO+ --- which creates an excited state that then eventually decays, creating a \ce{\gamma} that creates the delayed signal in the detector~\cite{}. % cite an explanation of alpha-n reactions
@@ -285,33 +285,55 @@ and the \texttt{PREM} model being used for the Earth~\cite{}. % CITE
 
 One final thing \texttt{PSelmaa} needs to know to calculate survival probabilities is the distribution of solar zenith angles during the data-taking. The solar zenith $\theta_{z}$ is the angle between the two following vectors: one going from the centre of the Earth through the centre of the SNO+ detector, and another starting from the detector's centre and pointing towards the Sun. As an example, if the Sun were ever to be directly overhead the detector, both vectors would be along direction $\bm{\hat{z}}$ in detector coordinates, leading to a solar zenith angle of $\theta_{z}=0$. The position of the SNO+ detector on Earth, as well as the times at which the detector was live, determine the solar zenith angle distribution. If not accounted for, this can lead to a bias in the result of the analysis, as a preponderance of livetime taken at night (say) would lead to a larger fraction of solar neutrinos having to pass through the bulk of the Earth to get to the detector, and hence the impact of the MSW effect would be greater.
 
-Even after using the Large Mixing Angle approximation, 
+Even after using the Large Mixing Angle approximation, having to call \texttt{PSelmaa} numerous times for every step in the MCMC algorithm would lead to exorbitant run times for the fitting. Therefore, a further approximation is made. Before running the MCMC fit, \texttt{PSelmaa} is used to calculate $P_{ee}$ over the necessary 3D space of parameters. To get a fine scan of this space, 101 $E_{\nu}$ values from \SI{1}{\MeV} to \SI{20}{\MeV}, 101 \dmsq{} values from \SI{3e-6}{\eV\squared} to \SI{1e-3}{\eV\squared}, and 151 values for \tonetwo{} from \ang{5} to \ang{65} were looked over. This 3D grid of $101\cdot101\cdot151$ $P_{ee}$ values is then written to disk, and loaded into memory for use during the fit as a lookup table. At run-time, as the Metropolis-Hastings algorithm samples this 3D space the survival probability is estimated through a trilinear interpolation of the 3D grid loaded in: a version of linear interpolation for three dimensions~\cite{}. % trilinear interpolation citation
+% Discussion of minor systematic associated with linear interpolation?
 
-     \begin{itemize}
+    %  \begin{itemize}
         % \item Start with observational principle: changes in oscillation parameters lead to change in the energy spectrum of neutrinos elastically-scattering in the detector, and hence a change in the observed energy spectra of elastically-scattered electrons within the detector. Demonstrate basic impact on modifying $\Delta m^{2}_{21}$ and $\theta_{12}$.
-        \item Want to maximise the sensitivity to measuring these two parameters. Energy spectrum of signal is background-free above $\sim\SI{5}{\MeV}$, but rate is substantially larger at lower energies. If one can minimise backgrounds at the lower energies, then there should be hopes of obtaining a measurement with greater precision!
+        % \item Want to maximise the sensitivity to measuring these two parameters. Energy spectrum of signal is background-free above $\sim\SI{5}{\MeV}$, but rate is substantially larger at lower energies. If one can minimise backgrounds at the lower energies, then there should be hopes of obtaining a measurement with greater precision!
         % \item Set up analysis approach: a Bayesian analysis using MCMC. Explain why this was chosen at a high level first: allows for us to perform a relatively complex analysis with multidimensional PDFs, numerous backgrounds, systematics, constraints on parameters, all whilst allowing us to obtain well-defined measures of uncertainty on our final results.
         % \item Test statistic: binned extended log-likelihood. Explain why this is fundamentally the ``right''  test statistic to use. Allows for handling of constraints and systematics.
         % \item Give an overview of how an MCMC works. Key idea: exploring parameter space in such a way as to reproduce posterior density distribution. Clever! Helps to avoid ``curse of dimensionality'' that often arises in fits with numerous parameters. Must also explain how we work in a fundamentally Bayesian, not frequentist, statistical approach.
         % \item Explain background processes we'll be dealing with: can be distinguished by event topology, energy spectrum, and position distribution.
-        \item Explain cuts that I am using for the analysis. Demonstrate how these attempt to maximise our signal sensitivity. Leads nicely into choice of 2D fit in both energy and radius (cubed).
-        \item Describe implementation of neutrino oscillations within the fitting procedure: flat priors on the oscillation parameters, but a strong constraint from the solar flux. Explain choices of constraint that are possible. MCMC varies oscillation parameters and flux scaling factor, which then modifies the solar signal PDFs through a de-facto systematic that is a function of true neutrino energy, a 3\textsuperscript{rd} ``bookkeeping'' dimension in the signal's PDFs only. Neutrino oscillations simulated via PSelmaa, which accounts for MSW effect in both the Sun and the Earth. For computational speed, at run-time we actually use a lookup table with linear interpolation for the survival probability as a function of parameters.
-        \item Implementation of systematics: we handle them generally as linear transformations acting on the vector of bin data. Clever! Which systematics do we expect to be particularly important for this analysis? Well, mismodelling in detector optics etc. can lead to changes in the measured energy spectrum of processes, which can be decomposed into an energy scale term and an energy smearing term to first order. Systematics also possible in the radial dimension (expected to be less important?) 
+        % \item Explain cuts that I am using for the analysis. Demonstrate how these attempt to maximise our signal sensitivity. Leads nicely into choice of 2D fit in both energy and radius (cubed).
+        % \item Describe implementation of neutrino oscillations within the fitting procedure: flat priors on the oscillation parameters, but a strong constraint from the solar flux. Explain choices of constraint that are possible. MCMC varies oscillation parameters and flux scaling factor, which then modifies the solar signal PDFs through a de-facto systematic that is a function of true neutrino energy, a 3\textsuperscript{rd} ``bookkeeping'' dimension in the signal's PDFs only. Neutrino oscillations simulated via PSelmaa, which accounts for MSW effect in both the Sun and the Earth. For computational speed, at run-time we actually use a lookup table with linear interpolation for the survival probability as a function of parameters.
+        % \item Implementation of systematics: we handle them generally as linear transformations acting on the vector of bin data. Clever!
+        % \item Which systematics do we expect to be particularly important for this analysis? Well, mismodelling in detector optics etc. can lead to changes in the measured energy spectrum of processes, which can be decomposed into an energy scale term and an energy smearing term to first order. Systematics also possible in the radial dimension (expected to be less important?) 
         
-     \end{itemize}
+    %  \end{itemize}
 
 \section{Analysis on Scintillator-Phase data}
 \begin{itemize}
-    \item Description of dataset chosen for analysis: full-scint data that satisfies the ``gold'' list of run selection requirements, between 1\textsuperscript{st} June 2022 and March 2023. Starting date chosen to ensure radon levels have stabilised within the centre of the detector.
+    \item Description of dataset chosen for analysis: 2.2 g/L scintillator-phase data that satisfies the ``gold'' list of run selection requirements, between 1\textsuperscript{st} June 2022 and March 2023. Starting date chosen to ensure radon levels have stabilised within the centre of the detector.
+    \item Describe finalised choice of binning for PDFs and data.
+    \item List final set of cuts chosen for analysis, along with any explanations for cuts that haven't already been motivated earlier (e.g. data cleaning).
     \item Impact of cuts on data and MC. Show tables (the full details maybe in an appendix) indicating this.
     \item Describe the constraints chosen to apply to the fit, and why they can be justified.
+    \item Describe the systematics to be added to the fit (just energy scale for now, maybe also energy smearing?). Mention other systematics that could be of relevance, and then discuss how they should be handled: either scanned over, or have its sub-dominance in this statistics-limited analysis be demonstrated.
     \item Running \& validation of MCMC fitting. Show plots of parameter values versus step, to demonstrate that the step sizes have been tuned sufficiently. Show auto-correlation plots, to motivate a sensible ``burn-in'' size. Show posterior density plots for each nuisance parameter, to check that they all look sensible and have sufficient statistics. Show plot of correlation coefficients between parameters, and look at any correlations that are particularly interesting.
     \item Look at the data versus MC plot in energy, radius, and both. Is there a good fit to data? Any clear disagreements?
     \item Show 2D contour plot for oscillation parameter posterior density. Note salient features. Show 1D posterior densities for each oscillation parameter. Derive measurement result for $\theta_{12}$.
     \item Show impact of modifying certain constraints on the final results of the measurement of $\theta_{12}$.
+    \item Discussion of systematics post-fit --- is energy scaling reasonable? Perform a scan over energy smearing, and check impact of possible radial scale systematic.
 \end{itemize}
 
 \section{Sensitivity Projections}
+\begin{itemize}
+    \item Using the same production MC, generate PDFs with the expected normalisations for longer periods of livetime: 1, 3, and 5 years. This still assumes a scintillator-fill with identical detector conditions on average, so not considering the impact of BisMSB loading at any point.
+    \item Describe any further constraints to be assumed on top of the existing analysis of data: expected improved constraints on various backgrounds, as well as a possible energy-scale calibration constraint from the AmBe source, for example.
+    \item Run MCMC fits to these Asimov PDFs for each livetime scenario. Describe results in terms of the improvement to the sensitivity to \tonetwo{} as a function of livetime.
+    \item Also consider scenario of lower backgrounds! How does that impact the result?
+\end{itemize}
 
-
-\section{Conclusions}
+\section{Conclusions and Suggestions for Further Work}
+\begin{itemize}
+    \item Say what has been achieved with the analysis in this chapter! Both in terms of actual measurement of \tonetwo{}, but also expected sensitivities in the future.
+    \item Give suggestions for further work that could be done on this analysis beyond the addition of further livetime:
+    \begin{itemize}
+        \item Various computational improvements to allow for faster MCMC run-times, including the calculation of the systematic matrices, and possible use of GPUs to parallelise some parts of the computation.
+        \item Inclusion of additional solar neutrino components at lower energy into the fit, e.g. Be7. Maybe the addition of lower energies also helps to naturally constrain backgrounds within the fit?
+        \item Looking at the impact of various advanced background-rejection procedures, such as event directionality or topology. How much do they help with the sensitivity?
+        \item Looking at the impact of splitting data into day and night parts, to try and provide further constraints on any matter effects. Not expected to be significant, so was ignored for this analysis so far. 
+        \item Performing a combined fit with the reactor anti-neutrino oscillation analysis, which allows for the handling of correlated uncertainties, such as detector response systematics.
+    \end{itemize}
+\end{itemize}
