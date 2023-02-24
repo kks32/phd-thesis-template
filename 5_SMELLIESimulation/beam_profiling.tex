@@ -1,13 +1,18 @@
-\chapter{Simulating SMELLIE events}\label{sect:beam_profiling}
-% TODO:
-% - First section: description of how SMELLIE events have previously been simulated. Things to simulate correctly: position, initial direction, intensity, wavelength distribution, and of course angular emission profile (the beam profile).
-% - For the latter, give detail about why 1D approach didn't seem to work, and why Esther chose 2D method. Outline her 2D generator method, as well as issues with it: slow! Only one run used per fibre.
-% - Explain new generator approach: using an inverse-CDF approach, 2D histogram binned in angles (phi, r=1-cos theta). Describe algorithm.
-% - Explain statistical approach for multiple data sets were combined together: maximum-likelihood approach. Note the assumptions made for this statistical model of our data (wavelength independence, Poisson data, etc.)
-% - Demonstrate results, validation - is it faster, of better quality than before? How does one define quality here?
-\subsection{Previous attempts at SMELLIE event simulation}
-Critical to extraction of scattering information from SMELLIE data is an accurate Monte Carlo (MC) simulation of the SMELLIE system. By modelling the laser light emission into the detector correctly, we can simulate how SMELLIE light will be impacted by changing scattering lengths in the detector. Because of the complexity of the optics of the optical fibres used to direct the laser light into the detector, a given SMELLIE event is simulated as a partially-collimated ``flash" of visible photons emanating from the emission point of the fibre into the detector. This flash then requires a number of parameters to be correctly described. In particular, the fibre emission positions were recorded during the installation of the fibres. The wavelength and emission timing distributions of light pulses were taken from measurements of the laser heads by their manufacturers, or by colleague Jeff Lidgard in the case of the SuperK wavelength distribution. The pulse magnitude is defined as the mean number of photons simulated per event; on an event-by-event basis we sample Poisson fluctuations about that mean value. Determination of the pulse magnitude must be done on a subrun-by-subrun basis. Unlike scintillation light, light from SMELLIE is not at all isotropic, and so we must specify some form of angular emission distribution. Determining and handling these angular emission distributions, also known as beam profiles, is the focus of this chapter.
+\chapter{Simulating SMELLIE Events}\label{sect:beam_profiling}
+Critical to extraction of scattering information from SMELLIE data is an accurate Monte Carlo (MC) simulation of the SMELLIE system. By modelling the laser light emission into the detector correctly, we can simulate how SMELLIE light will be impacted by changing scattering lengths in the detector. Because of the complexity of the optics of the optical fibres used to direct the laser light into the detector, a given SMELLIE event is simulated as a partially-collimated ``flash'' of visible photons emanating from the emission point of the fibre into the detector. This flash then requires a number of parameters to be correctly described. In particular:
+\begin{itemize}
+    \item \textbf{Fibre emission positions} were recorded during the installation of the fibres.
+    \item \textbf{Wavelength and emission timing distributions} of light pulses were taken from measurements of the laser heads by their manufacturers~\cite{}, or by colleague Jeff Lidgard in the case of the SuperK wavelength distribution~\cite{}.
+    \item \textbf{The ``pulse magnitude''}, defined as the mean number of photons simulated per event, is determined on a subrun-by-subrun basis, and is assumed to fluctuate as a Poisson distribution. 
+    \item \textbf{The beam profiles}, which describe the angular emission distributions of each fibre, is the focus of this chapter. These are necessary because unlike scintillation light, the light emitted from SMELLIE fibres is not isotropic.
+    \item \textbf{Nominal fibre emission directions} attempt to define the centre of the beam for a given fibre.
+\end{itemize}
 
+This chapter is split into three sections. Improvements to the existing simulation algorithm for the beam profiles are first made, and then the beam profiles themselves are updated. Finally, comparisons between data and simulation are made after the upgrades to investigate any remaining discrepancies.
+
+
+\section{Improving the SMELLIE Generator Algorithm}
+\subsection{Previous Attempts at SMELLIE Event Simulation}
 Before we can determine the beam profiles, we must first decide how to specify them. Previous observations show that different fibres can have notably different beam profiles~\cite{majumdar_measurement_2015}, so we let each fibre's beam profiles be unique. We assume for now that a given fibre's beam profile is stable over time, and independent of the wavelength of light fired. A straightforward, na\"{i}ve approach to parameterising a beam profile would be as follows: specify some nominal fibre direction, corresponding to the direction light takes travelling from the fibre to the centre of the ``beamspot'' observed on the other side of the detector. Then, specify a 1D beam profile, corresponding to the probability density of firing a photon at a given polar angle $\alpha$ relative to the nominal direction. One might even assume this distribution is Gaussian. The distribution in azimuthal direction, $\phi$, is assumed to be uniform.
 
 \begin{figure}
