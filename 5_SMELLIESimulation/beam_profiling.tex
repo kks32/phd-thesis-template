@@ -18,7 +18,7 @@ Before we can determine the beam profiles, we must first decide how to specify t
 \begin{figure}
     \centering
     \includegraphics[width=0.7\textwidth]{5_SMELLIESimulation/images/1D_gen_plot.png}
-    \caption{Comparison between a simulation of one of the fibres, made from the 1D beam profile generator (red), with the associated data subrun that was used to create that beam profile (in black). For both MC and data, what is plotted is the PDF of observed PMT hits, as a function of the $\alpha$ angle. Poissonian errors have been added to the data points, but are too small to see. Clearly, this 1D generator does not replicate the observed beam profile correctly. Figure taken from~\cite{turner_measurement_2022}.}
+    \caption[Comparison of SMELLIE between data and MC using a 1D generator]{Comparison between a simulation of one of the fibres, made from the 1D beam profile generator (red), with the associated data subrun that was used to create that beam profile (in black). For both MC and data, what is plotted is the PDF of observed PMT hits, as a function of the $\alpha$ angle. Poissonian errors have been added to the data points, but are too small to see. Clearly, this 1D generator does not replicate the observed beam profile correctly. Figure taken from~\cite{turner_measurement_2022}.}
     \label{fig:1d_gen_plot}
 \end{figure}
 
@@ -42,7 +42,7 @@ On careful inspection of the existing 2D generator, the main reason for the slow
 \begin{figure}
     \centering
     \includegraphics[width=0.7\textwidth]{5_SMELLIESimulation/images/2D_generator_num_attempts_nicer.pdf}
-    \caption{Typical distribution of the number of attempts it takes for the existing 2D generator before the test direction gets accepted, per event.}
+    \caption[Number of attempts taken for existing 2D SMELLIE generator to accept direction]{Typical distribution of the number of attempts it takes for the existing 2D generator before the test direction gets accepted, per event.}
     \label{fig:num_attempts}
 \end{figure}
 
@@ -62,7 +62,7 @@ A new 2D generator was built with these thoughts in mind. Firstly, the rejection
         \caption{Interpolated intensity map}
         \label{fig:old_profile_interpolated_sample_plot}
     \end{subfigure}
-    \caption{The first step in the new method for preparing the new generator. In (a), the relative intensities used for the existing beam profile of fibre labelled FS055 are shown for each PMT, the position on the plot indicating the location of that PMT in the fibre coordinates. The colour indicates the relative intensity; PMTs marked red have an intensity of zero. Figure (b) shows the result of throwing \num{500000} directions uniformly over this 2D space, the intensity of each point given by interpolating the intensities of nearby PMTs.}
+    \caption[Intensity map of existing beam profile, and interpolated sampling map]{The first step in the new method for preparing the new generator. In (a), the relative intensities used for the existing beam profile of fibre labelled FS055 are shown for each PMT, the position on the plot indicating the location of that PMT in the fibre coordinates. The colour indicates the relative intensity; PMTs marked red have an intensity of zero. Figure (b) shows the result of throwing \num{500000} directions uniformly over this 2D space, the intensity of each point given by interpolating the intensities of nearby PMTs.}
     \label{fig:esther_beam_profile_and_interp}
 \end{figure}
 
@@ -71,7 +71,7 @@ Following this, the sampled intensities were then binned into a 2D histogram, wh
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{5_SMELLIESimulation/images/FS055_60_alpha_15_phi_hist.pdf}
-    \caption{Histogram of interpolated intensities within the 2D direction-space. The left view shows the full histogram; the right is a zoomed-in version near the beamspot. Unlike the binning in $\phi$, the bin widths in $r$ are not at all uniform. Instead, they have been determined such that the area summed over a given ``strip" of bins of constant $r$ will be the same.}
+    \caption[Histogram of interpolated intensities within the 2D direction-space]{Histogram of interpolated intensities within the 2D direction-space. The left view shows the full histogram; the right is a zoomed-in version near the beamspot. Unlike the binning in $\phi$, the bin widths in $r$ are not at all uniform. Instead, they have been determined such that the area summed over a given ``strip" of bins of constant $r$ will be the same.}
     \label{fig:hist_cdf_old_profile}
 \end{figure}
 
@@ -90,7 +90,7 @@ Because of the relative simplicity of this algorithm compared to the previous 2D
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{5_SMELLIESimulation/images/data_mc_comparison_npe_vs_r_114018_109_use_f.pdf}
-    \caption{Comparison of water-phase data to MC generated using both the old and new 2D beam profile generator approaches, with the updated beam profiles. Both versions of the generator are consistent with one another, but the new generator is many times faster.}
+    \caption[Comparison of water-phase data to MC generated using both the old and new 2D beam profile generator approaches, with the updated beam profiles]{Comparison of water-phase data to MC generated using both the old and new 2D beam profile generator approaches, with the updated beam profiles. Both versions of the generator are consistent with one another, but the new generator is many times faster.}
     \label{fig:data_generator_comp_new_profiles}
 \end{figure}
 
@@ -183,7 +183,7 @@ Figure~\ref{fig:likelihood_scan} shows the shape of this log-likelihood distribu
 \begin{figure}
     \centering
     \includegraphics[width=0.8\linewidth]{5_SMELLIESimulation/images/example_likelihood_distribution_pmt_inc_all_subruns_proper_formatting.pdf}
-    \caption{Plot of $\Delta\chi^2\simeq X_{i}$, twice the negative log-likelihood ratio, for both single subruns of a typical PMT, and when all relevant subruns are combined.}
+    \caption[Plot of $\Delta\chi^2$ for both single subruns of a typical PMT, and when all relevant subruns are combined]{Plot of $\Delta\chi^2\simeq X_{i}$, twice the negative log-likelihood ratio, for both single subruns of a typical PMT, and when all relevant subruns are combined.}
     \label{fig:likelihood_scan}
 \end{figure}
 
@@ -204,7 +204,7 @@ Figure~\ref{fig:updated_beam_profile} shows the impact of using additional subru
 \begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{5_SMELLIESimulation/images/flat_plot_r_comparison_FS055_old_vs_new_empty_circles.pdf}
-    \caption{Comparison between old and updated beam profiles for fibre FS055, after combining multiple data sets. Once again, the relative intensities ($b'_{i}$) for each PMT are given by the colour of each point, the position of each plotted in the 2D $(r,\phi)$-space. The relative intensities have been both scaled here so that the largest value equals 1. Hollowed-out points are PMTs that, even after all relevant subruns have been combined, have no PMT hits.}
+    \caption[Comparison between old and updated beam profiles for fibre FS055, after combining multiple data sets]{Comparison between old and updated beam profiles for fibre FS055, after combining multiple data sets. Once again, the relative intensities ($b'_{i}$) for each PMT are given by the colour of each point, the position of each plotted in the 2D $(r,\phi)$-space. The relative intensities have been both scaled here so that the largest value equals 1. Hollowed-out points are PMTs that, even after all relevant subruns have been combined, have no PMT hits.}
     \label{fig:updated_beam_profile}
 \end{figure}
 
@@ -213,7 +213,7 @@ Further details can be gathered from the interpolated intensity maps, one of whi
 \begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{5_SMELLIESimulation/images/flat_plot_r_FS055_500k_interpolated_beam_profile_full_formatting.png}
-    \caption{Interpolated intensity map for the new updated beam profile of fibre FS055. The misalignment of rope shadows and AV effects, can both be seen.}
+    \caption[Interpolated intensity map for the new updated beam profile of fibre FS055]{Interpolated intensity map for the new updated beam profile of fibre FS055. The misalignment of rope shadows and AV effects, can both be seen.}
     \label{fig:updated_beam_profile_sampling}
 \end{figure}
 The second distinctive feature of this intensity map is the large band of lower intensity varying between $r\approx0.2-0.5$, followed by larger intensity out at large $r$ values. This feature comes from light reflecting off the AV surface, or internally-reflecting. The reason for this band's functional dependence on $\phi$ is that this particular fibre, FS055, has a nominal fibre direction $\sim\ang{10}$ from pointing radially-towards the detector's centre. This feature appears in the updated beam profiles of all fibres, but its shape depends on the particular fibre's direction --- for fibres pointing directly towards the detector's centre, there is little $\phi$-dependence observed. Like the ropes, this feature must come from some form of mismodelling of the optics of the AV. A de-facto shadowing of PMTs in line with tangents from the AV surface which intersect the fibre position is to be expected. One also expects PMTs at polar angles larger than this to have their observed intensities boosted from reflected light off the AV. However, the discontinuities seen in the beam profiles indicate that for whatever reason this effect has been over-emphasised in the simulation.
@@ -224,7 +224,7 @@ This information was plotted for two different subruns from the same fibre, seen
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{5_SMELLIESimulation/images/residual_wavelength_comparison_data_model_nice.pdf}
-    \caption{Residuals from subruns at two different wavelengths, both compared to the combined beam profile model for fibre FS055. A negative sign, and hence bluer colours, indicate that the combined model underestimates the observed intensity for that particular subrun. Values with a magnitude beyond 5 are shown capped at this maximal value for the purposes of this plot. These PMTs are plotted in the polar fibre coordinates $(\alpha,\phi)$.}
+    \caption[Residuals from subruns at two different wavelengths, both compared to the combined beam profile model for fibre FS055]{Residuals from subruns at two different wavelengths, both compared to the combined beam profile model for fibre FS055. A negative sign, and hence bluer colours, indicate that the combined model underestimates the observed intensity for that particular subrun. Values with a magnitude beyond 5 are shown capped at this maximal value for the purposes of this plot. These PMTs are plotted in the polar fibre coordinates $(\alpha,\phi)$.}
     \label{fig:llr}
 \end{figure}
 All three of these features --- rope shadows, AV reflections, and wavelength dependence --- add systematic uncertainty to the beam profiles, beyond the statistical uncertainty as measured by the width of the likelihood distribution. Certainly if one wanted to further improve the uncertainties in the beam profiles, tackling these challenges would be key.
