@@ -16,7 +16,7 @@
 % guidelines
 %
 % `oneside' or `twoside'(default): Printing double side (twoside) or single
-% side.
+% side. 
 %
 % `print': Use `print' for print version with appropriate margins and page
 % layout. Leaving the options field blank will activate Online version.
@@ -133,14 +133,15 @@
 % ******************************** Main Matter *********************************
 \mainmatter
 
+\addcontentsline{toc}{chapter}{Introduction}
+\include{0_Introduction/introduction}
 \include{1_NeutrinoTheory/chapter1}
 \include{2_Detector/snoplus_detector}
-\include{3_ScatteringTheory/chapter3}
-% \include{Chapter4/chapter4}
-\include{5_SMELLIESimulation/beam_profiling}
-% \include{Chapter6/chapter6}
-\include{7_SolarAnalysis/solar_analysis}
-% \include{Chapter8/chapter8}
+\include{3_SMELLIEHardware/smellie_hardware}
+\include{4_SMELLIESimulation/beam_profiling}
+\include{5_SMELLIEAnalysis/smellie_analysis}
+\include{6_SolarAnalysis/solar_analysis}
+\include{7_Conclusions/conclusions}
 
 
 

@@ -1,0 +1,26 @@
+\chapter{Analysis of SMELLIE Data in the Scintillator Phase}\label{chap:smellie_analysis}
+{
+    \color{blue}
+    This chapter contains two sets of analyses: measurements of the extinction lengths of the scintillator as a function of wavelength and time, as well as monitoring the Rayleigh scattering length over time.
+
+\section{Extinction Length Analysis}
+\begin{itemize}
+    \item Motivation for this analysis given by a discrepancy between MC and data in the number of photons observed at different PPO concentrations was found. Explain multiple ways that this could happen, one being via scattering or absorption. A "straightforward" way of testing this hypothesis is via measuring the extinction length using SMELLIE, as we don't need to distinguish between scattering and scintillator absorption/reemission.
+    \item Theory for how to measure in-situ extinction length of scintillator for a given wavelength, via a data-to-data comparison. Make clear the assumptions being made for this analysis (e.g. external water scattering cross-section and beam profile unchanged between water-->scintillator phases).
+    \item Note any corrections that have to be made to account for differences between water and scintillator phases, notably the change in refractive index moving the beamspot.
+    \item Show approach going to be used with water- and scint-phase MC. Demonstrate that it works over a variety of extinction lengths. Can any limitations be seen?
+    \item Description of actual data sets used - water-phase data set, scintillator data sets. Obtain results.
+    \item Explain possible origins of uncertainty, both statistical and systematic.
+    \item Compare to RAT model(s), other measurements made. Differences? What conclusions can be made?
+\end{itemize}
+
+\section{Scattering Analysis}
+\begin{itemize}
+    \item Comparison to MC is necessary in scattering analysis, compared to merely being needed as a correction factor. This is because of the angular dependence of scattering. As a result, we can be far more susceptible to systematics from poor modelling!
+    \item As a warning, show how Krish's/Esther's approach to the SMELLIE scattering analysis suffers majorly from these systematic effects. Motivates the need for either reduced systematics, or an alternative analysis approach that is more robust to them!
+    \item Propose the new analysis approach: looking at light in the "bad lightpath" PMT region (define what this is). Show how simulations indicate this should be a region with a very high purity of scattered light, and (assuming all else being equal) robust to beam profile uncertainties.
+    \item Problem of systematics now pushed onto the calculation of an average absolute emission intensity. Show how various methods don't work particularly well. Look at "beamspot but excepting the central bit": if that works well, then we can continue! Otherwise, we'll have to live with measuring relative scattering lengths instead of absolute amounts, using the outer water back-scattering as a measure of the relative emission intensity.
+    \item Actually do the proposed analysis on data, versus time and wavelength. Do the results seem consistent between fibres? Are they sensible values?
+\end{itemize}
+
+}

@@ -1,0 +1,20 @@
+\chapter{The SMELLIE Calibration System}\label{chap:smellie_hardware}
+\epigraph{\textit{There's a certain Slant of light,\\
+Winter Afternoons ---\\
+That oppresses, like the Heft\\
+Of Cathedral Tunes ---}}{\textsc{Emily Dickinson}}
+{
+    \color{blue} Basic principle for how SMELLIE works: firing collimated laser light into detector to observe scattering events. Analysis will measure and monitor scattering in a detector with changing optics. Ideally, this would be a double differential scattering cross-section measurement as a function of wavelength and scattering angle, measured as a function of time in the detector. Otherwise, one can try and measure some component of this: the cross-section/scattering length versus wavelength and time, or at the very least the relative scattering length versus wavelength and time. Mention the link between cross-section and scattering length.
+}
+\section{The SMELLIE Hardware}
+{
+    \color{blue} Describe the existing hardware. This includes the path of light into the detector, as well as the path of the trigger signal. Describe also the upgrades made to the hardware: Tony Zummo's fix to the TUBii trigger logic, as well as the addition of the VFA, updated MPU, and modified trigger window. Make sure to motivate why these updates were made.
+}
+\section{Software for SMELLIE Data-taking}
+{
+    \color{blue} Server running on SNODROP; run plan files written in JSON handed to ORCA which then sends relevant commands to SNODROP which fires as appropriate. After events occur, run description file created (used as metadata for analysis).
+}
+\section{Commissioning SMELLIE}
+{
+    \color{blue} Why is commissioning needed? Need to confirm that SMELLIE is working as expected; determine intensity "set-points" for different use cases. No need to describe the Tesseract in detail here - that can be in Jeff L's thesis. But, I do want to show the results of both commissioning campaigns in scintillator-fill, one before the new hardware was added, and one after.
+}
