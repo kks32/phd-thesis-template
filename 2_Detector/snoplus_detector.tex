@@ -73,17 +73,65 @@ Because of this delocalised structure, excited atomic $\pi$-electrons can stay i
 
 {
     \color{blue}
+
     \begin{itemize}
-        \item Description of Birks' Law and quenching within scintillator
-        % \item Begin the ``journey of a SNO+ Physics Event'' --- starting by explaining how a high-energy particle interacts with matter to generate Cherenkov and/or scintillation light. In both cases, optical wavelength light gets generated.
-        \item Then, light propagates through the detector, possibly undergoing various physics processes: Rayleigh scattering, absorption, re-emission, refraction, and reflection.
-        \item Light gets detected via the PMTs: explain how.
-        \item Thus begins the DAQ chain. Signals reach the crates of electronics on deck and are processed. A ``sufficient signal'' leads to the triggering of the detector, which then enables for the saving of the event's information via the event builder.
+        \item Description of Birks' Law and quenching within scintillator. Note what Birks' constant is currently used in our simulations.
     \end{itemize}
-    \section{Calibrations and Detector Modelling}
+[7 pages including what is currently written]
+    \subsection{Optical Processes}
+    \subsubsection{Rayleigh Scattering}
     \begin{itemize}
-        \item I will now describe how calibrations enable us to use the stored data for actual physics.
-        \item Detector's state is continuously monitored via a number of systems for data quality purposes, including a human detector `shifter'. Mention use of run numbers. CHS and CSS ensure only ``good'' channels used in any analysis.
+        \item Explain the electrodynamical model for scattering, giving rise to the expected $1/\lambda^4$ wavelength-dependence of the scattering length, as well as the $1+\cos^2\theta$ dependence of the scattering angle.
+        \item Describe how the density-fluctuation theory gives rise to a possible modification to the scattering angle distribution due to the anisotropy of the optical media's polarisability vector. Studies by JUNO have shown that LABPPO has such a measurable anisotropy.
+        \item Show the existing model for water and LABPPO used in RAT, and note that this anisotropy is currently not included in any simulations. I don't need to go in too much detail for this subsection as Krish did a nice job in his thesis and I can cite that, but I do need to write enough to cover the basics for my SMELLIE analysis chapter.
+    \end{itemize}
+    [3 pages]
+    \subsubsection{Absorption and Re-emission}
+    \begin{itemize}
+        \item State that light can get absorbed by materials, and if that medium is a scintillator then re-emission is possible. I think further details such as the specific shape of the absorption/re-emission of the scintillator and water can be shown in the SMELLIE analysis chapter, in which I have to explain about possible changes to the model anyway.
+    \end{itemize}
+    [1/2 page]
+    \subsubsection{Surface reflection and refraction}
+    \begin{itemize}
+        \item State that boundaries between media can induce reflections and refraction, as governed by the Fresnel transmission and reflection formulae. These formulae are worth mentioning because I use them in my SMELLIE extinction length analysis.
+    \end{itemize}
+    [1/2 page]
+    \subsection{Detection by PMTs}
+    \begin{itemize}
+        \item Light gets detected via the PMTs. Note the existence of the PMT concentrators to maximise coverage within the AV, but minimise it in the external water: show the calibrated angular response.
+        \item Remind reader that a PMT converts photons to photoelectrons with a certain quantum efficiency, dependent on the wavelength of light.
+        \item The process of multiplying the signal induces a spread in the possible generated time of the voltage signal, known as the PMT's transit time spread.
+        \item The PMT response is also weakly dependent on the number of photoelectrons generated; not enough to be able to confidently distinguish the npe under most circumstances.
+    \end{itemize}
+    [2 pages]
+    \subsection{Data Acquisition and Triggering}
+    \begin{itemize}
+        \item Summarise how a PMT signal becomes digitised via the front-end electronics, briefly.
+        \item Summarise the triggering system, as I'll have to describe in a later chapter how the SMELLIE hardware fits into this, especially as there have been ongoing SMELLIE triggering issues worth mentioning there!
+        \item Note the information stored by an event: importantly for this thesis, the TAC and QHS per hit, the event's GTID as well as trigger time measured from the \SI{50}{\mega\Hz} clock. The latter is worth mentioning as this is how I determine time differences for my BiPo tagging in the solar analysis.
+        \item Finally, note that these get written to file in the ZDAB format.
+    \end{itemize}
+    [3 pages]
+    \subsection{Operation of the Detector}
+    \begin{itemize}
+        \item Detector electronics operated through ORCA; allows for different running modes, such as calibrations.
+        \item Mention that data gets split into run and subruns.
+    \end{itemize}
+    [1 page]
+    \section{Calibrations and Detector Modelling}
+    \subsection{Detector Monitoring}
+    \begin{itemize}
+        \item Detector's state is continuously monitored via a number of systems for data quality purposes, including a human detector `shifter'. This includes the alarm systems for the electronics and slow controls, and `nearline' monitoring of the detector status.
+        \item CHS and CSS ensure only ``good'' channels used in any analysis.
+    \end{itemize}
+    \subsection{Electronic and PMT Calibrations}
+    \begin{itemize}
+        \item First main set of calibrations are the ECAs and PCAs. These help us convert raw electronic signal information from PMTs into `calibrated' hit times and charges. PCAs performed via TELLIE and the Laserball.
+        \item No need for many details here; this is not a thesis on this topic!
+    \end{itemize}
+    \subsection{}
+    \begin{itemize}
+        % \item Detector's state is continuously monitored via a number of systems for data quality purposes, including a human detector `shifter'. This includes the alarm systems for the electronics and slow controls, and `nearline' monitoring of the detector status. CHS and CSS ensure only ``good'' channels used in any analysis.
         \item First main set of calibrations are the ECAs and PCAs. These help us convert raw electronic signal information from PMTs into `calibrated' hit times and charges. PCAs performed via TELLIE and the Laserball.
         \item These initial calibrations allow for the first two passes of data processing. SMELLIE data comes from this part of the processing chain.
         \item In order to infer properties of an underlying physics event, an accurate model of the detector is needed. This requires two things: a set of calibration tools, and a piece of simulation software. The latter is RAT (explain briefly).
