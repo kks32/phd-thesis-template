@@ -57,13 +57,13 @@ A new 2D generator was built with these thoughts in mind. Firstly, the rejection
     \centering
     \begin{subfigure}{0.98\textwidth}
         \centering
-        \includegraphics[width=0.8\textwidth]{4_SMELLIESimulation/images/flat_plot_r_FS055_beam_profile_original_6-18-13.pdf}
+        \includegraphics[width=0.74\textwidth]{4_SMELLIESimulation/images/flat_plot_r_FS055_beam_profile_original_6-18-13.pdf}
         \caption{PMT relative intensity map}
         \label{fig:esther_beam_profile}
     \end{subfigure}
     \begin{subfigure}{0.98\textwidth}
         \centering
-        \includegraphics[width=0.8\textwidth]{4_SMELLIESimulation/images/polar_plot_FS055_MC_sampling_old_beam_profile.png}
+        \includegraphics[width=0.74\textwidth]{4_SMELLIESimulation/images/polar_plot_FS055_MC_sampling_old_beam_profile.png}
         \caption{Interpolated intensity map}
         \label{fig:old_profile_interpolated_sample_plot}
     \end{subfigure}
@@ -203,8 +203,17 @@ This scenario is very much reminiscent of rare-decay searches, and a similar app
     b'_{i,ulim} = -\frac{k_{i}^{MC}\sum_{j}\left[I_{j}N_{j}\right]}{\ln\left[1 - \operatorname{erf}\left(1/\sqrt{2}\right)\right]},
 \end{equation}
 where $\operatorname{erf}(x)$ is the error function.
+{
+    \color{blue}
+    [18 pages for above two sections]
+}
 
 \subsection{Results \& Discussion}\label{sect:results}
+{
+    \color{blue}
+    WARNING: contents of this subsection will be gutted, focusing merely on impact of combining data sets. Details about discrepancies will be covered in the next section.
+    [Will just be ~1 page]
+}
 Figure~\ref{fig:updated_beam_profile} shows the impact of using additional subruns of data on a typical beam profile. One can clearly see the great reduction in the number of PMTs with no hits in data. That many more data sets were included allowed for the major increase in dynamic range available for measuring these $b'_{i}$ values. One can also note that by including additional data the curious spot that was seen in the old beam profile our at $r\approx0.08$ has gone, further indicating that it was an artefact of that single data set.
 \begin{figure}
     \centering
@@ -237,11 +246,37 @@ All three of these features --- rope shadows, AV reflections, and wavelength dep
 \section{Comparisons between Data and Simulation}
 {
     \color{blue}
-    This focuses on disagreements noticed between data and MC even after the new generator and beam profiles have been used. Important to mention that none of these are necessarily game-ending, they are just systematics that may or may not be substantial in a given analysis with SMELLIE. Main classes of discrepancies noticed:
+    \begin{itemize}
+        \item This focuses on disagreements noticed between data and MC even after the new generator and beam profiles have been used.
+        \item Important to mention that none of these are necessarily game-ending, they are just systematics that may or may not be substantial in a given analysis with SMELLIE..
+    \end{itemize}
+    
     \subsection{Forward Hemisphere Discrepancies}
-    The continued disagreement between data and MC when it comes to measured npe in various parts of the "forward" hemisphere. This includes the central beamspot, the TIR region, rope shadows, and a noticeable wavelength-dependence.
+    \begin{itemize}
+        \item The continued disagreement between data and MC when it comes to measured npe in various parts of the ``forward" hemisphere. This includes:
+        \begin{itemize}
+            \item The central beamspot,
+            \item The TIR region,
+            \item Rope shadows,
+            \item A noticeable wavelength-dependence.
+        \end{itemize}
+        \item This is pretty much most of the contents of Section~\ref{sect:results}.
+    \end{itemize}
+    [4 pages]
+    
     \subsection{Emission Time Discrepancies}
-    For certain lasers, a strong mismatch in the observed hit time residuals for prompt light. Also, a mysterious +18 ns bump seen for the PQ495 laser, and a trigger jitter in the SuperK laser.
+    \begin{itemize}
+        \item For certain lasers, a strong mismatch in the observed hit time residuals for prompt light.
+        \item A mysterious +18 ns bump seen for the PQ495 laser.
+        \item A trigger jitter in the SuperK laser.
+    \end{itemize}
+    [3 pages]
     \subsection{Backward Hemisphere Discrepancies}
-    The observed distribution of hits vs time and angle in MC does not match data in a number of ways for PMTs near the fibre emission point. Includes the outer-water scattering length, rope reflections, and investigations into whether certain modifications to the optics could plausibly fix things (so far, no).
+    \begin{itemize}
+        \item The observed distribution of hits vs time and angle in MC does not match data in a number of ways for PMTs near the fibre emission point.
+        \item Includes the outer-water scattering length, rope reflections, and investigations into whether certain modifications to the optics could plausibly fix things (so far, no).
+    \end{itemize}
+   [6 pages]
+   
+   [32 PAGES TOTAL]
 }

@@ -41,7 +41,7 @@ Alongside the Te-loaded liquid scintillator will be a number of other chemicals 
 %     \item Describe standard coordinate axis; note AV offset.
 %     \item Mention the main phases of SNO+, both past, present, and future.
 % \end{itemize}
-\section{Detecting and Recording an Event in SNO+: A Journey}
+\section{Detecting and Recording an Event in SNO+: A Journey}\label{sec:event_journey}
 To understand well the SNO+ detector, it is worth thinking about how the information of a physics event, e.g. a solar neutrino interaction, gets observed. This section follows the journey of such an event.
 \subsection{Particle Interactions with Matter}\label{sec:interactions_w_matter}
 All observable physics events within the detector begin by the generation of some form of ionising radiation: $\alpha$, $\beta^{\pm}$, $\gamma$, $p$ or $n$. These can be created via numerous processes, both exciting (e.g. \onbb{} or interactions of neutrinos) and banal (e.g. decay of background radioisotopes): see Section~\ref{sec:background_processes} for some of them. Regardless of their origin, these particles begin propagating through the detector, and interacting with the detector medium. A number of mechanisms then allow for the generation of optical-wavelength light as a result of these interactions.
@@ -124,18 +124,33 @@ Because of this delocalised structure, excited atomic $\pi$-electrons can stay i
         \item Detector's state is continuously monitored via a number of systems for data quality purposes, including a human detector `shifter'. This includes the alarm systems for the electronics and slow controls, and `nearline' monitoring of the detector status.
         \item CHS and CSS ensure only ``good'' channels used in any analysis.
     \end{itemize}
+    [1 page]
     \subsection{Electronic and PMT Calibrations}
     \begin{itemize}
         \item First main set of calibrations are the ECAs and PCAs. These help us convert raw electronic signal information from PMTs into `calibrated' hit times and charges. PCAs performed via TELLIE and the Laserball.
+        \item These initial calibrations allow for the first two passes of data processing, resulting in a `RATDS' file format used in optical calibrations.
         \item No need for many details here; this is not a thesis on this topic!
     \end{itemize}
-    \subsection{}
+    [1 page]
+    \subsection{Energy and Optical Calibrations}
     \begin{itemize}
-        % \item Detector's state is continuously monitored via a number of systems for data quality purposes, including a human detector `shifter'. This includes the alarm systems for the electronics and slow controls, and `nearline' monitoring of the detector status. CHS and CSS ensure only ``good'' channels used in any analysis.
-        \item First main set of calibrations are the ECAs and PCAs. These help us convert raw electronic signal information from PMTs into `calibrated' hit times and charges. PCAs performed via TELLIE and the Laserball.
-        \item These initial calibrations allow for the first two passes of data processing. SMELLIE data comes from this part of the processing chain.
-        \item In order to infer properties of an underlying physics event, an accurate model of the detector is needed. This requires two things: a set of calibration tools, and a piece of simulation software. The latter is RAT (explain briefly).
-        \item Aims of remaining calibration tools are to obtain the optical parameters necessary for accurate modelling. Go through briefly all the calibration tools we have available: SMELLIE, AMELLIE, the Laserball, the AmBe and N16 sources, and in situ backgrounds.
-        \item Using RAT once calibrated, event reconstruction can become possible. Briefly describe how energy, position, and time reconstruction works. Mention existence of direction fitting!
+        \item After ECAs and PCAs, further calibration is necessary to accurately model the optical properties of the detector.
+        \item Describe briefly the function of the Laserball, SMELLIE, and AMELLIE sources in optical calibration (can reference the water-phase optical calibration paper). Details of how each analysis works is obviously not needed here, especially not for SMELLIE as we have 3 chapters to go over that!
+        \item AmBe and N16 sources provide further information for calibration
+        \item In-situ backgrounds used for more calibration sources, especially for determining the light yield of the scintillator, and Birks' constant.
     \end{itemize}
+    [2 pages]
+    \subsection{Event Reconstruction}
+    \begin{itemize}
+        \item Once detector is calibrated, event reconstruction becomes possible. Describe main assumption of a SNO+ event: we assume a single-site electron event.
+        \item Briefly describe the basics of how energy, position, and time reconstruction works, as this is needed for the solar analysis chapter. Mention existence of direction fitting in scintillator!
+        \item `Physics' runs have their events reconstructed in a third pass of data processing, resulting in a `fully-processed' RATDS file as well as a simplified NTUPLE file used in high-level physics analyses (such as my solar analysis).
+    \end{itemize}
+    [2 pages]
+    \subsection{Event Simulation}
+    \begin{itemize}
+        \item Briefly describe overview of RAT software: not only provides the software by which the above data processing occurs, but allows for a GEANT4-based simulation of events in the detector. This simulation includes all parts of the physics described in Section~\ref{sec:event_journey}, including particle and nuclear physics interactions, optical photon creation and propagation, signal generation and event building based on simulated triggers of the electronics. These simulated events then get processed in the same manner as actual data is.
+    \end{itemize}
+    [1 page]
+    [24 PAGES TOTAL]
 }
