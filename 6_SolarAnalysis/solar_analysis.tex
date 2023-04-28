@@ -303,15 +303,44 @@ Even after using the Large Mixing Angle approximation, having to call \texttt{PS
     %  \end{itemize}
 {
     \color{blue}
+    [19 pages currently, without figures; probably +5 pages for figures.]
     \section{Analysis on Scintillator-Phase data}
+    \subsection{Dataset and Livetime}
     \begin{itemize}
-        \item Description of dataset chosen for analysis: 2.2 g/L scintillator-phase data that satisfies the ``gold'' list of run selection requirements, between 1\textsuperscript{st} June 2022 and March 2023. Starting date chosen to ensure radon levels have stabilised within the centre of the detector.
-        \item Describe finalised choice of binning for PDFs and data.
-        \item List final set of cuts chosen for analysis, along with any explanations for cuts that haven't already been motivated earlier (e.g. data cleaning).
-        \item Impact of cuts on data and MC. Show tables (the full details maybe in an appendix) indicating this.
-        \item Describe the constraints chosen to apply to the fit, and why they can be justified.
+        \item Description of dataset chosen for analysis: 2.2 g/L scintillator-phase data that satisfies the ``gold'' list of run selection requirements, between May and November 2022.
+        \item Explain requirements for run being selected into the Gold list.
+    \end{itemize}
+    \subsection{Event Selection}
+    \begin{itemize}
+        \item List final set of cuts chosen for analysis, along with any explanations for cuts that haven't already been motivated earlier (e.g. data cleaning). These are:
+        \begin{itemize}
+            \item Event index cut (prevents MC events that don't trigger detector from being used)
+            \item Data cleaning cuts
+            \item High-nhit event timing veto cut
+            \item Valid scintFit reconstruction
+            \item Reconstructed energy $2 < E < 14$
+            \item Radial fiducial volume cut
+            \item BiPo out-of-window tag
+            \item BiPo in-window tag
+            \item 
+        \end{itemize}
+        \item Show impact of cuts on data and MC. Show tables (the full details maybe in an appendix) indicating this.
+        \item Describe the finalised choice of binning for PDFs and data.
+    \end{itemize}
+    \subsection{Expected Rates and Constraints}
+    \begin{itemize}
+        \item Show expected rates calculation for both signal and background.
+        \item Describe the constraints chosen to apply to the fit, and why they can be justified. These are: B8 flux constraint; U-238 and Th-232 constraints from BiPo tagging; alpha-n constraint from Po-210 tagging; external constraints from Tony Zummo's water-phase externals analysis.
         \item Describe the systematics to be added to the fit (just energy scale for now, maybe also energy smearing?). Mention other systematics that could be of relevance, and then discuss how they should be handled: either scanned over, or have its sub-dominance in this statistics-limited analysis be demonstrated.
-        \item Running \& validation of MCMC fitting. Show plots of parameter values versus step, to demonstrate that the step sizes have been tuned sufficiently. Show auto-correlation plots, to motivate a sensible ``burn-in'' size. Show posterior density plots for each nuisance parameter, to check that they all look sensible and have sufficient statistics. Show plot of correlation coefficients between parameters, and look at any correlations that are particularly interesting.
+    \end{itemize}
+    \subsection{Results}
+    \begin{itemize}
+        \item Show plots of parameter values versus step, to demonstrate that the step sizes have been tuned sufficiently.
+        \item Show auto-correlation plots, to motivate a sensible ``burn-in'' size.
+        \item Show posterior density plots for each nuisance parameter, to check that they all look sensible and have sufficient statistics.
+        \item Show plot of correlation coefficients between parameters, and look at any correlations that are particularly interesting.
+    \end{itemize}
+    \begin{itemize}
         \item Look at the data versus MC plot in energy, radius, and both. Is there a good fit to data? Any clear disagreements?
         \item Show 2D contour plot for oscillation parameter posterior density. Note salient features. Show 1D posterior densities for each oscillation parameter. Derive measurement result for $\theta_{12}$.
         \item Show impact of modifying certain constraints on the final results of the measurement of $\theta_{12}$.
