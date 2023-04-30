@@ -309,7 +309,9 @@ Even after using the Large Mixing Angle approximation, having to call \texttt{PS
     \begin{itemize}
         \item Description of dataset chosen for analysis: 2.2 g/L scintillator-phase data that satisfies the ``gold'' list of run selection requirements, between May and November 2022.
         \item Explain requirements for run being selected into the Gold list.
+        \item Note `raw' livetime calculated for this dataset, and then calculate the impact that the muon and high-nhit vetos have on the livetime.
     \end{itemize}
+    [2 pages]
     \subsection{Event Selection}
     \begin{itemize}
         \item List final set of cuts chosen for analysis, along with any explanations for cuts that haven't already been motivated earlier (e.g. data cleaning). These are:
@@ -321,50 +323,59 @@ Even after using the Large Mixing Angle approximation, having to call \texttt{PS
             \item Reconstructed energy $2 < E < 14$
             \item Radial fiducial volume cut
             \item BiPo out-of-window tag
-            \item BiPo in-window tag
-            \item 
+            \item BiPo in-window classifier cut
+            \item Externals classifier cut
+            \item ``Cleanliness'' cut
+            \item Position FOM cut
         \end{itemize}
         \item Show impact of cuts on data and MC. Show tables (the full details maybe in an appendix) indicating this.
         \item Describe the finalised choice of binning for PDFs and data.
     \end{itemize}
+    [4 pages]
     \subsection{Expected Rates and Constraints}
     \begin{itemize}
         \item Show expected rates calculation for both signal and background.
-        \item Describe the constraints chosen to apply to the fit, and why they can be justified. These are: B8 flux constraint; U-238 and Th-232 constraints from BiPo tagging; alpha-n constraint from Po-210 tagging; external constraints from Tony Zummo's water-phase externals analysis.
-        \item Describe the systematics to be added to the fit (just energy scale for now, maybe also energy smearing?). Mention other systematics that could be of relevance, and then discuss how they should be handled: either scanned over, or have its sub-dominance in this statistics-limited analysis be demonstrated.
+        \item Describe the constraints chosen to apply to the fit, and why they can be justified. These are: 
+        \begin{itemize}
+            \item B8 flux constraint
+            \item U-238 and Th-232 constraints from BiPo tagging
+            \item Alpha-n constraint from Po-210 tagging by Serena and Shengzhao
+            \item External constraints from Tony Zummo's water-phase externals analysis.
+        \end{itemize}
+        \item Describe the systematics to be added to the fit (just energy scale for now, maybe also energy smearing?). For other possible systematics, such as those in position, my aim is to explain why they are sub-dominant and so don't need to be added to the fit. Will cover more about impact of systematics in the next subsection.
     \end{itemize}
+    [4 pages]
     \subsection{Results}
+    \subsubsection{Fit Validation}
     \begin{itemize}
         \item Show plots of parameter values versus step, to demonstrate that the step sizes have been tuned sufficiently.
         \item Show auto-correlation plots, to motivate a sensible ``burn-in'' size.
-        \item Show posterior density plots for each nuisance parameter, to check that they all look sensible and have sufficient statistics.
-        \item Show plot of correlation coefficients between parameters, and look at any correlations that are particularly interesting.
+        \item Posterior density plots for each nuisance parameter, to check that they all look sensible and have sufficient statistics.
+        \item Show plot of correlation coefficients between parameters, and note any strongly-correlated parameters.
     \end{itemize}
+    [6 pages]
+    \subsubsection{Oscillation Fit Results}
     \begin{itemize}
-        \item Look at the data versus MC plot in energy, radius, and both. Is there a good fit to data? Any clear disagreements?
-        \item Show 2D contour plot for oscillation parameter posterior density. Note salient features. Show 1D posterior densities for each oscillation parameter. Derive measurement result for $\theta_{12}$.
-        \item Show impact of modifying certain constraints on the final results of the measurement of $\theta_{12}$.
-        \item Discussion of systematics post-fit --- is energy scaling reasonable? Perform a scan over energy smearing, and check impact of possible radial scale systematic.
+        \item Look at the data versus `best-fit' MC plot in energy, radius, and both. (Recall that in MCMC, the `best-fit' is not the point of parameter scape reached at the end, but the point of highest posterior density). Is there a good fit to data? Any clear disagreements?
+        \item Show 2D contour plot for oscillation parameter posterior density. Note salient features. Show 1D posterior densities for each oscillation parameter. Derive measurement result for $\theta_{12}$, i.e. point of highest posterior density, with uncertainties given by the $1\sigma$ credible interval.
     \end{itemize}
+    [5 pages]
+    \subsubsection{Impact of Systematics}
+    \begin{itemize}
+        \item Show impact of modifying certain constraints on the final results of the measurement of $\theta_{12}$. In particular: fiducial volume, \beight{} flux constraint.
+        \item Discussion of systematics post-fit --- Hopefully energy scaling parameter should be close to 1, given the Collaboration's calibration of the optics (light yield in particular). Perform a scan over energy smearing, and check impact of possible radial scale systematic.
+    \end{itemize}
+    [8 pages]
     
     \section{Sensitivity Projections}
     \begin{itemize}
         \item Using the same production MC, generate PDFs with the expected normalisations for longer periods of livetime: 1, 3, and 5 years. This still assumes a scintillator-fill with identical detector conditions on average, so not considering the impact of BisMSB loading at any point.
-        \item Describe any further constraints to be assumed on top of the existing analysis of data: expected improved constraints on various backgrounds, as well as a possible energy-scale calibration constraint from the AmBe source, for example.
+        \item Describe any further constraints to be assumed on top of the existing analysis of data: expected improved constraints on various backgrounds, as well as a possible energy-scale calibration constraint from the AmBe source or an internally-deployed source, for example.
         \item Run MCMC fits to these Asimov PDFs for each livetime scenario. Describe results in terms of the improvement to the sensitivity to \tonetwo{} as a function of livetime.
         \item Also consider scenario of lower backgrounds! How does that impact the result?
+        \item Could consider scenario of BisMSB deployment, leading to substantially greater light yield and hence energy resolution. Given time it would take for Production MC to be generated for this scenario, I would likely have to come up with something clever and quick to actually do this. There quite possibly won't be enough time.
     \end{itemize}
-    
-    \section{Conclusions and Suggestions for Further Work}
-    \begin{itemize}
-        \item Say what has been achieved with the analysis in this chapter! Both in terms of actual measurement of \tonetwo{}, but also expected sensitivities in the future.
-        \item Give suggestions for further work that could be done on this analysis beyond the addition of further livetime:
-        \begin{itemize}
-            \item Various computational improvements to allow for faster MCMC run-times, including the calculation of the systematic matrices, and possible use of GPUs to parallelise some parts of the computation.
-            \item Inclusion of additional solar neutrino components at lower energy into the fit, e.g. Be7. Maybe the addition of lower energies also helps to naturally constrain backgrounds within the fit?
-            \item Looking at the impact of various advanced background-rejection procedures, such as event directionality or topology. How much do they help with the sensitivity?
-            \item Looking at the impact of splitting data into day and night parts, to try and provide further constraints on any matter effects. Not expected to be significant, so was ignored for this analysis so far. 
-            \item Performing a combined fit with the reactor anti-neutrino oscillation analysis, which allows for the handling of correlated uncertainties, such as detector response systematics.
-        \end{itemize}
-    \end{itemize}
+    [8 pages]
+
+    [61 PAGES TOTAL]
 }
