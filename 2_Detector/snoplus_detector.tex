@@ -69,17 +69,63 @@ However, for certain special classes of material the excitation and ionisation o
     \label{fig:benzene_pi_bonds}
 \end{figure}
 
-Because of this delocalised structure, excited atomic $\pi$-electrons can stay in what is typically the first-excited state for somewhat longer than typical excited states: lifetimes of $\mathcal{O}(\SI{e-9}{\second})$ as opposed to $\mathcal{O}(\SI{e-12}{\second})$. Moreover, decays from this state can emit light typically in the optical-wavelength range. It is this light emission that is called `scintillation light'. Ionised electrons can also 
+Because of this delocalised structure, excited atomic $\pi$-electrons can stay in what is typically the first-excited state for somewhat longer than typical excited states: lifetimes of $\mathcal{O}(\SI{e-9}{\second})$ as opposed to $\mathcal{O}(\SI{e-12}{\second})$. Moreover, decays from this state can emit light typically in the optical-wavelength range. It is this light emission that is called `scintillation light'. Ionised electrons can also recombine --- that is, re-enter atomic orbitals --- into various excited states, and then decay back to the ground state, also allowing for the possibility of scintillation light to be generated.
+
+The nature of atomic spin selection rules restrict singlet ground-state electrons from exciting into triplet orbitals. However, electrons that were ionised and then recombined have no such restriction, and so are able to enter various excited triplet states. The same selection rules that restrict excitation from singlet into triplet states also works in the other direction, restricting the ability of electrons in excited triplet states from decaying back into the ground state. This does eventually happen, but the lifetimes of these ``phosphorescence'' decays are typically order of magnitude slower than their singlet-singlet counterparts. As a result, scintillation light typically has, to first order, a `fast' and `slow' time component, which can be seen in Fig.~\ref{fig:typical_tres_dist_physics}.\footnote{In SNO+, we currently model emission of scintillation light from LAB with 3 time components, each roughly one order of magnitude slower than the other.}
+
+\begin{figure}
+    \centering
+    % \includegraphics[]{}
+    \caption[]{}
+    \label{fig:typical_tres_dist_physics}
+\end{figure}
+
+When using just a single scintillating compound, the very same energy levels that can generate scintillation light are those that can absorb it. This can be a problem for large-scale detectors like SNO+, which depend on scintillation light being unobstructed in its path to the PMTs. Conveniently, this problem can be addressed with the addition of another scintillating component, known (somewhat confusingly) as the primary fluor. In SNO+, this is the PPO added to the LAB.
+
+When an LAB molecule is excited, that energy can be transferred to a PPO molecule through what is known as a `non-radiative transfer'. In short, this transfer of energy occurs not through the emission and absorption of optical photons, but through the coupling of the molecules' electric dipoles.\footnote{To be pedantic, photons are still transferred in this energy exchange, but they are virtual instead of real.}
+When the now-excited PPO molecule de-excites to emit scintillation light, the different molecular structure it has generates a different emission spectrum to that of LAB. These longer wavelengths of light are no longer able to be absorbed by the LAB, allowing for a scintillator with less optical absorption.
+
+Adding in one additional component doesn't have to be the end, either. In SNO+ we plan on adding in the compound BisMSB to the scintillator cocktail. This is a `wavelength-shifter': scintillation light at short wavelengths is absorbed, and then re-emitted at longer wavelengths, where the detection efficiency of the PMTs is greater. More on the properties of the PMTs in SNO+ can be found in Section~\ref{sec:pmts}. The net effect of the three scintillating components within SNO+ can be seen in Fig.~\ref{fig:scintillator_abs_emit_dist}. Note how, as energy is transferred from one scintillation component to another, the wavelength of light emitted gets necessarily longer as energy is lost to heat.
+
+\begin{figure}
+    \centering
+    % \includegraphics[]{}
+    \caption[]{}
+    \label{fig:scintillator_abs_emit_dist}
+\end{figure}
+
+The light yield of a scintillator, i.e. the amount of optical photons generated per unit of energy deposited into the scintillator, is a function not just of the scintillator but also the incident particle. In particular, $\alpha$ particles are far more effective at exciting and ionising nearby atoms, and so can deposit far more of its energy into the scintillator per unit volume. However, the strength of this ionisation for $\alpha$s can actually become at detriment to the generation of scintillation light. Empirically, scintillators follow to first order Birks' Law for their scintillation light yield~\cite{}: % Birks Law ref.
+\begin{equation}
+    \frac{dL}{dx} = S\frac{\frac{dE}{dx}}{1+k_{B}\frac{dE}{dx}},
+\end{equation}
+where $\frac{dL}{dx}$ is the number of photons emitted per unit track length, $\frac{dE}{dx}$ is the energy loss of the incident particle per unit track length, $S$ is the scintillator's characteristic light yield constant, and $k_{B}$ is the scintillator's ``Birks' Constant''. For minimum-ionising particles such as a \SI{6}{\MeV} electron, the denominator of this equation is close to 1, and so the amount of scintillation light generated is just $\frac{dL}{dx} = S\cdot\frac{dE}{dx}$. However, for $\alpha$-particles generated in radioactive decays, this denominator can become substantial, and in the limiting case we have merely $\frac{dL}{dx} = S$. In the current phase of SNO+, $S$ and $k_{B}$ are measured to be \SI{14000}{\gamma\per\MeV} and \SI{0.0798}{\mm\per\MeV},\footnote{This is the Birks' constant used in simulation for $\alpha$-particles. Other particles, such as electrons, are given slightly different values of $k_{B}$.}
+ respectively~\cite{}. % cite where we got S and kb values from.
+
+ \subsection{Optical Processes}
+ Once optical-wavelength photons have been created within the detector, various processes can then occur that can hinder its path towards a PMT, and therefore modify the observed signal. This subsection covers the main optical processes, with a focus on Rayleigh scattering, as an understanding of this phenomenon is critical for Chapters~\ref{chap:smellie_hardware}--\ref{chap:smellie_analysis}.
+ \subsubsection{Rayleigh Scattering}
+Optical scattering is the general process of how light is scattered by particles within a medium. This is fundamentally an electrodynamical process: an electromagnetic wave is incident on the set of particles within the medium, which induces these particles to oscillate within the field, and therefore generating their own electromagnetic radiation in response. Usually, this `scattered' radiation has the same frequency as that of the incident radiation, and therefore the scattering is said to be \textit{elastic}. It is possible under certain circumstances for this scattered radiation to be of a longer wavelength than the incident radiation: in which case, energy was absorbed by the particles and so the scattering was \textit{inelastic}. However, this latter type of scattering, also known as Raman scattering, is not relevant for SNO+~\cite{}. % ref something that allows us to ignore Raman scattering!
+
+The general solution to elastic optical scattering was first described by Gustav Mie~\cite{} % ref Mie theory paper
+and Ludvig Lorenz~\cite{} % Lorenz's paper
+in what is now known as \textit{Mie Theory}. In this theory, it is assumed that a plane wave of wavelength $\lambda$ is incident on a dielectric sphere of radius $a$. While the general solution to the problem of Mie scattering is somewhat complicated (if tractable), in certain regimes one can make further simplifying assumptions that substantially reduce the complexity of the result. In particular, if one assumes that the size of the particle is much smaller than the wavelength of light, and that any induced dipole moment can actually be established in the time window allowed by the oscillation period of the electromagnetic field~\cite{}, % Rayleigh criteria
+then one can obtain \textit{Rayleigh scattering}. This simpler case is so-called because of its initial formulation by Lord Rayleigh~\cite{}. % Rayleigh's scattering paper
+
+One can show that the differential cross-section associated with Rayleigh scattering of unpolarised light, $\sigma_{\textrm{Ray}}\left(\theta,\phi\right)$,  is given by~\cite{}: % cite something that gets rayleigh scattering formula
+\begin{equation}
+    \sigma_{\textrm{Ray}}\left(\theta,\phi\right) = \frac{8\pi a^{6}}{\lambda^{4}}\left(\frac{n_{\textrm{par}}^{2}-1}{n_{\textrm{par}}^{2}+2}\right)^{2} \left(1+\cos^{2}\theta\right).
+\end{equation}
+Here, $\theta$ and $\phi$ correspond respectively to the polar and azimuthal angles of the scattered waves, and $n_{\mathrm{par}}$ is the refractive index of the scattering particle. Most important to notice about this equation is that the cross-section follows a strong $1/\lambda^{4}$ dependence, meaning that short wavelengths of light will be scattered to far greater extents than that of longer wavelengths. Secondly, the light is not scattered isotropically, but according to a $1+\cos^{2}\theta$ dependence. This means that most light is either scattered directly forwards or backwards (known as a \textit{backscattering}), and little gets scattered orthogonally to the direction of the incident light. This is useful when it comes to trying to measure scattering in the SNO+ detector, as it provides a handle upon which to distinguish scattered light from isotropically-emitted scintillation light.
+
+% $\sigma_{\textrm{Ray}}\left(\theta,\phi\right)$ corresponds to the differential cross-section for one scattering particle. Given an entire medium of these particles, one can then find the mean distance one would expect a photon should travel before undergoing Rayleigh scattering, $l_{\textrm{Ray}}$~\cite{}: % cite Rayleigh scattering length formula
+% \begin{equation}
+%     l_{\textrm{Ray}} = \left[\frac{128\pi^{5}a^{6}}{3\lambda^{4}}\frac{1}{V}\left(\frac{n_{\textrm{par}}^{2}-1}{n_{\textrm{par}}^{2}+2}\right)^{2}\right]^{-1},
+% \end{equation}
+% where $V$ is the 
 
 {
     \color{blue}
 
-    \begin{itemize}
-        \item Description of Birks' Law and quenching within scintillator. Note what Birks' constant is currently used in our simulations.
-    \end{itemize}
-[7 pages including what is currently written]
-    \subsection{Optical Processes}
-    \subsubsection{Rayleigh Scattering}
     \begin{itemize}
         \item Explain the electrodynamical model for scattering, giving rise to the expected $1/\lambda^4$ wavelength-dependence of the scattering length, as well as the $1+\cos^2\theta$ dependence of the scattering angle.
         \item Describe how the density-fluctuation theory gives rise to a possible modification to the scattering angle distribution due to the anisotropy of the optical media's polarisability vector. Studies by JUNO have shown that LABPPO has such a measurable anisotropy.
@@ -96,7 +142,7 @@ Because of this delocalised structure, excited atomic $\pi$-electrons can stay i
         \item State that boundaries between media can induce reflections and refraction, as governed by the Fresnel transmission and reflection formulae. These formulae are worth mentioning because I use them in my SMELLIE extinction length analysis.
     \end{itemize}
     [1/2 page]
-    \subsection{Detection by PMTs}
+    \subsection{Detection by PMTs}\label{sec:pmts}
     \begin{itemize}
         \item Light gets detected via the PMTs. Note the existence of the PMT concentrators to maximise coverage within the AV, but minimise it in the external water: show the calibrated angular response.
         \item Remind reader that a PMT converts photons to photoelectrons with a certain quantum efficiency, dependent on the wavelength of light.
