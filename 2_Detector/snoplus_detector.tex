@@ -96,9 +96,10 @@ Adding in one additional component doesn't have to be the end, either. In SNO+ w
 
 The light yield of a scintillator, i.e. the amount of optical photons generated per unit of energy deposited into the scintillator, is a function not just of the scintillator but also the incident particle. In particular, $\alpha$ particles are far more effective at exciting and ionising nearby atoms, and so can deposit far more of its energy into the scintillator per unit volume. However, the strength of this ionisation for $\alpha$s can actually become at detriment to the generation of scintillation light. Empirically, scintillators follow to first order Birks' Law for their scintillation light yield~\cite{}: % Birks Law ref.
 \begin{equation}
-    \frac{dL}{dx} = S\frac{\frac{dE}{dx}}{1+k_{B}\frac{dE}{dx}},
+    \frac{dL}{dx} = S\frac{\frac{dE}{dx}}{1+k_{\mathrm{Birks}}\frac{dE}{dx}},
 \end{equation}
-where $\frac{dL}{dx}$ is the number of photons emitted per unit track length, $\frac{dE}{dx}$ is the energy loss of the incident particle per unit track length, $S$ is the scintillator's characteristic light yield constant, and $k_{B}$ is the scintillator's ``Birks' Constant''. For minimum-ionising particles such as a \SI{6}{\MeV} electron, the denominator of this equation is close to 1, and so the amount of scintillation light generated is just $\frac{dL}{dx} = S\cdot\frac{dE}{dx}$. However, for $\alpha$-particles generated in radioactive decays, this denominator can become substantial, and in the limiting case we have merely $\frac{dL}{dx} = S$. In the current phase of SNO+, $S$ and $k_{B}$ are measured to be \SI{14000}{\gamma\per\MeV} and \SI{0.0798}{\mm\per\MeV},\footnote{This is the Birks' constant used in simulation for $\alpha$-particles. Other particles, such as electrons, are given slightly different values of $k_{B}$.}
+where $\frac{dL}{dx}$ is the number of photons emitted per unit track length, $\frac{dE}{dx}$ is the energy loss of the incident particle per unit track length, $S$ is the scintillator's characteristic light yield constant, and $k_{\mathrm{Birks}}$ is the scintillator's ``Birks' Constant''\footnote{Birks' Constant is often just written as $k_{B}$, but this is easily confused with the far-better known Boltzmann Constant, which is completely different!}. 
+For minimum-ionising particles such as a \SI{6}{\MeV} electron, the denominator of this equation is close to 1, and so the amount of scintillation light generated is just $\frac{dL}{dx} = S\cdot\frac{dE}{dx}$. However, for $\alpha$-particles generated in radioactive decays, this denominator can become substantial, and in the limiting case we have merely $\frac{dL}{dx} = S$. In the current phase of SNO+, $S$ and $k_{\mathrm{Birks}}$ are measured to be \SI{14000}{\gamma\per\MeV} and \SI{0.0798}{\mm\per\MeV},\footnote{This is the Birks' constant used in simulation for $\alpha$-particles. Other particles, such as electrons, are given slightly different values of $k_{\mathrm{Birks}}$.}
  respectively~\cite{}. % cite where we got S and kb values from.
 
  \subsection{Optical Processes}
@@ -111,17 +112,32 @@ and Ludvig Lorenz~\cite{} % Lorenz's paper
 in what is now known as \textit{Mie Theory}. In this theory, it is assumed that a plane wave of wavelength $\lambda$ is incident on a dielectric sphere of radius $a$. While the general solution to the problem of Mie scattering is somewhat complicated (if tractable), in certain regimes one can make further simplifying assumptions that substantially reduce the complexity of the result. In particular, if one assumes that the size of the particle is much smaller than the wavelength of light, and that any induced dipole moment can actually be established in the time window allowed by the oscillation period of the electromagnetic field~\cite{}, % Rayleigh criteria
 then one can obtain \textit{Rayleigh scattering}. This simpler case is so-called because of its initial formulation by Lord Rayleigh~\cite{}. % Rayleigh's scattering paper
 
-One can show that the differential cross-section associated with Rayleigh scattering of unpolarised light, $\sigma_{\textrm{Ray}}\left(\theta,\phi\right)$,  is given by~\cite{}: % cite something that gets rayleigh scattering formula
+One can show that the differential cross-section associated with Rayleigh scattering of unpolarised light off of a single particle, $\frac{d^{2}\sigma_{\textrm{Ray}}}{d\theta d\phi}\left(\theta,\phi\right)$,  is given by~\cite{}: % cite something that gets rayleigh scattering formula
 \begin{equation}
-    \sigma_{\textrm{Ray}}\left(\theta,\phi\right) = \frac{8\pi a^{6}}{\lambda^{4}}\left(\frac{n_{\textrm{par}}^{2}-1}{n_{\textrm{par}}^{2}+2}\right)^{2} \left(1+\cos^{2}\theta\right).
+    \frac{d^{2}\sigma_{\textrm{Ray}}}{d\theta d\phi}\left(\theta,\phi\right) = \frac{8\pi a^{6}}{\lambda^{4}}\left(\frac{n_{\textrm{par}}^{2}-1}{n_{\textrm{par}}^{2}+2}\right)^{2} \left(1+\cos^{2}\theta\right).
 \end{equation}
 Here, $\theta$ and $\phi$ correspond respectively to the polar and azimuthal angles of the scattered waves, and $n_{\mathrm{par}}$ is the refractive index of the scattering particle. Most important to notice about this equation is that the cross-section follows a strong $1/\lambda^{4}$ dependence, meaning that short wavelengths of light will be scattered to far greater extents than that of longer wavelengths. Secondly, the light is not scattered isotropically, but according to a $1+\cos^{2}\theta$ dependence. This means that most light is either scattered directly forwards or backwards (known as a \textit{backscattering}), and little gets scattered orthogonally to the direction of the incident light. This is useful when it comes to trying to measure scattering in the SNO+ detector, as it provides a handle upon which to distinguish scattered light from isotropically-emitted scintillation light.
 
-% $\sigma_{\textrm{Ray}}\left(\theta,\phi\right)$ corresponds to the differential cross-section for one scattering particle. Given an entire medium of these particles, one can then find the mean distance one would expect a photon should travel before undergoing Rayleigh scattering, $l_{\textrm{Ray}}$~\cite{}: % cite Rayleigh scattering length formula
-% \begin{equation}
-%     l_{\textrm{Ray}} = \left[\frac{128\pi^{5}a^{6}}{3\lambda^{4}}\frac{1}{V}\left(\frac{n_{\textrm{par}}^{2}-1}{n_{\textrm{par}}^{2}+2}\right)^{2}\right]^{-1},
-% \end{equation}
-% where $V$ is the 
+Of course, we care about the scattering that occurs within an entire bulk medium, not just the scattering off of a single molecule. From a macroscopic perspective, the key quantity of interest is a material's \textit{Rayleigh scattering length}, $l_{\textrm{Ray}}$: the mean distance a photon is expected to travel before Rayleigh scattering. One can show that, assuming the above differential scattering cross-section, the Rayleigh scattering length is given by~\cite{}: % https://arxiv.org/pdf/1504.00987.pdf
+\begin{equation}
+    l_{\textrm{Ray}} = \left[\frac{16\pi}{3}R\right]^{-1}.
+\end{equation}
+$R$ is the \textit{Rayleigh ratio}, $R=\frac{1}{V}\frac{d^{2}\sigma_{\textrm{Ray}}\left(\ang{90}\right)}{d\theta d\phi}$, equivalent to the power of the scattered light per unit volume of the scattering medium per unit incident intensity at $\theta=\ang{90}$.
+
+This can lead to a few changes to Rayleigh scattering that are worth noting. Firstly, unlike for a single particle, the electric polarisability of a material can be \textit{anisotropic}. Anisotropic materials have a modified angular dependence on their differential cross-section, governed by the \textit{depolarisation ratio}, $\delta$. In particular, the $\left(1+\cos^{2}\theta\right)$ dependence becomes $\left(1+\frac{1-\delta}{1+\delta}\cos^{2}\theta\right)$. For isotropic materials, $\delta=0$, and so the angular dependence reduces to the original form.
+
+Secondly, the above model has been shown to be insufficient to describe liquids or solids~\cite{}, % optical aspects of oceanography!
+because of the non-negligible strength of their inter-molecular forces. Fortunately, Einstein~\cite{}, %
+Smoluchowski~\cite{}, %
+and Cabannes~\cite{} %
+developed a theory for describing how photons can scatter off of the local charge density fluctuations that naturally are present in a medium because of the thermal motion of molecules. The theory shows that the Rayleigh ratio of a medium is related to the medium's dielectric constant, $\varepsilon$, by:
+\begin{equation}
+    R = \frac{\pi^{2}}{2\lambda^{4}}\left[\rho\left(\frac{\partial\varepsilon}{\partial\rho}\right)_{T}\right]^{2} k_{B}T \kappa_{T}\frac{6+6\delta}{6-7\delta},
+\end{equation}
+where $\rho$ is the density of the medium, $\left(\frac{\partial\varepsilon}{\partial\rho}\right)_{T}$ is the partial derivative of the dielectric constant with respect to a changing density assuming a constant temperature $T$, $k_{B}$ is the Boltzmann Constant, and $\kappa_{T}$ is the medium's isothermal compressibility. This latter quantity is given by the rate of change of volume given a changing pressure of the medium, all at a constant temperature.
+
+Furthermore, the Eykman Equation~\cite{} %
+has been shown to be 
 
 {
     \color{blue}
