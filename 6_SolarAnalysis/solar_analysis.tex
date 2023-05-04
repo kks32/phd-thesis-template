@@ -20,14 +20,17 @@ As can be seen, the dependence is weak, and comes mostly from basic energy conse
 \begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{6_SolarAnalysis/images/b8_eelectrue_vs_enutrue.pdf}
-    \caption[]{2D probability distribution comparing the true neutrino energy from a \beight{} $\nu_{e}$ to the true energy of the scattered electron. Also shown in red is the line $E_{\nu} = E_{e}$.}
+    \caption[True \beight{} $E_{\nu}$ versus true $E_{e}$.]{2D probability distribution comparing the true neutrino energy from a \beight{} $\nu_{e}$ to the true energy of the scattered electron. Also shown in red is the line $E_{\nu} = E_{e}$.}
     \label{fig:nu_elec_energy_dependence}
 \end{figure}
 
 \begin{figure}
     \centering
-    % \includegraphics[]{}
-    \caption[]{}
+    \includegraphics[width=0.75\textwidth]{6_SolarAnalysis/images/b8_energy_evolution.pdf}
+    \caption[The evolution of energy distributions related to \beight{} solar neutrino detection.]{The evolution of energy distributions related to \beight{} solar neutrino detection. The unoscillated neutrino spectrum is taken from John Bahcall's SSM~\cite{}; % cite relevant SSM paper RAT uses
+    neutrino oscillations assume oscillation parameters from the current global fit results~\cite{} % NuFit
+    and $\nu_{e}$ survival probabilities calculated via the method described in Section~\ref{sec:osc_in_fit}. The latter three distributions were obtained from MC production as described in Section~\ref{sec:solar_dataset_livetime}, with the cross-section formula coming from~\cite{}.% Bahcall radiative corrections paper
+    }
     \label{fig:nu_elec_energy_dependence2}
 \end{figure}
 
@@ -45,19 +48,20 @@ of $\sin^{2}\theta_{13} = 0.0222$ and $\Delta m^{2}_{13} = +\SI{2.515e-3}{\eV\sq
 \end{figure}
 
 \subsection{Background Processes}\label{sec:background_processes}
-Sadly, elastically-scattered electrons from \beight{} neutrinos are not the only events we see in the SNO+ detector during the scintillator phase. There are a number of background processes that our signal must compete against. Below a reconstructed energy of $\sim\SI{2}{\MeV}$, it is known that various backgrounds completely swamp any possible \beight{} signal, and so for this analysis we only consider processes that can generate reconstructed energies of at least $E_{\textrm{min}} = \SI{2}{\MeV}$. The following subsections explain each of these backgrounds, as well as methods that have been used to mitigate them as much as possible.
+Sadly, elastically-scattered electrons from \beight{} neutrinos are not the only events we see in the SNO+ detector during the scintillator phase. There are a number of background processes that our signal must compete against. Below a reconstructed energy of $\sim\SI{2.5}{\MeV}$, it is known that various backgrounds completely swamp any possible \beight{} signal, and so for this analysis we only consider processes that can generate reconstructed energies of at least $E_{\textrm{min}} = \SI{2.5}{\MeV}$. The following subsections explain each of these backgrounds, as well as methods that have been used to mitigate them as much as possible.
 
 \subsubsection{Internal Uranium- and Thorium-Chain Backgrounds}\label{sec:u_th_internals}
 Although every effort has been made to make the scintillator cocktail that fills SNO+ to be as radio-pure as possible, there inevitably remain trace amounts of the radioactive isotopes that derive from the decay chains of the \ce{^{238}U} and \ce{^{232}Th} isotopes. Fig.~\ref{fig:u_th_decay_chains} shows these two decay chains. Fortunately, only a fraction of the radioactive isotopes in these chains actually are capable of generating events in the detector with energies above $E_{\textrm{min}}$: these have been highlighted in Fig.~\ref{fig:u_th_decay_chains} in gold.
 
 \begin{figure}
     \centering
-    % \includegraphics[]{}
-    \caption[]{}
+    \includegraphics[width=0.75\textwidth]{6_SolarAnalysis/images/U238_Th232_decay_chains_tereza.png}
+    \caption[The \ce{^{238}U} and \ce{^{232}Th} decay chains.]{The \ce{^{238}U} and \ce{^{232}Th} decay chains, taken from~\cite{}. % Tereza's thesis
+    Isotopic half-lives are given below their symbol; the Q-values for each decay, in MeV, is given in green. Downward arrows indicate an $\alpha$-decay; diagonal arrows indicate $\beta$-decay. Isotopes highlighted in gold are potential backgrounds for this solar analysis.}
     \label{fig:u_th_decay_chains}
 \end{figure}
 
-Of particular note are the decays of \ce{^{212}Bi} and \ce{^{214}Bi}. Both are capable of either $\alpha\textrm{-}$ or $\beta\textrm{-decays}$ to \ce{Tl} or \ce{Po} isotopes, respectively. For the former, it is the subsequent $\beta$-decay of the \ce{Tl} that can have a reconstructed energy above $E_{\textrm{min}}$. For the latter, the \ce{Bi} decay is the part of the pair of decays that can lie above $E_{\textrm{min}}$. Although the $\alpha$-decays here certainly have Q-values well above \SI{2}{\MeV}, the liquid scintillator quenches the observed energy well below $E_{\mathrm{min}}$. The so-called ``\ce{Bi-Po}'' decays are particularly special because the lifetimes of \ce{^{212}Po} and \ce{^{214}Po} are \SI{300}{\nano\second} and \SI{164}{\micro\second}, respectively, which are short enough to allow for highly-effective coincidence tagging.
+Of particular note are the decays of \ce{^{212}Bi} and \ce{^{214}Bi}. Both are capable of either $\alpha\textrm{-}$ or $\beta\textrm{-decays}$ to \ce{Tl} or \ce{Po} isotopes, respectively. For the former, it is the subsequent $\beta$-decay of the \ce{Tl} that can have a reconstructed energy above $E_{\textrm{min}}$. For the latter, the \ce{Bi} decay is the part of the pair of decays that can lie above $E_{\textrm{min}}$. Although the $\alpha$-decays here certainly have Q-values well above \SI{2.5}{\MeV}, the liquid scintillator quenches the observed energy well below $E_{\mathrm{min}}$. The so-called ``\ce{Bi-Po}'' decays are particularly special because the lifetimes of \ce{^{212}Po} and \ce{^{214}Po} are \SI{300}{\nano\second} and \SI{164}{\micro\second}, respectively, which are short enough to allow for highly-effective coincidence tagging.
 
 There are two classes of \ce{Bi-Po} event in the detector: ``out-of-window'' events for which the \ce{Bi} and \ce{Po} occur in separate event windows, and ``in-window'' events whereby the \ce{Bi} and \ce{Po} occur within the same event window. These lead to two distinct strategies for tagging these kinds of events. For out-of-window \ce{Bi-Po}s, we look for a delayed coincidence of two events. Using the tagging algorithm suggested in~\cite{} % Jeanne's BiPo tagging DocDB
 as a starting point, the chosen procedure was as follows. There must be two events that trigger the detector within \SI{4}{\micro\second} of one another, and both have a valid \texttt{scintFit} position reconstruction within \SI{2}{\metre} of one another. The delayed candidate event must also have at least 100 cleaned PMT hits. %Must ensure cleaned nhits has been explained earlier
@@ -90,8 +94,9 @@ For the prompt signal, there is the light emitted from the $\alpha$ just before,
 
 \begin{figure}
     \centering
-    % \includegraphics[]{}
-    \caption[]{}
+    \includegraphics[width=0.8\textwidth]{6_SolarAnalysis/images/alpha_n_schematic_Iwan_modified.pdf}
+    \caption[Schematic of \alphan{} interactions.]{Schematic of the three dominant modes of \alphan{} interaction, taken from~\cite{}. % Iwan's thesis
+    }
     \label{fig:alpha_n_drawing}
 \end{figure}
 
@@ -272,7 +277,7 @@ As an example, consider the impact of an energy scale systematic on the energy d
 The solution to this problem is defining a ``buffer region'' of bins on either side of the ROI, which allow for tracking of events in and out of the ROI due to systematics, but aren't considered when calculating the likelihood. This is also shown in Fig.~\ref{fig:energy_scaling_example}. After the scaling systematic is applied, although incorrect bin values are found in the buffer region, this is fine because we are no longer calculating the likelihood with those bins. Note that because of this modification, the normalisation parameters we put into the model no longer represent the expected number of events in the ROI. Instead, they represent the number of events expected in both the ROI and buffer region, before any systematics have been applied.
 
 
-\subsection{Including Oscillations in the Fit}
+\subsection{Including Oscillations in the Fit}\label{sec:osc_in_fit}
 Within the analysis MCMC code, the process of neutrino oscillations are thought of as a \textit{de facto} systematic that acts only on the \beight{} $\nu_{e}$ and $\nu_{x}$ signal spectra. Three parameters relevant to the signal are floated within the MCMC fit: \dmsq{}, \tonetwo{}, and $\Phi_{\ce{^{8}B}}$, the unoscillated \ce{^{8}B} flux relative to the expected rate. For the two signal PDFs, a third ``bookkeeping'' dimension is added on top of reconstructed energy and radius: the true neutrino energy, $E_{\nu}$. This is necessary for correctly applying oscillations, as the oscillation probability is a function of the neutrino's energy, not the scattered electron's. Before the fit, these 3D PDFs are given normalisations corresponding to the expectation of the number of events for each type, $\nu_{e}$ and $\nu_{x}$, after cuts but before oscillations have been applied. Strictly speaking there should be zero $\nu_{x}$ events before neutrino oscillations: the pre-oscillation rate used here is the post-cut number of events expected if 100\% of the neutrinos oscillated to the $\nu_{x}$ type.
 
 During the MCMC fit, for a given set of parameters $\bm{\theta} = \left(\dmsq{}, \tonetwo{}, \Phi_{\ce{^{8}B}}\right)$ the following is performed to oscillate the signal PDFs. Firstly, the normalisations are scaled by the factor $\Phi_{\ce{^{8}B}}$. Then, for each $E_{\nu}$ bin the survival probability $P_{ee}\left(E_{\nu}, \dmsq{}, \tonetwo{}\right)$ is calculated. Each bin then has their probability scaled by either $P_{ee}$ or $1-P_{ee}$, for $\nu_{e}$ and $\nu_{x}$ respectively. Of course, within the structure of the \texttt{OXO} framework these bin-by-bin scaling aren't immediately applied, but instead a matrix describing the impact of oscillations on each of the PDFs is made. Because the oscillation transformation is purely a bin-by-bin scaling, the resulting matrices are diagonal, with diagonal elements $\Phi_{\ce{^{8}B}}\cdot P_{ee}\left(E_{\nu}, \dmsq{}, \tonetwo{}\right)$ or $\Phi_{\ce{^{8}B}}\cdot\left(1-P_{ee}\left(E_{\nu}, \dmsq{}, \tonetwo{}\right)\right)$ for $\nu_{e}$ and $\nu_{x}$ respectively. After the oscillation matrix along with all other systematic matrices are applied to the signal PDFs, the PDFs are then marginalised over the $E_{\nu}$ dimension so that the signal PDFs match the dimensionality of all other processes.
@@ -305,11 +310,12 @@ Even after using the Large Mixing Angle approximation, having to call \texttt{PS
     \color{blue}
     [19 pages currently, without figures; probably +5 pages for figures.]
     \section{Analysis on Scintillator-Phase data}
-    \subsection{Dataset and Livetime}
+    \subsection{Dataset and Livetime}\label{sec:solar_dataset_livetime}
     \begin{itemize}
         \item Description of dataset chosen for analysis: 2.2 g/L scintillator-phase data that satisfies the ``gold'' list of run selection requirements, between May and November 2022.
         \item Explain requirements for run being selected into the Gold list.
         \item Note `raw' livetime calculated for this dataset, and then calculate the impact that the muon and high-nhit vetos have on the livetime.
+        \item Note which RAT versions MC production is being used to compare to data.
     \end{itemize}
     [2 pages]
     \subsection{Event Selection}\label{sec:event_selection}
