@@ -14,13 +14,13 @@ This chapter begins by explaining how it is possible to measure the solar oscill
 How can we measure neutrino oscillation parameters via solar neutrinos in the SNO+ detector? As discussed in Chapter~\ref{chap:theory}, % link to theory section on solar oscillations
 it is possible to detect all flavours of neutrino through elastic scattering with electrons in the detector. If this interaction was purely neutral-current, then there would be no way of telling the flavour-state of an interacting neutrino. However, electron neutrinos are able to interact through an additional charged-current mode. This modifies the cross-section for electron neutrinos, and means that as the survival probability for electron neutrinos generated from the Sun, $P_{ee}$, is modified, the interaction probability of neutrinos with the detector will also.
 
-Of course, we do not directly measure neutrino energies in the detector --- only the associated scattered electron. If there were no correlation between the observed electron energy and its associated neutrino, then the only effect of neutrino oscillations would be to change the overall observed rate of events due to this process. There would be no change in the shape of the event's energy spectrum, even though neutrino oscillations are a function of neutrino energy. Fortunately, there is some dependence of the neutrino's energy on that of the scattered electron. This dependence can be seen in Fig.~\ref{fig:nu_elec_energy_dependence} for \beight{} electron neutrinos interacting in SNO+. % Expected analytical dependence?
+Of course, we do not directly measure neutrino energies in the detector --- only the associated scattered electron. If there were no correlation between the observed electron energy and its associated neutrino, then the only effect of neutrino oscillations would be to change the overall observed rate of events due to this process. There would be no change in the shape of the event's energy spectrum, even though neutrino oscillations are a function of neutrino energy. Fortunately, there is some dependence of the neutrino's energy, $E_{\nu}$ on that of the scattered electron, $E_{e}$. This dependence can be seen in Fig.~\ref{fig:nu_elec_energy_dependence} for \beight{} electron neutrinos interacting in SNO+. % Expected analytical dependence?
 As can be seen, the dependence is weak, and comes mostly from basic energy conservation: If one observes a \SI{10}{\MeV} electron event in the detector, it can't reasonably have come from a \SI{5}{\MeV} neutrino.
 
 \begin{figure}
     \centering
-    % \includegraphics[]{}
-    \caption[]{}
+    \includegraphics[width=0.8\textwidth]{6_SolarAnalysis/images/b8_eelectrue_vs_enutrue.pdf}
+    \caption[]{2D probability distribution comparing the true neutrino energy from a \beight{} $\nu_{e}$ to the true energy of the scattered electron. Also shown in red is the line $E_{\nu} = E_{e}$.}
     \label{fig:nu_elec_energy_dependence}
 \end{figure}
 
@@ -33,7 +33,7 @@ As can be seen, the dependence is weak, and comes mostly from basic energy conse
 
 In Fig.~\ref{fig:nu_elec_energy_dependence2} we can see the impact each physical process has on the energy spectrum that we eventually observe. We start with a broad energy distribution of \beight{} electron neutrinos generated in the Sun. These neutrinos then oscillate their flavour state as they propagate to the detector, in an energy-dependent manner. When a (tiny) fraction of these neutrinos interact with the electrons in our detector, there is both an energy- and flavour-dependence on the cross-section. The scattered electrons gain a kinetic energy with some mild dependence on the inciting neutrino's energy, which is then measured by the detector to within some energy resolution.
 
-Let us now consider the dependence of $P_{ee}$ on the individual neutrino oscillation parameters. Recall from Eq.~\ref{} %
+Let us now consider the dependence of $P_{ee}$ on the individual neutrino oscillation parameters. Recall from Eq.~\ref{eq:pee_msw} %
 that, after considering matter-induced oscillations due to neutrinos passing through the Sun and possibly the Earth, $P_{ee} = P_{ee}\left(\tan2\theta^{M}_{12}, \sin\theta^{M}_{13}, \Delta m^{2}_{21,M}\right) = P_{ee}\left(\theta_{12}, \theta_{13}, \Delta m^{2}_{12}, \Delta m^{2}_{13}\right)$. Fig.~\ref{fig:pee_osc_param_dependence} shows the dependence of each of these four oscillation parameters on $P_{ee}(E)$. We can see that in reality only the two parameters \dmsq{} and \tonetwo{} have a substantial impact on $P_{ee}(E)$ and hence the observed electron energy spectrum. Because of this, for this analysis we will only ever vary these two oscillation parameters, and keep $\theta_{13}$ and $\Delta m^{2}_{13}$ at their current global fit values\footnote{We use the global fit results excluding Super-Kamiokande's atmospheric data, and assuming normal ordering of the neutrino mass hierarchy. This choice has a tiny impact on the magnitudes of these two fixed parameters, the main impact being the sign of $\Delta m^{2}_{13}$.} % Confirm that mass hierarchy has no impact on Pee.
 of $\sin^{2}\theta_{13} = 0.0222$ and $\Delta m^{2}_{13} = +\SI{2.515e-3}{\eV\squared}$~\cite{}.% nufit citation
 
@@ -69,7 +69,7 @@ and re-coordinated for the \SI{2.2}{\gram\per\litre} LABPPO scintillator optics 
 This classifier calculates the likelihood ratio between the null hypothesis of a \onbb{} event (a proxy in this analysis for single-site events such as our \beight{} signal) and the alternative hypothesis of an in-window \ce{Bi-Po} event. The more negative the value of the result, \texttt{alphabeta212}, the greater the evidence there is for rejecting the null hypothesis of a single-site event. Events with $\texttt{alphabeta212} < 0$ % WRITE FINAL CHOICE OF CUT!
 were then rejected.
 
-Combining both out-of-window and in-window \ce{Bi-Po} tagging, the impact on \ce{^{212}Bi-Po}, \ce{^{214}Bi-Po}, and \beight{} $\nu_e$ events can be seen in Fig.~\ref{fig:bipo_tagging_efficiency}. We consider here only events that pass all other cuts used in this analysis: see section~\ref{} % link to cuts subsection
+Combining both out-of-window and in-window \ce{Bi-Po} tagging, the impact on \ce{^{212}Bi-Po}, \ce{^{214}Bi-Po}, and \beight{} $\nu_e$ events can be seen in Fig.~\ref{fig:bipo_tagging_efficiency}. We consider here only events that pass all other cuts used in this analysis: see Section~\ref{sec:event_selection} % link to cuts subsection
 for the specifics of the cuts used. Because of the different lifetimes of the decays, \ce{^{214}Bi-Po} decays predominantly fall out-of-window whilst \ce{^{212}Bi-Po} events are typically in-window. This explains why the out-of-window tagging is substantially better at cutting \ce{^{214}Bi-Po} decays, whereas the in-window tagging far better tags \ce{^{212}Bi-Po} decays. Overall, within the analysis region of interest (ROI), the two combined cuts are able to tag TODO\% % CALCULATE
 of \ce{^{214}Bi-Po} triggered events, TODO\% % CALCULATE
 of \ce{^{212}Bi-Po} triggered events, whilst retaining TODO\% % CALCULATE
@@ -242,7 +242,7 @@ The specific implementation of MCMC used for this analysis is that of \texttt{OX
 
 \subsection{Choosing Priors}
 For this analysis, the suggestions made by Biller \& Oser in~\cite{} % Steve's stats paper 
-about choosing prior distributions are followed: for parameters that do not have some pre-existing constraint, a flat prior is used. A nice consequence of this choice is that $\ln{\frac{P\left(\bm{\mu}'\right)}{P\left(\bm{\mu}\right)}} = 0$, so the actual value of the prior for these variables never needs to be calculated when running the MCMC algorithm. For the bulk of this analysis, uniform priors are assumed on the neutrino oscillation parameters \dmsq{} and \tonetwo{}, as the magnitudes of these parameters are now well-established. There is no major reason to prefer a flat prior in \tonetwo{} as opposed to $\tan^2$\tonetwo{} or $\sin^2$\tonetwo{}; we will see the impact of these different choices of prior in section~\ref{}. % IMPACT OF PRIOR REFERENCE!
+about choosing prior distributions are followed: for parameters that do not have some pre-existing constraint, a flat prior is used. A nice consequence of this choice is that $\ln{\frac{P\left(\bm{\mu}'\right)}{P\left(\bm{\mu}\right)}} = 0$, so the actual value of the prior for these variables never needs to be calculated when running the MCMC algorithm. For the bulk of this analysis, uniform priors are assumed on the neutrino oscillation parameters \dmsq{} and \tonetwo{}, as the magnitudes of these parameters are now well-established.
 
 For parameters with existing asymmetric constraints $\beta^{+\sigma_{+}}_{-\sigma_{-}}$, this analysis uses an asymmetric Gaussian prior, equivalent to the logarithm of the prior being an asymmetric quadratic:
 \begin{equation}
@@ -278,7 +278,7 @@ Within the analysis MCMC code, the process of neutrino oscillations are thought 
 During the MCMC fit, for a given set of parameters $\bm{\theta} = \left(\dmsq{}, \tonetwo{}, \Phi_{\ce{^{8}B}}\right)$ the following is performed to oscillate the signal PDFs. Firstly, the normalisations are scaled by the factor $\Phi_{\ce{^{8}B}}$. Then, for each $E_{\nu}$ bin the survival probability $P_{ee}\left(E_{\nu}, \dmsq{}, \tonetwo{}\right)$ is calculated. Each bin then has their probability scaled by either $P_{ee}$ or $1-P_{ee}$, for $\nu_{e}$ and $\nu_{x}$ respectively. Of course, within the structure of the \texttt{OXO} framework these bin-by-bin scaling aren't immediately applied, but instead a matrix describing the impact of oscillations on each of the PDFs is made. Because the oscillation transformation is purely a bin-by-bin scaling, the resulting matrices are diagonal, with diagonal elements $\Phi_{\ce{^{8}B}}\cdot P_{ee}\left(E_{\nu}, \dmsq{}, \tonetwo{}\right)$ or $\Phi_{\ce{^{8}B}}\cdot\left(1-P_{ee}\left(E_{\nu}, \dmsq{}, \tonetwo{}\right)\right)$ for $\nu_{e}$ and $\nu_{x}$ respectively. After the oscillation matrix along with all other systematic matrices are applied to the signal PDFs, the PDFs are then marginalised over the $E_{\nu}$ dimension so that the signal PDFs match the dimensionality of all other processes.
 
 Calculations of the survival probability are handled with \texttt{PSelmaa}, an algorithm written by Nuno Barros for the SNO 3-phase Analysis~\cite{}. % Nuno's thesis
-This considers not only the neutrino oscillations through the vacuum of space between the Sun and Earth, but also the impact of matter effects in both the Sun and Earth. This can usually be a very computationally-intensive process, but \texttt{PSelmaa} takes advantage of the assumption that the solar oscillation parameters are in the so-called ``Large Mixing Angle'' regime, making the calculation much faster. As seen in section~\ref{}, % ref chapter 1
+This considers not only the neutrino oscillations through the vacuum of space between the Sun and Earth, but also the impact of matter effects in both the Sun and Earth. This can usually be a very computationally-intensive process, but \texttt{PSelmaa} takes advantage of the assumption that the solar oscillation parameters are in the so-called ``Large Mixing Angle'' regime, making the calculation much faster. As seen in Section~\ref{sec:nu_osc_evidence}, % ref chapter 1
 previous solar oscillation experiments demonstrate that this assumption is reasonable. For this analysis, the standard MSW effect is assumed with neutrinos obeying the Normal Hierarchy, with the Sun following the \texttt{B16\_GS98} metallicity model~\cite{} % CITE
 and the \texttt{PREM} model being used for the Earth~\cite{}. % CITE
 % Discussion of why these models and not others?
@@ -312,7 +312,7 @@ Even after using the Large Mixing Angle approximation, having to call \texttt{PS
         \item Note `raw' livetime calculated for this dataset, and then calculate the impact that the muon and high-nhit vetos have on the livetime.
     \end{itemize}
     [2 pages]
-    \subsection{Event Selection}
+    \subsection{Event Selection}\label{sec:event_selection}
     \begin{itemize}
         \item List final set of cuts chosen for analysis, along with any explanations for cuts that haven't already been motivated earlier (e.g. data cleaning). These are:
         \begin{itemize}
