@@ -2,9 +2,9 @@
 \epigraph{\textit{Driving out into the Sun\\Let the ultraviolet cover me up\\Looking for a Creation Myth\\Ended up with a pair of black lips}}{\textit{This is the End}\\ \textsc{Phoebe Bridgers}}
 Measuring the ``solar'' neutrino oscillation parameters \dmsq{} and \tonetwo{} is one of the principal aims of the SNO+ detector during the scintillator-phase. There are, in fact, two complementary methods of measuring these parameters: the oscillations of anti-neutrinos from terrestrial nuclear reactors, and the oscillations of neutrinos from the Sun.
 
-This chapter focuses on the latter approach, using \beight{} neutrinos coming from the Sun to measure the solar oscillation parameters. An initial background-free study was performed by Javi Caravaca~\cite{}, % TODO: Javi's tech note
-which demonstrated that it was indeed possible to make such a measurement in the detector. The work in this chapter builds on substantially from that analysis. This chapter also draws on the associated reactor anti-neutrino analysis built by Iwan Morton-Blake~\cite{}, %TODO: Iwan's thesis
-and more broadly from the general techniques used in the \onbb{} analysis of Tereza Kroupova~\cite{} and Jack Dunger~\cite{}.% TODO: Tereza & Jack's thesis
+This chapter focuses on the latter approach, using \beight{} neutrinos coming from the Sun to measure the solar oscillation parameters. An initial background-free study was performed by Javi Caravaca~\cite{caravacaSNOSensitivityStandard2020}, % Javi's tech note
+which demonstrated that it was indeed possible to make such a measurement in the detector. The work in this chapter builds on substantially from that analysis. This chapter also draws on the associated reactor anti-neutrino analysis built by Iwan Morton-Blake~\cite{morton-blakeFirstMeasurementReactor2021}, % Iwan's thesis
+and more broadly from the general techniques used in the \onbb{} analysis of Tereza Kroupova~\cite{kroupovaImprovingSensitivityNeutrinoless2020} and Jack Dunger~\cite{dungerTopologicalTimeBased2018}.% Tereza & Jack's thesis
 
 This chapter begins by explaining how it is possible to measure the solar oscillation parameters via \beight{} events. Then, the framework used to perform the analysis is then explained: that of a \textit{Bayesian Analysis using Markov Chain Monte Carlo techniques}. After the method has been described, the dataset upon which the analysis is performed is then introduced. The results and associated validation are then given. Given these results, a projection is then made for the expected sensitivity to \tonetwo{} as a function of livetime.
 
@@ -27,9 +27,9 @@ As can be seen, the dependence is weak, and comes mostly from basic energy conse
 \begin{figure}
     \centering
     \includegraphics[width=0.75\textwidth]{6_SolarAnalysis/images/b8_energy_evolution.pdf}
-    \caption[The evolution of energy distributions related to \beight{} solar neutrino detection.]{The evolution of energy distributions related to \beight{} solar neutrino detection. The unoscillated neutrino spectrum is taken from John Bahcall's SSM~\cite{}; % cite relevant SSM paper RAT uses
-    neutrino oscillations assume oscillation parameters from the current global fit results~\cite{} % NuFit
-    and $\nu_{e}$ survival probabilities calculated via the method described in Section~\ref{sec:osc_in_fit}. The latter three distributions were obtained from MC production as described in Section~\ref{sec:solar_dataset_livetime}, with the cross-section formula coming from~\cite{}.% Bahcall radiative corrections paper
+    \caption[The evolution of energy distributions related to \beight{} solar neutrino detection.]{The evolution of energy distributions related to \beight{} solar neutrino detection. The unoscillated neutrino spectrum is taken from~\cite{winterB8NeutrinoSpectrum2006}; % cite relevant SSM paper RAT uses
+    neutrino oscillations assume oscillation parameters from the current global fit results~\cite{estebanFateHintsUpdated2020} % NuFit
+    and $\nu_{e}$ survival probabilities calculated via the method described in Section~\ref{sec:osc_in_fit}. The latter three distributions were obtained from MC production as described in Section~\ref{sec:solar_dataset_livetime}, with the cross-section formula coming from~\cite{bahcallSolarNeutrinosRadiative1995}.% Bahcall radiative corrections paper
     }
     \label{fig:nu_elec_energy_dependence2}
 \end{figure}
@@ -38,7 +38,7 @@ In Fig.~\ref{fig:nu_elec_energy_dependence2} we can see the impact each physical
 
 Let us now consider the dependence of $P_{ee}$ on the individual neutrino oscillation parameters. Recall from Eq.~\ref{eq:pee_msw} %
 that, after considering matter-induced oscillations due to neutrinos passing through the Sun and possibly the Earth, $P_{ee} = P_{ee}\left(\tan2\theta^{M}_{12}, \sin\theta^{M}_{13}, \Delta m^{2}_{21,M}\right) = P_{ee}\left(\theta_{12}, \theta_{13}, \Delta m^{2}_{12}, \Delta m^{2}_{13}\right)$. Fig.~\ref{fig:pee_osc_param_dependence} shows the dependence of each of these four oscillation parameters on $P_{ee}(E)$. We can see that in reality only the two parameters \dmsq{} and \tonetwo{} have a substantial impact on $P_{ee}(E)$ and hence the observed electron energy spectrum. Because of this, for this analysis we will only ever vary these two oscillation parameters, and keep $\theta_{13}$ and $\Delta m^{2}_{13}$ at their current global fit values\footnote{We use the global fit results excluding Super-Kamiokande's atmospheric data, and assuming normal ordering of the neutrino mass hierarchy. This choice has a tiny impact on the magnitudes of these two fixed parameters, the main impact being the sign of $\Delta m^{2}_{13}$.} % Confirm that mass hierarchy has no impact on Pee.
-of $\sin^{2}\theta_{13} = 0.0222$ and $\Delta m^{2}_{13} = +\SI{2.515e-3}{\eV\squared}$~\cite{}.% nufit citation
+of $\sin^{2}\theta_{13} = 0.0222$ and $\Delta m^{2}_{13} = +\SI{2.515e-3}{\eV\squared}$~\cite{estebanFateHintsUpdated2020}.% nufit citation
 
 \begin{figure}
     \centering
@@ -56,7 +56,7 @@ Although every effort has been made to make the scintillator cocktail that fills
 \begin{figure}
     \centering
     \includegraphics[width=0.75\textwidth]{6_SolarAnalysis/images/U238_Th232_decay_chains_tereza.png}
-    \caption[The \ce{^{238}U} and \ce{^{232}Th} decay chains.]{The \ce{^{238}U} and \ce{^{232}Th} decay chains, taken from~\cite{}. % Tereza's thesis
+    \caption[The \ce{^{238}U} and \ce{^{232}Th} decay chains.]{The \ce{^{238}U} and \ce{^{232}Th} decay chains, taken from~\cite{kroupovaImprovingSensitivityNeutrinoless2020}. % Tereza's thesis
     Isotopic half-lives are given below their symbol; the Q-values for each decay, in MeV, is given in green. Downward arrows indicate an $\alpha$-decay; diagonal arrows indicate $\beta$-decay. Isotopes highlighted in gold are potential backgrounds for this solar analysis.}
     \label{fig:u_th_decay_chains}
 \end{figure}
@@ -95,7 +95,7 @@ For the prompt signal, there is the light emitted from the $\alpha$ just before,
 \begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{6_SolarAnalysis/images/alpha_n_schematic_Iwan_modified.pdf}
-    \caption[Schematic of \alphan{} interactions.]{Schematic of the three dominant modes of \alphan{} interaction, taken from~\cite{}. % Iwan's thesis
+    \caption[Schematic of \alphan{} interactions.]{Schematic of the three dominant modes of \alphan{} interaction, taken from~\cite{morton-blakeFirstMeasurementReactor2021}. % Iwan's thesis
     }
     \label{fig:alpha_n_drawing}
 \end{figure}
@@ -111,7 +111,7 @@ As can be seen in Fig.~\ref{fig:alpha_n_coincidence_cut_impact}, \alphan{} inter
 
 
 \subsubsection{External Backgrounds}
-All materials within the SNO+ detector are radioactive, not just the liquid scintillator cocktail. This includes the acrylic, ropes, external water, and PMTs. These components have had their radiopurity ``assayed'' (that is, measured) throughout the detector's lifetime, often back to the construction of the original SNO detector itself. The materials other than the liquid scintillator are known to have far higher background levels, especially in the important \ce{^{238}U}- and \ce{^{232}Th}-chain backgrounds~\cite{}. % good ref for this
+All materials within the SNO+ detector are radioactive, not just the liquid scintillator cocktail. This includes the acrylic, ropes, external water, and PMTs. These components have had their radiopurity ``assayed'' (that is, measured) throughout the detector's lifetime, often back to the construction of the original SNO detector itself. The materials other than the liquid scintillator are known to have far higher background levels, especially in the important \ce{^{238}U}- and \ce{^{232}Th}-chain backgrounds~\cite{andringaCurrentStatusFuture2016}. % good ref for this
 To distinguish between the inherent backgrounds within the scintillator, and the backgrounds from materials at larger radii, we use the terminology ``internal'' and ``external'', respectively.
 
 Although there are numerous external backgrounds, with a suitably accurate and precise position reconstruction algorithm they can be suitably handled. The simplest approach is with a so-called ``fiducial volume'' (FV) cut: just throw out all events that reconstruct beyond some radius. The only external background events that will reach within the FV are those that have reconstructed very poorly, or have some long-distance radiation that manages to deposit radiation close to the centre of the AV. % FOM cut?
@@ -127,7 +127,7 @@ radiation that can realistically travel far enough into the detector to be able 
 
 What this figure also demonstrates is that our solar signal has a completely different radial dependence to these backgrounds. As a result, if one considers not just the energy of events but also their reconstructed radius, then it is possible to get an additional handle on the external backgrounds. The FV cut can then be pushed further out to larger radii, allowing one to gain more signal statistics.
 
-Work by Tereza Kroupova~\cite{} % Tereza's thesis & full-scint re-coordination
+Work by Tereza Kroupova~\cite{kroupovaImprovingSensitivityNeutrinoless2020} % Tereza's thesis & full-scint re-coordination
 allows for additional means of distinguishing external backgrounds from the solar signal. The underlying assumption in the reconstruction of SNO+ events is that there was an electron at a single point, which is entirely valid for \beight{} elastic scattering events. However, external backgrounds can fail this assumption in two ways. Firstly, these radioactive decays often generate $\gamma$ radiation in addition to the main $\alpha$/$\beta$ particle, which creates a multi-site event. Because the \texttt{scintFit} position reconstruction algorithm is not prepared for a distribution of energy depositions in the scintillator, the \tres{} distribution will broaden. This allows an event classifier to be built that distinguishes between the \tres{} distributions of single-site events and externals, known as the ``external background timing classifier''. Secondly, because external backgrounds that do reconstruct close to the centre of the detector typically have a $\gamma$ that travelled a long distance towards the centre of the detector, we expect the earliest light that hits the PMTs to arrive most often along the direction of the reconstructed position vector. A distribution of PMT hits for a given event as a function of their angular distribution relative to the direction of position reconstruction can be built, and compared to the expected distributions for single-site and external background events. This is known as the ``external background topological classifier''. Much like the classifier described in Section~\ref{sec:u_th_internals}, the single-site events used for comparison were \onbb{} events, but these have a similar single-site structure to the solar signal of interest in this analysis.
 
 Fig.~\ref{fig:external_classifier_corr} shows the correlation between the two classifier results for both a typical external background, and \beight{} $\nu_{e}$ events. % DESCRIPTION OF PLOT, HOW A CUT COULD WORK!!
@@ -242,11 +242,11 @@ $R\left(\bm{\mu}'|\bm{\mu}\right)$ is the probability density that position $\bm
 
 It is the detailed balance condition that ensures convergence of the MCMC algorithm to specifically the posterior density distribution. Crucially, because it is only dependent on the ratio of posterior densities, the hard-to-calculate normalisation $P\left(\bm{x}\right)$ in both posterior density terms cancels out, meaning one only needs to calculate the likelihood and priors for each step, as well as $\frac{R\left(\bm{\mu}|\bm{\mu}'\right)}{R\left(\bm{\mu}'|\bm{\mu}\right)}$.
 
-The specific implementation of MCMC used for this analysis is that of \texttt{OXO}, a C++ analysis framework first developed by Jack Dunger~\cite{}. % Jack's thesis
+The specific implementation of MCMC used for this analysis is that of \texttt{OXO}, a C++ analysis framework first developed by Jack Dunger~\cite{dungerTopologicalTimeBased2018}. % Jack's thesis
 \texttt{OXO} is able to run the Metropolis-Hastings algorithm on multidimensional binned data, using the log-likelihood defined in~\ref{sec:test_statistic}. This framework also allows one to include systematic parameters that can float within the fit, and define non-uniform priors for normalisations and systematics that have constraints: the details of this will be discussed shortly.
 
 \subsection{Choosing Priors}
-For this analysis, the suggestions made by Biller \& Oser in~\cite{} % Steve's stats paper 
+For this analysis, the suggestions made by Biller \& Oser in~\cite{billerAnotherLookConfidence2015} % Steve's stats paper 
 about choosing prior distributions are followed: for parameters that do not have some pre-existing constraint, a flat prior is used. A nice consequence of this choice is that $\ln{\frac{P\left(\bm{\mu}'\right)}{P\left(\bm{\mu}\right)}} = 0$, so the actual value of the prior for these variables never needs to be calculated when running the MCMC algorithm. For the bulk of this analysis, uniform priors are assumed on the neutrino oscillation parameters \dmsq{} and \tonetwo{}, as the magnitudes of these parameters are now well-established.
 
 For parameters with existing asymmetric constraints $\beta^{+\sigma_{+}}_{-\sigma_{-}}$, this analysis uses an asymmetric Gaussian prior, equivalent to the logarithm of the prior being an asymmetric quadratic:
