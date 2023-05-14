@@ -100,7 +100,8 @@ Here, $A_{i}$ and $\tau_{i}$ correspond to the fraction of light emitted and dec
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{2_Detector/Figs/scintillator_emission_timing_profile_LABPPO22gl.pdf}
-    \caption[The current modelled distribution for the emission timing of the SNO+ scintillator]{The current modelled distribution for the emission timing of the SNO+ scintillator, for electron tracks~\cite{}.}
+    \caption[The current modelled distribution for the emission timing of the SNO+ scintillator]{The current modelled distribution for the emission timing of the SNO+ scintillator, for electron tracks~\cite{}.%
+    }
     \label{fig:typical_tres_dist_physics}
 \end{figure}
 
@@ -240,17 +241,66 @@ where $R_{s}$ and $R_{p}$ are the reflectances of $s$- and $p$-polarised light, 
     %     \item State that boundaries between media can induce reflections and refraction, as governed by the Fresnel transmission and reflection formulae. These formulae are worth mentioning because I use them in my SMELLIE extinction length analysis.
     % \end{itemize}
     % [1/2 page]
-    \subsection{Detection by PMTs}\label{sec:pmts}
+\subsection{Detection by PMTs}\label{sec:pmts}
+The final step for photons in our journey is detection by a PMT. Almost all PMTs in SNO+ are of the Hamamatsu r1408 design~\cite{}. % cite
+These PMTs within SNO+ are housed within a reflecting cone known as a `concentrator'. The combined PMT--concentrator `bucket', shown in Fig.~\ref{fig:pmt_conc_diagram}, is designed to maximise the collection efficiency of light emanating from within the AV, whilst minimising the collection efficiency of light outside the AV~\cite{}. % cite Moorhead
+The so-called `angular response' of the PMT buckets has been measured in both SNO and SNO+ using the Laserball, which describes the relative collection efficiency as a function of the polar angle of the incident light ray relative to the direction in which the PMT bucket points. The results of this can be seen in Fig.~\ref{fig:pmt_angular_response}.
+
+\begin{figure}
+    \centering
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \includegraphics[width=0.95\textwidth]{2_Detector/Figs/pmt_bucket_assembly.png}
+        \caption{}
+        \label{fig:pmt_conc_diagram}
+    \end{subfigure}
+    \begin{subfigure}{0.69\textwidth}
+        \centering
+        \includegraphics[width=0.95\textwidth]{2_Detector/Figs/PMTResponse.png}
+        \caption{}
+        \label{fig:pmt_angular_response}
+    \end{subfigure}
+    \caption[]{}
+    \label{fig:pmt_optics}
+\end{figure}
+
+\nomenclature{\textbf{QE}}{Quantum efficiency (of a PMT)}
+\nomenclature{\textbf{TTS}}{Transit time spread (of a PMT)}
+\nomenclature{\textbf{FWHM}}{Full-width at half-maximum (of a distribution)}
+Once a photon is incident on the PMT's photocathode, it is possible for that photon to be absorbed and generate a photoelectron. The probability of this happening is governed by the PMT's Quantum Efficiency (QE) at the photon's wavelength, which can be seen in Fig~\ref{fig:qe_pmts}. % cite
+Note how the QE is maximal at \SI{420}{\nm} with a value of TODO\%. Once this photoelectron has been created, the dynodes within the PMT generate a cascade of electrons that allow for an observable voltage signal to be produced. The dynamics of this cascade are such that there is a natural spread of possible times between the creation of a photoelectron and the generation of the voltage signal pulse in the PMT's wire. This is known as the `Transit Time Spread' (TTS) of the PMTs: for SNO+, the full-width at half-maximum (FWHM) of the TTS for the r1408-type PMTs is TODOns~\cite{}. % cite
+
+\begin{figure}
+    \centering
+    % \includegraphics[]{}
+    \caption[]{}
+    \label{fig:qe_pmts}
+\end{figure}
+
+\nomenclature{\textbf{npe}}{Number of photoelectrons}
+Finally, if multiple photons generate photoelectrons on the same PMT close enough in time, the detector's front-end electronics (described in Section~\ref{sec:daq}) is unable to tell. However, the amount of charge generated increases in proportion to the number of photoelectrons (npe). Much like with the transit time, the strength of the signal observed by the PMT is governed by a distribution, a function of the npe generated. Examples of these distributions can be seen in Fig.~\ref{fig:charge_dists_pmt}. % cite
+The relatively large widths of these charge distributions precludes the ability to straightforwardly determine the npe purely from charge when the npe is small. To work around this, various techniques can be employed to try and estimate the npe in a given PMT --- an example of one such method can be seen in Section~\ref{sect:new_beam_profiles}.
+
+\begin{figure}
+    \centering
+    % \includegraphics[]{}
+    \caption[]{}
+    \label{fig:charge_dists_pmt}
+\end{figure}
+
+
+    % \begin{itemize}
+    %     \item Light gets detected via the PMTs. Note the existence of the PMT concentrators to maximise coverage within the AV, but minimise it in the external water: show the calibrated angular response.
+    %     \item Remind reader that a PMT converts photons to photoelectrons with a certain quantum efficiency, dependent on the wavelength of light.
+    %     \item The process of multiplying the signal induces a spread in the possible generated time of the voltage signal, known as the PMT's transit time spread.
+    %     \item The PMT response is also weakly dependent on the number of photoelectrons generated; not enough to be able to confidently distinguish the npe under most circumstances.
+    % \end{itemize}
+    % [2 pages]
+\subsection{Data Acquisition and Triggering}\label{sec:daq}
+
+
 {
     \color{blue}
-    \begin{itemize}
-        \item Light gets detected via the PMTs. Note the existence of the PMT concentrators to maximise coverage within the AV, but minimise it in the external water: show the calibrated angular response.
-        \item Remind reader that a PMT converts photons to photoelectrons with a certain quantum efficiency, dependent on the wavelength of light.
-        \item The process of multiplying the signal induces a spread in the possible generated time of the voltage signal, known as the PMT's transit time spread.
-        \item The PMT response is also weakly dependent on the number of photoelectrons generated; not enough to be able to confidently distinguish the npe under most circumstances.
-    \end{itemize}
-    [2 pages]
-    \subsection{Data Acquisition and Triggering}
     \begin{itemize}
         \item Summarise how a PMT signal becomes digitised via the front-end electronics, briefly.
         \item Summarise the triggering system, as I'll have to describe in a later chapter how the SMELLIE hardware fits into this, especially as there have been ongoing SMELLIE triggering issues worth mentioning there!
