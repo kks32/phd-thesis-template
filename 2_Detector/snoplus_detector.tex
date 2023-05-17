@@ -297,6 +297,36 @@ The relatively large widths of these charge distributions precludes the ability 
     % \end{itemize}
     % [2 pages]
 \subsection{Data Acquisition and Triggering}\label{sec:daq}
+\nomenclature{\textbf{DAQ}}{Data acquisition (system)}
+Once a signal is generated in the cable attached to a PMT, it travels along up to the front-end electronics on the deck above the detector. The job of these electronics, known as the data acquisition (DAQ) and triggering system, is to convert raw electronic signals from the PMTs into recorded digital `events' that can be used for analysis. A schematic showing the setup of the electronics is shown in Fig~\ref{fig:tdaq_schematic}, with full details in~\cite{}. % cite
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{2_Detector/Figs/electronics_diagram.pdf}
+    \caption[]{Schematic of the front-end electronics used for data acquisition and triggering in SNO+, taken from and discussed in~\cite{}. % cite
+    }
+    \label{fig:tdaq_schematic}
+\end{figure}
+
+\nomenclature{\textbf{PMTIC}}{PMT Interface Card}
+\nomenclature{\textbf{DB}}{Daughter Board}
+\nomenclature{\textbf{FEC}}{Front-End Card}
+\nomenclature{\textbf{TAC}}{Time-to-amplitude Converter}
+\nomenclature{\textbf{QHS}}{Charge with high gain over a `short' integration time (\SI{60}{\ns})}
+\nomenclature{\textbf{QHL}}{Charge with high gain over a `long' integration time (\SI{390}{\ns})}
+\nomenclature{\textbf{QLX}}{Charge with low gain over a `long' integration time (\SI{390}{\ns})}
+A signal passes first through the PMT Interface Card (PMTIC), which then sends it through to one of the Daughter Boards (DBs) which are stored on Front-End Cards (FECs) within one of 19 electronic crates on deck. The DBs determine if the analogue signal along a given PMT channel has crossed a pre-defined charge threshold, at which point we say that we have detected a `hit' on that PMT's channel. When this occurs, the DB performs a set of important actions:
+\begin{enumerate}
+    \item Begins a timer for that channel, in the form of a Time-to-Amplitude Converter (TAC). TAC also corresponds to the resulting quantity being measured.
+    \item Begins integrating the total charge signal for that channel in three ways, known as QHS, QHL, and QLX. These correspond to using different integration times and gain settings.
+    \item Generates trigger pulses for that channel for each available trigger type. Three main trigger signals are the `N20' (a square pulse for \SI{20}{\ns}), `N100' (a square pulse for \SI{100}{\ns}), and `ESUMHI' (a pulse copying the shape of the voltage signal for that channel). The reason for these names will be explained shortly.
+\end{enumerate}
+The TAC and three charge quantities are digitised by the FECs, and sent to the `XL3' card on a given crate for temporary storage.
+
+\nomenclature{\textbf{CTC}}{Crate Trigger Card}
+\nomenclature{\textbf{MTC/A+}}{Analogue Master Trigger Card}
+\nomenclature{\textbf{MTC/D}}{Digital Master Trigger Card}
+Whilst the TAC, QHS, QHL, and QLX are being recorded onto the XL3s, the trigger signals from each channel are sent over to the Crate's Trigger Card (CTC), where the signals are then summed for each trigger type. These crate-level trigger signals are then sent over to the 7 detector-level Analogue Master Trigger Card (MTC/A+), which further sum the signals by trigger type from all the crates in the detector. It is at this point of the process where the names of the trigger types becomes clear: the N20 and N100 signals correspond to the number
 
 
 {
