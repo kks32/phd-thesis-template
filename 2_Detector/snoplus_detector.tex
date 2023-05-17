@@ -321,24 +321,35 @@ A signal passes first through the PMT Interface Card (PMTIC), which then sends i
     \item Begins integrating the total charge signal for that channel in three ways, known as QHS, QHL, and QLX. These correspond to using different integration times and gain settings.
     \item Generates trigger pulses for that channel for each available trigger type. Three main trigger signals are the `N20' (a square pulse for \SI{20}{\ns}), `N100' (a square pulse for \SI{100}{\ns}), and `ESUMHI' (a pulse copying the shape of the voltage signal for that channel). The reason for these names will be explained shortly.
 \end{enumerate}
-The TAC and three charge quantities are digitised by the FECs, and sent to the `XL3' card on a given crate for temporary storage.
 
 \nomenclature{\textbf{CTC}}{Crate Trigger Card}
 \nomenclature{\textbf{MTC/A+}}{Analogue Master Trigger Card}
+Whilst the TAC, QHS, QHL, and QLX are being calculated, the trigger signals from each channel are sent over to the Crate's Trigger Card (CTC), where the signals are then summed for each trigger type. These crate-level trigger signals are then sent over to the 7 detector-level Analogue Master Trigger Card (MTC/A+), which further sum the signals by trigger type from all the crates in the detector. It is at this point of the process where the names of the trigger types becomes clear: the combined N20 and N100 signals are proportional to the total number of hit PMTs within a \SI{20}{\ns} and \SI{100}{\ns} time window, respectively, whilst the total ESUMHI signal corresponds to the total charge seen over all the PMTs.
+
 \nomenclature{\textbf{MTC/D}}{Digital Master Trigger Card}
-Whilst the TAC, QHS, QHL, and QLX are being recorded onto the XL3s, the trigger signals from each channel are sent over to the Crate's Trigger Card (CTC), where the signals are then summed for each trigger type. These crate-level trigger signals are then sent over to the 7 detector-level Analogue Master Trigger Card (MTC/A+), which further sum the signals by trigger type from all the crates in the detector. It is at this point of the process where the names of the trigger types becomes clear: the N20 and N100 signals correspond to the number
+\nomenclature{\textbf{GT}}{Global Trigger}
+\nomenclature{\textbf{EXTA}}{External Asynchronous (Trigger)}
+\nomenclature{\textbf{TUBii}}{Trigger Utility Board Mark ii}
+If these trigger signals go above certain pre-defined thresholds, then a signal is sent for that trigger type to the Digital Master Trigger Card (MTC/D). The MTC/D receives all trigger signals from the detector, and if a given trigger type has been `masked in' the Card will generate a Global Trigger (GT) for the detector according to its \SI{50}{\MHz} clock. Under certain circumstances, such as calibrations, a trigger signal can be generated externally and asynchronous to the MTC/D: these are `EXTA' triggers. Any such EXTA trigger signal is first handled by an electronics box named `TUBii' (Trigger Utility Board Mark ii), before then being passed onto the MTC/D. This becomes relevant when discussing the calibration electronics described in Chapter~\ref{chap:smellie_hardware}.
+
+\nomenclature{ADC}{Analogue-to-Digital Converter}
+Once a GT signal is generated, it is then sent back to all the CTCs, which then orders the integration of time and charge to be stopped on all channels for that crate. The time and charge information that has been temporarily stored on each channel's CMOS chip on the FEC is then sent to the crate's `XL3' card, which packages the crate's raw information via ethernet over to a set of computers. The trigger signals for a triggered event are also digitised by a CAEN brand Analogue-to-Digital Converter (ADC), and sent to the same DAQ computers. The total window of time in which data is gathered from one GT signal is \SI{400}{\ns}, with data from up to \SI{180}{\ns} before and \SI{220}{\ns} after the GT has arrived. There is then a necessary `dead time' of \SI{420}{\ns} after a given GT has been given in which no further GTs can be made.
+
+\nomenclature{\textbf{ZDAB}}{Zebra Database (file format)}
+\nomenclature{\textbf{GTID}}{Global Trigger Identification number}
+Finally, the raw data from the crates and trigger system arrives in a set of computers, which organise all of this into an individually-packaged `event', stored on disk in the `Zebra Database' (ZDAB) format. A given built event contains the TAC and charge information from each hit PMT, the CAEN digitised waveforms, a unique identifying number for that triggered event (the GTID), as well as the times from both the MTC/D's \SI{50}{\MHz} clock and a GPS-calibrated \SI{10}{\MHz} clock. The former time is used for measuring relative times between events whilst the latter is used for knowing the time of day of an event: both are used in Chapter~\ref{chap:solar_osc_analysis}.
 
 
+    % \begin{itemize}
+    %     \item Summarise how a PMT signal becomes digitised via the front-end electronics, briefly.
+    %     \item Summarise the triggering system, as I'll have to describe in a later chapter how the SMELLIE hardware fits into this, especially as there have been ongoing SMELLIE triggering issues worth mentioning there!
+    %     \item Note the information stored by an event: importantly for this thesis, the TAC and QHS per hit, the event's GTID as well as trigger time measured from the \SI{50}{\mega\Hz} clock. The latter is worth mentioning as this is how I determine time differences for my BiPo tagging in the solar analysis.
+    %     \item Finally, note that these get written to file in the ZDAB format.
+    % \end{itemize}
+    % [3 pages]
+\subsection{Operation of the Detector}
 {
     \color{blue}
-    \begin{itemize}
-        \item Summarise how a PMT signal becomes digitised via the front-end electronics, briefly.
-        \item Summarise the triggering system, as I'll have to describe in a later chapter how the SMELLIE hardware fits into this, especially as there have been ongoing SMELLIE triggering issues worth mentioning there!
-        \item Note the information stored by an event: importantly for this thesis, the TAC and QHS per hit, the event's GTID as well as trigger time measured from the \SI{50}{\mega\Hz} clock. The latter is worth mentioning as this is how I determine time differences for my BiPo tagging in the solar analysis.
-        \item Finally, note that these get written to file in the ZDAB format.
-    \end{itemize}
-    [3 pages]
-    \subsection{Operation of the Detector}
     \begin{itemize}
         \item Detector electronics operated through ORCA; allows for different running modes, such as calibrations.
         \item Mention that data gets split into run and subruns.
