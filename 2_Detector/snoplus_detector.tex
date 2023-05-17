@@ -347,29 +347,63 @@ Finally, the raw data from the crates and trigger system arrives in a set of com
     %     \item Finally, note that these get written to file in the ZDAB format.
     % \end{itemize}
     % [3 pages]
-\subsection{Operation of the Detector}
+\subsection{Operation of the Detector}\label{sec:detector_ops}
+Control of the detector's DAQ system is handled through a custom-built GUI known as ORCA~\cite{}. %cite
+This program allows operators of the detector to modify settings in the detector electronics at both a low- and high-level. It also allows operators to monitor the current status of the detector, such as voltage and current levels within each crate.
+
+ORCA allows for the detector to have its data split into `runs' of different types. For the majority of the time, the detector is run in the `Physics' mode, with individual runs split into 1 hour periods. It is this data that is used for almost all high-level physics analyses, such as the one described in Chapter~\ref{chap:solar_osc_analysis}. Other modes include ones for detector maintenance, as well as for calibrations of various kinds. During certain calibration runs, data can be further split into `subruns' where necessary. Operation of specific calibration sources, including the one described in Chapter~\ref{chap:smellie_hardware}, can be performed through the ORCA GUI.
+
+
+    % \begin{itemize}
+    %     \item Detector electronics operated through ORCA; allows for different running modes, such as calibrations.
+    %     \item Mention that data gets split into run and subruns.
+    % \end{itemize}
+    % [1 page]
+\section{Calibrations and Detector Modelling}\label{sec:calibs_modelling}
+Once the raw data from triggered events has been stored in files, certain extra steps must be taken before effective analysis of that data can be achieved. This section covers those steps.
+
+\subsection{Detector Monitoring}
+No data taken from the detector can reasonably be used for analysis unless its quality has been approved. This is done in a number of ways on SNO+. Firstly, a number of automated systems monitor all aspects of the detector, including voltage levels in the crates, trigger rates, as well as `slower' quantities such as the tensions on the ropes holding the AV in place. Problems in any of these measured parameters trigger an automatic alarm system, which notifies a human detector operator. A detector operator monitors the detector 24/7 whilst the detector is live.
+
+\nomenclature{\texttt{RATDB}}{RAT Database}
+In addition to systems that monitor whether anything has gone wrong, information about the state of the detector during each run is stored in a database known as \texttt{RATDB}. This information includes, amongst other things, a recording of which PMT channels have actually been raised to high voltage for that run, as well as any channels/cards/crates that have been flagged for having a known poor data quality (e.g. being overly noisy).
+
+
+    % \begin{itemize}
+    %     \item Detector's state is continuously monitored via a number of systems for data quality purposes, including a human detector `shifter'. This includes the alarm systems for the electronics and slow controls, and `nearline' monitoring of the detector status.
+    %     \item CHS and CSS ensure only ``good'' channels used in any analysis.
+    % \end{itemize}
+    % [1 page]
+\subsection{Electronic and PMT Calibrations}
+\nomenclature{\textbf{ECA}}{Electronic Calibration}
+\nomenclature{\textbf{PCA}}{PMT Calibration}
+The lowest level of calibrations performed in SNO+ are the Electronic and PMT Calibrations: ECAs and PCAs, respectively. These calibrations convert the raw time and charge values recorded by the DAQ into quantities that can actually be used in analysis.
+
+During an ECA, two main quantities are measured. Firstly, because of noise the integrated charge measured on each channel is offset by some amount. This offset, known as the `pedestal', is recorded for each channel. The other quantity is the `time slope' for each channel, which allows one to convert from the ADC TAC counts into an uncalibrated hit time of that channel's PMT in \si{\ns}. Both of these quantities are measured by sending external signals to channels, forcing them to start measuring TAC and charge even though no PMTs were actually hit. Running ECAs also enable us to spot any channels with unusual behaviour, so that they are not used during analysis. More information about ECAs can be found in~\cite{}. % cite
+
+Using ECAs alone is not enough to have fully-calibrated time and charge data. The lengths of cables between PMTs and PMTICs are all slightly different, leading to differences in the so-called `cable delay' of each channel. This means that two PMTs that have a photoelectron generated at the same time can generate slightly different TAC values. Furthermore, because the start time of the TAC is determined by when the channel's signal goes above a constant threshold, if a signal is very large (e.g. when numerous photoelectrons have been generated on one PMT) then the start time of the TAC will be systematically earlier. This is known as the `time walk'. Both of these quantities get measured during PCAs~\cite{}. % cite
+
+\nomenclature{\textbf{ELLIE}}{Embedded LED/Laser Light Injection Entity}
+\nomenclature{\textbf{TELLIE}}{Timing subsystem for ELLIE}
+PCAs can be performed by either the Laserball~\cite{}, % cite
+or by the TELLIE calibration system~\cite{}. % cite
+The latter is a series of 92 optical fibres attached at various points of the PSUP, through which optical-wavelength light can be fired from LEDs. TELLIE is the Timing subsystem of the ELLIE calibration system: the Embedded LED/Laser Light Injection Entity. The other two subsystems, AMELLIE and SMELLIE, are introduced in Section~\ref{sec:eo_calibs}. For both the Laserball and TELLIE calibration systems, the cable delay and time walk are measured by firing light from the source at a known time, and observing when the signal arrives in each PMT channel.
+
+On top of calibrating the PMT hit times, PCAs also further calibrate the charge information. In particular, the charge spectrum generated by a single photoelectron is determined for each channel. This allows us to convert the pedestal-corrected charge ADC counts into a number of photoelectrons.
+
+Using the data gathered from both ECAs and PCAs, the raw data stored in \texttt{ZDAB}s is processed into a new file format known as \texttt{RATDS} files. These files contain all the information of an event, but now the times and charge information have been calibrated. It is this file type used in the optical calibration work of Chapters~\ref{chap:smellie_hardware}--\ref{chap:smellie_analysis}.
+
+    % \begin{itemize}
+    %     \item First main set of calibrations are the ECAs and PCAs. These help us convert raw electronic signal information from PMTs into `calibrated' hit times and charges. PCAs performed via TELLIE and the Laserball.
+    %     \item These initial calibrations allow for the first two passes of data processing, resulting in a `RATDS' file format used in optical calibrations.
+    %     \item No need for many details here; this is not a thesis on this topic!
+    % \end{itemize}
+    % [1 page]
+    \subsection{Energy and Optical Calibrations}\label{sec:eo_calibs}
+
+
 {
     \color{blue}
-    \begin{itemize}
-        \item Detector electronics operated through ORCA; allows for different running modes, such as calibrations.
-        \item Mention that data gets split into run and subruns.
-    \end{itemize}
-    [1 page]
-    \section{Calibrations and Detector Modelling}
-    \subsection{Detector Monitoring}
-    \begin{itemize}
-        \item Detector's state is continuously monitored via a number of systems for data quality purposes, including a human detector `shifter'. This includes the alarm systems for the electronics and slow controls, and `nearline' monitoring of the detector status.
-        \item CHS and CSS ensure only ``good'' channels used in any analysis.
-    \end{itemize}
-    [1 page]
-    \subsection{Electronic and PMT Calibrations}
-    \begin{itemize}
-        \item First main set of calibrations are the ECAs and PCAs. These help us convert raw electronic signal information from PMTs into `calibrated' hit times and charges. PCAs performed via TELLIE and the Laserball.
-        \item These initial calibrations allow for the first two passes of data processing, resulting in a `RATDS' file format used in optical calibrations.
-        \item No need for many details here; this is not a thesis on this topic!
-    \end{itemize}
-    [1 page]
-    \subsection{Energy and Optical Calibrations}
     \begin{itemize}
         \item After ECAs and PCAs, further calibration is necessary to accurately model the optical properties of the detector.
         \item Describe briefly the function of the Laserball, SMELLIE, and AMELLIE sources in optical calibration (can reference the water-phase optical calibration paper). Details of how each analysis works is obviously not needed here, especially not for SMELLIE as we have 3 chapters to go over that!
