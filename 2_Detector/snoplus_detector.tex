@@ -127,7 +127,7 @@ where $\frac{dL}{dx}$ is the number of photons emitted per unit track length, $\
 For minimum-ionising particles such as a \SI{6}{\MeV} electron, the denominator of this equation is close to 1, and so the amount of scintillation light generated is just $\frac{dL}{dx} = S\cdot\frac{dE}{dx}$. However, for $\alpha$-particles generated in radioactive decays, this denominator can become substantial, and in the limiting case we have merely $\frac{dL}{dx} = S$. In the current phase of SNO+, $S$ and $k_{\mathrm{Birks}}$ are measured to be \SI{14000}{\gamma\per\MeV} and \SI{0.0798}{\mm\per\MeV},\footnote{This is the Birks' constant used in simulation for $\alpha$-particles. Other particles, such as electrons, are given slightly different values of $k_{\mathrm{Birks}}$.}
  respectively~\cite{}. % cite where we got S and kb values from.
 
- \subsection{Optical Processes}
+ \subsection{Optical Processes}\label{sec:optical_processes}
  Once optical-wavelength photons have been created within the detector, various processes can then occur that can hinder its path towards a PMT, and therefore modify the observed signal. This subsection covers the main optical processes, with a focus on Rayleigh scattering, as an understanding of this phenomenon is critical for Chapters~\ref{chap:smellie_hardware}--\ref{chap:smellie_analysis}.
  \subsubsection{Rayleigh Scattering}
 Optical scattering is the general process of how light is scattered by particles within a medium. This is fundamentally an electrodynamical process: an electromagnetic wave is incident on the set of particles within the medium, which induces these particles to oscillate within the field, and therefore generating their own electromagnetic radiation in response. Usually, this `scattered' radiation has the same frequency as that of the incident radiation, and therefore the scattering is said to be \textit{elastic}. It is possible under certain circumstances for this scattered radiation to be of a longer wavelength than the incident radiation: in which case, energy was absorbed by the particles and so the scattering was \textit{inelastic}. However, this latter type of scattering, also known as Raman scattering, is not relevant for SNO+~\cite{}. % ref something that allows us to ignore Raman scattering!
@@ -399,8 +399,17 @@ Using the data gathered from both ECAs and PCAs, the raw data stored in \texttt{
     %     \item No need for many details here; this is not a thesis on this topic!
     % \end{itemize}
     % [1 page]
-    \subsection{Energy and Optical Calibrations}\label{sec:eo_calibs}
+\subsection{Energy and Optical Calibrations}\label{sec:eo_calibs}
+The next stage of calibrating the detector is modelling its optical properties. These properties include all the processes covered in Section~\ref{sec:optical_processes}, such as scintillator emission, optical absorption, re-emission, and Rayleigh scattering.
+This is crucial, as it allows us to reconstruct information about events within the detector: more on event reconstruction shortly.
 
+\nomenclature{\textbf{AMELLIE}}{Attenuation Module for ELLIE}
+\nomenclature{\textbf{SMELLIE}}{Scattering Module for ELLIE}
+In addition to deployments of the Laserball (discussed in Section~\ref{sec:optical_processes}), two further calibration sources are used in SNO+ to measure properties of light propagation: AMELLIE and SMELLIE. These are the `Attenuation Module' and `Scattering Module' for the ELLIE calibration system. Like TELLIE, AMELLIE and SMELLIE consist of optical light sources that shine through optical fibres into the detector. The former uses LEDs from TELLIE, whilst the latter uses optical wavelength lasers. Despite the names both subsystems are similar enough that they are both capable of measuring attenuation and scattering within the detector. More details about the SMELLIE hardware can be read in Chapter~\ref{chap:smellie_hardware}.
+
+\nomenclature{\textbf{AmBe}}{Americium-Beryllium radioative source}
+Another critical component of the detector to calibrate well is the energy response: given a specific amount of energy deposited in the water/scintillator, how many hits are observed? For this, a number of radioactive sources are used at a variety of energies. In the scintillator phase, there have been three main sources. The first is an americium-beryllium (AmBe) source, which generates a coincidence pair of gamma rays, the prompt at \SI{4.4}{\MeV}, and delayed at \SI{2.2}{\MeV}. The 
+Because these gammas are emitted in coincidence, the AmBe source is also useful 
 
 {
     \color{blue}
