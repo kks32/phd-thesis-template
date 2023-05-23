@@ -407,20 +407,28 @@ This is crucial, as it allows us to reconstruct information about events within 
 \nomenclature{\textbf{SMELLIE}}{Scattering Module for ELLIE}
 In addition to deployments of the Laserball (discussed in Section~\ref{sec:optical_processes}), two further calibration sources are used in SNO+ to measure properties of light propagation: AMELLIE and SMELLIE. These are the `Attenuation Module' and `Scattering Module' for the ELLIE calibration system. Like TELLIE, AMELLIE and SMELLIE consist of optical light sources that shine through optical fibres into the detector. The former uses LEDs from TELLIE, whilst the latter uses optical wavelength lasers. Despite the names both subsystems are similar enough that they are both capable of measuring attenuation and scattering within the detector. More details about the SMELLIE hardware can be read in Chapter~\ref{chap:smellie_hardware}.
 
-\nomenclature{\textbf{AmBe}}{Americium-Beryllium radioative source}
-Another critical component of the detector to calibrate well is the energy response: given a specific amount of energy deposited in the water/scintillator, how many hits are observed? For this, a number of radioactive sources are used at a variety of energies. In the scintillator phase, there have been three main sources. The first is an americium-beryllium (AmBe) source, which generates a coincidence pair of gamma rays, the prompt at \SI{4.4}{\MeV}, and delayed at \SI{2.2}{\MeV}. The 
-Because these gammas are emitted in coincidence, the AmBe source is also useful 
+\nomenclature{\textbf{AmBe}}{Americium-Beryllium radioactive source}
+Another critical component of the detector to calibrate well is the energy response: given a specific amount of energy deposited in the water/scintillator, how many hits are observed? For this, a number of radioactive sources are used at a variety of energies. In the scintillator phase, there are three main sources. The first is an americium-beryllium (AmBe) source inherited from SNO~\cite{}, % SNO AmBe paper
+which contains \ce{^{241}Am} that $\alpha$-decays, which can be captured by the \ce{^{9}Be} within the source. This capture leads to the emission of a neutron as well as production of a \ce{^{12}C} nucleus, which 60\% of the time is in  an excited state. When this excited state decays, a \SI{4.4}{\MeV} $\gamma$ is emitted promptly. Eventually the neutron is captured by hydrogen in the detector, leading to a characteristic \SI{2.2}{\MeV} delayed $\gamma$ being generated~\cite{albaneseSNOExperiment2021}. % cite detector paper
+Both the prompt and delayed peak energies from the AmBe source can be used for energy calibration. In addition to this, one can calibrate the neutron detection efficiency with the AmBe source~\cite{}, % cite AmBe paper
+which is important for the analysis of antineutrino IBD events. % CONFIRM IBD acronym in chapter 1
 
+Another deployable radioactive source is the \ce{^{16}N} source, also originally used for SNO~\cite{}. % SNO N16 paper
+The \ce{^{16}N} isotope $\beta$-decays to \ce{^{16}O}, with a distinctive \SI{6.1}{\MeV} $\gamma$ also being generated 66\% of the time. It is the $\gamma$ that can make it out to the detector, whilst the $\beta$ can be tagged by a block of scintillator and PMT held within the source container.
+
+Neither of the above two calibration sources have been deployed internally within the scintillator during the scintillator phase because of concerns over contaminating the scintillator. However, there have been a number of deployments in the external water~\cite{}. % cite some deployments made.
+Alongside this, a different kind of radioactive source has been used during the scintillator phase for energy calibration: the existing radioactive background spectra within the detector. Backgrounds such as \ce{^{14}C}, \ce{^{210}Po}, \ce{^{214}BiPo}, and \ce{^{208}Tl} all have distinctive peaks in the energy spectrum of SNO+ during the scintillator phase, and can be used to calibrate the scintillator's energy response. Using \ce{^{214}BiPo} events in particular has been used for energy scale calibration with the solar oscillation analysis, as discussed in Section~\ref{sec:exp_rates_constraints}.
+
+    % \begin{itemize}
+    %     \item After ECAs and PCAs, further calibration is necessary to accurately model the optical properties of the detector.
+    %     \item Describe briefly the function of the Laserball, SMELLIE, and AMELLIE sources in optical calibration (can reference the water-phase optical calibration paper). Details of how each analysis works is obviously not needed here, especially not for SMELLIE as we have 3 chapters to go over that!
+    %     \item AmBe and N16 sources provide further information for calibration
+    %     \item In-situ backgrounds used for more calibration sources, especially for determining the light yield of the scintillator, and Birks' constant.
+    % \end{itemize}
+    % [2 pages]
+\subsection{Event Reconstruction}\label{sec:ev_reco}
 {
     \color{blue}
-    \begin{itemize}
-        \item After ECAs and PCAs, further calibration is necessary to accurately model the optical properties of the detector.
-        \item Describe briefly the function of the Laserball, SMELLIE, and AMELLIE sources in optical calibration (can reference the water-phase optical calibration paper). Details of how each analysis works is obviously not needed here, especially not for SMELLIE as we have 3 chapters to go over that!
-        \item AmBe and N16 sources provide further information for calibration
-        \item In-situ backgrounds used for more calibration sources, especially for determining the light yield of the scintillator, and Birks' constant.
-    \end{itemize}
-    [2 pages]
-    \subsection{Event Reconstruction}
     \begin{itemize}
         \item Once detector is calibrated, event reconstruction becomes possible. Describe main assumption of a SNO+ event: we assume a single-site electron event.
         \item Briefly describe the basics of how energy, position, and time reconstruction works, as this is needed for the solar analysis chapter. Mention existence of direction fitting in scintillator!
