@@ -447,17 +447,24 @@ This assumes only one photon providing the information, of course. If more photo
 
 The other critical piece of reconstructed event information is the event's energy. More precisely, this is the kinetic energy of an electron that has been assumed to have generated the event. By consequence, events due to $\alpha$-decay will obtain reconstructed energies well below the actual energy of the $\alpha$ particle, because of scintillator quenching.
 
-At its simplest, assuming that an event is from an electron of moderate energy, then we can expect the number of PMT hits observed to be directly proportional to the energy of the event. Given that the number of hits observed in an event (called the \texttt{nhit}) is governed by a Poisson distribution, then the uncertainty in energy will just be proportional to the square root of the number of hits.
+At its simplest, assuming that an event is from an electron of moderate energy, then we can expect the number of PMT hits observed to be directly proportional to the energy of the event. Given that the number of hits observed in an event (called the \texttt{nhit}) is governed by a Poisson distribution, then the uncertainty in energy will just be proportional to the square root of the number of hits. As a result, the reconstructed energy resolution in SNO+ is determined by the scintillator's light yield and absorption length, as well as the coverage and QE of the PMTs.
 
+There are second-order corrections to the energy reconstruction that need to be considered to minimise bias. At low energies, scintillator quenching becomes non-negligible, so an understanding of the scintillator's Birks' constant is needed. At high energies, many PMTs will have had multiple photoelectrons generated, so merely using the \texttt{nhit} will give an underestimate of the true energy. Finally, the detection efficiency of photons is non-uniform as a function of position in the detector. The current energy reconstruction algorithm used within SNO+ attempts to deal with all of these effects~\cite{}. % cite energy reco info
+
+After position, time, and energy reconstruction, \texttt{ScintFitter} calculates a number of additional quantities from what are known as classifiers. These describe a wide number of properties about an event, often using the derived \tres{} distribution of an event as the basis for classification. Some examples of classifiers used in analysis are discussed in Section~\ref{sec:background_processes}.
+
+All Physics data runs, as well as certain calibration data such as AmBe and \ce{^{16}N}, has the \texttt{ScintFitter} algorithm run over it after having been processed for time and charge calibration. This results in what is known as a fully-processed \texttt{RATDS} file, as well as a new file type known as an \texttt{ntuple}. This latter file type has much of the hit-level information removed, and contains only event-level information such as the reconstructed energy and position. Because these files are much smaller, they are the ones typically used in the high-level physics analyses on the experiment, such as the one described in Chapter~\ref{chap:solar_osc_analysis}.
+
+
+    % \begin{itemize}
+    %     \item Once detector is calibrated, event reconstruction becomes possible. Describe main assumption of a SNO+ event: we assume a single-site electron event.
+    %     \item Briefly describe the basics of how energy, position, and time reconstruction works, as this is needed for the solar analysis chapter. Mention existence of direction fitting in scintillator!
+    %     \item `Physics' runs have their events reconstructed in a third pass of data processing, resulting in a `fully-processed' RATDS file as well as a simplified NTUPLE file used in high-level physics analyses (such as my solar analysis).
+    % \end{itemize}
+    % [2 pages]
+\subsection{Event Simulation}
 {
     \color{blue}
-    \begin{itemize}
-        \item Once detector is calibrated, event reconstruction becomes possible. Describe main assumption of a SNO+ event: we assume a single-site electron event.
-        \item Briefly describe the basics of how energy, position, and time reconstruction works, as this is needed for the solar analysis chapter. Mention existence of direction fitting in scintillator!
-        \item `Physics' runs have their events reconstructed in a third pass of data processing, resulting in a `fully-processed' RATDS file as well as a simplified NTUPLE file used in high-level physics analyses (such as my solar analysis).
-    \end{itemize}
-    [2 pages]
-    \subsection{Event Simulation}
     \begin{itemize}
         \item Briefly describe overview of RAT software: not only provides the software by which the above data processing occurs, but allows for a GEANT4-based simulation of events in the detector. This simulation includes all parts of the physics described in Section~\ref{sec:event_journey}, including particle and nuclear physics interactions, optical photon creation and propagation, signal generation and event building based on simulated triggers of the electronics. These simulated events then get processed in the same manner as actual data is.
     \end{itemize}
