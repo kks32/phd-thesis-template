@@ -427,6 +427,28 @@ Alongside this, a different kind of radioactive source has been used during the 
     % \end{itemize}
     % [2 pages]
 \subsection{Event Reconstruction}\label{sec:ev_reco}
+Once the detector has been calibrated, event `reconstruction' becomes possible. This is the process of deriving high-level physics quantities about a triggered event within the detector, based upon the calibrated hit information. In SNO+, our base assumption in most cases of event reconstruction is that a triggered event was due to a single point-like electron track. Reconstructing an event involves running a number of algorithms, which in the scintillator phase are together called the \texttt{ScintFitter}.
+
+\nomenclature{\textbf{TOF}}{Time-of-flight (of a photon)}
+The first critical pieces of information that gets determined by \texttt{ScintFitter} is the event's position and time. The reconstructed position corresponds to the point in the detector where the triggered event most likely came from (assuming the event was point-like in extent), whilst the reconstructed time is the starting emission time of the event, relative to the event's trigger time. The position of an event is critical to know, as far fewer background events occur near the centre of the detector compared to the edges. It is also important to know the emission time of an event, as this allows us to build the so-called `time residual' (\tres{}) distribution of an event. For a point-like physics event in the detector, \tres{} for a given PMT hit is defined as:
+\begin{equation}
+    \tres = t_{\mathrm{hit}} - t_{\mathrm{TOF}} - t_{\mathrm{emm}},
+\end{equation}
+where $t_{\mathrm{hit}}$ is the calibrated hit time of the PMT, $t_{\mathrm{TOF}}$ is the time one expects for light to travel directly from the reconstructed position to that PMT (the time-of-flight), and $t_{\mathrm{emm}}$ is the reconstructed emission time.
+
+Whilst a number of algorithms have been developed for reconstructing position and time in SNO+, they all work on the same basic principle. Because of the spherical symmetry of the detector, if an event occurs at the centre of the detector one expects direct light to hit PMTs throughout the detector at the same time\footnote{It is possible for the centre of the AV and PSUP to not be completely aligned, i.e. there is an `AV offset'. Then, the spherical symmetry can be broken by refraction through the AV. Fortunately, we account for this when coordinating our position fitters.}.
+However, if an event happens some distance away from the detector's centre then direct light will arrive at the PMTs it is closer to sooner. Therefore, by looking at the distribution of hit times for PMTs that were hit earliest as a function of the PMTs' positions in the detector (ignoring PMT hits that arrived much later, presumably because the photon paths were not direct) one can try and estimate where the position of the event was. Reconstructed positions and reconstructed times are deeply linked by the time residual equation described above.
+
+Currently on SNO+, a likelihood-based approach is used to reconstruct position and time. The algorithm endeavours to maximise the combined likelihood of the observed calibrated hit times of the hit PMTs, given proposed points in the four-dimensional (position, time) parameter space~\cite{}. % cite Multipath thesis + Will's MultiPDF work
+However, regardless of algorithm there are two factors that limit the position and timing reconstruction of an event. The TTS of the PMTs used defines the fundamental time scale --- and hence also length scale --- by which events can be reconstructed. The TTS of TODOns % TODO!
+SNO+'s R1408 PMTs leads to an expected position reconstruction length scale of $\sim$TODOcm in scintillator, % TODO!
+assuming a refractive index of TODO. % TODO!
+This assumes only one photon providing the information, of course. If more photons are able to generate prompt hits in the detector from a given event, then more information can be used to determine the position and time. Under current conditions, a \SI{2.5}{\MeV} event in the centre of the detector will have a position resolution of TODOns~\cite{}. % TODO & cite Will's recoordination!
+
+The other critical piece of reconstructed event information is the event's energy. More precisely, this is the kinetic energy of an electron that has been assumed to have generated the event. By consequence, events due to $\alpha$-decay will obtain reconstructed energies well below the actual energy of the $\alpha$ particle, because of scintillator quenching.
+
+At its simplest, assuming that an event is from an electron of moderate energy, then we can expect the number of PMT hits observed to be directly proportional to the energy of the event. Given that the number of hits observed in an event (called the \texttt{nhit}) is governed by a Poisson distribution, then the uncertainty in energy will just be proportional to the square root of the number of hits.
+
 {
     \color{blue}
     \begin{itemize}
