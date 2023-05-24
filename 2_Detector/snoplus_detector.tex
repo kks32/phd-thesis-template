@@ -114,8 +114,10 @@ Adding in one additional component doesn't have to be the end, either. In SNO+ w
 
 \begin{figure}
     \centering
-    % \includegraphics[]{}
-    \caption[]{}
+    \includegraphics[width=0.8\linewidth]{2_Detector/Figs/scint_lengths_LABPPOBisMSB_plot_nice.pdf}
+    \caption[Comparison of the SNO+ liquid scintillator cocktail's absorption and emission properties, with/without BisMSB.]
+    {Comparison of the SNO+ liquid scintillator cocktail's absorption and emission properties, with/without BisMSB~\cite{}. % cite optics?
+    }
     \label{fig:scintillator_abs_emit_dist}
 \end{figure}
 
@@ -225,8 +227,10 @@ When light travels through the boundary of one medium to another, both reflectio
 
 \begin{figure}
     \centering
-    % \includegraphics[]{}
-    \caption[]{}
+    \includegraphics[width=0.8\linewidth]{2_Detector/Figs/refractive_indices_plot.pdf}
+    \caption[Refractive indices of acrylic, UPW, and LABPPO as a function of wavelength]
+    {Refractive indices of acrylic, UPW, and LABPPO as a function of wavelength~\cite{}. % cite!
+    }
     \label{fig:ref_indices_snoplus}
 \end{figure}
 
@@ -260,20 +264,22 @@ The so-called `angular response' of the PMT buckets has been measured in both SN
         \caption{}
         \label{fig:pmt_angular_response}
     \end{subfigure}
-    \caption[]{}
+    \caption[]{\textbf{(a):} Diagram of the PMT and concentrator `bucket' used within SNO+, showing also the definition of the incidence angle. \textbf{(b):} Plot of the measured relative angular response of the PMTs in SNO+, as a function of both incidence angle and wavelength. Both figures taken from~\cite{andersonOpticalCalibrationSNO2021}.
+    }
     \label{fig:pmt_optics}
 \end{figure}
 
 \nomenclature{\textbf{QE}}{Quantum efficiency (of a PMT)}
 \nomenclature{\textbf{TTS}}{Transit time spread (of a PMT)}
-\nomenclature{\textbf{FWHM}}{Full-width at half-maximum (of a distribution)}
+% \nomenclature{\textbf{FWHM}}{Full-width at half-maximum (of a distribution)}
 Once a photon is incident on the PMT's photocathode, it is possible for that photon to be absorbed and generate a photoelectron. The probability of this happening is governed by the PMT's Quantum Efficiency (QE) at the photon's wavelength, which can be seen in Fig~\ref{fig:qe_pmts}. % cite
-Note how the QE is maximal at \SI{420}{\nm} with a value of TODO\%. Once this photoelectron has been created, the dynodes within the PMT generate a cascade of electrons that allow for an observable voltage signal to be produced. The dynamics of this cascade are such that there is a natural spread of possible times between the creation of a photoelectron and the generation of the voltage signal pulse in the PMT's wire. This is known as the `Transit Time Spread' (TTS) of the PMTs: for SNO+, the full-width at half-maximum (FWHM) of the TTS for the r1408-type PMTs is TODOns~\cite{}. % cite
+Note how the QE is maximal at \SI{439}{\nm} with a value of 21.5\%. Once this photoelectron has been created, the dynodes within the PMT generate a cascade of electrons that allow for an observable voltage signal to be produced. The dynamics of this cascade are such that there is a natural spread of possible times between the creation of a photoelectron and the generation of the voltage signal pulse in the PMT's wire. This is known as the `Transit Time Spread' (TTS) of the PMTs: for SNO+, the RMS timing resolution of the TTS for the R1408-type PMTs is \SI{1.7}{\ns}~\cite{}. % cite SNO-era papers
 
 \begin{figure}
     \centering
-    % \includegraphics[]{}
-    \caption[]{}
+    \includegraphics[width=0.8\linewidth]{2_Detector/Figs/qe_plot.pdf}
+    \caption[Quantum efficiency of the R1408-type PMTs used as standard within SNO+]{Quantum efficiency of the R1408-type PMTs used as standard within SNO+~\cite{}. % cite
+    }
     \label{fig:qe_pmts}
 \end{figure}
 
@@ -283,8 +289,9 @@ The relatively large widths of these charge distributions precludes the ability 
 
 \begin{figure}
     \centering
-    % \includegraphics[]{}
-    \caption[]{}
+    \includegraphics[width=0.8\linewidth]{2_Detector/Figs/charge_spectra.png}
+    \caption[Example charge spectra for a PMT as a function of the true npe generated]{Example charge spectra for a PMT as a function of the true npe generated~\cite{}. % cite whom?
+    }
     \label{fig:charge_dists_pmt}
 \end{figure}
 
