@@ -558,7 +558,7 @@ if$
 }
 FUNCTION {article}
 { output.bibitem
-collaboration output
+collaboration embolden output
 format.authors "author" output.check
 new.block
 format.title "title" output.check
