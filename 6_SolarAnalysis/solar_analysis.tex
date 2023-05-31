@@ -332,6 +332,44 @@ Importantly, the livetime of the data actually used in the analysis ends up bein
     % \end{itemize}
     % [2 pages]
 \subsection{Event Selection}\label{sec:event_selection}
+Once the runs of processed data and matching MC have been selected, the next step was to perform cuts on both in order to obtain our analysis ROI. The full list of cuts used are shown in Table~\ref{tab:ev_selection}, most of which have already been explained in Section~\ref{sec:background_processes}.
+
+\begin{table}
+    \centering
+    \begin{tabular}{c >{\centering\arraybackslash}m{7.5 cm}}
+        \hline
+        Cut Description                        & Cut                      \\ \hline \hline
+        Event triggers detector                & \texttt{evIndex} $\ge 0$ \\
+        Pass data cleaning                     & $\mathtt{ANALYSIS\_MASK} = \mathtt{0x2100000042c2}$ \\
+        High-\texttt{nhit} veto                & \texttt{correctedNhits} $\ge 5000$; veto for \SI{20}{s} \\
+        \texttt{ScintFitter} used              & $\mathtt{scintFit} = \mathrm{true}$ \\
+        Results of \texttt{ScintFitter} valid  & $\mathtt{fitValid} = \mathrm{true}$ \\
+        In energy Region of Interest           & $\SI{2.5}{\MeV} < E < \SI{14.0}{\MeV}$ \\
+        Fiducial Volume cut                    & $R < \SI{5.0}{\metre}$ \\
+        Remove BiPo Out-of-window tags         & See Section~\ref{sec:u_th_internals} \\
+        Remove BiPo In-window tags             & Tagged if $\mathtt{alphaBeta212} > 0$ and $\mathtt{alphaBeta214} > 0$ \\
+        Remove External tags                   & Tagged if $E < \SI{5.0}{\MeV}$, $\mathtt{ext0NuTimeTl208AVNaive} > -0.007$, and $\mathtt{ext0NuAngleTl208AV} > -4.7$ \\
+        Remove events with low `cleanliness'   & $\mathtt{nhitsCleaned}/\mathtt{nhits} > 0.8$ \\
+        Ensure `good' position Figure-of-Merit & $\mathtt{posFOM}/\mathtt{nhitsCleaned} > 13.5$ \\
+        \hline
+    \end{tabular}
+    \caption{Analysis cuts used in this analysis.}
+    \label{tab:ev_selection}
+\end{table}
+
+Most of the other cuts used in this analysis that haven't yet been discussed come from handling differences between data and MC. In MC, it is possible to simulate an event but not have it trigger the detector. In this case, the stored index of that event (\texttt{evIndex}) will be less than zero. We never see these `events' in data of course, but they do need to be removed from simulation. On the flip side, there are types of events that we observe in the detector but do not simulate. Many of these events are caught during `data cleaning', which looks for a wide variety of problems in the data when the data is being processed. Any subset of the checks made during data cleaning can be chosen to consider in a given analysis by defining a specific `analysis mask'; a number that specifies for each of its binary digits whether to consider the data cleaning process associated with that bit. The mask chosen used in this analysis is \texttt{0x2100000042c2}, which corresponds to:
+
+\begin{itemize}
+    \item \textbf{00 cut}: Tags every event which has a GTID ending in 00 in hexadecimal, which is associated with a long-standing issue in the detector triggering system.
+    \item \textbf{Junk cut}: Tags events that have channels with multiple recorded hits for that event. These are associated with so-called `orphaned' hits that the event building process doesn't know what to do with.
+    \item \textbf{OWL cut}: Tags events that have at least three OWL PMTs hit, a sign that the event came from a cosmic-ray muon.
+    \item \textbf{Polling cut}: Tags all events that occur during `polling', a detector monitoring process.
+    \item \textbf{CAEN cut}: Tags all events that have missing CAEN trace data.
+    \item \textbf{Muon cut}: Tags muon-like events.
+    \item \textbf{Muon follower cut}: Tags all events coming up to \SI{20}{\second} after a tagged muon event.
+\end{itemize}
+
+
 {
     \color{blue}
     \begin{itemize}
