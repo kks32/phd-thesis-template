@@ -306,19 +306,34 @@ Even after using the Large Mixing Angle approximation, having to call \texttt{PS
         % \item Which systematics do we expect to be particularly important for this analysis? Well, mismodelling in detector optics etc. can lead to changes in the measured energy spectrum of processes, which can be decomposed into an energy scale term and an energy smearing term to first order. Systematics also possible in the radial dimension (expected to be less important?) 
         
     %  \end{itemize}
+
+    % [19 pages currently, without figures; probably +5 pages for figures.]
+\section{Analysis on Scintillator-Phase data}
+\subsection{Dataset and Livetime}\label{sec:solar_dataset_livetime}
+The data used in this analysis was chosen to be scintillator phase data after the end of the PPO top-up campaign that completed in April 2022. Following an initial validation of the analysis tools was performed on data between 29\textsuperscript{th} April and 10\textsuperscript{th} May 2022~\cite{}, % cite presentation of my high-background results
+data for the full analysis was chosen from runs taken after these dates. Not all data taken during this time was considered usable for this analysis, however: this is the role of \textit{run selection}. The `Preliminary Scintillator Gold' run selection list was used as the basis for this analysis. This run list requires:
+\begin{itemize}
+    \item The run type must be in `Physics', as opposed to running in calibration or maintenance;
+    \item The run must last at least 30 minutes;
+    \item Detector electronics must be working in a stable manner without any alarms, and with all crates online;
+    \item There are no abnormal rates of tagged muons, and the OWL PMTs are correctly functioning;
+    \item There are no unusual conditions from e.g. earthquakes, blasting activity in the mine, or loss of power. 
+\end{itemize}
+In the end, data for this analysis used `Gold' runs selected between 17\textsuperscript{th} May--30\textsuperscript{th} November 2022, run numbers 300733--306498. The raw livetime associated with this dataset was calculated by looking at the start and end times of each run using the detector's \SI{10}{\MHz} clock: 84.977 days.
+
+Importantly, the livetime of the data actually used in the analysis ends up being somewhat less than this raw value. This is because two of the cuts used in the analysis (described in Section~\ref{sec:event_selection}), the muon tagger and the high-\texttt{nhit} event tagger, also veto events for a time period following a tagged event. This means that any events in such a time window are automatically thrown out of consideration for analysis. An algorithm was written to determine the loss of livetime from both of these tagging processes for all the runs selected in this analysis, allowing for the net livetime to be calculated. To ensure accuracy in the value of this lost livetime, the algorithm took care to handle any overlaps in the time veto windows. This ends up being a quite common occurrence, as tagged muon events and their followers often have a very high \texttt{nhit}. The net livetime was calculated to be 80.615 days. Data processing and simulations used RAT versions 7.0.8 and 7.0.9.
+
+
+    % \begin{itemize}
+    %     \item Description of dataset chosen for analysis: 2.2 g/L scintillator-phase data that satisfies the ``gold'' list of run selection requirements, between May and November 2022.
+    %     \item Explain requirements for run being selected into the Gold list.
+    %     \item Note `raw' livetime calculated for this dataset, and then calculate the impact that the muon and high-nhit vetos have on the livetime.
+    %     \item Note which RAT versions MC production is being used to compare to data.
+    % \end{itemize}
+    % [2 pages]
+\subsection{Event Selection}\label{sec:event_selection}
 {
     \color{blue}
-    [19 pages currently, without figures; probably +5 pages for figures.]
-    \section{Analysis on Scintillator-Phase data}
-    \subsection{Dataset and Livetime}\label{sec:solar_dataset_livetime}
-    \begin{itemize}
-        \item Description of dataset chosen for analysis: 2.2 g/L scintillator-phase data that satisfies the ``gold'' list of run selection requirements, between May and November 2022.
-        \item Explain requirements for run being selected into the Gold list.
-        \item Note `raw' livetime calculated for this dataset, and then calculate the impact that the muon and high-nhit vetos have on the livetime.
-        \item Note which RAT versions MC production is being used to compare to data.
-    \end{itemize}
-    [2 pages]
-    \subsection{Event Selection}\label{sec:event_selection}
     \begin{itemize}
         \item List final set of cuts chosen for analysis, along with any explanations for cuts that haven't already been motivated earlier (e.g. data cleaning). These are:
         \begin{itemize}
