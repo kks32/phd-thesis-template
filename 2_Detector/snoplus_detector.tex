@@ -39,7 +39,7 @@ observation of neutrino oscillations in reactor anti-neutrinos~\cite{allegaEvide
 and searches for nucleon decay~\cite{andersonSearchInvisibleModes2019,allegaImprovedSearchInvisible2022}. %nucleon decay papers
 
 After this, the detector was filled with 800 tonnes of liquid scintillator known as linear alkylbenzene (LAB), mixed with the fluor 2,5-diphenyloxazole (PPO). More information on the physics of scintillators can be found in Section~\ref{sec:interactions_w_matter}. Filling of the LABPPO cocktail had to be paused in March 2020 due to the COVID-19 pandemic, leading to the detector having its bottom half still filled with UPW, and the top half filled with LAB and PPO at \SI{0.5}{\gpl}. This impromptu phase became known as the \textbf{Partial Fill}, and allowed for some creative analyses to be performed: an initial neutrino oscillation analysis from reactor anti-neutrinos~\cite{morton-blakeFirstMeasurementReactor2021}, % Iwan's thesis & forthcoming paper
-as well as the first ever observation of directionality in a high light yield scintillator~\cite{}. % Josie's thesis & forthcoming PRL
+as well as the first ever observation of directionality in a high light yield scintillator~\cite{patonFirstObservationDirectionality,allegaFirstObservationDirectionality}. % Josie's thesis & forthcoming PRL
 Eventually, filling of the detector with liquid scintillator completed in May 2021. At that point, the concentration of PPO in the detector was at \SI{0.6}{\gpl}, markedly below the target level of \SI{2.0}{\gpl}. A further `PPO top-up' campaign then proceeded, finishing in April 2022 with a final concentration of \SI{2.2}{\gpl} PPO. Thus began the \textbf{Scintillator Fill} of the experiment, which continues on during the time of writing. The main goals for this phase include a number of solar neutrino analyses (including the one described in Chapter~\ref{chap:solar_osc_analysis}), a precision measurement of the neutrino oscillation parameter \dmsq{} using reactor anti-neutrinos~\cite{morton-blakeFirstMeasurementReactor2021}, % Iwan's thesis
 and further calibrations of the detector and its backgrounds.
 
@@ -58,7 +58,7 @@ To understand the SNO+ detector well, it is worth thinking about how the informa
 \subsection{Particle Interactions with Matter}\label{sec:interactions_w_matter}
 All observable physics events within the detector begin by the generation of some form of ionising radiation: $\alpha$, $\beta^{\pm}$, $\gamma$, $p$ or $n$. These can be created via numerous processes, both exciting (e.g. \onbb{} or interactions of neutrinos) and annoying (e.g. decay of background radioisotopes): see Section~\ref{sec:background_processes} for some of them. Regardless of their origin, these particles begin propagating through the detector, and interacting with the detector medium. A number of mechanisms then allow for the generation of optical-wavelength light as a result of these interactions.
 \subsubsection{Cherenkov Light Emission}
-Whenever a charged particle travels through a dielectric medium at speeds faster than the speed of light in that medium, light is generated from the `wake' of induced dipoles. This is known as \textbf{Cherenkov light}, a process much akin to the `sonic boom' that occurs when an object travels at supersonic speeds through a medium. This light emanates outwards in a cone along the direction of the charge's travel; the angle of the cone $\theta_{\gamma}$ is purely a function of the speed of the charged particle relative to the speed of light in vacuum, $\beta$, and the refractive index of the medium $n(\omega)$ at a given frequency $\omega$: $\cos{\theta_{\gamma}}(\omega) = \frac{1}{n(\omega)\beta}$. There is then a minimum speed necessary for Cherenkov light to be generated: $\beta_{\textrm{min}}(\omega) = 1/n(\omega)$.
+Whenever a charged particle travels through a dielectric medium at speeds faster than the speed of light in that medium, light is generated from the `wake' of induced dipoles. This is known as \textbf{Cherenkov light}, a process much akin to the `sonic boom' that occurs when an object travels at supersonic speeds through a medium. This light emanates outwards in a cone along the direction of the charge's travel; the angle of the cone $\theta_{\gamma}$ being purely a function of the speed of the charged particle relative to the speed of light in vacuum, $\beta$, and the refractive index of the medium $n(\omega)$ at a given frequency $\omega$: $\cos{\theta_{\gamma}}(\omega) = \frac{1}{n(\omega)\beta}$. There is then a minimum speed necessary for Cherenkov light to be generated: $\beta_{\textrm{min}}(\omega) = 1/n(\omega)$.
 
 In addition to the characteristic cone shape of the light, the spectrum of the light generated is also distinctive. Igor Tamm and Ilya Frank determined the expected energy $dE$ emitted per unit length travelled by the charged particle, $dx$, as~\cite{frankCoherentVisibleRadiation1937}: % Frank-Tamm formula
 \begin{equation}
@@ -92,14 +92,14 @@ Here, $A_{i}$ and $\tau_{i}$ correspond to the fraction of light emitted and dec
         Rise      & --      & 0.8   \\
         \hline
     \end{tabular}
-    \caption{Current values used to model scintillator emission from high-energy electrons in \SI{2.2}{\gpl} LABPPO.}
+    \caption[Current values used to model scintillator emission from electrons in \SI{2.2}{\gpl} LABPPO.]{Current values used to model scintillator emission from electrons in \SI{2.2}{\gpl} LABPPO~\cite{latorreNewMeasurementsTiming2016,hunt-stokesEmissionTimingTuning2022}.}
     \label{tab:scint_reem_params}
 \end{table}
 
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{2_Detector/Figs/scintillator_emission_timing_profile_LABPPO22gl.pdf}
-    \caption[The current modelled distribution for the emission timing of the SNO+ scintillator]{The current modelled distribution for the emission timing of the SNO+ scintillator, for electron tracks~\cite{}.%
+    \caption[The current modelled distribution for the emission timing of the SNO+ scintillator]{The current modelled distribution for the emission timing of the SNO+ scintillator, for electron tracks~\cite{latorreNewMeasurementsTiming2016,hunt-stokesEmissionTimingTuning2022}.%
     }
     \label{fig:typical_tres_dist_physics}
 \end{figure}
@@ -115,35 +115,35 @@ Adding in one additional component doesn't have to be the end, either. In SNO+ w
     \centering
     \includegraphics[width=0.8\linewidth]{2_Detector/Figs/scint_lengths_LABPPOBisMSB_plot_nice.pdf}
     \caption[Comparison of the SNO+ liquid scintillator cocktail's absorption and emission properties, with/without BisMSB.]
-    {Comparison of the SNO+ liquid scintillator cocktail's absorption and emission properties, with/without BisMSB~\cite{}. % cite optics?
+    {Comparison of the SNO+ liquid scintillator cocktail's absorption and emission properties, with/without BisMSB~\cite{kaptanogluOpticsOverviewProposed2016,kaptanogluDocumentationAttenuationStudies2022}. % cite optics?
     }
     \label{fig:scintillator_abs_emit_dist}
 \end{figure}
 
-The light yield of a scintillator, i.e. the amount of optical photons generated per unit of energy deposited into the scintillator, is a function not just of the scintillator but also the incident particle. In particular, $\alpha$ particles are far more effective at exciting and ionising nearby atoms, and so can deposit far more of its energy into the scintillator per unit volume. However, the strength of this ionisation for $\alpha$s can actually become at detriment to the generation of scintillation light. Empirically, scintillators follow to first order Birks' Law for their scintillation light yield~\cite{}: % Birks Law ref.
+The light yield of a scintillator, i.e. the amount of optical photons generated per unit of energy deposited into the scintillator, is a function not just of the scintillator but also the incident particle's ionisation strength. In particular, $\alpha$ particles are far more effective at exciting and ionising nearby atoms, and so can deposit far more of its energy into the scintillator per unit volume. However, the strength of this ionisation for $\alpha$s can actually become at detriment to the generation of scintillation light. Empirically, scintillators follow to first order Birks' Law for their scintillation light yield~\cite{birksChapterScintillationProcess1967a}: % Birks Law ref.
 \begin{equation}
     \frac{dL}{dx} = S\frac{\frac{dE}{dx}}{1+k_{\mathrm{Birks}}\frac{dE}{dx}},
 \end{equation}
 where $\frac{dL}{dx}$ is the number of photons emitted per unit track length, $\frac{dE}{dx}$ is the energy loss of the incident particle per unit track length, $S$ is the scintillator's characteristic light yield constant, and $k_{\mathrm{Birks}}$ is the scintillator's ``Birks' Constant''\footnote{Birks' Constant is often just written as $k_{B}$, but this is easily confused with the far-better known Boltzmann Constant, which is completely different!}. 
-For minimum-ionising particles such as a \SI{6}{\MeV} electron, the denominator of this equation is close to 1, and so the amount of scintillation light generated is just $\frac{dL}{dx} = S\cdot\frac{dE}{dx}$. However, for $\alpha$-particles generated in radioactive decays, this denominator can become substantial, and in the limiting case we have merely $\frac{dL}{dx} = S$. In the current phase of SNO+, $S$ and $k_{\mathrm{Birks}}$ are measured for electrons to be \SI{14000}{\gamma\per\MeV} and \SI{0.0798}{\mm\per\MeV}, respectively~\cite{}. % cite where we got S and kb values from.
+For minimum-ionising particles such as a \SI{6}{\MeV} electron, the denominator of this equation is close to 1, and so the amount of scintillation light generated is just $\frac{dL}{dx} = S\cdot\frac{dE}{dx}$. However, for $\alpha$-particles generated in radioactive decays, this denominator can become substantial, and in the limiting case we have merely $\frac{dL}{dx} = \frac{S}{k_{\mathrm{Birks}}}$. In the current phase of SNO+, $S$ and $k_{\mathrm{Birks}}$ are measured to be \SI{14000}{\gamma\per\MeV} and \SI{0.077}{\mm\per\MeV}, respectively~\cite{riccettoRATOptics2g2022}. % cite where we got S and kb values from.
 
  \subsection{Optical Processes}\label{sec:optical_processes}
  Once optical-wavelength photons have been created within the detector, various processes can then occur that can hinder its path towards a PMT, and therefore modify the observed signal. This subsection covers the main optical processes, with a focus on Rayleigh scattering, as an understanding of this phenomenon is critical for Chapters~\ref{chap:smellie_hardware}--\ref{chap:smellie_analysis}.
  \subsubsection{Rayleigh Scattering}
-Optical scattering is the general process of how light is scattered by particles within a medium. This is fundamentally an electrodynamical process: an electromagnetic wave is incident on the set of particles within the medium, which induces these particles to oscillate within the field, and therefore generating their own electromagnetic radiation in response. Usually, this `scattered' radiation has the same frequency as that of the incident radiation, and therefore the scattering is said to be \textit{elastic}. It is possible under certain circumstances for this scattered radiation to be of a longer wavelength than the incident radiation: in which case, energy was absorbed by the particles and so the scattering was \textit{inelastic}. However, this latter type of scattering, also known as Raman scattering, is not relevant for SNO+~\cite{}. % ref something that allows us to ignore Raman scattering!
+Optical scattering is the general process of how light is scattered by particles within a medium. This is fundamentally an electrodynamical process: an electromagnetic wave is incident on the set of particles within the medium, which induces these particles to oscillate within the field, and therefore generating their own electromagnetic radiation in response. Usually, this `scattered' radiation has the same frequency as that of the incident radiation, and therefore the scattering is said to be \textit{elastic}. It is possible under certain circumstances for this scattered radiation to be of a longer wavelength than the incident radiation: in which case, energy was absorbed by the particles and so the scattering was \textit{inelastic}. However, this latter type of scattering, also known as Raman scattering, is not relevant for SNO+.
 
-The general solution to elastic optical scattering was first described by Gustav Mie~\cite{} % ref Mie theory paper
-and Ludvig Lorenz~\cite{} % Lorenz's paper
-in what is now known as \textit{Mie Theory}. In this theory, it is assumed that a plane wave of wavelength $\lambda$ is incident on a dielectric sphere of radius $a$. While the general solution to the problem of Mie scattering is somewhat complicated (if tractable), in certain regimes one can make further simplifying assumptions that substantially reduce the complexity of the result. In particular, if one assumes that the size of the particle is much smaller than the wavelength of light, and that any induced dipole moment can actually be established in the time window allowed by the oscillation period of the electromagnetic field~\cite{}, % Rayleigh criteria
-then one can obtain \textit{Rayleigh scattering}. This simpler case is so-called because of its initial formulation by Lord Rayleigh~\cite{}. % Rayleigh's scattering paper
+The general solution to elastic optical scattering was first described by Gustav Mie~\cite{mieContributionsOpticsTurbid1908} % ref Mie theory paper
+and Ludvig Lorenz~\cite{lorenzLumiereReflechieRefractee1898} % Lorenz's paper
+in what is now known as \textit{Mie Theory}. In this theory, it is assumed that a plane wave of wavelength $\lambda$ is incident on a dielectric sphere of radius $a$. While the general solution to the problem of Mie scattering is somewhat complicated (if tractable), in certain regimes one can make further simplifying assumptions that substantially reduce the complexity of the result. In particular, if one assumes that the size of the particle is much smaller than the wavelength of light, and that any induced dipole moment can actually be established in the time window allowed by the oscillation period of the electromagnetic field~\cite{HulstH.C.vande1981Lsbs}, % Rayleigh criteria
+then one can obtain \textit{Rayleigh scattering}. This simpler case is so-called because of its initial formulation by Lord Rayleigh~\cite{rayleighTransmissionLightAtmosphere1899}. % Rayleigh's scattering paper
 
-One can show that the differential cross-section associated with Rayleigh scattering of unpolarised light off of a single particle, $\frac{d^{2}\sigma_{\textrm{Ray}}}{d\theta d\phi}\left(\theta,\phi\right)$,  is given by~\cite{}: % cite something that gets rayleigh scattering formula
+One can show that the differential cross-section associated with Rayleigh scattering of unpolarised light off of a single particle, $\frac{d^{2}\sigma_{\textrm{Ray}}}{d\theta d\phi}\left(\theta,\phi\right)$, is given by~\cite{jacksonSection10Scattering1998}: % cite something that gets rayleigh scattering formula
 \begin{equation}
     \frac{d^{2}\sigma_{\textrm{Ray}}}{d\theta d\phi}\left(\theta,\phi\right) = \frac{8\pi a^{6}}{\lambda^{4}}\left(\frac{n_{\textrm{par}}^{2}-1}{n_{\textrm{par}}^{2}+2}\right)^{2} \left(1+\cos^{2}\theta\right).
 \end{equation}
-Here, $\theta$ and $\phi$ correspond respectively to the polar and azimuthal angles of the scattered waves, and $n_{\mathrm{par}}$ is the refractive index of the scattering particle. Most important to notice about this equation is that the cross-section follows a strong $1/\lambda^{4}$ dependence, meaning that short wavelengths of light will be scattered to far greater extents than that of longer wavelengths. Secondly, the light is not scattered isotropically, but according to a $1+\cos^{2}\theta$ dependence. This means that most light is either scattered directly forwards or backwards (known as a \textit{backscattering}), and little gets scattered orthogonally to the direction of the incident light. This is useful when it comes to trying to measure scattering in the SNO+ detector, as it provides a handle upon which to distinguish scattered light from isotropically-emitted scintillation light.
+Here, $\theta$ and $\phi$ correspond respectively to the polar and azimuthal angles of the scattered waves, and $n_{\mathrm{par}}$ is the refractive index of the scattering particle. Most important to notice about this equation is that the cross-section follows a strong $1/\lambda^{4}$ dependence, meaning that short wavelengths of light will be scattered to far greater extents than that of longer wavelengths. Secondly, the light is not scattered isotropically, but according to a $1+\cos^{2}\theta$ dependence. This means that most light is either scattered directly forwards or backwards (known as \textit{backscattering}), and little gets scattered orthogonally to the direction of the incident light. This is useful when it comes to trying to measure scattering in the SNO+ detector, as it provides a handle upon which to distinguish scattered light from isotropically-emitted scintillation light.
 
-Of course, we care about the scattering that occurs within an entire bulk medium, not just the scattering off of a single molecule. From a macroscopic perspective, the key quantity of interest is a material's \textit{Rayleigh scattering length}, $l_{\textrm{Ray}}$: the mean distance a photon is expected to travel before Rayleigh scattering. One can show that, assuming the above differential scattering cross-section, the Rayleigh scattering length is given by~\cite{}: % https://arxiv.org/pdf/1504.00987.pdf
+Of course, we care about the scattering that occurs within an entire bulk medium, not just the scattering off of a single molecule. From a macroscopic perspective, the key quantity of interest is a material's \textit{Rayleigh scattering length}, $l_{\textrm{Ray}}$: the mean distance a photon is expected to travel before Rayleigh scattering. One can show that, assuming the above differential scattering cross-section, the Rayleigh scattering length is given by~\cite{zhouRayleighScatteringLinear2015}: % https://arxiv.org/pdf/1504.00987.pdf
 \begin{equation}
     l_{\textrm{Ray}} = \left[\frac{16\pi}{3}R\right]^{-1}.
 \end{equation}
@@ -151,17 +151,17 @@ $R$ is the \textit{Rayleigh ratio}, $R=\frac{1}{V}\frac{d^{2}\sigma_{\textrm{Ray
 
 This can lead to a few changes to Rayleigh scattering that are worth noting. Firstly, unlike for a single particle, the electric polarisability of a material can be \textit{anisotropic}. Anisotropic materials have a modified angular dependence on their differential cross-section, governed by the \textit{depolarisation ratio}, $\delta$. In particular, the $\left(1+\cos^{2}\theta\right)$ dependence becomes $\left(1+\frac{1-\delta}{1+\delta}\cos^{2}\theta\right)$. For isotropic materials, $\delta=0$, and so the angular dependence reduces to the original form.
 
-Secondly, the above model has been shown to be insufficient to describe liquids or solids~\cite{}, % optical aspects of oceanography!
-because of the non-negligible strength of their inter-molecular forces. Fortunately, Einstein~\cite{}, %
-Smoluchowski~\cite{}, %
-and Cabannes~\cite{} %
+Secondly, the above model has been shown to be insufficient to describe liquids or solids~\cite{JerlovNilsGunnar1974Oaoo}, % optical aspects of oceanography!
+because of the non-negligible strength of their inter-molecular forces. Fortunately, Einstein~\cite{einsteinTheoryOpalescenceHomogeneous1910}, %
+Smoluchowski~\cite{smoluchowskiMolecularKineticTheory1908}, %
+and Cabannes~\cite{cabannesRelationshipDegreePolarisation1920} %
 developed a theory for describing how photons can scatter off of the local charge density fluctuations that naturally are present in a medium because of the thermal motion of molecules. The theory shows that the Rayleigh ratio of a medium is related to the medium's dielectric constant, $\varepsilon$, by:
 \begin{equation}
     R = \frac{\pi^{2}}{2\lambda^{4}}\left[\rho\left(\frac{\partial\varepsilon}{\partial\rho}\right)_{T}\right]^{2} k_{B}T \kappa_{T}\frac{6+6\delta}{6-7\delta},
 \end{equation}
 where $\rho$ is the density of the medium, $\left(\frac{\partial\varepsilon}{\partial\rho}\right)_{T}$ is the partial derivative of the dielectric constant with respect to a changing density assuming a constant temperature $T$, $k_{B}$ is the Boltzmann Constant, and $\kappa_{T}$ is the medium's isothermal compressibility. This latter quantity is given by the rate of change of volume given a changing pressure of the medium, all at a constant temperature.
 
-Furthermore, the Eykman Equation~\cite{} % I LIKE EYK!
+Furthermore, the Eykman Equation~\cite{eykmanRecherchesRefractometriquesSuite1895,zhouRayleighScatteringLinear2015} % I LIKE EYK!
 has been shown to be an effective empirical formula relating how $\varepsilon$ is impacted by density fluctuations to the medium's refractive index, $n_{\textrm{med}}$:
 \begin{equation}
     \rho\left(\frac{\partial\varepsilon}{\partial\rho}\right)_{T} = 
@@ -178,7 +178,7 @@ This leads to a final formula for the Rayleigh scattering length:
         \right]^{-1}.
 \end{equation}
 
-Discussions of the scattering lengths currently assumed within SNO+'s optical model for UPW and LABPPO can be found within the theses of Krishanu Majumdar~\cite{majumdarMeasurementOpticalScattering2015} and Esther Turner~\cite{turnerMeasurementScatteringCharacteristics2022}. In particular, whilst the scattering length of the UPW in the water phase was measured by Esther, major systematics in the measurement remained. Measurements of the scattering lengths in scintillator are the focus of Chapters~\ref{chap:smellie_hardware}--\ref{chap:smellie_analysis}.
+Discussions of the scattering lengths currently assumed within SNO+'s optical model for UPW and LABPPO can be found within the theses of Krishanu Majumdar~\cite{majumdarMeasurementOpticalScattering2015} and Esther Turner~\cite{turnerMeasurementScatteringCharacteristics2022}. In particular, whilst the scattering length of the UPW in the water phase was measured by Esther, major systematics in the measurement remained. Measurements of the scattering lengths in scintillator are a major focus of Chapters~\ref{chap:smellie_hardware}--\ref{chap:smellie_analysis}.
 
 
 
@@ -192,7 +192,7 @@ Discussions of the scattering lengths currently assumed within SNO+'s optical mo
 \subsubsection{Absorption and Re-emission}
 In addition to scattering, an optical medium is also able to absorb light that propagates through it. For a given medium, the \textit{absorption length} $l_{\mathrm{abs}}$ is analogous to $l_{\mathrm{Ray}}$ described above, and is typically strongly a function of wavelength. For most materials, absorbed light is forever lost, converted into heat. However, for the special case of scintillators, re-emission of absorbed light is possible: this is because of the physics described in Section~\ref{sec:scintillation}.
 
-Because both scattering and absorption impede a photon's ability to propagate through a medium directly, it is often possible to measure their combined impact through what is known as the absorption/extinction length, $l_{\mathrm{ext}}$:
+Because both scattering and absorption impede a photon's ability to propagate through a medium directly, it is often possible to measure their combined impact through what is known as the attenuation/extinction length, $l_{\mathrm{ext}}$:
 \begin{equation}\label{eq:ext_length_def}
     \frac{1}{l_{\mathrm{ext}}} = \frac{1}{l_{\mathrm{abs}}} + \frac{1}{l_{\mathrm{Ray}}}.
 \end{equation}
@@ -227,12 +227,12 @@ When light travels through the boundary of one medium to another, both reflectio
     \centering
     \includegraphics[width=0.8\linewidth]{2_Detector/Figs/refractive_indices_plot.pdf}
     \caption[Refractive indices of acrylic, UPW, and LABPPO as a function of wavelength]
-    {Refractive indices of acrylic, UPW, and LABPPO as a function of wavelength~\cite{}. % cite!
+    {Refractive indices of acrylic, UPW, and LABPPO as a function of wavelength~\cite{andersonOpticalCalibrationSNO2021,tseungEllipsometricMeasurementsRefractive2011,moffatOpticalCalibrationSudbury2001}. % cite!
     }
     \label{fig:ref_indices_snoplus}
 \end{figure}
 
-Even when not undergoing TIR, some light at a boundary can still reflect. The fraction of light that reflects is known as the \textit{reflectance} $R$, compared to that which is able to transmit through the boundary, the \textit{transmittance} $T=1-R$. The \textit{Fresnel Equations} determine the reflectance of an interface~\cite{}:% Fresnel eqs: Hecht?
+Even when not undergoing TIR, some light at a boundary can still reflect. The fraction of light that reflects is known as the \textit{reflectance} $R$, compared to that which is able to transmit through the boundary, the \textit{transmittance} $T=1-R$. The \textit{Fresnel Equations} determine the reflectance of an interface~\cite{hechtSectionFresnelEquations}:% Fresnel eqs: Hecht?
 \begin{equation}
     R_{s} = \left|\frac{n_{1}\cos{\theta_{i}}-n_{2}\cos{\theta_{t}}}{n_{1}\cos{\theta_{i}}+n_{2}\cos{\theta_{t}}}\right|^{2},\\
     R_{p} = \left|\frac{n_{1}\cos{\theta_{t}}-n_{2}\cos{\theta_{i}}}{n_{1}\cos{\theta_{t}}+n_{2}\cos{\theta_{i}}}\right|^{2},
@@ -270,13 +270,12 @@ The so-called `angular response' of the PMT buckets has been measured in both SN
 \nomenclature{\textbf{QE}}{Quantum efficiency (of a PMT)}
 \nomenclature{\textbf{TTS}}{Transit time spread (of a PMT)}
 % \nomenclature{\textbf{FWHM}}{Full-width at half-maximum (of a distribution)}
-Once a photon is incident on the PMT's photocathode, it is possible for that photon to be absorbed and generate a photoelectron. The probability of this happening is governed by the PMT's Quantum Efficiency (QE) at the photon's wavelength, which can be seen in Fig~\ref{fig:qe_pmts}. % cite
-Note how the QE is maximal at \SI{439}{\nm} with a value of 21.5\%. Once this photoelectron has been created, the dynodes within the PMT generate a cascade of electrons that allow for an observable voltage signal to be produced. The dynamics of this cascade are such that there is a natural spread of possible times between the creation of a photoelectron and the generation of the voltage signal pulse in the PMT's wire. This is known as the `Transit Time Spread' (TTS) of the PMTs: for SNO+, the RMS timing resolution of the TTS for the R1408-type PMTs is \SI{1.7}{\ns}~\cite{BOGER2000172}. % cite SNO-era papers
+Once a photon is incident on the PMT's photocathode, it is possible for that photon to be absorbed and generate a photoelectron. The probability of this happening is governed by the photocathode's Quantum Efficiency (QE) at the photon's wavelength, as well as the collection efficiency of a photoelectron onto the first dynode of the PMT. The combined measured efficiency of PMTs tested \textit{ex-situ} for SNO can be seen in Fig~\ref{fig:qe_pmts}. Once this photoelectron has been created, the dynodes within the PMT generate a cascade of electrons that allow for an observable voltage signal to be produced. The dynamics of this cascade are such that there is a natural spread of possible times between the creation of a photoelectron and the generation of the voltage signal pulse in the PMT's wire. This is known as the `Transit Time Spread' (TTS) of the PMTs: for SNO+, the RMS timing resolution of the TTS for the R1408-type PMTs is \SI{1.7}{\ns}~\cite{BOGER2000172}. % cite SNO-era papers
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\linewidth]{2_Detector/Figs/qe_plot.pdf}
-    \caption[Quantum efficiency of the R1408-type PMTs used as standard within SNO+]{Quantum efficiency of the R1408-type PMTs used as standard within SNO+~\cite{}. % cite
+    \includegraphics[width=0.8\linewidth]{2_Detector/Figs/efficiencies_PMTs_biller1999.png}
+    \caption[Efficiencies of the R1408-type PMTs used as standard within SNO+]{Efficiencies of the R1408-type PMTs used as standard within SNO+~\cite{billerMeasurementsPhotomultiplierSingle1999}. % cite
     }
     \label{fig:qe_pmts}
 \end{figure}
@@ -288,7 +287,7 @@ The relatively large widths of these charge distributions precludes the ability 
 \begin{figure}
     \centering
     \includegraphics[width=0.8\linewidth]{2_Detector/Figs/charge_spectra.png}
-    \caption[Example charge spectra for a PMT as a function of the true npe generated]{Example charge spectra for a PMT as a function of the true npe generated~\cite{}. % cite whom?
+    \caption[Example charge spectra for a PMT as a function of the true npe generated]{Example charge spectra for a PMT as a function of the true npe generated~\cite{dungerOccupancyAnalysisMultipleHit2016}. % cite whom?
     }
     \label{fig:charge_dists_pmt}
 \end{figure}
@@ -329,7 +328,7 @@ A signal passes first through the PMT Interface Card (PMTIC), which then sends i
 
 \nomenclature{\textbf{CTC}}{Crate Trigger Card}
 \nomenclature{\textbf{MTC/A+}}{Analogue Master Trigger Card}
-Whilst the TAC, QHS, QHL, and QLX are being calculated, the trigger signals from each channel are sent over to the Crate's Trigger Card (CTC), where the signals are then summed for each trigger type. These crate-level trigger signals are then sent over to the 7 detector-level Analogue Master Trigger Card (MTC/A+), which further sum the signals by trigger type from all the crates in the detector. It is at this point of the process where the names of the trigger types becomes clear: the combined N20 and N100 signals are proportional to the total number of hit PMTs within a \SI{20}{\ns} and \SI{100}{\ns} time window, respectively, whilst the total ESUMHI signal corresponds to the total charge seen over all the PMTs.
+Whilst the TAC, QHS, QHL, and QLX are being calculated, the trigger signals from each channel are sent over to the Crate's Trigger Card (CTC), where the signals are then summed for each trigger type. These crate-level trigger signals are then sent over to the 7 detector-level Analogue Master Trigger Cards (MTC/A+), which further sum the signals by trigger type from all the crates in the detector. It is at this point of the process where the names of the trigger types becomes clear: the combined N20 and N100 signals are proportional to the total number of hit PMTs within a \SI{20}{\ns} and \SI{100}{\ns} time window, respectively, whilst the total ESUMHI signal corresponds to the total charge seen over all the PMTs.
 
 \nomenclature{\textbf{MTC/D}}{Digital Master Trigger Card}
 \nomenclature{\textbf{GT}}{Global Trigger}
@@ -368,7 +367,7 @@ ORCA allows for the detector to have its data split into `runs' of different typ
 Once the raw data from triggered events has been stored in files, certain extra steps must be taken before effective analysis of that data can be achieved. This section covers those steps.
 
 \subsection{Detector Monitoring}
-No data taken from the detector can reasonably be used for analysis unless its quality has been approved. This is done in a number of ways on SNO+. Firstly, a number of automated systems monitor all aspects of the detector, including voltage levels in the crates, trigger rates, as well as `slower' quantities such as the tensions on the ropes holding the AV in place. Problems in any of these measured parameters trigger an automatic alarm system, which notifies a human detector operator. A detector operator monitors the detector 24/7 whilst the detector is live.
+No data taken from the detector can reasonably be used for analysis unless its quality has been approved. This is done in a number of ways on SNO+. Firstly, a number of automated systems monitor all aspects of the detector, including voltage levels in the crates, trigger rates, as well as `slower' quantities such as the tensions on the ropes holding the AV in place. Problems in any of these measured parameters trigger an automatic alarm system, which notifies a human detector operator. A human detector operator monitors the detector 24/7 whilst the detector is live.
 
 \nomenclature{\texttt{RATDB}}{RAT Database}
 In addition to systems that monitor whether anything has gone wrong, information about the state of the detector during each run is stored in a database known as \texttt{RATDB}. This information includes, amongst other things, a recording of which PMT channels have actually been raised to high voltage for that run, as well as any channels/cards/crates that have been flagged for having a known poor data quality (e.g. being overly noisy).
@@ -384,7 +383,7 @@ In addition to systems that monitor whether anything has gone wrong, information
 \nomenclature{\textbf{PCA}}{PMT Calibration}
 The lowest level of calibrations performed in SNO+ are the Electronic and PMT Calibrations: ECAs and PCAs, respectively. These calibrations convert the raw time and charge values recorded by the DAQ into quantities that can actually be used in analysis.
 
-During an ECA, two main quantities are measured. Firstly, because of noise the integrated charge measured on each channel is offset by some amount. This offset, known as the `pedestal', is recorded for each channel. The other quantity is the `time slope' for each channel, which allows one to convert from the ADC TAC counts into an uncalibrated hit time of that channel's PMT in \si{\ns}. Both of these quantities are measured by sending external signals to channels, forcing them to start measuring TAC and charge even though no PMTs were actually hit. Running ECAs also enable us to spot any channels with unusual behaviour, so that they are not used during analysis.
+During an ECA, two main quantities are measured. Firstly, because of noise the integrated charge measured on each channel is offset by some amount. This offset, known as the `pedestal', is recorded for each channel. The other quantity is the `time slope' for each channel, which allows one to convert from the ADC TAC counts into an uncalibrated hit time of that channel's PMT in \si{\ns}. Both of these quantities are measured by manually sending external signals to channels in the crates, forcing them to start measuring TAC and charge even though no PMTs were actually hit. Running ECAs also enable us to spot any channels with unusual behaviour, so that they are not used during analysis.
 
 Using ECAs alone is not enough to have fully-calibrated time and charge data. The lengths of cables between PMTs and PMTICs are all slightly different, leading to differences in the so-called `cable delay' of each channel. This means that two PMTs that have a photoelectron generated at the same time can generate slightly different TAC values. Furthermore, because the start time of the TAC is determined by when the channel's signal goes above a constant threshold, if a signal is very large (e.g. when numerous photoelectrons have been generated on one PMT) then the start time of the TAC will be systematically earlier. This is known as the `time walk'. Both of these quantities get measured during PCAs.
 
@@ -394,7 +393,7 @@ PCAs can be performed by either the Laserball or by the TELLIE calibration syste
 
 On top of calibrating the PMT hit times, PCAs also further calibrate the charge information. In particular, the charge spectrum generated by a single photoelectron is determined for each channel. This allows us to convert the pedestal-corrected charge ADC counts into a number of photoelectrons.
 
-Using the data gathered from both ECAs and PCAs, the raw data stored in \texttt{ZDAB}s is processed into a new file format known as \texttt{RATDS} files. These files contain all the information of an event, but now the times and charge information have been calibrated. It is this file type used in the optical calibration work of Chapters~\ref{chap:smellie_hardware}--\ref{chap:smellie_analysis}.
+Using the data gathered from both ECAs and PCAs, the raw data stored in \texttt{ZDAB}s is processed into a new file format known as \texttt{RATDS} files. These files contain all the information of an event, but now the timing and charge information have been calibrated. It is this file type used in the optical calibration work of Chapters~\ref{chap:smellie_hardware}--\ref{chap:smellie_analysis}.
 
     % \begin{itemize}
     %     \item First main set of calibrations are the ECAs and PCAs. These help us convert raw electronic signal information from PMTs into `calibrated' hit times and charges. PCAs performed via TELLIE and the Laserball.
@@ -449,7 +448,7 @@ The other critical piece of reconstructed event information is the event's energ
 \nomenclature{\texttt{nhit}}{Number of PMT hits in an event}
 At its simplest, assuming that an event is from an electron of moderate energy, then we can expect the number of PMT hits observed to be directly proportional to the energy of the event. Given that the number of hits observed in an event (called the \texttt{nhit}) is governed by a Poisson distribution, then the uncertainty in energy will just be proportional to the square root of the number of hits. As a result, the reconstructed energy resolution in SNO+ is determined by the scintillator's light yield and absorption length, as well as the coverage and QE of the PMTs.
 
-There are second-order corrections to the energy reconstruction that need to be considered to minimise bias. At low energies, scintillator quenching becomes non-negligible, so an understanding of the scintillator's Birks' constant is needed. At high energies, many PMTs will have had multiple photoelectrons generated, so merely using the \texttt{nhit} will give an underestimate of the true energy. Finally, the detection efficiency of photons is non-uniform as a function of position in the detector. The current energy reconstruction algorithm used within SNO+ attempts to deal with all of these effects~\cite{}. % cite energy reco info
+There are second-order corrections to the energy reconstruction that need to be considered to minimise bias. At low energies, scintillator quenching becomes non-negligible, so an understanding of the scintillator's Birks' constant is needed. At high energies, many PMTs will have had multiple photoelectrons generated, so merely using the \texttt{nhit} will give an underestimate of the true energy. Finally, the detection efficiency of photons is non-uniform as a function of position in the detector. The current energy reconstruction algorithm used within SNO+ attempts to deal with all of these effects~\cite{mottramUpdatedFinctionalForm2015,kroupovaImprovingSensitivityNeutrinoless2020}. % cite energy reco info
 
 After position, time, and energy reconstruction, \texttt{ScintFitter} calculates a number of additional quantities from what are known as classifiers. These describe a wide number of properties about an event, often using the derived \tres{} distribution of an event as the basis for classification. Some examples of classifiers used in analysis are discussed in Section~\ref{sec:background_processes}.
 
