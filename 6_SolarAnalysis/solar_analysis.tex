@@ -369,6 +369,16 @@ Most of the other cuts used in this analysis that haven't yet been discussed com
     \item \textbf{Muon follower cut}: Tags all events coming up to \SI{20}{\second} after a tagged muon event.
 \end{itemize}
 
+Beyond the formal data cleaning cuts, some further cuts were made to ensure data quality. A high-\texttt{nhit} veto was used to tag and remove instrumental backgrounds known as `flashers', in which a PMT will generate large amounts of light in the detector. After any event with a sufficiently large number of hits, both that event and any following it for \SI{20}{\second} are removed. This method is likely to be fairly conservative, and there exist different methods for cutting flashers within data cleaning. However, these were originally coordinated for the water phase, and hadn't been updated for the scintillator phase at the time of writing.
+
+\nomenclature{\texttt{nhitsCleaned}}{\texttt{Nhit} after cleaning the hits of the event}
+Sam Naugle observed~\cite{} % cite Sam
+during early investigations of scintillator phase data that there was a subset of events within the \onbb{} ROI which had far more hits than one would expect for an event of those energies. The energies of those events appeared lower than expected because a substantial fraction of the hits were `cleaned', that is to say they were not considered during energy reconstruction. The number of hits in an event that survive cleaning is called \texttt{nhitsCleaned}. A hit gets cleaned when either the hit PMT was not considered ``good'' for that run (in the same sense as discussed in Section~\ref{sec:combining_beam_profiles}), or if there were issues related to that specific hit, such as that hit being flagged for coming from PMT cross-talk. For the anomalous events Sam looked at, he noticed that large proportions of these hits were being cleaned because they were arriving too early for the ECA to convert the TAC into a hit time~\cite{}. % cite Same, but also DocDB #4480.
+Sam was able to find two main classes of events which suffer this hit `cleanliness' problem, neither of which are our solar neutrino signal. His findings suggested that requiring no more than 20\% of hits being cleaned within an event straightforwardly removes these anomalous events~\cite{}. % cite Sam again.
+
+\nomenclature{\texttt{posFOM}}{Position reconstruction Figure-of-Merit}
+One final set of anomalous events to be removed are those discovered by Will Parker~\cite{}. % cite Will
+These are events which, despite reconstructing within the FV, actually come from high in the neck of the detector. He found that these can be removed by performing a cut on the `weighted position Figure-of-Merit' parameter. The position reconstruction returns for each event a position Figure-of-Merit (\texttt{posFOM}) corresponding to the log-likelihood at the best-fit value. This parameter is proportional to the number of hits used in the position reconstruction, so \texttt{posFOM} is then weighted by \texttt{nhitsCleaned}. Because the reconstructed position of these events are far from their true value, their weighted \texttt{posFOM} is substantially lower than events that truly occurred within the AV. As a result, Will proposed requiring the weighted \texttt{posFOM} parameter to be greater than a value of 13.5 as a means of efficiently cutting out these events.
 
 {
     \color{blue}
