@@ -63,7 +63,9 @@ Although every effort has been made to make the scintillator cocktail that fills
 
 Of particular note are the decays of \ce{^{212}Bi} and \ce{^{214}Bi}. Both are capable of either $\alpha\textrm{-}$ or $\beta\textrm{-decays}$ to \ce{Tl} or \ce{Po} isotopes, respectively. For the former, it is the subsequent $\beta$-decay of the \ce{Tl} that can have a reconstructed energy above $E_{\textrm{min}}$. For the latter, the \ce{Bi} decay is the part of the pair of decays that can lie above $E_{\textrm{min}}$. Although the $\alpha$-decays here certainly have Q-values well above \SI{2.5}{\MeV}, the liquid scintillator quenches the observed energy well below $E_{\mathrm{min}}$. The so-called ``\ce{Bi-Po}'' decays are particularly special because the lifetimes of \ce{^{212}Po} and \ce{^{214}Po} are \SI{300}{\nano\second} and \SI{164}{\micro\second}, respectively, which are short enough to allow for highly-effective coincidence tagging.
 
-There are two classes of \ce{Bi-Po} event in the detector: ``out-of-window'' events for which the \ce{Bi} and \ce{Po} occur in separate event windows, and ``in-window'' events whereby the \ce{Bi} and \ce{Po} occur within the same event window. These lead to two distinct strategies for tagging these kinds of events. For out-of-window \ce{Bi-Po}s, we look for a delayed coincidence of two events. Using the tagging algorithm suggested in~\cite{} % Jeanne's BiPo tagging DocDB
+\nomenclature{\textbf{OOW}}{Out-of-window events}
+\nomenclature{\textbf{IW}}{In-window events}
+There are two classes of \ce{Bi-Po} event in the detector: ``out-of-window'' (OOW) events for which the \ce{Bi} and \ce{Po} occur in separate event windows, and ``in-window'' (IW) events whereby the \ce{Bi} and \ce{Po} occur within the same event window. These lead to two distinct strategies for tagging these kinds of events. For out-of-window \ce{Bi-Po}s, we look for a delayed coincidence of two events. Using the tagging algorithm suggested in~\cite{} % Jeanne's BiPo tagging DocDB
 as a starting point, the chosen procedure was as follows. There must be two events that trigger the detector within \SI{4}{\micro\second} of one another, and both have a valid \texttt{scintFit} position reconstruction within \SI{2}{\metre} of one another. The delayed candidate event must also have at least 100 cleaned PMT hits. %Must ensure cleaned nhits has been explained earlier
 This very broad coincidence tagging procedure was designed to ensure that the cut was as \textit{efficient} in tagging (and hence, rejecting) \ce{Bi-Po}s as possible, whilst negligibly impacting the solar signal. This is in contrast to the cuts chosen by Rafael Hunt-Stokes in~\cite{}, % Raf's BiPo tagging tech note on DocDB
 which try and obtain a highly \textit{pure} sample of \ce{Bi-Po} tags.
@@ -349,15 +351,13 @@ Once the runs of processed data and matching MC have been selected, the next ste
         Remove BiPo Out-of-window tags         & See Section~\ref{sec:u_th_internals} \\
         Remove BiPo In-window tags             & Tagged if $\mathtt{alphaBeta212} > 0$ and $\mathtt{alphaBeta214} > 0$ \\
         Remove External tags                   & Tagged if $E < \SI{5.0}{\MeV}$, $\mathtt{ext0NuTimeTl208AVNaive} > -0.007$, and $\mathtt{ext0NuAngleTl208AV} > -4.7$ \\
-        Remove events with low `cleanliness'   & $\mathtt{nhitsCleaned}/\mathtt{nhits} > 0.8$ \\
-        Ensure `good' position Figure-of-Merit & $\mathtt{posFOM}/\mathtt{nhitsCleaned} > 13.5$ \\
         \hline
     \end{tabular}
-    \caption{Analysis cuts used in this analysis.}
+    \caption{Cuts used in this analysis.}
     \label{tab:ev_selection}
 \end{table}
 
-Most of the other cuts used in this analysis that haven't yet been discussed come from handling differences between data and MC. In MC, it is possible to simulate an event but not have it trigger the detector. In this case, the stored index of that event (\texttt{evIndex}) will be less than zero. We never see these `events' in data of course, but they do need to be removed from simulation. On the flip side, there are types of events that we observe in the detector but do not simulate. Many of these events are caught during `data cleaning', which looks for a wide variety of problems in the data when the data is being processed. Any subset of the checks made during data cleaning can be chosen to consider in a given analysis by defining a specific `analysis mask'; a number that specifies for each of its binary digits whether to consider the data cleaning process associated with that bit. The mask chosen used in this analysis is \texttt{0x2100000042c2}, which corresponds to:
+Most of the other cuts used in this analysis that haven't yet been discussed come from handling differences between data and MC. In MC, it is possible to simulate an event but not have it trigger the detector. In this case, the stored index of that event (\texttt{evIndex}) will be less than zero. We never see these `events' in data of course, but they do need to be removed from simulation. On the flip side, there are types of events that we observe in the detector but do not simulate. Many of these events are caught during `data cleaning', which looks for a wide variety of problems in the data when the data is being processed. Any subset of the checks made during data cleaning can be chosen to consider in a given analysis by defining a specific `analysis mask'; a number that specifies for each of its binary digits whether to consider the data cleaning process associated with that bit. The mask chosen used in this analysis is the Collaboration's current standard for the scintillator phase, \texttt{0x2100000042c2}, which corresponds to:
 
 \begin{itemize}
     \item \textbf{00 cut}: Tags every event which has a GTID ending in 00 in hexadecimal, which is associated with a long-standing issue in the detector triggering system.
@@ -369,16 +369,43 @@ Most of the other cuts used in this analysis that haven't yet been discussed com
     \item \textbf{Muon follower cut}: Tags all events coming up to \SI{20}{\second} after a tagged muon event.
 \end{itemize}
 
-Beyond the formal data cleaning cuts, some further cuts were made to ensure data quality. A high-\texttt{nhit} veto was used to tag and remove instrumental backgrounds known as `flashers', in which a PMT will generate large amounts of light in the detector. After any event with a sufficiently large number of hits, both that event and any following it for \SI{20}{\second} are removed. This method is likely to be fairly conservative, and there exist different methods for cutting flashers within data cleaning. However, these were originally coordinated for the water phase, and hadn't been updated for the scintillator phase at the time of writing.
+Beyond the formal data cleaning cuts, a high-\texttt{nhit} veto was used to tag and remove instrumental backgrounds known as `flashers', in which a PMT will generate large amounts of light in the detector. After any event with a sufficiently large number of hits, both that event and any following it for \SI{20}{\second} are removed. This method is likely to be fairly conservative, and there exist different methods for cutting flashers within data cleaning. However, these were originally coordinated for the water phase, and hadn't been updated for the scintillator phase at the time of writing.
 
-\nomenclature{\texttt{nhitsCleaned}}{\texttt{Nhit} after cleaning the hits of the event}
-Sam Naugle observed~\cite{} % cite Sam
-during early investigations of scintillator phase data that there was a subset of events within the \onbb{} ROI which had far more hits than one would expect for an event of those energies. The energies of those events appeared lower than expected because a substantial fraction of the hits were `cleaned', that is to say they were not considered during energy reconstruction. The number of hits in an event that survive cleaning is called \texttt{nhitsCleaned}. A hit gets cleaned when either the hit PMT was not considered ``good'' for that run (in the same sense as discussed in Section~\ref{sec:combining_beam_profiles}), or if there were issues related to that specific hit, such as that hit being flagged for coming from PMT cross-talk. For the anomalous events Sam looked at, he noticed that large proportions of these hits were being cleaned because they were arriving too early for the ECA to convert the TAC into a hit time~\cite{}. % cite Same, but also DocDB #4480.
-Sam was able to find two main classes of events which suffer this hit `cleanliness' problem, neither of which are our solar neutrino signal. His findings suggested that requiring no more than 20\% of hits being cleaned within an event straightforwardly removes these anomalous events~\cite{}. % cite Sam again.
+The results of all these cuts can be seen for the data in Table~\ref{tab:data_cut_effs}. 654 out of the \num{18112495770} events within the dataset pass all cuts.
 
-\nomenclature{\texttt{posFOM}}{Position reconstruction Figure-of-Merit}
-One final set of anomalous events to be removed are those discovered by Will Parker~\cite{}. % cite Will
-These are events which, despite reconstructing within the FV, actually come from high in the neck of the detector. He found that these can be removed by performing a cut on the `weighted position Figure-of-Merit' parameter. The position reconstruction returns for each event a position Figure-of-Merit (\texttt{posFOM}) corresponding to the log-likelihood at the best-fit value. This parameter is proportional to the number of hits used in the position reconstruction, so \texttt{posFOM} is then weighted by \texttt{nhitsCleaned}. Because the reconstructed position of these events are far from their true value, their weighted \texttt{posFOM} is substantially lower than events that truly occurred within the AV. As a result, Will proposed requiring the weighted \texttt{posFOM} parameter to be greater than a value of 13.5 as a means of efficiently cutting out these events.
+\begin{table}
+    \centering
+    \begin{tabular}{c r r}
+        \hline
+        Cut                         & \# Events Remaining & Cut Efficiency (\%) \\ \hline \hline
+        Before cuts                 & \num{18112495770} & 100.00   \\
+        Event triggers detector     & \num{18112495770} & 100.00   \\
+        Data Cleaning               & \num{17663711108} & 97.52    \\
+        high-\texttt{nhit} veto     & \num{17212760839} & 97.45    \\
+        \texttt{ScintFitter} used   & \num{10540054756} & 61.23    \\
+        \texttt{ScintFitter} results valid & \num{3466208344} & 32.89 \\
+        Energy cut                  & \num{134252}      & 0.00387 \\
+        FV cut                      & \num{2155}        & 1.61    \\
+        BiPo OOW cut                & \num{831}         & 38.56   \\
+        BiPo IW cut                 & \num{723}         & 87.00   \\
+        Externals cut               & \num{654}         & 90.46   \\
+        \hline
+    \end{tabular}
+    \caption{Impact of each cut on the quantity of events in data.}
+    \label{tab:data_cut_effs}
+\end{table}
+
+\begin{table}
+    \centering
+    \begin{tabular}{c r r r}
+        \hline
+        MC process       & \# Physics Events Simulated & \# Triggered Events Simulated  & \# Remaining after cuts \\ \hline \hline
+        AV \ce{^{214}Bi} &  &  &  \\
+        \hline
+    \end{tabular}
+    \caption{Impact of each cut on the quantity of events in data.}
+    \label{tab:MC_cut_effs}
+\end{table}
 
 {
     \color{blue}
