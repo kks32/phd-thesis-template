@@ -371,7 +371,7 @@ Most of the other cuts used in this analysis that haven't yet been discussed com
 
 Beyond the formal data cleaning cuts, a high-\texttt{nhit} veto was used to tag and remove instrumental backgrounds known as `flashers', in which a PMT will generate large amounts of light in the detector. After any event with a sufficiently large number of hits, both that event and any following it for \SI{20}{\second} are removed. This method is likely to be fairly conservative, and there exist different methods for cutting flashers within data cleaning. However, these were originally coordinated for the water phase, and hadn't been updated for the scintillator phase at the time of writing.
 
-The results of all these cuts can be seen for the data in Table~\ref{tab:data_cut_effs}. 654 out of the \num{18112495770} events within the dataset pass all cuts.
+The results of all these cuts can be seen for the data in Table~\ref{tab:data_cut_effs}. 654 out of the \num{18112495770} events within the dataset pass all cuts. These same cuts were also run over the MC, with results summarised in Table~\ref{tab:MC_cut_effs}. Important to note was the difference between the number of physics events simulated for a given process and the number of triggered events. The latter ends up being larger than the former for all processes discussed here, because a given physics event in the detector will often generate a retrigger event following the primary triggered event. Also shown in this table are the combined cut efficiencies for each process. This efficiency is defined as the number of triggered events that pass all cuts, divided by the number of simulated physics events for that process.
 
 \begin{table}
     \centering
@@ -396,39 +396,62 @@ The results of all these cuts can be seen for the data in Table~\ref{tab:data_cu
 \end{table}
 
 \begin{table}
-    \centering
-    \begin{tabular}{c r r r}
-        \hline
-        MC process       & \# Physics Events Simulated & \# Triggered Events Simulated  & \# Remaining after cuts \\ \hline \hline
-        AV \ce{^{214}Bi} &  &  &  \\
-        \hline
-    \end{tabular}
-    \caption{Impact of each cut on the quantity of events in data.}
+    \begin{center}
+        \begin{tabulary}{\textwidth}{c R R R R}
+            \hline
+            MC process       & \# Physics Events Simulated & \# Triggered Events Simulated  & \# Remaining after cuts & Overall Cut Efficiency (\%) \\ \hline \hline
+            \beight{} $\nu_{e}$ & \num{2830425}  & \num{5511568}  & \num{929551} & 32.8     \\
+            \beight{} $\nu_{\mu,\tau}$ & \num{1898088} & \num{3675261} & \num{572949} & 30.2\\
+            \hline
+            AV \ce{^{214}Bi}    & \num{27138894} & \num{38267431} & \num{127}    & 0.000468 \\
+            Ropes \ce{^{214}Bi} & \num{67541698} & \num{84734663} & \num{221}    & 0.000327 \\
+            AV \ce{^{208}Tl}    & \num{4071850}  & \num{6689331}  & \num{1471}   & 0.0361    \\
+            Ropes \ce{^{208}Tl} & \num{6105956}  & \num{8758457}  & \num{2407}   & 0.0394   \\
+            External Water \ce{^{214}Bi} & \num{81300835} & \num{85056233} & \num{62} & 0.0000763 \\
+            External Water \ce{^{208}Tl} & \num{36602319} & \num{38963663} & \num{2786} & 0.00761 \\
+            PMT $\beta-\gamma$  & \num{4069055}  & \num{6615601}  & \num{13570}  & 0.333    \\
+            \hline
+            Internal \ce{^{212}BiPo} & \num{9761554} & \num{24331685} & \num{8276} & 0.0848  \\
+            Internal \ce{^{208}Tl} & \num{816233} & \num{1626536} & \num{409629} & 50.2     \\
+            Internal \ce{^{214}BiPo} & \num{4883417} & \num{19293285} & \num{1030} & 0.0211 \\
+            Internal \ce{^{210}Tl} & \num{815256} & \num{1625012} & \num{342415} & 42.0     \\ \hline
+            Surface \alphan{} (combined) & \num{22627103} & \num{48834413} & \num{2238} & 0.00458 \\
+            Internal \alphan{} & \num{1219279} & \num{4740313} & \num{655} & 0.0537 \\
+            Cosmogenic \ce{^{11}C} & \num{8139189} & \num{16206469} & \num{0} & 0 \\
+            Internal \ce{^{228}Ac} & \num{9764480} & \num{19294643} & \num{0} & 0 \\
+            Internal \ce{^{234m}Pa} & \num{16959995} & \num{30806833} & \num{1} & 0.0000059 \\
+            \hline
+        \end{tabulary}
+    \end{center}
+    \caption{Combined impact of cuts on each MC process. Overall cut efficiency is defined as the number of remaining triggered events after all cuts have been applied, divided by the number of physics events simulated for that process. Processes have been split into three general categories: signal, externals, and internals. A final category corresponds to various processes that have been considered for this analysis, but either all events are cut out, or Section~\ref{sec:exp_rates_constraints} will show a negligible number of these events are expected in our dataset.}
     \label{tab:MC_cut_effs}
 \end{table}
 
+Variable bin widths in energy were chosen for this analysis: \SI{0.1}{\MeV} bins between \SI{2.5}{\MeV}--\SI{5.0}{\MeV}, \SI{0.25}{\MeV} bins between \SI{5.0}{\MeV}--\SI{13.0}{\MeV}, and a single energy bin between \SI{13.0}{\MeV}--\SI{14.0}{\MeV}. Four equally-spaced bins were used in the parameter $r_{3} = (r_{\mathrm{reco}}/R_{\mathrm{AV}})^{3}$ in the range $\SI{0}{\m}\le r_{\mathrm{reco}} < \SI{5.0}{\m}$. The $r_{3}$ parameter was used to allow for equal volume weighting for each radial bin.
+
+
+    % \begin{itemize}
+    %     \item List final set of cuts chosen for analysis, along with any explanations for cuts that haven't already been motivated earlier (e.g. data cleaning). These are:
+    %     \begin{itemize}
+    %         \item Event index cut (prevents MC events that don't trigger detector from being used)
+    %         \item Data cleaning cuts
+    %         \item High-nhit event timing veto cut
+    %         \item Valid scintFit reconstruction
+    %         \item Reconstructed energy $2.5 < E < 14$
+    %         \item Radial fiducial volume cut
+    %         \item BiPo out-of-window tag
+    %         \item BiPo in-window classifier cut
+    %         \item Externals classifier cut
+    %         \item ``Cleanliness'' cut
+    %         \item Position FOM cut
+    %     \end{itemize}
+    %     \item Show impact of cuts on data and MC. Show tables (the full details maybe in an appendix) indicating this.
+    %     \item Describe the finalised choice of binning for PDFs and data.
+    % \end{itemize}
+    % [4 pages]
+\subsection{Expected Rates and Constraints}\label{sec:exp_rates_constraints}
 {
     \color{blue}
-    \begin{itemize}
-        \item List final set of cuts chosen for analysis, along with any explanations for cuts that haven't already been motivated earlier (e.g. data cleaning). These are:
-        \begin{itemize}
-            \item Event index cut (prevents MC events that don't trigger detector from being used)
-            \item Data cleaning cuts
-            \item High-nhit event timing veto cut
-            \item Valid scintFit reconstruction
-            \item Reconstructed energy $2.5 < E < 14$
-            \item Radial fiducial volume cut
-            \item BiPo out-of-window tag
-            \item BiPo in-window classifier cut
-            \item Externals classifier cut
-            \item ``Cleanliness'' cut
-            \item Position FOM cut
-        \end{itemize}
-        \item Show impact of cuts on data and MC. Show tables (the full details maybe in an appendix) indicating this.
-        \item Describe the finalised choice of binning for PDFs and data.
-    \end{itemize}
-    [4 pages]
-    \subsection{Expected Rates and Constraints}\label{sec:exp_rates_constraints}
     \begin{itemize}
         \item Show expected rates calculation for both signal and background.
         \item Describe the constraints chosen to apply to the fit, and why they can be justified. These are: 
