@@ -3,6 +3,27 @@
 Winter Afternoons ---\\
 That oppresses, like the Heft\\
 Of Cathedral Tunes ---}}{\textsc{Emily Dickinson}}
+
+As mentioned in Section~\ref{sec:eo_calibs}, one of the principal systems for calibrating the optics of the SNO+ detector is SMELLIE. This calibration device consists of 5 different optical wavelength lasers able to be fired through 15 optical fibres, whose endpoints are attached to the PSUP. A collimator is attached at the end of each fibre, ensuring the emitted light forms a narrow beam across the detector. A diagram of SMELLIE in the detector is shown in Fig.~\ref{fig:smellie_diagram}.
+
+\begin{figure}
+    \centering
+    % \includegraphics[]{}
+    \caption[]{}
+    \label{fig:smellie_diagram}
+\end{figure}
+
+The primary goal of SMELLIE is the measurement and monitoring of optical scattering within the detector over the lifetime of the experiment. By firing light from SMELLIE into the detector, some fraction of the photons will be scattered by the detector medium, a fraction of those scattering at large angles relative to the direction of the SMELLIE beam. This strongly scattered light can be detected by PMTs far from the `beamspot', and will also arrive substantially later than light which travelled directly from the fibre to those PMTs. By isolating this scattered light signal, and comparing the quantity observed in data to equivalent simulations with varying scattering lengths, in principle one can measure the detector medium's scattering length. If one takes SMELLIE data with various wavelengths of light at various points in time, we can get a dynamical picture of the optical scattering in SNO+. An analysis of optical scattering in the scintillator phase is made in Section~\ref{sec:scattering_analysis}.
+
+Another substantial measurement that can be made with SMELLIE is the extinction length of the detection media as a function of wavelength and time. This can be done by comparing the fraction of light emitted by the fibre that gets observed in the beamspot after passing through the detector. Section~\ref{sec:ext_length_analysis} covers this analysis in the scintillator phase. Once measurements of both the scattering length and extinction length have been made, it is then possible to derive the absorption length from Eq.~\ref{eq:ext_length_def}.
+
+Why is measuring the scattering and absorption lengths of the detector medium important? Both optical characteristics of the detector impact the propagation of light from physics events, and hence which PMTs get hit along with the times of those hits. If these lengths are systematically off within simulation, this can lead to negative consequences for reconstructing events. In particular, for the scintillator phase, if there is more optical absorption occurring than expected, then because not all absorbed light is re-emitted a larger fraction of photons are lost. Therefore, because energy reconstruction is strongly dependent on the number of PMT hits observed in an event, the energy of events will be systematically under-estimated. Alongside this, light that is re-emitted will only do so after some time delay, and the direction of this re-emission unlikely to be in the same direction as before. This leads to systematic changes in the observed time residual distributions, impacting position reconstruction, as well as any classifiers that use the time residual distribution.
+
+If there is more optical scattering than expected within the scintillator, this also indirectly leads to a greater loss of light because of the increased path length that a photon will typically have to travel before being detected. By consequence, there will be a second-order impact on the energy reconstruction from systematics in the scattering length. Much like changes in the quantity of re-emitted light, increasing the amount of scattering will also systematically effect the position reconstruction and many classifiers.
+
+This chapter covers the hardware used to take SMELLIE data, as well as the steps taken to ensure high quality data was taken throughout the scintillator phase of the experiment.
+
+
 {
     \color{blue}
 
