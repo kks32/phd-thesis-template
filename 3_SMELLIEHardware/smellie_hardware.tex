@@ -23,17 +23,102 @@ If there is more optical scattering than expected within the scintillator, this 
 
 This chapter covers the hardware used to take SMELLIE data, as well as the steps taken to ensure high quality data was taken throughout the scintillator phase of the experiment.
 
+% \begin{itemize}
+%     \item Basic principle for how SMELLIE works: firing collimated laser light into detector to observe scattering events.
+%     \item Analysis will measure and monitor scattering in a detector with changing optics.
+%     \item One can try and measure some component of this: the cross-section/scattering length versus wavelength and time, and/or the relative scattering length versus wavelength and time.
+% \end{itemize}
+% [1 page]
+
+\section{The SMELLIE Hardware}\label{sec:smellie_hardware}
+A full description of the initial hardware setup that was used during the air fill and early parts of the water fill phase can be read in~\cite{}. % cite Krish & DocDB #3511
+Since then, a series of hardware upgrades have been made, with~\cite{} % cite Esther (+more?)
+covering the hardware status used in data taken throughout the water phase.
+Fig.~\ref{fig:smellie_timeline} shows a timeline of the hardware upgrades as well as the data taking campaigns performed throughout the current lifetime of the experiment. The current layout of the SMELLIE hardware, showing the connections between each of the devices within the system, can be seen in Fig.~\ref{fig:smellie_diagram_detailed}. The rest of this section briefly summarises the current contents of the calibration system, along with descriptions of the major hardware changes made since the water phase.
+
+\begin{figure}
+    \centering
+    % \includegraphics[]{}
+    \caption[]{}
+    \label{fig:smellie_timeline}
+\end{figure}
+
+\begin{figure}
+    \centering
+    % \includegraphics[]{}
+    \caption[]{}
+    \label{fig:smellie_diagram_detailed}
+\end{figure}
+
+\subsection{Lasers}\label{sec:smellie_lasers}
+\nomenclature{\textbf{PQ}}{PicoQuant}
+Fundamental to the SMELLIE calibration system are 5 optical-wavelength lasers. Four of these are fixed-wavelength pulsed-diode laser heads from the company PicoQuant. These `PQ' laser heads each emit with a different narrow wavelength spectrum, peaking at \SI{375}{\nm}, \SI{407}{\nm}, \SI{446}{\nm}, and \SI{495}{\nm}. These are referred to as the PQ375, PQ407, PQ446, and PQ495 lasers,respectively. In addition to these lasers, a SuperK Compact laser made by NKT Photonics (hereafter referred to as the SuperK laser) is also used\footnote{
+    Apologies to those more familiar with `SuperK' referring to the SuperKamiokande experiment based in Japan: this laser bears no relation.
+}. Unlike the PQ laser heads, the SuperK is a super-continuum laser able to produce laser light over the whole optical wavelength spectrum. Because we are almost always interested in determining optical properties at specific wavelengths, a variable bandpass filter also built by NKT Photonics known as the SuperK Varia has been included. This allows the user to select any wavelength interval between \SIrange{400}{700}{\nm}, with a minimum bandwidth of \SI{10}{\nm}. The wavelength and emission timing characteristics of all five lasers are shown in Fig.~\ref{fig:smellie_emission_wav_timing}. The $\mathcal{O}(\SI{1}{\ns})$ time widths for the lasers are essential for scattering analyses as they allow for much greater precision in knowing when photons should arrive at PMTs in the detector than with an LED source. This is why SMELLIE uses lasers for its light generation, unlike the LEDs used for AMELLIE and TELLIE.
+
+\begin{figure}
+    \centering
+    \begin{subfigure}{0.98\textwidth}
+        \centering
+        % \includegraphics[width=0.9\textwidth]{2_Detector/Figs/WaterAbsorption.png}
+        \caption{}
+        \label{fig:smellie_emission_wavelengths}
+    \end{subfigure}
+    \begin{subfigure}{0.98\textwidth}
+        \centering
+        % \includegraphics[width=0.85\textwidth]{2_Detector/Figs/AcrylicAttenuation.png}
+        \caption{}
+        \label{fig:smellie_emission_timing}
+    \end{subfigure}
+    \caption{}
+    \label{fig:smellie_emission_wav_timing}
+\end{figure}
+
+\subsection{Controlling Laser Intensities}\label{sec:smellie_attenuators}
+It is important to be able to control the quantity of light that enters the detector from a given pulse of one of the lasers. Too much light, and because of the detector's DAQ analysis of data becomes difficult, and in the extreme case permanent damage could be done. Too little, and insufficient statistics are collected by the detector to actually do any analysis. Controlling the pulse intensity of light into the detector is done in two parts. For the SuperK laser, the raw power of the beam in a pulse can be set as a percentage of the maximum possible power for that wavelength. Once a light pulse has been generated, it is then attenuated by a neutral density filter contained within the SuperK laser hardware.
+
+For the PQ lasers, a PicoQuant-brand SEPIA II laser driver is used to set the raw pulse intensity and firing rate. Unlike the SuperK, the intensity control is given by the laser driver's driving voltage, as a fraction of the maximum possible voltage. Problematically, the dependence on the raw output intensity of the PQ laser heads are highly nonlinear with respect to the amplitude of the driving voltage. To demonstrate, consider the observed npe per shot within the detector as a function of driving voltage for SMELLIE events using the PQ lasers: see Fig.~\ref{fig:pq_old_intensity_dependence}. For low driving voltages, the resulting npe is very small, and rises slowly. However, near a certain `lasing threshold' the npe observed increases super-exponentially, rapidly climbing many orders of magnitude in intensity. Above this threshold, increasing the driving voltage once again changes the observed intensity relatively slowly. A result of this is that if one requires an npe in the detector associated with a driving voltage that lies near the threshold, then any uncertainty in that driving voltage value can lead to dramatic changes in the npe observed. Furthermore, when driving a laser head near its lasing threshold the shot-to-shot variation in intensity can also become substantial: see Fig.~\ref{fig:pq_threshold_intensity_variation} for an example of this occurring.
+
+\begin{figure}
+    \centering
+    % \includegraphics[]{}
+    \caption[]{}
+    \label{fig:pq_old_intensity_dependence}
+\end{figure}
+
+\begin{figure}
+    \centering
+    % \includegraphics[]{}
+    \caption[]{}
+    \label{fig:pq_threshold_intensity_variation}
+\end{figure}
+
+During the water phase and for much of the scintillator phase, much of the data taken, especially using the PQ407 and PQ446 lasers, suffered from large shot-to-shot intensity variations. Throughout this period, after the light was generated by a PQ laser head it would then be passed through an attenuator, fixed to some nominal attenuation setting for each laser. In theory, one could solve the intensity variation problem by deliberately setting the intensity well beyond the lasing threshold, and then changing the attenuation of the attenuator to obtain the npe within the detector one is interested in. However, under the original hardware this was untenable as this would require someone to manually change the attenuations in-person every time a different set of SMELLIE run conditions were proposed.
+
+\nomenclature{\textbf{VFA}}{Remotely-controllable Variable Fibre Attenuator}
+Instead, Jeff Lidgard built a piece of hardware called the remotely-controllable Variable Fibre Attenuator (VFA), shown in Fig.~\ref{fig:vfa_picture}. Contained within a metal housing were a `precision variable attenuator' from DiCon Fibreoptics~\cite{} % cite DiCon attenuator specsheet online
+for each PQ laser, along with an Arduino running firmware written by Jeff to enable communication with each of the attenuators. Commands could be sent to a given attenuator asking for a specific attenuation between \SIrange{0}{3000}{\dB}.
+Following ex-situ testing by Jeff Lidgard and Jasmine Simms, the VFA was installed underground by myself and Armin Reichold in July 2022, with some assistance from Jeff in integration of the hardware and SMELLIE server software.
+
+\begin{figure}
+    \centering
+    % \includegraphics[]{}
+    \caption[]{}
+    \label{fig:vfa_picture}
+\end{figure}
+
+During testing of the VFA in-situ, it was discovered that the inherent attenuation of the variable attenuator at the minimum setting of \SI{0}{\dB} for the PQ375 laser was so strong that negligible light was ever observed in the detector. Because of this, the PQ375 was not hooked up to the VFA, and kept its original attenuator setup. After fixing the driving voltage settings for PQ407, PQ446, and PQ495 to be XXX, XXX, and XXX respectively, % add in numbers!
+the observed npe in the detector was once again compared to the input intensity setting. For PQ375 this input parameter remained the driving voltage; for the others, the attenuation setting was now used. The results can be seen in Fig~\ref{fig:pq_new_intensity_dependence}. As hoped for, the three PQ lasers hooked up to the VFA can now have stable intensities of light observed in the detector over multiple orders of magnitude of observed intensity.
+
+\begin{figure}
+    \centering
+    % \includegraphics[]{}
+    \caption[]{}
+    \label{fig:pq_new_intensity_dependence}
+\end{figure}
 
 {
-    \color{blue}
-
-\begin{itemize}
-    \item Basic principle for how SMELLIE works: firing collimated laser light into detector to observe scattering events.
-    \item Analysis will measure and monitor scattering in a detector with changing optics.
-    \item One can try and measure some component of this: the cross-section/scattering length versus wavelength and time, and/or the relative scattering length versus wavelength and time.
-\end{itemize}
-[1 page]
-\section{The SMELLIE Hardware}
+\color{blue}
 \begin{itemize}
     \item Describe the existing hardware, post-upgrade made in Summer 2022. For pre-upgrade hardware, can simply cite previous SMELLIE theses. This includes the path of light into the detector, as well as the path of the trigger signal.
     \item Make sure to mention explicitly these upgrades: Tony Zummo's fix to the TUBii trigger logic, as well as the addition of the VFA, updated MPU, and modified trigger window. Make sure to motivate why these updates were made.
