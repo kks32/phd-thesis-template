@@ -173,7 +173,18 @@ One problem with the existing MPU within SMELLIE was that the pulse it produced 
 
 Because of this, a new MPU was commissioned. Built by Adam Baird and Johan Fopma from the Oxford Physics Central Electronics Group, this MPU had updated electronics such that the pulse was shaped shorter. In addition, the rise time of the pulse was made faster, in the hopes that the emission time of the light pulse for a given event could be captured more accurately. The new MPU was installed by myself and Armin Reichold at the same time as the VFA, in Summer 2022.
 
+Alongside the installation of the new hardware, the settings in ORCA for the CAEN digitisation of the MPU signal were updated. In particular, the number of samples made by the CAEN was shortened from 300 down to 124. The timing of the CAEN sampling and delay on the TUBii trigger (more on the trigger shortly) was also modified. As a result of these changes, the shortest possible trace was now being generated, without missing any part of the MPU pulse or moving the observed TAC for hits in the detector outside the trigger window. Fig.~\ref{fig:caen_trace_comparison} shows a comparison between typical MPU pulses taken before and after the upgrades.
+
+\begin{figure}
+    \centering
+    % \includegraphics[]{}
+    \caption[]{}
+    \label{fig:caen_trace_comparison}
+\end{figure}
+
 \subsection{Event Triggering and Data Acquisition}\label{sec:smellie_triggering_daq}
+As mentioned in Section~\ref{sec:daq}, it is possible to trigger the SNO+ detector electronics via an external asynchronous trigger, EXTA. Taking data with SMELLIE takes advantage of this capability: instead of waiting for the normal `physics' triggers such as N100 to pick up the event, because we know when we are firing the laser we can send an EXTA signal to trigger the detector precisely when a light pulse is within the detector.
+
 
 
 {
