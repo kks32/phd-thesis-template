@@ -12,9 +12,18 @@ This chapter begins by explaining how it is possible to measure the solar oscill
 \section{Analysis Methodology}\label{sec:analysis_method}
 \subsection{Observational Principle}
 How can we measure neutrino oscillation parameters via solar neutrinos in the SNO+ detector? As discussed in Chapter~\ref{chap:theory}, % link to theory section on solar oscillations
-it is possible to detect all flavours of neutrino through elastic scattering with electrons in the detector. If this interaction was purely neutral-current, then there would be no way of telling the flavour-state of an interacting neutrino. However, electron neutrinos are able to interact through an additional charged-current mode. This modifies the cross-section for electron neutrinos, and means that as the survival probability for electron neutrinos generated from the Sun, $P_{ee}$, is modified, the interaction probability of neutrinos with the detector will also.
+it is possible to detect all flavours of neutrino through elastic scattering with electrons in the detector. If this interaction was purely neutral-current, then there would be no way of telling the flavour-state of an interacting neutrino. However, electron neutrinos are able to interact through an additional charged-current mode. This modifies the cross-section for electron neutrinos, and means that as the survival probability for electron neutrinos generated from the Sun, $P_{ee}$, is modified, the interaction probability of neutrinos with the detector will also. The resulting differential interaction rate $R$ for solar neutrinos as a function of the neutrino's energy, $E_{\nu}$, is given by:
+\begin{equation}\label{eq:solar_rate}
+    \frac{dR}{dE_{\nu}} = 
+        \Phi_{\beight{}}S_{\nu}\left(E_{\nu}\right)n_{e}
+            \left[
+                P_{ee}\left(E_{\nu}\right)\sigma_{\nu_e}\left(E_{\nu}\right) +
+                \left(1-P_{ee}\right)\left(E_{\nu}\right)\sigma_{\nu_\mu,\tau}\left(E_{\nu}\right)
+            \right],
+\end{equation}
+where $\Phi_{\beight{}}$ is the total flux of \beight{} solar neutrinos, $S_{\nu}$ is the normalised incident energy spectrum of the solar neutrinos, $n_{e}$ is the number of electron targets in the detector detection medium, and $\sigma_{\nu_{i}}$ is the neutrino-electron elastic scattering cross-section for flavour $i$.
 
-Of course, we do not directly measure neutrino energies in the detector --- only the associated scattered electron. If there were no correlation between the observed electron energy and its associated neutrino, then the only effect of neutrino oscillations would be to change the overall observed rate of events due to this process. There would be no change in the shape of the event's energy spectrum, even though neutrino oscillations are a function of neutrino energy. Fortunately, there is some dependence of the neutrino's energy, $E_{\nu}$ on that of the scattered electron, $E_{e}$. This dependence can be seen in Fig.~\ref{fig:nu_elec_energy_dependence} for \beight{} electron neutrinos interacting in SNO+. % Expected analytical dependence?
+Of course, we do not directly measure neutrino energies in the detector --- only the associated scattered electron. If there were no correlation between the observed electron energy and its associated neutrino, then the only effect of neutrino oscillations would be to change the overall observed rate of events due to this process. There would be no change in the shape of the event's energy spectrum, even though neutrino oscillations are a function of neutrino energy. Fortunately, there is some dependence of $E_{\nu}$ on that of the scattered electron, $E_{e}$. This dependence can be seen in Fig.~\ref{fig:nu_elec_energy_dependence} for \beight{} electron neutrinos interacting in SNO+. % Expected analytical dependence?
 As can be seen, the dependence is weak, and comes mostly from basic energy conservation: If one observes a \SI{10}{\MeV} electron event in the detector, it can't reasonably have come from a \SI{5}{\MeV} neutrino.
 
 \begin{figure}
@@ -423,7 +432,7 @@ The results of all these cuts can be seen for the data in Table~\ref{tab:data_cu
             \hline
         \end{tabulary}
     \end{center}
-    \caption{Combined impact of cuts on each MC process. Overall cut efficiency is defined as the number of remaining triggered events after all cuts have been applied, divided by the number of physics events simulated for that process. Processes have been split into three general categories: signal, externals, and internals. A final category corresponds to various processes that have been considered for this analysis, but either all events are cut out, or Section~\ref{sec:exp_rates_constraints} will show a negligible number of these events are expected in our dataset.}
+    \caption[Combined impact of cuts on each MC process.]{Combined impact of cuts on each MC process. Overall cut efficiency is defined as the number of remaining triggered events after all cuts have been applied, divided by the number of physics events simulated for that process. Processes have been split into three general categories: signal, externals, and internals. A final category corresponds to various processes that have been considered for this analysis, but either all events are cut out, or Section~\ref{sec:exp_rates_constraints} will show a negligible number of these events are expected in our dataset.}
     \label{tab:MC_cut_effs}
 \end{table}
 
@@ -453,9 +462,30 @@ Variable bin widths in energy were chosen for this analysis: \SI{0.1}{\MeV} bins
 Because this analysis is dependent on deriving the shape and size of the \beight{} spectrum from the data observed, it is important to have expectations about the number of events expected to be seen within the dataset for each process, both signal and background. This is done in two stages: firstly, the expected rates for each process before any cuts applied is determined, along with any constraints. Then, by using the cut efficiencies calculated in the previous section, we can derive estimates for the expected number of events after cuts. When combined with a constraining uncertainty, this can be used as a prior within the MCMC fit.
 
 \subsubsection{\beight{} Signal}
-Starting with the \beight{} signal, numerous theoretical predictions and experimental measurements have been made of the \beight{} flux. For this analysis, two different values have been used. The SSM predicts a relatively loose constraint of $\Phi_{\beight{}} = \SI{5.46e6}{\per\cm\squared\per\second}\pm 12\%$~\cite{}, % cite SSM flux
-whereas a global fit of neutrino oscillation experiments leads to a stronger constraint of $\Phi_{\beight{}} = \SI{5.16e6}{\per\cm\squared\per\second}^{+2.5\%}_{-1.7\%}$~\cite{}. % cite Bergstrom et al
+Starting with the \beight{} signal, numerous theoretical predictions and experimental measurements have been made of the \beight{} flux. For this analysis, two different values have been used. The SSM predicts a relatively loose constraint of $\Phi_{\beight{}} = (5.46\pm 12\%)\times 10^{6}\,\si{\per\cm\squared\per\second}$~\cite{}, % cite SSM flux
+whereas a recent global fit of neutrino oscillation experiments leads to a much stronger constraint of $\Phi_{\beight{}} = (5.16\,^{+2.5\%}_{-1.7\%})\times 10^{6}\,\si{\per\cm\squared\per\second}$~\cite{}. % cite Bergstrom et al
+We shall use both for calculating the expected rate of the signal events in the detector, and their fractional uncertainties to constrain this rate.
 
+To calculate the number of electrons within the liquid scintillator, we follow the method used in~\cite{inacioDataAnalysisWater2022}, % cite Ana Sofia's thesis
+which uses the formula:
+\begin{equation}
+    n_{e} = \frac{\left(f_{\mathrm{LAB}}n_{\mathrm{LAB}} +
+                        f_{\mathrm{PPO}}n_{\mathrm{PPO}}\right)
+                  N_{A}M_{\mathrm{LAB}}}
+                 {m}.
+\end{equation}
+Here, $f_{\mathrm{LAB}}$ and $f_{\mathrm{PPO}}$ are the fraction by weight of the LAB and PPO within the scintillator cocktail, respectively. Because this analysis is done over data taken during the scintillator phase with a PPO concentration of \SI{2.2}{\g} for every litre of LAB, these take values 99.744\% and 0.256\%, respectively. $n_{\mathrm{LAB}}$ and $n_{\mathrm{PPO}}$ are the mean number of electrons per molecule of LAB and PPO, respectively. PPO has the chemical formula \ce{C_{15}H_{11}NO}, leading to $n_{\mathrm{PPO}} = 116$. The LAB used in SNO+ has varying alkyl chain lengths, leading to a varying number of electrons per molecule. This distribution is known to have changed between batches of LAB made by the manufacturer, and is also impacted by the distillation process used during the purification of the LAB before it was put into the AV. At the time of writing, no final molecular breakdown has been made for the LAB within the detector; for now we shall use the breakdown provided here~\cite{}, % cite LAB breakdown DocDB #7572
+from a representative tanker truck of LAB: there $n_{\mathrm{LAB}} = 131.68$. Finally, $N_{A} = \SI{6.02e23}{\per\mol}$ is Avogadro's Constant, $M_{\mathrm{LAB}} = \SI{780.2}{\tonne}$ is the total mass of scintillator within a sphere of radius the size of the AV, and $m = \SI{235}{\g\per\mol}$ is the molecular weight of the scintillator. This leads to a value for the number of electron targets:
+\begin{equation*}
+    n_{e} = \num{2.63e32}\; \mathrm{electrons}.
+\end{equation*}
+
+We can modify Eq.~\ref{eq:solar_rate} to get an equation for the total rate of solar neutrino events by flavour, before oscillations or analysis cuts are considered:\
+\begin{equation}
+    R_{i} = \Phi_{\beight{}}n_{e}
+                \int S_{\nu}\left(E_{\nu}\right)\sigma_{\nu_{i}}\left(E_{\nu}\right)\,dE_{\nu}.
+\end{equation}
+Note that for $i=\mu,\tau$, this rate corresponds to the interaction rate if 100\% of the neutrinos have flavour $\nu_{\mu,\tau}$.
 
 {
     \color{blue}
