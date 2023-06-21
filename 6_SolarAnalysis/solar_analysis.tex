@@ -432,7 +432,8 @@ The results of all these cuts can be seen for the data in Table~\ref{tab:data_cu
             \hline
         \end{tabulary}
     \end{center}
-    \caption[Combined impact of cuts on each MC process.]{Combined impact of cuts on each MC process. Overall cut efficiency is defined as the number of remaining triggered events after all cuts have been applied, divided by the number of physics events simulated for that process. Processes have been split into three general categories: signal, externals, and internals. A final category corresponds to various processes that have been considered for this analysis, but either all events are cut out, or Section~\ref{sec:exp_rates_constraints} will show a negligible number of these events are expected in our dataset.}
+    \caption[Combined impact of cuts on each MC process.]
+    {Combined impact of cuts on each MC process. Overall cut efficiency is defined as the number of remaining triggered events after all cuts have been applied, divided by the number of physics events simulated for that process. Processes have been split into three general categories: signal, externals, and internals. A final category corresponds to various processes that have been considered for this analysis, but either all events are cut out, or Section~\ref{sec:exp_rates_constraints} will show a negligible number of these events are expected in our dataset.}
     \label{tab:MC_cut_effs}
 \end{table}
 
@@ -486,6 +487,49 @@ We can modify Eq.~\ref{eq:solar_rate} to get an equation for the total rate of s
                 \int S_{\nu}\left(E_{\nu}\right)\sigma_{\nu_{i}}\left(E_{\nu}\right)\,dE_{\nu}.
 \end{equation}
 Note that for $i=\mu,\tau$, this rate corresponds to the interaction rate if 100\% of the neutrinos have flavour $\nu_{\mu,\tau}$.
+
+Using the cross-section formula from Eq.~\ref{eq:enu_es_xsec}, the \beight{} spectral shape from~\cite{winterB8NeutrinoSpectrum2006}, and $\Phi_{\beight{}} = \SI{5.46e6}{\per\cm\squared\per\second} \left(\SI{5.16e6}{\per\cm\squared\per\second}\right)$, we expect a rate before considering oscillations or cuts of:
+\begin{equation}
+    R_{i} = 
+    \begin{cases}
+        2743.2 (2592.5)\; \text{events/yr} & \quad \text{for } i = e,\\
+        489.7 (462.8)\;  \text{events/yr} & \quad \text{for } i = \mu,\tau.
+    \end{cases}
+\end{equation}
+In the above rates, we have included an additional volume correction factor of 1.0139, because in MC events are simulated within the neck of the AV in addition to the main spherical bulk~\cite{}. % cite Javi, DocDB 5519
+
+\begin{table}
+    \begin{center}
+        \begin{tabulary}{\textwidth}{c R R R R}
+            \hline
+            MC process       & Expected \# Events Pre-Cuts & Overall Cut Efficiency (\%) & Expected \# Events Post-Cuts & Constraint (\%) \\ \hline \hline
+            \beight{} $\nu_{e}$          & 572.58 & 32.8       & 187.94 & $^{+2.5\%}_{-1.7\%}$ \\
+            \beight{} $\nu_{\mu,\tau}$   & 102.22 & 30.2       & 30.86  & $^{+2.5\%}_{-1.7\%}$ \\
+            \hline
+            AV \ce{^{214}Bi}             &\num{594000}&0.000468& 2.78   & $^{+304.8\%}_{-100\%}$ \\
+            Ropes \ce{^{214}Bi}          &\num{86700} &0.000327& 0.28   & $^{+304.8\%}_{-100\%}$ \\
+            AV \ce{^{208}Tl}             &\num{69600} & 0.0361 & 25.14  & $^{+304.8\%}_{-100\%}$ \\
+            Ropes \ce{^{208}Tl}          &\num{152000}& 0.0394 & 59.92  & $^{+304.8\%}_{-100\%}$ \\
+            External Water \ce{^{214}Bi} &\num{4490000}&0.0000763& 3.42 & --- \\
+            External Water \ce{^{208}Tl} &\num{190000}& 0.00761&  14.46 & --- \\
+            PMT $\beta-\gamma$           &\num{24900} & 0.333  &  83.04 & $^{+111.5\%}_{-40.5\%}$ \\
+            \hline
+            Internal \ce{^{212}BiPo}     & \num{1814} & 0.0848 & 1.54   & $\pm 25\%$  \\
+            Internal \ce{^{208}Tl}       & \num{1021} & 50.2   & 512.39 & --- \\
+            Internal \ce{^{214}BiPo}     & \num{11728}& 0.0211 & 2.47   & $\pm 25\%$ \\
+            Internal \ce{^{210}Tl}       & \num{2.5}  & 42.0   & 1.05   & $\pm 25\%$ \\ \hline
+            Surface \alphan{} (combined) & \num{554.4}& 0.00458& 0.07   &                      \\
+            Internal \alphan{}           & \num{17.0} & 0.0537 & 0.009  &                      \\
+            Cosmogenic \ce{^{11}C}       & \num{196.2}& 0      & 0      &                      \\
+            Internal \ce{^{228}Ac}       & \num{2835} & 0      & 0      &                      \\
+            Internal \ce{^{234m}Pa}      & \num{11726}&0.0000059& 0.0007&                      \\
+            \hline
+        \end{tabulary}
+    \end{center}
+    \caption[Number of events expected both before and after cuts have been applied, along with any constraints.]
+    {Number of events expected both before and after cuts have been applied, along with any constraints. As in Table~\ref{tab:MC_cut_effs}, processes have been split into broad categories, with the last one being processes which have negligible rates after cuts. These processes are not included within the analysis fit.}
+    \label{tab:MC_expected_rates_constraints}
+\end{table}
 
 {
     \color{blue}
