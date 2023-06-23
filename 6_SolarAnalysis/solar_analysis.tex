@@ -125,6 +125,7 @@ As can be seen in Fig.~\ref{fig:alpha_n_coincidence_cut_impact}, \alphan{} inter
 All materials within the SNO+ detector are radioactive, not just the liquid scintillator cocktail. This includes the acrylic, ropes, external water, and PMTs. These components have had their radiopurity ``assayed'' (that is, measured) throughout the detector's lifetime, often back to the construction of the original SNO detector itself. The materials other than the liquid scintillator are known to have far higher background levels, especially in the important \ce{^{238}U}- and \ce{^{232}Th}-chain backgrounds~\cite{andringaCurrentStatusFuture2016}. % good ref for this
 To distinguish between the inherent backgrounds within the scintillator, and the backgrounds from materials at larger radii, we use the terminology ``internal'' and ``external'', respectively.
 
+\nomenclature{\textbf{FV}}{Fiducial Volume}
 Although there are numerous external backgrounds, with a suitably accurate and precise position reconstruction algorithm they can be suitably handled. The simplest approach is with a so-called ``fiducial volume'' (FV) cut: just throw out all events that reconstruct beyond some radius. The only external background events that will reach within the FV are those that have reconstructed very poorly, or have some long-distance radiation that manages to deposit radiation close to the centre of the AV. % FOM cut?
 Because $\alpha$ and $\beta$ radiation can only travel short distances through the detector, it is only $\gamma$ % and neutron?
 radiation that can realistically travel far enough into the detector to be able to reconstruct anywhere near the centre. Moreover, the intensity of this $\gamma$ radiation attenuates exponentially towards the centre of the detector, meaning only a tiny fraction of the total number of external events reconstruct within a \SI{3.5}{\metre} FV, say. This strong radial-dependence can be seen in Fig.~\ref{fig:external_radial_dependence}.
@@ -489,14 +490,39 @@ We can modify Eq.~\ref{eq:solar_rate} to get an equation for the total rate of s
 Note that for $i=\mu,\tau$, this rate corresponds to the interaction rate if 100\% of the neutrinos have flavour $\nu_{\mu,\tau}$.
 
 Using the cross-section formula from Eq.~\ref{eq:enu_es_xsec}, the \beight{} spectral shape from~\cite{winterB8NeutrinoSpectrum2006}, and $\Phi_{\beight{}} = \SI{5.46e6}{\per\cm\squared\per\second} \left(\SI{5.16e6}{\per\cm\squared\per\second}\right)$, we expect a rate before considering oscillations or cuts of:
-\begin{equation}
+\begin{equation*}
     R_{i} = 
     \begin{cases}
         2743.2 (2592.5)\; \text{events/yr} & \quad \text{for } i = e,\\
         489.7 (462.8)\;  \text{events/yr} & \quad \text{for } i = \mu,\tau.
     \end{cases}
-\end{equation}
+\end{equation*}
 In the above rates, we have included an additional volume correction factor of 1.0139, because in MC events are simulated within the neck of the AV in addition to the main spherical bulk~\cite{}. % cite Javi, DocDB 5519
+Table~\ref{tab:MC_expected_rates_constraints} shows the derived expected number of events for the \beight{} signal using the global fit flux constraint prior, over the livetime of the dataset used in this analysis. 
+
+\subsubsection{Internal Uranium- and Thorium-Chain Backgrounds}
+As mentioned in Section~\ref{sec:u_th_internals}, \ce{^{214}BiPo} and \ce{^{212}BiPo} decays, coming from the \ce{^{238}U} and \ce{^{232}Th} decay chains respectively, are capable of generating distinctive delayed coincidence events. Rafael Hunt-Stokes was able to use a series of cuts to isolate both types of coincidence signals~\cite{}, % cite Rafa's tech note?
+looking at coincidence signals within the same \SI{5.0}{\m} FV as my analysis. After correcting for his cut efficiencies, he obtains a rate in the whole detector of~\cite{}: % cite Rafa
+\begin{equation*}
+    \text{BiPo rate} = 
+    \begin{cases}
+        0.94\; \text{events/hour} & \quad \text{for } ^{212}\text{BiPo},\\
+        6.06\; \text{events/hour} & \quad \text{for } ^{214}\text{BiPo}.
+    \end{cases}
+\end{equation*}
+These rates assume a uniform concentration of \ce{^{222}Rn} and \ce{^{220}Rn} throughout the detector: this is how internal backgrounds are simulated by default in \texttt{RAT}. However, it has been shown that this is not at all the case within SNO+; radon ingress from the AV neck propagates through the bulk of the detector via convection currents induced by the thermal gradient present throughout the detector~\cite{}. % Cite John wilson's paper, JoshW's & Rafa's tagging
+This radon ingress also breaks the secular equilibrium of the two decay chains, so that one can no longer make straightforward predictions about rates for decays in the chains above radon. Fortunately for this analysis, Table~\ref{tab:MC_cut_effs} showed that the cut efficiencies for \ce{^{228}Ac} and \ce{^{234m}Pa} decays, both in their respective decay chain above radon, are negligible. This means that even if their decay rates were much greater than what would be predicted from the tagged BiPo rates, a negligible number of events are expected for both in the livetime of the dataset considered in this analysis.
+
+The combination of broad coincidence tagging as well as using an in-window BiPo classier cut ensures that the expected rate of BiPo events that survive all the cuts is 1.5 and 2.5 for \ce{^{212}BiPo} and \ce{^{214}BiPo}, respectively. Because the branching ratio of \ce{^{212}Bi\to^{208}Tl} is 36\%, and the branching ratio of \ce{^{214}Bi\to^{210}Tl} is 0.021\%~\cite{}, % cite some table of decays
+after considering the cut efficiencies in this analysis we expect 512.4 internal \ce{^{208}Tl} and 1.1 internal \ce{^{210}Tl} events.
+
+In theory, the non-uniformity of all the radon-induced backgrounds could impact the results of the oscillation analysis. However, the rates of each after cuts have been applied mean that only the internal \ce{^{208}Tl} could plausibly have any effect. For this particular background, each slice of the binned PDF in $r_{3}$ was allowed to float independently, with no constraints. The other three related backgrounds considered in the fit (\ce{^{210}Tl}, \ce{^{212}BiPo}, and \ce{^{214}BiPo}) did not have this splitting applied to them. A loose 25\% constraint on each of these three processes' rates was applied, to account for the current uncertainty in the calculation of R. Hunt-Stokes' tagging efficiency.
+
+\subsubsection{\alphan{} Reactions}
+
+\subsubsection{External Backgrounds}
+
+\subsubsection{Cosmogenic Backgrounds}
 
 \begin{table}
     \begin{center}
@@ -518,11 +544,11 @@ In the above rates, we have included an additional volume correction factor of 1
             Internal \ce{^{208}Tl}       & \num{1021} & 50.2   & 512.39 & --- \\
             Internal \ce{^{214}BiPo}     & \num{11728}& 0.0211 & 2.47   & $\pm 25\%$ \\
             Internal \ce{^{210}Tl}       & \num{2.5}  & 42.0   & 1.05   & $\pm 25\%$ \\ \hline
-            Surface \alphan{} (combined) & \num{554.4}& 0.00458& 0.07   &                      \\
-            Internal \alphan{}           & \num{17.0} & 0.0537 & 0.009  &                      \\
-            Cosmogenic \ce{^{11}C}       & \num{196.2}& 0      & 0      &                      \\
-            Internal \ce{^{228}Ac}       & \num{2835} & 0      & 0      &                      \\
-            Internal \ce{^{234m}Pa}      & \num{11726}&0.0000059& 0.0007&                      \\
+            Surface \alphan{} (combined) & \num{554.4}& 0.00458& 0.07   & --- \\
+            Internal \alphan{}           & \num{17.0} & 0.0537 & 0.009  & --- \\
+            Cosmogenic \ce{^{11}C}       & \num{196.2}& 0      & 0      & --- \\
+            Internal \ce{^{228}Ac}       & \num{2835} & 0      & 0      & --- \\
+            Internal \ce{^{234m}Pa}      & \num{11726}&0.0000059& 0.0007& --- \\
             \hline
         \end{tabulary}
     \end{center}
