@@ -548,7 +548,14 @@ Although the statistical uncertainty for these measurements were quite small, th
     \label{tab:externals_rates_zummo}
 \end{table}
 
-Before the expected number of triggered events can be calculated for each external background process, two subtleties must be dealt with. Firstly, MC production of the externals included the hold-down ropes, but not the hold-up ropes. To account for this 
+Before the expected number of triggered events can be calculated for each external background process, two subtleties must be dealt with. Firstly, MC production of the externals did not include the hold-up ropes at the time of performing the analysis. This is not a major problem, because the hold-up ropes are of substantially lower mass than the hold-down ropes, and also their average radius from the centre of the detector is much larger. This means that the expected rate of events from the hold-up ropes that manage to reconstruct inside the FV should be sub-dominant to their hold-down counterparts. For the purposes of this thesis, the combined rate for both kinds of ropes were calculated, with the overall cut efficiency and derived PDFs coming from just the hold-down ropes.
+
+Secondly, because the attenuation length of a \SI{2.6}{\MeV} $\gamma$ particle is \SI{23}{\cm} in water~\cite{}, % cite xsec database (see W.Heintzelman DocDBs!)
+the vast majority of external backgrounds which start from a substantial distance away from the AV do not generate $\gamma$s that make it into the scintillator. As a result, an enormous amount of computational resources could be wasted on simulating events that never get into the ROI. To work around this: 
+\begin{itemize}
+    \item PMT $\beta-\gamma$ events are modelled as \SI{2.6}{\MeV} $\gamma$s generated at a radius of \SI{6.2}{\m} (just outside the AV), pointing radially inwards.
+    \item Simulations of background events in the external water and ropes are restricted from starting beyond certain maximum radii depending on the specific process, such that there remains a negligible impact on the fraction of simulated events that actually deposit any energy into the scintillator~\cite{}. % cite Ana Sofia's DocDB #5154
+\end{itemize} 
 
 \subsubsection{Cosmogenic Backgrounds}
 
