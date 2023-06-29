@@ -97,7 +97,7 @@ of \beight{} $\nu_e$ signal events.
     \label{fig:bipo_tagging_efficiency}
 \end{figure}
 
-\subsubsection{\alphan{} Reactions}
+\subsubsection{\alphan{} Reactions}\label{sec:alphans}
 The impact of \ce{^{238}U}- and\ce{^{232}Th}-chain isotopes does not simply end at their direct decays. It is possible for the $\alpha$s generated during these decays to undergo their own interactions with nuclei in the detector. Within the organic scintillator of SNO+, the dominant interaction of this type is when an $\alpha$ collides with a \ce{^{13}C} nucleus, emitting a neutron: \ce{\alpha{} + ^{13}C -> ^{16}O + n}. This is known as an \alphan{} reaction.
 
 The topology of this reaction in the detector is a delayed coincidence, as shown in Fig.~\ref{fig:alpha_n_drawing}. % Iwan's alpha-n sketch
@@ -391,14 +391,14 @@ The results of all these cuts can be seen for the data in Table~\ref{tab:data_cu
         Before cuts                 & \num{18112495770} & 100.00   \\
         Event triggers detector     & \num{18112495770} & 100.00   \\
         Data Cleaning               & \num{17663711108} & 97.52    \\
-        high-\texttt{nhit} veto     & \num{17212760839} & 97.45    \\
-        \texttt{ScintFitter} used   & \num{10540054756} & 61.23    \\
-        \texttt{ScintFitter} results valid & \num{3466208344} & 32.89 \\
-        Energy cut                  & \num{134252}      & 0.00387 \\
-        FV cut                      & \num{2155}        & 1.61    \\
-        BiPo OOW cut                & \num{831}         & 38.56   \\
-        BiPo IW cut                 & \num{723}         & 87.00   \\
-        Externals cut               & \num{654}         & 90.46   \\
+        high-\texttt{nhit} veto     & \num{17039514332} & 96.47    \\
+        \texttt{ScintFitter} used   & \num{10433875757} & 61.23    \\
+        \texttt{ScintFitter} results valid & \num{3431328125} & 32.89 \\
+        Energy cut                  & \num{132673}      & 0.00387 \\
+        FV cut                      & \num{2093}        & 1.58    \\
+        BiPo OOW cut                & \num{817}         & 39.03   \\
+        BiPo IW cut                 & \num{719}         & 88.00   \\
+        Externals cut               & \num{652}         & 90.68   \\
         \hline
     \end{tabular}
     \caption{Impact of each cut on the quantity of events in data.}
@@ -519,8 +519,36 @@ after considering the cut efficiencies in this analysis we expect 512.4 internal
 In theory, the non-uniformity of all the radon-induced backgrounds could impact the results of the oscillation analysis. However, the rates of each after cuts have been applied mean that only the internal \ce{^{208}Tl} could plausibly have any effect. For this particular background, each slice of the binned PDF in $r_{3}$ was allowed to float independently, with no constraints. The other three related backgrounds considered in the fit (\ce{^{210}Tl}, \ce{^{212}BiPo}, and \ce{^{214}BiPo}) did not have this splitting applied to them. A loose 25\% constraint on each of these three processes' rates was applied, to account for the current uncertainty in the calculation of R. Hunt-Stokes' tagging efficiency.
 
 \subsubsection{\alphan{} Reactions}
+As discussed in Section~\ref{sec:alphans}, \alphan{} reactions are induced by $\alpha$-particles generated in the detector. In the SNO+ scintillator phase, the dominant source of $\alpha$-particles are decays of \ce{^{210}Po} located both within the scintillator and on the AV surfaces. Because of substantial quenching by the scintillator, the reconstructed energy of the \ce{^{210}Po} $\alpha$ events fall substantially below $E_{\textrm{min}}$. The rate of the internal and surface \ce{^{210}Po} events have been tracked throughout the scintillator phase by Serena Riccetto and Shengzhao Yu, respectively.
+
+Within the \SI{5}{\m} FV, S. Riccetto measured a total of \num{1.60e8} \ce{^{210}Po} events over the runs considered for this analysis~\cite{}. % cite Serena (private comm?)
+Assuming the internal rate of these events are uniform throughout the scintillator, this leads to a total rate of \num{2.78e8} events for all the scintillator. After using a conversion rate of \num{6.11e-8} neutrons generated per $\alpha$ on \ce{^{13}C} in liquid scintillator~\cite{}, % where did this come from?
+we can derive an expected number of internal \alphan{} events before cuts to be 17. However, because a coincidence cut is used in this analysis, the vast majority of these should be removed, leading to merely 0.009 events expected after cuts.
+
+Similarly, S. Yu measured the surface \ce{^{210}Po} rate to vary between \SIrange{2}{5}{\Bq\per\square\metre} over the time period of this analysis as well as a function of height in the detector~\cite{}. % cite Shengzhao's work
+Using the midpoint value of \SI{3.5}{\Bq\per\square\metre}, one can derive an expected rate of 554.4 surface \alphan{} events occurring over the dataset's livetime, before cuts. Once again, the coincidence cut as well as the FV cut removes the vast majority of these events, so that only 0.07 events are expected after all cuts have been applied. Because both classes of \alphan{} events have negligible expected rates in our dataset, they were not included within the MCMC fit.
 
 \subsubsection{External Backgrounds}
+During the water phase of SNO+, an analysis of the rates of the external backgrounds was performed by Tony Zummo~\cite{}. % cite Zummo's externals results
+The results of this analysis are shown in Table~\ref{tab:externals_rates_zummo}, giving the measured rates as a fraction of the nominal values given in~\cite{}. % cite white paper.
+Although the statistical uncertainty for these measurements were quite small, the total systematic uncertainty was quite substantial because T. Zummo's analysis involved looking at events in the tail of energy distributions, so that any uncertainty in the energy scale systematic had an outsized impact on the number of events observed within that energy window. These measured rates and their systematic uncertainties were used to predict the expected rate and constrain the external backgrounds in this scintillator phase solar analysis. For the AV, ropes, and PMTs, this seems reasonable as we do not expect there to be any substantial change in these backgrounds between the phases. The exception to this is the external water, where various aspects of the water purification process over the years since T. Zummo's analysis dataset was taken~\cite{}. Because of this, the water phase measured rate was used as a starting point for the solar analysis, but no constraint was applied.
+
+\begin{table}
+    \centering
+    \begin{tabular}{c r}
+        \hline
+        Background Type & Rate (Fraction of Nominal)  \\ \hline \hline
+        AV \& Ropes    & $0.21\pm0.009^{+0.64}_{-0.21}$  \\
+        External Water & $0.44\pm0.003^{+0.32}_{-0.27}$  \\
+        PMTs           & $1.48\pm0.002^{+1.65}_{-0.60}$  \\
+        \hline
+    \end{tabular}
+    \caption{Measured rates of the external backgrounds during the water phase of SNO+, by Tony Zummo~\cite{}. % cite Zummo
+    }
+    \label{tab:externals_rates_zummo}
+\end{table}
+
+Before the expected number of triggered events can be calculated for each external background process, two subtleties must be dealt with. Firstly, MC production of the externals included the hold-down ropes, but not the hold-up ropes. To account for this 
 
 \subsubsection{Cosmogenic Backgrounds}
 
