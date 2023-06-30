@@ -151,18 +151,18 @@ Fig.~\ref{fig:external_classifier_corr} shows the correlation between the two cl
     \label{fig:external_classifier_corr}
 \end{figure}
 
-\subsubsection{Cosmogenic Isotopes}
-The final source of background events are radioactive isotopes that form via collisions of cosmic rays with atomic nuclei, known as cosmogenic isotopes. Most of these isotopes are short-lived~\cite{}, % cite Borexino/KamLAND(?) paper handling cosmogenics
-with lifetimes $\mathcal{O}(\SI{1}{\second})$. Fortunately, the depth of SNO+ means that our rate of cosmic ray muons interacting with the detector is only 3 an hour~\cite{}. % cite Lorna/Katharine; Q: confident only muons? What about other kinds of cosmic rays? Presumably nothing else can penetrate this far with high enough rates
-Because the rate is so low relative to other experiments, relatively straightforward approaches to tagging and removing cosmic ray muons and their cosmogenic followers can be utilised without substantial loss of livetime. Events are tagged as a cosmic ray muon if they create a sufficient number of hits in the outward-looking PMTs above background levels, as well as many hits within the detector itself. The details of this tagging for the scintillator-fill were put in place by Lorna Nolan~\cite{}, % Lorna's thesis(?); Katharine's contribution?
-modifying the existing algorithms used in the water-phase~\cite{} % Billy's Thesis
-and in SNO~\cite{}. % Appropriate SNO citation (old thesis?)
-After a tagged cosmic muon event, all events for the next \SI{20}{\second} are then vetoed as a means of rejecting followers. This simple cut is enough to remove the vast majority of expected cosmogenic events in the scintillator-phase. % CITATION?
-The expected impact on loss of livetime, and hence quantity of signal events, is 3 lots of \SI{20}{\second} vetoes an hour, that is to say 1/60\textsuperscript{th} of the signal is lost via this cut.
+% \subsubsection{Cosmogenic Isotopes}
+% The final source of background events are radioactive isotopes that form via collisions of cosmic rays with atomic nuclei, known as cosmogenic isotopes. Most of these isotopes are short-lived~\cite{}, % cite Borexino/KamLAND(?) paper handling cosmogenics
+% with lifetimes $\mathcal{O}(\SI{1}{\second})$. Fortunately, the depth of SNO+ means that our rate of cosmic ray muons interacting with the detector is only 3 an hour~\cite{}. % cite Lorna/Katharine; Q: confident only muons? What about other kinds of cosmic rays? Presumably nothing else can penetrate this far with high enough rates
+% Because the rate is so low relative to other experiments, relatively straightforward approaches to tagging and removing cosmic ray muons and their cosmogenic followers can be utilised without substantial loss of livetime. Events are tagged as a cosmic ray muon if they create a sufficient number of hits in the outward-looking PMTs above background levels, as well as many hits within the detector itself. The details of this tagging for the scintillator-fill were put in place by Lorna Nolan~\cite{}, % Lorna's thesis(?); Katharine's contribution?
+% modifying the existing algorithms used in the water-phase~\cite{} % Billy's Thesis
+% and in SNO~\cite{}. % Appropriate SNO citation (old thesis?)
+% After a tagged cosmic muon event, all events for the next \SI{20}{\second} are then vetoed as a means of rejecting followers. This simple cut is enough to remove the vast majority of expected cosmogenic events in the scintillator-phase. % CITATION?
+% The expected impact on loss of livetime, and hence quantity of signal events, is 3 lots of \SI{20}{\second} vetoes an hour, that is to say 1/60\textsuperscript{th} of the signal is lost via this cut.
 
-There is one cosmogenic isotope with a long-enough half-life that even the \SI{20}{\second} muon follower veto is not sufficient to remove all events. This is \ce{^{11}C}, which \ce{\beta+}-decays to stable \ce{^{11}B} with a half-life of \SI{20.4}{\minute}. The maximum possible energy deposited in this decay is \SI{1.982}{\MeV}~\cite{}, % CITATION
-just below $E_{\textrm{min}}$, so only a small fraction of \ce{^{11}C} events end up in the ROI: the ones with very high energies that get their energy reconstruction falsely-inflated by some amount. As a result, this background is expected to be very much sub-dominant to all other backgrounds in this analysis. Because this background is important to consider for some other analyses, a triple-coincidence tagging algorithm is being built by Katharine Dixon~\cite{}, % Katharine C11 citation
-but not used for this analysis currently.% Maybe this changes? will see if constraint needed.
+% There is one cosmogenic isotope with a long-enough half-life that even the \SI{20}{\second} muon follower veto is not sufficient to remove all events. This is \ce{^{11}C}, which \ce{\beta+}-decays to stable \ce{^{11}B} with a half-life of \SI{20.4}{\minute}. The maximum possible energy deposited in this decay is \SI{1.982}{\MeV}~\cite{}, % CITATION
+% just below $E_{\textrm{min}}$, so only a small fraction of \ce{^{11}C} events end up in the ROI: the ones with very high energies that get their energy reconstruction falsely-inflated by some amount. As a result, this background is expected to be very much sub-dominant to all other backgrounds in this analysis. Because this background is important to consider for some other analyses, a triple-coincidence tagging algorithm is being built by Katharine Dixon~\cite{}, % Katharine C11 citation
+% but not used for this analysis currently.% Maybe this changes? will see if constraint needed.
 
 \subsection{The Log-likelihood Test Statistic}\label{sec:test_statistic}
 At the highest level, this analysis involves taking the data observed in the scintillator-fill after applying a certain set of cuts, along with simulated PDFs for all processes believed to build up the observed data with those same cuts applied, and then attempting to fit the combined energy and radial distributions of the MC to that of the data. Given a set of PDFs, to try and match the distribution of observables in data we can modify a number of parameters. These consist of the normalisations of each PDF (i.e. the total number of events observed due to that process), and any systematic parameters that could modify the shapes of these distributions. For this analysis, the neutrino oscillation parameters act as \textit{de facto} systematic parameters, as they modify the shape of the \beight{} PDFs. Of course, unlike usual systematics the oscillation parameters are what we are actively trying to measure, instead of being a nuisance.
@@ -427,7 +427,7 @@ The results of all these cuts can be seen for the data in Table~\ref{tab:data_cu
             Internal \ce{^{210}Tl} & \num{815256} & \num{1625012} & \num{342415} & 42.0     \\ \hline
             Surface \alphan{} (combined) & \num{22627103} & \num{48834413} & \num{2238} & 0.00458 \\
             Internal \alphan{} & \num{1219279} & \num{4740313} & \num{655} & 0.0537 \\
-            Cosmogenic \ce{^{11}C} & \num{8139189} & \num{16206469} & \num{0} & 0 \\
+            % Cosmogenic \ce{^{11}C} & \num{8139189} & \num{16206469} & \num{0} & 0 \\
             Internal \ce{^{228}Ac} & \num{9764480} & \num{19294643} & \num{0} & 0 \\
             Internal \ce{^{234m}Pa} & \num{16959995} & \num{30806833} & \num{1} & 0.0000059 \\
             \hline
@@ -460,8 +460,8 @@ Variable bin widths in energy were chosen for this analysis: \SI{0.1}{\MeV} bins
     %     \item Describe the finalised choice of binning for PDFs and data.
     % \end{itemize}
     % [4 pages]
-\subsection{Expected Rates and Constraints}\label{sec:exp_rates_constraints}
-Because this analysis is dependent on deriving the shape and size of the \beight{} spectrum from the data observed, it is important to have expectations about the number of events expected to be seen within the dataset for each process, both signal and background. This is done in two stages: firstly, the expected rates for each process before any cuts applied is determined, along with any constraints. Then, by using the cut efficiencies calculated in the previous section, we can derive estimates for the expected number of events after cuts. When combined with a constraining uncertainty, this can be used as a prior within the MCMC fit.
+\subsection{Expected Rates and their Constraints}\label{sec:exp_rates_constraints}
+Because this analysis is dependent on deriving the shape and size of the \beight{} spectrum from the data observed, it is important to have expectations about the number of events expected to be seen within the dataset for each process, both signal and background. This is done in two stages: firstly, the expected rates for each process before any cuts applied is determined, along with any constraints. Then, by using the cut efficiencies calculated in the previous section, we can derive estimates for the expected number of events after cuts. When combined with a constraining uncertainty, this can be used as a prior within the MCMC fit. The resulting expected rates before and after cuts, along with any constraints being used, afer shown in Table~\ref{tab:MC_expected_rates_constraints}.
 
 \subsubsection{\beight{} Signal}
 Starting with the \beight{} signal, numerous theoretical predictions and experimental measurements have been made of the \beight{} flux. For this analysis, two different values have been used. The SSM predicts a relatively loose constraint of $\Phi_{\beight{}} = (5.46\pm 12\%)\times 10^{6}\,\si{\per\cm\squared\per\second}$~\cite{}, % cite SSM flux
@@ -498,7 +498,6 @@ Using the cross-section formula from Eq.~\ref{eq:enu_es_xsec}, the \beight{} spe
     \end{cases}
 \end{equation*}
 In the above rates, we have included an additional volume correction factor of 1.0139, because in MC events are simulated within the neck of the AV in addition to the main spherical bulk~\cite{}. % cite Javi, DocDB 5519
-Table~\ref{tab:MC_expected_rates_constraints} shows the derived expected number of events for the \beight{} signal using the global fit flux constraint prior, over the livetime of the dataset used in this analysis. 
 
 \subsubsection{Internal Uranium- and Thorium-Chain Backgrounds}
 As mentioned in Section~\ref{sec:u_th_internals}, \ce{^{214}BiPo} and \ce{^{212}BiPo} decays, coming from the \ce{^{238}U} and \ce{^{232}Th} decay chains respectively, are capable of generating distinctive delayed coincidence events. Rafael Hunt-Stokes was able to use a series of cuts to isolate both types of coincidence signals~\cite{}, % cite Rafa's tech note?
@@ -551,13 +550,15 @@ Although the statistical uncertainty for these measurements were quite small, th
 Before the expected number of triggered events can be calculated for each external background process, two subtleties must be dealt with. Firstly, MC production of the externals did not include the hold-up ropes at the time of performing the analysis. This is not a major problem, because the hold-up ropes are of substantially lower mass than the hold-down ropes, and also their average radius from the centre of the detector is much larger. This means that the expected rate of events from the hold-up ropes that manage to reconstruct inside the FV should be sub-dominant to their hold-down counterparts. For the purposes of this thesis, the combined rate for both kinds of ropes were calculated, with the overall cut efficiency and derived PDFs coming from just the hold-down ropes.
 
 Secondly, because the attenuation length of a \SI{2.6}{\MeV} $\gamma$ particle is \SI{23}{\cm} in water~\cite{}, % cite xsec database (see W.Heintzelman DocDBs!)
-the vast majority of external backgrounds which start from a substantial distance away from the AV do not generate $\gamma$s that make it into the scintillator. As a result, an enormous amount of computational resources could be wasted on simulating events that never get into the ROI. To work around this: 
-\begin{itemize}
-    \item PMT $\beta-\gamma$ events are modelled as \SI{2.6}{\MeV} $\gamma$s generated at a radius of \SI{6.2}{\m} (just outside the AV), pointing radially inwards.
-    \item Simulations of background events in the external water and ropes are restricted from starting beyond certain maximum radii depending on the specific process, such that there remains a negligible impact on the fraction of simulated events that actually deposit any energy into the scintillator~\cite{}. % cite Ana Sofia's DocDB #5154
-\end{itemize} 
+the vast majority of external backgrounds which start from a substantial distance away from the AV do not generate $\gamma$s that make it into the scintillator. As a result, an enormous amount of computational resources could be wasted on simulating events that never get into the ROI. To work around this, PMT $\beta-\gamma$ events are modelled as \SI{2.6}{\MeV} $\gamma$s generated at a radius of \SI{6.2}{\m} (just outside the AV), pointing radially inwards. Making some basic assumptions about these events, one can derive the expected survival rate of these $\gamma$ particles as a function of radius~\cite{}, % cite Heintzelman #1712, 1729
+which leads to a correction factor of \num{1.17e-6}~\cite{}. % cite Valentina, #7687
 
-\subsubsection{Cosmogenic Backgrounds}
+Similarly, simulations of background events in the external water and ropes are restricted from starting beyond certain maximum radii depending on the specific process, such that there remains a negligible impact on the fraction of simulated events that actually deposit any energy into the scintillator~\cite{}. % cite Ana Sofia's DocDB #5154
+This leads to rate correction factors of 0.35 and 0.50 for external water \ce{^{214}Bi} and \ce{^{208}Tl} events, as well as 0.50 and 0.35 for hold-down and hold-up ropes~\cite{}. % cite Ana Sofia again
+
+% \subsubsection{Cosmogenic Backgrounds}
+% The final background in consideration is decays of the cosmogenically-induced isotope \ce{^{11}C}. Extrapolating from the KamLAND experiment, we expect before cuts 889 of these events a year~\cite{}. % cite KamLAND, someone in SNO+ who's done this?
+% However, the cut efficiency for this background is zero, 
 
 \begin{table}
     \begin{center}
@@ -568,12 +569,12 @@ the vast majority of external backgrounds which start from a substantial distanc
             \beight{} $\nu_{\mu,\tau}$   & 102.22 & 30.2       & 30.86  & $^{+2.5\%}_{-1.7\%}$ \\
             \hline
             AV \ce{^{214}Bi}             &\num{594000}&0.000468& 2.78   & $^{+304.8\%}_{-100\%}$ \\
-            Ropes \ce{^{214}Bi}          &\num{86700} &0.000327& 0.28   & $^{+304.8\%}_{-100\%}$ \\
+            Ropes \ce{^{214}Bi}          &\num{140000}&0.000327& 0.46   & $^{+304.8\%}_{-100\%}$ \\
             AV \ce{^{208}Tl}             &\num{69600} & 0.0361 & 25.14  & $^{+304.8\%}_{-100\%}$ \\
-            Ropes \ce{^{208}Tl}          &\num{152000}& 0.0394 & 59.92  & $^{+304.8\%}_{-100\%}$ \\
+            Ropes \ce{^{208}Tl}          &\num{79900} & 0.0394 & 31.48  & $^{+304.8\%}_{-100\%}$ \\
             External Water \ce{^{214}Bi} &\num{4490000}&0.0000763& 3.42 & --- \\
             External Water \ce{^{208}Tl} &\num{190000}& 0.00761&  14.46 & --- \\
-            PMT $\beta-\gamma$           &\num{24900} & 0.333  &  83.04 & $^{+111.5\%}_{-40.5\%}$ \\
+            PMT $\beta-\gamma$           &\num{16800} & 0.333  &  56.12 & $^{+111.5\%}_{-40.5\%}$ \\
             \hline
             Internal \ce{^{212}BiPo}     & \num{1814} & 0.0848 & 1.54   & $\pm 25\%$  \\
             Internal \ce{^{208}Tl}       & \num{1021} & 50.2   & 512.39 & --- \\
@@ -581,7 +582,7 @@ the vast majority of external backgrounds which start from a substantial distanc
             Internal \ce{^{210}Tl}       & \num{2.5}  & 42.0   & 1.05   & $\pm 25\%$ \\ \hline
             Surface \alphan{} (combined) & \num{554.4}& 0.00458& 0.07   & --- \\
             Internal \alphan{}           & \num{17.0} & 0.0537 & 0.009  & --- \\
-            Cosmogenic \ce{^{11}C}       & \num{196.2}& 0      & 0      & --- \\
+            % Cosmogenic \ce{^{11}C}       & \num{196.2}& 0      & 0      & --- \\
             Internal \ce{^{228}Ac}       & \num{2835} & 0      & 0      & --- \\
             Internal \ce{^{234m}Pa}      & \num{11726}&0.0000059& 0.0007& --- \\
             \hline
@@ -591,6 +592,23 @@ the vast majority of external backgrounds which start from a substantial distanc
     {Number of events expected both before and after cuts have been applied, along with any constraints. As in Table~\ref{tab:MC_cut_effs}, processes have been split into broad categories, with the last one being processes which have negligible rates after cuts. These processes are not included within the analysis fit.}
     \label{tab:MC_expected_rates_constraints}
 \end{table}
+
+\subsection{Systematics}
+There are a number of systematic effects in the analysis that could possibly have some impact on the resulting posterior densities of \tonetwo{} and \dmsq{}. Consideration of these effects is important to ensure that the uncertainty in the measurement is not underestimated. However, we shall find in Section~\ref{sec:systematics_impact} that for this dataset, the analysis is statistically-limited, and so it is not necessary to perform exhaustive measurements to determine the contribution of all possible systematic contributions. Instead, the focus shall be on the subset of the systematics that can plausibly have the most impact on the final measurement.
+
+In this analysis, the measurement of the oscillation parameters is based on the fitted shape and normalisation of the \beight{} signal energy spectrum. Therefore, for a systematic effect to have an impact on the final measurement it must first impact the fit of the signal PDF. One straightforward way this could occur is for some background events to be misattributed as signal events within the fit (or vice versa). If the rates of signal and background processes are strongly constrained to incorrect values, then this could easily happen. In this analysis, the strongest constraint on the rate of events comes from the global fit constraint of $\Phi_{\beight{}}$. Because of this, the fit will also be run with the looser SSM constraint on the signal flux.
+
+Another class of systematic effects that can plausibly have a substantial impact come from the mismodelling of the detector response, particularly on the reconstructed energy and radius, as they are the observables used within the fit. The most important of these for this analysis is a global mismodelling of the energy calibration by some linear factor known as the energy scale, $\alpha$: $E_{\mathrm{reco}}\to\alpha E_{\mathrm{reco}}$.
+
+Because of this importance, it is worthwhile constraining this $\alpha$ parameter. This can be done by comparing the reconstructed energy distributions of \ce{^{214}BiPo} events tagged by R. Hunt-Stokes~\cite{} % cite Rafa?
+in the dataset to the equivalent production MC.
+
+\begin{itemize}
+    \item Incorrect constraints of signal and background rates, which could arise from a systematic error in either the expected rate before cuts, or the overall cut efficiency.
+    \item Systematic errors in the reconstructed energy. To first order, this can be decomposed into two parts. Firstly, there could be a linear scaling of the energy by some energy scaling factor $\alpha$, i.e. $E_{\mathrm{reco}}\to\alpha E_{\mathrm{reco}}$. There could also be a difference in the resolution of the energy reconstruction.
+    \item Systematic errors in the reconstructed position. Similar to the above, this can also be decomposed into a radial scaling systematic, radial resolution systematic, and biases along each coordinate axis.
+    \item Mismodelling of the radial distributions of events in MC compared to data.
+\end{itemize}
 
 {
     \color{blue}
@@ -621,7 +639,7 @@ the vast majority of external backgrounds which start from a substantial distanc
         \item Show 2D contour plot for oscillation parameter posterior density. Note salient features. Show 1D posterior densities for each oscillation parameter. Derive measurement result for $\theta_{12}$, i.e. point of highest posterior density, with uncertainties given by the $1\sigma$ credible interval.
     \end{itemize}
     [5 pages]
-    \subsubsection{Impact of Systematics}
+    \subsubsection{Impact of Systematics}\label{sec:systematics_impact}
     \begin{itemize}
         \item Show impact of modifying certain constraints on the final results of the measurement of $\theta_{12}$. In particular: fiducial volume, \beight{} flux constraint.
         \item Discussion of systematics post-fit --- Hopefully energy scaling parameter should be close to 1, given the Collaboration's calibration of the optics (light yield in particular). Perform a scan over energy smearing, and check impact of possible radial scale systematic.
