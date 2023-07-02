@@ -10,7 +10,7 @@ This chapter begins by explaining how it is possible to measure the solar oscill
 
 
 \section{Analysis Methodology}\label{sec:analysis_method}
-\subsection{Observational Principle}
+\subsection{Observational Principle}\label{sec:solar_obs_principle}
 How can we measure neutrino oscillation parameters via solar neutrinos in the SNO+ detector? As discussed in Chapter~\ref{chap:theory}, % link to theory section on solar oscillations
 it is possible to detect all flavours of neutrino through elastic scattering with electrons in the detector. If this interaction was purely neutral-current, then there would be no way of telling the flavour-state of an interacting neutrino. However, electron neutrinos are able to interact through an additional charged-current mode. This modifies the cross-section for electron neutrinos, and means that as the survival probability for electron neutrinos generated from the Sun, $P_{ee}$, is modified, the interaction probability of neutrinos with the detector will also. The resulting differential interaction rate $R$ for solar neutrinos as a function of the neutrino's energy, $E_{\nu}$, is given by:
 \begin{equation}\label{eq:solar_rate}
@@ -271,7 +271,7 @@ For parameters with existing asymmetric constraints $\beta^{+\sigma_{+}}_{-\sigm
 \end{equation}
 Here, $\mathcal{A}$ is the logarithm of the prior's normalisation constant, and cancels out in the detailed balance condition. For parameters with symmetric constraints, $\sigma_{+}=\sigma_{-}$, then $\ln{P\left(\mu\right)}$ reduces to a quadratic with maximum at $\mu = \beta$.
 
-\subsection{Including Systematics in the Fit}
+\subsection{Including Systematics in the Fit}\label{sec:sys_in_fit_theory}
 One important implementation detail is how systematics are applied within the MCMC fitting process. Once systematics are added to the fit, at every step the binned PDFs for all the processes considered in the fit must get modified appropriately, which can become extremely computationally-intensive if not approached carefully. The strategy used in the \texttt{OXO} framework starts by thinking of the contents of a binned PDF as a vector of bin probabilities, $\bm{\mathrm{p}} = \left(p_{1}, p_{2}, ..., p_{N_{\textrm{bins}}}\right)^{T}$. Then, we can think of a systematic acting on the PDF as a linear transformation, and hence a matrix $S$ acting on this vector: $\bm{\mathrm{p}'} = S\bm{\mathrm{p}}$. We only need to calculate this matrix once for a given set of systematic parameter values, and can then use the same matrix on all the PDFs in the fit. Furthermore, when multiple systematics are applied, the matrix for each systematic can then be combined via matrix multiplication into one single ``detector response'' matrix. \texttt{OXO} uses the \texttt{Armadillo}~\cite{} % Armadillo software citation
 linear algebra package for efficient matrix manipulation.
 
@@ -335,6 +335,15 @@ In the end, data for this analysis used `Gold' runs selected between 17\textsupe
 
 Importantly, the livetime of the data actually used in the analysis ends up being somewhat less than this raw value. This is because two of the cuts used in the analysis (described in Section~\ref{sec:event_selection}), the muon tagger and the high-\texttt{nhit} event tagger, also veto events for a time period following a tagged event. This means that any events in such a time window are automatically thrown out of consideration for analysis. An algorithm was written to determine the loss of livetime from both of these tagging processes for all the runs selected in this analysis, allowing for the net livetime to be calculated. To ensure accuracy in the value of this lost livetime, the algorithm took care to handle any overlaps in the time veto windows. This ends up being a quite common occurrence, as tagged muon events and their followers often have a very high \texttt{nhit}. The net livetime was calculated to be 80.615 days. Data processing and simulations used RAT versions 7.0.8 and 7.0.9.
 
+As discussed in Section~\ref{sec:osc_in_fit}, in order to account for the impact of the MSW effect through the Earth on $P_{ee}$, the solar zenith angular distribution of the dataset is needed. This was achieved by taking the recorded trigger time of each event within the dataset as given by the GPS-calibrated \SI{10}{\MHz} clock, determining the position of the Sun at that time, and then deriving the value of $\cos{\theta_{z}}$ given that solar position. The resulting distribution of $\cos{\theta_{z}}$ is shown in Fig.~\ref{fig:solar_zenith_distribution}. The structure of this distribution are a result of the times of day and year of the runs selected for this analysis.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{6_SolarAnalysis/images/solar_zenith_dist.pdf}
+    \caption[Distribution of $\cos{\theta_{z}}$, for the events within this dataset]
+    {Distribution of the cosine of the solar zenith angle, $\cos{\theta_{z}}$, for the events within this dataset. If an event has $\cos{\theta_{z}}>0$, then at the time of that event the position of the Sun is above the detector's equator.}
+    \label{fig:solar_zenith_distribution}
+\end{figure}
 
     % \begin{itemize}
     %     \item Description of dataset chosen for analysis: 2.2 g/L scintillator-phase data that satisfies the ``gold'' list of run selection requirements, between May and November 2022.
@@ -601,14 +610,36 @@ In this analysis, the measurement of the oscillation parameters is based on the 
 Another class of systematic effects that can plausibly have a substantial impact come from the mismodelling of the detector response, particularly on the reconstructed energy and radius, as they are the observables used within the fit. The most important of these for this analysis is a global mismodelling of the energy calibration by some linear factor known as the energy scale, $\alpha$: $E_{\mathrm{reco}}\to\alpha E_{\mathrm{reco}}$.
 
 Because of this importance, it is worthwhile constraining this $\alpha$ parameter. This can be done by comparing the reconstructed energy distributions of \ce{^{214}BiPo} events tagged by R. Hunt-Stokes~\cite{} % cite Rafa?
-in the dataset to the equivalent production MC.
+in the dataset to the equivalent production MC, in the same \SI{5}{\m} FV. For a given $\alpha$, the energies of the tagged \ce{^{214}Bi} in MC were scaled by $\alpha$, and then compared to the equivalent (unscaled) distribution in data, via a log-likelihood ratio $\mathcal{L}_{\mathrm{Bi}}$:
+\begin{equation}
+    \mathcal{L}_{\mathrm{Bi}} = 
+    \sum_{i=1}^{N_{\mathrm{bins}}}
+        n_{i}^{\mathrm{data}}\ln{\frac{n_{i}^{\mathrm{MC}}}{N_{\mathrm{MC}}}}.
+\end{equation}
+Here, $n_{i}^{\mathrm{data}}$ and $n_{i}^{\mathrm{MC}}$ are the number of events for data and (scaled) MC in energy bin $i$, with $N_{\mathrm{bins}}$ being the total number of bins and $N_{\mathrm{MC}}$ being the total number of tagged events in MC. To account for the edge effects discussed in Section~\ref{sec:sys_in_fit_theory}, the first and last bins in energy were used as buffers and not considered in calculation of $\mathcal{L}_{\mathrm{Bi}}$.
 
-\begin{itemize}
-    \item Incorrect constraints of signal and background rates, which could arise from a systematic error in either the expected rate before cuts, or the overall cut efficiency.
-    \item Systematic errors in the reconstructed energy. To first order, this can be decomposed into two parts. Firstly, there could be a linear scaling of the energy by some energy scaling factor $\alpha$, i.e. $E_{\mathrm{reco}}\to\alpha E_{\mathrm{reco}}$. There could also be a difference in the resolution of the energy reconstruction.
-    \item Systematic errors in the reconstructed position. Similar to the above, this can also be decomposed into a radial scaling systematic, radial resolution systematic, and biases along each coordinate axis.
-    \item Mismodelling of the radial distributions of events in MC compared to data.
-\end{itemize}
+Values of $\alpha$ were scanned over, generating a log-likelihood distribution. In the usual way, a constraint on $\alpha$ was obtained by obtaining the energy scaling factor which maximises the log-likelihood, followed by looking for the $\alpha$ values with values of $\mathcal{L}_{\mathrm{Bi}}$ less than the maximum by 1/2. The constraint was found to be $\alpha = 0.9969\pm0.0022$, with the data and scaled MC at the best fit value of $\alpha$ shown in Fig.~\ref{fig:bi214_escale_calibration}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{6_SolarAnalysis/images/rafael_tagged_bi_llh_fitted.pdf}
+    \caption[Comparison of tagged \ce{^{214}Bi} reconstructed energy distributions between data and MC]
+    {Comparison of tagged \ce{^{214}Bi} reconstructed energy distributions between data and MC, after MC has been scaled by the best-fit factor $\alpha = 0.9969$.}
+    \label{fig:bi214_escale_calibration}
+\end{figure}
+
+To handle energy scaling as a systematic in this analysis, we allow the energy scale to be floated within the MCMC fit, with the constraint given above. The first and last energy bin of the MCMC fit were used as buffer bins to let this floating occur; this allows for the energy scale to float in the range $\frac{13}{14}\leq\alpha\leq\frac{2.6}{2.5}$.
+
+In addition to a global energy scaling, it is possible that the resolution of the energy reconstruction could be systematically off. Because of the effects discussed in Section~\ref{sec:solar_obs_principle}, changes to the oscillation parameters only impact the observed signal distribution over a broad range of energies. This means that mismodelling the energy resolution of the detector is only liable to have an impact on the measurement if that mismodelling is substantial. However, by looking again at Fig.~\ref{fig:bi214_escale_calibration} we see that there appears to be a good qualitative match of the energy resolution between data and MC for the tagged \ce{^{214}Bi} events. As a result, the systematic effect of additional energy smearing will not be considered in this thesis.
+
+Similar to the systematics in reconstructed energy, there are also systematics possible in reconstructed position. These can be decomposed into three kinds of systematic: radial scaling, radial resolution, and position bias along each coordinate axis. There can also be mismodelling of the radial distributions for given processes in MC compared to data.
+
+% \begin{itemize}
+%     \item Incorrect constraints of signal and background rates, which could arise from a systematic error in either the expected rate before cuts, or the overall cut efficiency.
+%     \item Systematic errors in the reconstructed energy. To first order, this can be decomposed into two parts. Firstly, there could be a linear scaling of the energy by some energy scaling factor $\alpha$, i.e. $E_{\mathrm{reco}}\to\alpha E_{\mathrm{reco}}$. There could also be a difference in the resolution of the energy reconstruction.
+%     \item Systematic errors in the reconstructed position. Similar to the above, this can also be decomposed into a radial scaling systematic, radial resolution systematic, and biases along each coordinate axis.
+%     \item Mismodelling of the radial distributions of events in MC compared to data.
+% \end{itemize}
 
 {
     \color{blue}
