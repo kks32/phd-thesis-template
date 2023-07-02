@@ -632,7 +632,9 @@ To handle energy scaling as a systematic in this analysis, we allow the energy s
 
 In addition to a global energy scaling, it is possible that the resolution of the energy reconstruction could be systematically off. Because of the effects discussed in Section~\ref{sec:solar_obs_principle}, changes to the oscillation parameters only impact the observed signal distribution over a broad range of energies. This means that mismodelling the energy resolution of the detector is only liable to have an impact on the measurement if that mismodelling is substantial. However, by looking again at Fig.~\ref{fig:bi214_escale_calibration} we see that there appears to be a good qualitative match of the energy resolution between data and MC for the tagged \ce{^{214}Bi} events. As a result, the systematic effect of additional energy smearing will not be considered in this thesis.
 
-Similar to the systematics in reconstructed energy, there are also systematics possible in reconstructed position. These can be decomposed into three kinds of systematic: radial scaling, radial resolution, and position bias along each coordinate axis. There can also be mismodelling of the radial distributions for given processes in MC compared to data.
+Similar to the systematics in reconstructed energy, there are also systematics possible in reconstructed position. These can be decomposed into three kinds of systematic: radial scaling, radial resolution, and position bias along each coordinate axis. The dominant effect that these systematics will have on the PDFs is to change their normalisations. Because we are floating all normalisations within the MCMC fit, we expect the impact of these systematics to be sub-dominant. 
+
+Finally, there can also be mismodelling of the radial distributions for given processes in MC compared to data. For example, it is known that the internal \ce{^{208}Tl} events are non-uniform as a function of radius; this is why the normalisation of each radial slice for this background is floated independently. The external backgrounds can also plausibly have PDF shape systematics, especially if the assumptions made to model them (such as the use of simulation shells) are not fully accurate. These shape systematics can also arise from the lack of statistics in the PDFs used to model them: as an example, Table~\ref{tab:MC_cut_effs} shows that only 62 external water \ce{^{214}Bi} events are used in the creation of the associated PDF. Handling this type of modelling uncertainties for the external backgrounds is not considered in this thesis.
 
 % \begin{itemize}
 %     \item Incorrect constraints of signal and background rates, which could arise from a systematic error in either the expected rate before cuts, or the overall cut efficiency.
@@ -641,22 +643,61 @@ Similar to the systematics in reconstructed energy, there are also systematics p
 %     \item Mismodelling of the radial distributions of events in MC compared to data.
 % \end{itemize}
 
+
+% \begin{itemize}
+%     \item Show expected rates calculation for both signal and background.
+%     \item Describe the constraints chosen to apply to the fit, and why they can be justified. These are: 
+%     \begin{itemize}
+%         \item B8 flux constraint
+%         \item U-238 and Th-232 constraints from BiPo tagging
+%         \item Alpha-n constraint from Po-210 tagging by Serena and Shengzhao
+%         \item External constraints from Tony Zummo's water-phase externals analysis.
+%     \end{itemize}
+%     \item Describe the systematics to be added to the fit (just energy scale for now, maybe also energy smearing?). For other possible systematics, such as those in position, my aim is to explain why they are sub-dominant and so don't need to be added to the fit. Will cover more about impact of systematics in the next subsection.
+% \end{itemize}
+% [4 pages]
+
+\subsection{Results}
+\subsubsection{Fit Validation}
+In theory, the convergence of the sampled distribution within an MCMC fit to the posterior density distribution is guaranteed to eventually occur, regardless of the specific shape of the multivariate Gaussian proposal distribution. However, the speed of this convergence is highly dependent on the widths of the proposal distribution. This is very important as in practice we can only run the MCMC fit for a finite amount of time. For a given parameter within the fit, if the associated width (also known as the step size) in the proposal distribution is too large, then the vast majority of proposals will be to points in the parameter space where the log-likelihood is less than before, and so these proposals will be consistently rejected. Alternatively,  if the width is chosen too small, the acceptance rate of the chain will be very high, but too much time will be spent for the chain to go from sampling one point in the space to another.
+
+By choosing sensible width parameters for the proposal distribution, as well as run the chain for as long as possible, one can attempt to maximise the ``effective sample size'' of the MCMC fit. It has been shown that, for a wide of situations, an appropriate size for the width of a given parameter is the standard deviation of the true posterior density distribution~\cite{}. % cite appropriate
+Because this posterior density distribution is precisely the aim of the whole MCMC procedure, this can make choosing these widths challenging in practice. In this analysis, an iterative approach was used: an MCMC fit was first run using width parameters that were guessed. Once this fit completed, the resulting sampled distribution marginalised onto each fit parameter were looked at to find approximately the magnitude of their standard deviations. This then informed the widths chosen for the next MCMC fit. This process was repeated until the autocorrelation of the sampled distribution for each fit parameter appeared to be minimal; this is an indication that the effective sample size has been maximised. A chain length of \num{1000000} steps was found to be sufficient to obtain large enough effective sample sizes for this analysis.
+
+In order to guard against the possibility of a given chain missing some important part of the parameter space because of its starting position, 100 chains were run simultaneously, each with initial positions in the parameter space chosen randomly according to the prior distribution. 
+
+\begin{figure}
+    \centering
+    \begin{subfigure}{0.98\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{6_SolarAnalysis/images/beight_flux_vs_step_MCMC.png}
+        \caption{$\Phi_{\beight{}}$ (normalised so that the nominal rate equals 1)}
+        \label{fig:b8_flux_factor_vs_step}
+    \end{subfigure}
+    \begin{subfigure}{0.98\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{6_SolarAnalysis/images/pmt_betagamma_vs_step_MCMC.png}
+        \caption{Normalisation of the PMT $\beta-\gamma$ background}
+        \label{fig:pmt_vs_step}
+    \end{subfigure}
+    \begin{subfigure}{0.98\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{6_SolarAnalysis/images/dmsq_21_vs_step_MCMC.png}
+        \caption{\dmsq{}}
+        \label{fig:dmsq_21_vs_step}
+    \end{subfigure}
+    \begin{subfigure}{0.98\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{6_SolarAnalysis/images/theta_12_vs_step_MCMC.png}
+        \caption{\tonetwo{}}
+        \label{fig:theta_12_vs_step}
+    \end{subfigure}
+    \caption{Examples of the sampled values for parameters within a given MCMC chain as a function of the step number, after tuning the proposal distribution width parameters.}
+    \label{fig:params_vs_step_plots}
+\end{figure}
+
 {
     \color{blue}
-    \begin{itemize}
-        \item Show expected rates calculation for both signal and background.
-        \item Describe the constraints chosen to apply to the fit, and why they can be justified. These are: 
-        \begin{itemize}
-            \item B8 flux constraint
-            \item U-238 and Th-232 constraints from BiPo tagging
-            \item Alpha-n constraint from Po-210 tagging by Serena and Shengzhao
-            \item External constraints from Tony Zummo's water-phase externals analysis.
-        \end{itemize}
-        \item Describe the systematics to be added to the fit (just energy scale for now, maybe also energy smearing?). For other possible systematics, such as those in position, my aim is to explain why they are sub-dominant and so don't need to be added to the fit. Will cover more about impact of systematics in the next subsection.
-    \end{itemize}
-    [4 pages]
-    \subsection{Results}
-    \subsubsection{Fit Validation}
     \begin{itemize}
         \item Show plots of parameter values versus step, to demonstrate that the step sizes have been tuned sufficiently.
         \item Show auto-correlation plots, to motivate a sensible ``burn-in'' size.
