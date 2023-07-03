@@ -221,6 +221,7 @@ Here, $\bm{\mu}$ is the set of parameters that model our system, $P\left(\bm{\mu
 
 Both approaches to statistics are widely-used in statistical analysis, in both particle physics and beyond. The Bayesian approach was used for this analysis, as it was believed that this helps keep transparent what assumptions are being made in the analysis. 
 
+\nomenclature{\textbf{CI}}{Credible Interval}
 Now, if one is able to determine the overall posterior distribution, then it is possible to derive best-fit values with uncertainties for all parameters in the fit. This is done by ``marginalising'' the posterior distribution, i.e. integrating over all parameters other than the one of interest. A sensible best-fit value is then the modal marginalised posterior density, the highest value in the marginalised distribution. The uncertainty on this value is derived from the spread of the marginalised posterior, by the calculation of the $1\sigma$ Credible Interval (CI): this is the set of values for a given parameter which has a total posterior probability of 68.3\%, and contain the best-fit value. There are in fact an infinite number of CIs that satisfy this property; for this analysis, the values are chosen in decreasing order of marginalised posterior probability density.
 \subsection{Markov Chain Monte Carlo}
 Of course, all of this assumes that one can accurately determine the posterior density distribution. Whilst the likelihood and prior distribution are straightforward enough to calculate, often-times $P\left(\bm{x}\right)$ (which acts as a normalisation) is very challenging to determine. This is because calculating this normalisation involves integrating the likelihood over all the parameter space, and if there are a large number of parameters this can become enormously numerically complex. An alternative approach is needed!
@@ -664,7 +665,7 @@ In theory, the convergence of the sampled distribution within an MCMC fit to the
 By choosing sensible width parameters for the proposal distribution, as well as run the chain for as long as possible, one can attempt to maximise the ``effective sample size'' of the MCMC fit. It has been shown that, for a wide of situations, an appropriate size for the width of a given parameter is the standard deviation of the true posterior density distribution~\cite{}. % cite appropriate
 Because this posterior density distribution is precisely the aim of the whole MCMC procedure, this can make choosing these widths challenging in practice. In this analysis, an iterative approach was used: an MCMC fit was first run using width parameters that were guessed. Once this fit completed, the resulting sampled distribution marginalised onto each fit parameter were looked at to find approximately the magnitude of their standard deviations. This then informed the widths chosen for the next MCMC fit. This process was repeated until the autocorrelation of the sampled distribution for each fit parameter appeared to be minimal; this is an indication that the effective sample size has been maximised. A chain length of \num{1000000} steps was found to be sufficient to obtain large enough effective sample sizes for this analysis.
 
-In order to guard against the possibility of a given chain missing some important part of the parameter space because of its starting position, 100 chains were run simultaneously, each with initial positions in the parameter space chosen randomly according to the prior distribution. 
+In order to guard against the possibility of a given chain missing some important part of the parameter space because of its starting position, 100 chains were run simultaneously. The initial positions of each in the parameter space were chosen randomly according to the prior distribution. Fig.~\ref{fig:params_vs_step_plots} shows the sampled values for four different parameters in a given chain, after the tuning of the width parameters had been completed.
 
 \begin{figure}
     \centering
@@ -696,17 +697,39 @@ In order to guard against the possibility of a given chain missing some importan
     \label{fig:params_vs_step_plots}
 \end{figure}
 
+Given some initial start point in the parameter space, a given chain will typically take some time in finding where the region of greatest likelihood is. This leads to an initial set of steps where the chain moves a large distance in the parameter space in the same direction, so that the autocorrelation of the chain in this period is substantial. These initial samples are not representative of the actual posterior density distribution: as a result, in this analysis the first \num{100000} steps of each chain were declared as a ``burn-in'' period. This number of steps for the burn-in was motivated by looking at the auto-correlation plots for the likelihood evaluation for the MCMC chains, as seen in Fig.~\ref{fig:auto_corr}. When the number of steps differed by \num{100000}, the autocorrelation of each chain fell to zero, indicating the likelihood evaluations in the chains were independent when they differed by at least \num{100000} steps. The overall set of samples used to approximate the posterior density distribution corresponds to collection of all sampled points on all the chains, after burn-in.
+
+\begin{figure}
+    \centering
+    % \includegraphics[width=\textwidth]{6_SolarAnalysis/images/rafael_tagged_bi_llh_fitted.pdf}
+    \caption[]{}
+    \label{fig:auto_corr}
+\end{figure}
+
+    % \begin{itemize}
+    %     \item Show plots of parameter values versus step, to demonstrate that the step sizes have been tuned sufficiently.
+    %     \item Show auto-correlation plots, to motivate a sensible ``burn-in'' size.
+    % \end{itemize}
+    % [6 pages]
+
+\subsubsection{Oscillation Fit Results}
+\nomenclature{\textbf{HPD}}{(The point of) Highest Posterior Density}
+Now that there is confidence in the convergence of the MCMC fit to the posterior density distribution, we can look at this distribution to obtain the results of this analysis. Fig.~\ref{fig:nuisance_params_marged} shows the posterior density distribution, marginalised onto each parameter of the fit other than the two oscillation parameters. We can see that each marginalised distribution appears smooth, another qualitative indication of a sufficient effective sample size in the MCMC fit. For each 1D distribution, the bin centre associated with the Highest Posterior Density (HPD) was used as the best-fit value for that parameter, and the vertical band indicated the Bayesian 1$\sigma$ CI 
+
+\begin{figure}
+    \centering
+    % \includegraphics[width=\textwidth]{6_SolarAnalysis/images/rafael_tagged_bi_llh_fitted.pdf}
+    \caption[]{}
+    \label{fig:nuisance_params_marged}
+\end{figure}
+
+
+
 {
     \color{blue}
     \begin{itemize}
-        \item Show plots of parameter values versus step, to demonstrate that the step sizes have been tuned sufficiently.
-        \item Show auto-correlation plots, to motivate a sensible ``burn-in'' size.
         \item Posterior density plots for each nuisance parameter, to check that they all look sensible and have sufficient statistics.
         \item Show plot of correlation coefficients between parameters, and note any strongly-correlated parameters.
-    \end{itemize}
-    [6 pages]
-    \subsubsection{Oscillation Fit Results}
-    \begin{itemize}
         \item Look at the data versus `best-fit' MC plot in energy, radius, and both. (Recall that in MCMC, the `best-fit' is not the point of parameter scape reached at the end, but the point of highest posterior density). Is there a good fit to data? Any clear disagreements?
         \item Show 2D contour plot for oscillation parameter posterior density. Note salient features. Show 1D posterior densities for each oscillation parameter. Derive measurement result for $\theta_{12}$, i.e. point of highest posterior density, with uncertainties given by the $1\sigma$ credible interval.
     \end{itemize}
