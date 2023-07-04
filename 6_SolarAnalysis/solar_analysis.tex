@@ -714,16 +714,17 @@ Given some initial start point in the parameter space, a given chain will typica
 
 \subsubsection{Oscillation Fit Results}
 \nomenclature{\textbf{HPD}}{(The point of) Highest Posterior Density}
-Now that there is confidence in the convergence of the MCMC fit to the posterior density distribution, we can look at this distribution to obtain the results of this analysis. Fig.~\ref{fig:nuisance_params_marged} shows the posterior density distribution, marginalised onto each parameter of the fit other than the two oscillation parameters. We can see that each marginalised distribution appears smooth, another qualitative indication of a sufficient effective sample size in the MCMC fit. For each 1D distribution, the bin centre associated with the Highest Posterior Density (HPD) was used as the best-fit value for that parameter, and the vertical band indicated the Bayesian 1$\sigma$ CI 
+Now that there is confidence in the convergence of the MCMC fit to the posterior density distribution, we can look at this distribution to obtain the results of this analysis. Fig.~\ref{fig:nuisance_params_marged} shows the posterior density distribution, marginalised onto each parameter of the fit other than the two oscillation parameters. We can see that each marginalised distribution appears smooth, another qualitative indication of a sufficient effective sample size in the MCMC fit. For each 1D distribution, the bin centre associated with the Highest Posterior Density (HPD) has been used as the best-fit value for that parameter, and the vertical band indicates the Bayesian 1$\sigma$ CI for that parameter. Also shown in these plots is the prior distribution for each of the parameters, for comparison.
 
 \begin{figure}
     \centering
-    % \includegraphics[width=\textwidth]{6_SolarAnalysis/images/rafael_tagged_bi_llh_fitted.pdf}
-    \caption[]{}
+    \includegraphics[width=\textwidth]{6_SolarAnalysis/images/posterior_densities_plot_no_osc.pdf}
+    \caption[Marginalised 1D posterior density distributions for all non-oscillation parameters.]
+    {Marginalised 1D posterior density distributions for all non-oscillation parameters, shown in blue. The HPD and 1$\sigma$ Bayesian CI are shown for each parameter. Also shown in dashed red are the associated prior distributions.}
     \label{fig:nuisance_params_marged}
 \end{figure}
 
-
+For the 
 
 {
     \color{blue}
