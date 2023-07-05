@@ -724,7 +724,29 @@ Now that there is confidence in the convergence of the MCMC fit to the posterior
     \label{fig:nuisance_params_marged}
 \end{figure}
 
-For the 
+For a number of the parameters, the posterior distributions are more strongly peaked than their associated priors. This indicates that there was enough information in the dataset further constrain those parameters. One such parameter is the rate of the external water \ce{^{214}Bi}. The resulting measurement of this is $34.1^{+18.5}_{-18.9}$ events in the dataset. This is 10 times larger than the expected rate shown in Table~\ref{tab:MC_expected_rates_constraints}, providing good evidence for a change in the level of this particular background relative to the water phase. In contrast, all other external backgrounds have HPDs consistent with their prior expected values.
+
+Another set of parameters that have been well-constrained in the fit are the normalisations of each of the internal \ce{^{208}Tl} slices. As expected, slices corresponding to larger radii have a greater fitted rate, with the number of events measured in the outermost radial slice to be twice that of the innermost one. However, the posteriors of the other internal \ce{^{238}U}- and \ce{^{232}Th}-chain are the same as their priors, indicating there was no evidence from data within the fit to constrain those processes any further. Similarly, the posteriors of the energy scale parameter and $\Phi_{\beight{}}$ only show very mild differences with their strong priors.
+
+If instead of looking only at the 1D marginalised distributions of each parameter we look at the equivalent 2D distributions for every combination of parameters, we can generate a table of correlation coefficients. This is shown in Fig.~\ref{fig:corr_plots_params}. From this, we can see that there is some clear anti-correlation between a number of the external backgrounds. This seems intuitive: the PDFs for many of these external backgrounds are similar, and so the fit struggles to distinguish between them.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{6_SolarAnalysis/images/corr_coeff.pdf}
+    \caption[Correlation matrix between all parameters in the MCMC fit]
+    {Correlation matrix between all parameters in the MCMC fit.}
+    \label{fig:corr_plots_params}
+\end{figure}
+
+The only other pair of parameters which have a substantial correlation between one another are the two oscillation parameters. Fig.~\ref{fig:2d_osc_param_posterior} shows their 2D marginalised posterior distribution, along with contours for a number of Bayesian CIs.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{6_SolarAnalysis/images/steve_style_contours.png}
+    \caption[2D posterior density distribution marginalised onto \dmsq{} and \tonetwo{}]
+    {2D posterior density distribution marginalised onto \dmsq{} and \tonetwo{}. Also shown are contours for a number of Bayesian CIs.}
+    \label{fig:2d_osc_param_posterior}
+\end{figure}
 
 {
     \color{blue}
