@@ -321,7 +321,7 @@ Even after using the Large Mixing Angle approximation, having to call \texttt{PS
     %  \end{itemize}
 
     % [19 pages currently, without figures; probably +5 pages for figures.]
-\section{Analysis on Scintillator-Phase data}
+\section{Analysis on Scintillator-Phase data}\label{sec:solar_analysis_results}
 \subsection{Dataset and Livetime}\label{sec:solar_dataset_livetime}
 The data used in this analysis was chosen to be scintillator phase data after the end of the PPO top-up campaign that completed in April 2022. Following an initial validation of the analysis tools was performed on data between 29\textsuperscript{th} April and 10\textsuperscript{th} May 2022~\cite{}, % cite presentation of my high-background results
 data for the full analysis was chosen from runs taken after these dates. Not all data taken during this time was considered usable for this analysis, however: this is the role of \textit{run selection}. The `Preliminary Scintillator Gold' run selection list was used as the basis for this analysis. This run list requires:
@@ -604,7 +604,7 @@ This leads to rate correction factors of 0.35 and 0.50 for external water \ce{^{
 \end{table}
 
 \subsection{Systematics}
-There are a number of systematic effects in the analysis that could possibly have some impact on the resulting posterior densities of \tonetwo{} and \dmsq{}. Consideration of these effects is important to ensure that the uncertainty in the measurement is not underestimated. However, we shall find in Section~\ref{sec:systematics_impact} that for this dataset, the analysis is statistically-limited, and so it is not necessary to perform exhaustive measurements to determine the contribution of all possible systematic contributions. Instead, the focus shall be on the subset of the systematics that can plausibly have the most impact on the final measurement.
+There are a number of systematic effects in the analysis that could possibly have some impact on the resulting posterior densities of \tonetwo{} and \dmsq{}. Consideration of these effects is important to ensure that the uncertainty in the measurement is not underestimated. However, we shall find in Section~\ref{sec:solar_projections} that for this dataset, the analysis is statistically-limited, and so it is not necessary to perform exhaustive measurements to determine the contribution of all possible systematic contributions. Instead, the focus shall be on the subset of the systematics that can plausibly have the most impact on the final measurement.
 
 In this analysis, the measurement of the oscillation parameters is based on the fitted shape and normalisation of the \beight{} signal energy spectrum. Therefore, for a systematic effect to have an impact on the final measurement it must first impact the fit of the signal PDF. One straightforward way this could occur is for some background events to be misattributed as signal events within the fit (or vice versa). If the rates of signal and background processes are strongly constrained to incorrect values, then this could easily happen. In this analysis, the strongest constraint on the rate of events comes from the global fit constraint of $\Phi_{\beight{}}$. Because of this, the fit will also be run with the looser SSM constraint on the signal flux.
 
@@ -814,34 +814,48 @@ One could na\"{i}vely expect that the point in parameter space where each fit pa
     \label{tab:fit_params_comparison}
 \end{table}
 
-this is shown in Fig.~\ref{fig:solar_data_mc_slices_comparison}. We see that the \beight{} signal distribution only dominates above \SI{5}{\MeV}, as well as at low energies for the first two radial slices. This is because for larger radii, external backgrounds such as the PMT $\beta-\gamma$s, rope \ce{^{208}Tl}, and external water \ce{^{214}Bi} become the dominant processes in the \SIrange{2.5}{2.8}{\MeV} region. Between \SIrange{3}{5}{\MeV}, at all radii the internal \ce{^{208}Tl} shows a clear peak well above the \beight{} signal.
+Using the maximal likelihood fit parameters, the comparison of data to MC is shown in Fig.~\ref{fig:solar_data_mc_slices_comparison}. We see that the \beight{} signal distribution only dominates above \SI{5}{\MeV}, as well as at low energies for the first two radial slices. This is because for larger radii, external backgrounds become the dominant processes in the \SIrange{2.5}{2.8}{\MeV} region. Between \SIrange{3}{5}{\MeV}, at all radii the internal \ce{^{208}Tl} shows a clear peak well above the \beight{} signal. Qualitatively, the MC appears to give a good fit to the data.
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{6_SolarAnalysis/images/data_mc_fit_plot_1D_energy_r3_slices_log.pdf}
+    \includegraphics[width=\textwidth]{6_SolarAnalysis/images/data_mc_fit_plot_1D_energy_r3_slices_log_maxlh.pdf}
     \caption[Comparison of data to MC for each radial slice]
     {Comparison of data to MC for each radial slice, using the best-fit parameter values derived from the MCMC results. The buffer bins used for varying the energy scale parameter within the fit are shown in grey.}
     \label{fig:solar_data_mc_slices_comparison}
 \end{figure}
 
+% \begin{itemize}
+%     \item Posterior density plots for each nuisance parameter, to check that they all look sensible and have sufficient statistics.
+%     \item Show plot of correlation coefficients between parameters, and note any strongly-correlated parameters.
+%     \item Look at the data versus `best-fit' MC plot in energy, radius, and both. (Recall that in MCMC, the `best-fit' is not the point of parameter scape reached at the end, but the point of highest posterior density). Is there a good fit to data? Any clear disagreements?
+%     \item Show 2D contour plot for oscillation parameter posterior density. Note salient features. Show 1D posterior densities for each oscillation parameter. Derive measurement result for $\theta_{12}$, i.e. point of highest posterior density, with uncertainties given by the $1\sigma$ credible interval.
+% \end{itemize}
+% [5 pages]
+
+% \subsubsection{Impact of Systematics}\label{sec:systematics_impact}
+
+%     \begin{itemize}
+%         \item Show impact of modifying certain constraints on the final results of the measurement of $\theta_{12}$. In particular: fiducial volume, \beight{} flux constraint.
+%         \item Discussion of systematics post-fit --- Hopefully energy scaling parameter should be close to 1, given the Collaboration's calibration of the optics (light yield in particular). Perform a scan over energy smearing, and check impact of possible radial scale systematic.
+%     \end{itemize}
+%     [8 pages]
+    
+\section{Sensitivity Projections}\label{sec:solar_projections}
+Given the limited statistics used in the dataset analysed in Section~\ref{sec:solar_analysis_results}, the question of how much better we could measure the solar oscillation parameters with more data naturally arises. In particular, it is worthwhile knowing the expected sensitivity of this analysis as a function of livetime, and hence whether SNO+ could eventually make a world-leading measurement of \tonetwo{} via \beight{} neutrinos. Furthermore, it is useful to find out to what extent improvements such as additional background reduction could help the measurement.
+
+To perform these sensitivity projections, the same analysis method was employed as with the real dataset. However, for each projection scenario a fake ``Asimov'' dataset was generated. This was a 2D histogram binned in the same way as the MC PDFs, corresponding to the total expected rate of all signal and background processes. Because the same PDFs were used to build both the MC and fake dataset, the maximum likelihood should occur when the fit parameters are identical to those which generated the fake dataset. Although this method of performing sensitivity projections leads to the slightly odd situation of having non-integer numbers of events in the bins of the fake dataset, it has been shown that this approach allows us to estimate the median sensitivity of a scenario~\cite{cowanAsymptoticFormulaeLikelihoodbased2011}. % cite https://arxiv.org/pdf/1007.1727.pdf, maybe more?
+
+The assumptions used to make the fake datasets are as follows. To begin with, no cuts were changed between the main analysis and this projection, and the same PDFs were used in both. Furthermore, the \beight{} rate was determined by the same global fit flux value and neutrino oscillation parameters used in the rest of this analysis. Because some of the dataset used in the main analysis was taken during a time of known elevated \ce{^{238}U}- and \ce{^{232}Th}-chain backgrounds, R. Hunt-Stokes provided an additional estimate of the \ce{^{214}BiPo} and \ce{^{212}BiPo} rates in the \SI{5.0}{\metre} FV for only the period of the dataset where the internal background levels had stabilised. Those rates went from 6.06 events per hour before excluding the higher background period down to 4.87 events per hour for the \ce{^{214}BiPo}, and from 0.94 events per hour down to 0.89 events per hour. These relative changes for the two background chains were used to scale the rates from their expectation in the original dataset. For the internal \ce{^{208}Tl}, the rate of each slice relative to one another was taken from their fitted HPD values in the original analysis, with the absolute value of those rates scaled by $0.89/0.94$.
+
+External backgrounds were in general set to the rates expected from T. Zummo, as described in Section~\ref{sec:exp_rates_constraints}. The exceptions were the backgrounds from the external water: for the \ce{^{208}Tl} component, the nominal rate without T. Zummo's correction factor was used. For the \ce{^{214}Bi} component, the higher rate as given by the fitted HPD value was used instead. The same constraints on all the rates were used as in the main analysis. For the energy scale parameter, because no additional systematics were applied to the Asmiov dataset the true and expected value of $\alpha$ was set to 1, with the same uncertainty of $\pm0.0022$ as before.
+
+These choices of assumptions for this baseline set of projections were deliberately chosen to be fairly conservative. However, they do not account for the loading of BisMSB and TeLS into the detector that is likely to occur in the coming years. For BisMSB, the main impact is expected to be a dramatic increase in the observed light yield in the detector, leading to a smaller energy resolution and hence improved measurement~\cite{}. % cite something
+Once the TeLS is also loaded, the observed light yield will likely decrease back down to levels similar to that of the current LABPPO. The biggest expected impact of the Te phase on this analysis will instead be to the background levels within the detector: the target rate of \ce{^{238}U}-chain backgrounds in the Te phase is over 100 times that of the scintillator phase~\cite{andringaCurrentStatusFuture2016}. % cite target level backgrounds
+
+
 
 {
     \color{blue}
-    \begin{itemize}
-        \item Posterior density plots for each nuisance parameter, to check that they all look sensible and have sufficient statistics.
-        \item Show plot of correlation coefficients between parameters, and note any strongly-correlated parameters.
-        \item Look at the data versus `best-fit' MC plot in energy, radius, and both. (Recall that in MCMC, the `best-fit' is not the point of parameter scape reached at the end, but the point of highest posterior density). Is there a good fit to data? Any clear disagreements?
-        \item Show 2D contour plot for oscillation parameter posterior density. Note salient features. Show 1D posterior densities for each oscillation parameter. Derive measurement result for $\theta_{12}$, i.e. point of highest posterior density, with uncertainties given by the $1\sigma$ credible interval.
-    \end{itemize}
-    [5 pages]
-    \subsubsection{Impact of Systematics}\label{sec:systematics_impact}
-    \begin{itemize}
-        \item Show impact of modifying certain constraints on the final results of the measurement of $\theta_{12}$. In particular: fiducial volume, \beight{} flux constraint.
-        \item Discussion of systematics post-fit --- Hopefully energy scaling parameter should be close to 1, given the Collaboration's calibration of the optics (light yield in particular). Perform a scan over energy smearing, and check impact of possible radial scale systematic.
-    \end{itemize}
-    [8 pages]
-    
-    \section{Sensitivity Projections}
     \begin{itemize}
         \item Using the same production MC, generate PDFs with the expected normalisations for longer periods of livetime: 1, 3, and 5 years. This still assumes a scintillator-fill with identical detector conditions on average, so not considering the impact of BisMSB loading at any point.
         \item Describe any further constraints to be assumed on top of the existing analysis of data: expected improved constraints on various backgrounds, as well as a possible energy-scale calibration constraint from the AmBe source or an internally-deployed source, for example.
