@@ -738,7 +738,7 @@ If instead of looking only at the 1D marginalised distributions of each paramete
     \label{fig:corr_plots_params}
 \end{figure}
 
-The only other pair of parameters which have a substantial correlation between one another are the two oscillation parameters. Fig.~\ref{fig:2d_osc_param_posterior} shows their 2D marginalised posterior distribution, along with contours for a number of Bayesian CIs. Because the priors on both oscillation parameters are uniform, this can be directly converted into the log-likelihood ratio $\ln{L_{R}}$ for a given bin, where $L_{R} = p/p_{max}$: $p$ is the posterior density of a given bin in the 2D space, and $p_{max}$ is the posterior density of the HPD bin, equivalent to the bin with the maximum likelihood. This allows for Frequentist CI to be derived as well.
+The only other pair of parameters which have a substantial correlation between one another are the two oscillation parameters. Fig.~\ref{fig:2d_osc_param_posterior} shows their 2D marginalised posterior distribution, along with contours for a number of Bayesian CIs. Because the priors on both oscillation parameters are uniform, this can be directly converted into the log-likelihood ratio $\ln{L_{R}}$ for a given bin, where $L_{R} = p/p_{max}$: $p$ is the posterior density of a given bin in the 2D space, and $p_{max}$ is the posterior density of the HPD bin, equivalent to the bin with the maximum likelihood. This allows for Frequentist CI to be derived as well. For this plot, the HPD is at $\tonetwo{} = \ang{34.1}, \dmsq{} = \SI{1.80e-5}{\eV\squared}$.
 
 \begin{figure}
     \centering
@@ -763,7 +763,7 @@ As can be seen, the measurement made in this thesis is consistent with the globa
 \begin{figure}
     \centering
     \includegraphics[width=0.75\textwidth]{6_SolarAnalysis/images/theta_12_comparison_flux_constraint_corrected_tagging_2_mobins.pdf}
-    \caption[Comparison of 1D posterior density distribution marginalised onto \tonetwo{} for different flux constraints.]
+    \caption[Comparison of 1D posterior density distribution marginalised onto \tonetwo{} for different flux constraints]
     {Comparison of 1D posterior density distributions marginalised onto \tonetwo{}, using both forms of \beight{} flux constraint. The 1$\sigma$ Bayesian CI are shown for both.}
     \label{fig:1d_theta_12_posterior}
 \end{figure}
@@ -772,7 +772,58 @@ The fact that the measured value of \tonetwo{} is somewhat above the global fit 
 \begin{equation*}
     \left|\tonetwo{} + n\cdot180\right|^{\circ} = 36.4^{\circ+8.0^{\circ}}_{\phantom{\circ}-7.8^{\circ}}.
 \end{equation*}
-Although there is negligible change to the uncertainty of the measurement, this change in prior shifts the best-fit value down by \ang{2.5}, in the direction of the global fit value.
+Although there is negligible change to the uncertainty of the measurement, this change in prior shifts the HPD value down by \ang{2.5}, in the direction of the global fit value.
+
+Also shown in Fig.~\ref{fig:2d_osc_param_posterior} is the posterior density for \tonetwo{} if the looser SSM flux constraint is used. Under these conditions, the measurement becomes:
+\begin{equation*}
+    \left|\tonetwo{} + n\cdot180\right|^{\circ} = 39.0^{\circ+9.8^{\circ}}_{\phantom{\circ}-9.6^{\circ}}.
+\end{equation*}
+Using this constraint has little impact on the HPD value, but does increase the uncertainty by $\sim\ang{1.8}$. This gives an indication of the extent to which the strong global flux constraint allows \tonetwo{} to be constrained on its own, without any information from the dataset.
+
+One could na\"{i}vely expect that the point in parameter space where each fit parameter corresponds to the HPD value obtained in the above 1D marginalisation would correspond to the maximum likelihood. This is not the case, because of the correlations between parameters in the fit. Because an MCMC fit does not actually attempt to directly find this maximum likelihood point, deciding on the overall `best-fit' point in parameter space is a little ambiguous. For this analysis, the sampled point in all of the chains which had the greatest log-likelihood was declared as the best-fit point. A comparison between the parameter values obtained at the HPD of the 1D marginalisations to the maximum likelihood point is shown in Table~\ref{tab:fit_params_comparison}.
+
+\begin{table}
+    \centering
+    \begin{tabular}{c r r}
+        \hline
+        Fit Parameter & 1D HPD value & Maximum likelihood value \\ \hline \hline
+        Relative \beight{} flux & 0.9975 & 1.006  \\
+        \dmsq{} [$\times10^{-5}\;\si{\eV\squared}$] & 11.02 & 5.50 \\
+        \tonetwo{} [$^{\circ}$]  & 39.05  & 33.73 \\
+        \hline
+        AV \ce{^{214}Bi} Events     & 3.66 & 8.49 \\
+        Ropes \ce{^{214}Bi} Events  & 0.53 & 0.52 \\
+        AV \ce{^{208}Tl} Events     & 16.71& 19,08 \\
+        Ropes \ce{^{208}Tl} Events  & 27.81& 31.20 \\
+        External Water \ce{^{214}Bi} Events & 34.09 & 45.93 \\
+        External Water \ce{^{208}Tl} Events & 3.71  & 88.03 \\
+        PMT $\beta-\gamma$ Events   & 51.22& 46.88 \\
+        \hline
+        Internal \ce{^{212}BiPo} Events & 1.54 & 1.45\\
+        Internal \ce{^{208}Tl} Events, Slice 1 & 66.52 & 68.78 \\
+        Internal \ce{^{208}Tl} Events, Slice 2 & 70.60 & 66.62 \\
+        Internal \ce{^{208}Tl} Events, Slice 3 & 87.09 & 87.33 \\
+        Internal \ce{^{208}Tl} Events, Slice 4 & 128.92 & 125.25 \\
+        Internal \ce{^{214}BiPo} Events & 2.51 & 2.56 \\
+        Internal \ce{^{210}Tl} Events & 1.05 & 1.00 \\
+        \hline
+        Energy Scale Factor, $\alpha$ & 0.9964 & 0.9970\\
+        \hline
+    \end{tabular}
+    \caption{Comparison of the fit parameter values obtained when getting the HPD values after marginalising onto each parameter, versus looking at the sampled point with the maximal likelihood found.}
+    \label{tab:fit_params_comparison}
+\end{table}
+
+this is shown in Fig.~\ref{fig:solar_data_mc_slices_comparison}. We see that the \beight{} signal distribution only dominates above \SI{5}{\MeV}, as well as at low energies for the first two radial slices. This is because for larger radii, external backgrounds such as the PMT $\beta-\gamma$s, rope \ce{^{208}Tl}, and external water \ce{^{214}Bi} become the dominant processes in the \SIrange{2.5}{2.8}{\MeV} region. Between \SIrange{3}{5}{\MeV}, at all radii the internal \ce{^{208}Tl} shows a clear peak well above the \beight{} signal.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{6_SolarAnalysis/images/data_mc_fit_plot_1D_energy_r3_slices_log.pdf}
+    \caption[Comparison of data to MC for each radial slice]
+    {Comparison of data to MC for each radial slice, using the best-fit parameter values derived from the MCMC results. The buffer bins used for varying the energy scale parameter within the fit are shown in grey.}
+    \label{fig:solar_data_mc_slices_comparison}
+\end{figure}
+
 
 {
     \color{blue}
