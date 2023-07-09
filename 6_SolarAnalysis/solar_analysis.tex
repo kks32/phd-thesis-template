@@ -847,15 +847,15 @@ To perform these sensitivity projections, the same analysis method was employed 
 
 The assumptions used to make the fake datasets are as follows. To begin with, no cuts were changed between the main analysis and this projection, and the same PDFs were used in both. Furthermore, the \beight{} rate was determined by the same global fit flux value and neutrino oscillation parameters used in the rest of this analysis. Because some of the dataset used in the main analysis was taken during a time of known elevated \ce{^{238}U}- and \ce{^{232}Th}-chain backgrounds, R. Hunt-Stokes provided an additional estimate of the \ce{^{214}BiPo} and \ce{^{212}BiPo} rates in the \SI{5.0}{\metre} FV for only the period of the dataset where the internal background levels had stabilised. Those rates went from 6.06 events per hour before excluding the higher background period down to 4.87 events per hour for the \ce{^{214}BiPo}, and from 0.94 events per hour down to 0.89 events per hour. These relative changes for the two background chains were used to scale the rates from their expectation in the original dataset. For the internal \ce{^{208}Tl}, the rate of each slice relative to one another was taken from their fitted HPD values in the original analysis, with the absolute value of those rates scaled by $0.89/0.94$.
 
-External backgrounds were in general set to the rates expected from T. Zummo, as described in Section~\ref{sec:exp_rates_constraints}. The exceptions were the backgrounds from the external water: for the \ce{^{208}Tl} component, the nominal rate without T. Zummo's correction factor was used. For the \ce{^{214}Bi} component, the higher rate as given by the fitted HPD value was used instead. The same constraints on all the rates were used as in the main analysis. For the energy scale parameter, because no additional systematics were applied to the Asmiov dataset the true and expected value of $\alpha$ was set to 1, with the same uncertainty of $\pm0.0022$ as before.
+External backgrounds were in general set to the rates expected from T. Zummo, as described in Section~\ref{sec:exp_rates_constraints}. The exceptions were the backgrounds from the external water: for the \ce{^{208}Tl} component, the nominal rate without T. Zummo's correction factor was used. For the \ce{^{214}Bi} component, the higher rate as given by the fitted HPD value was used instead. The same constraints on all the rates were used as in the main analysis. For the energy scale parameter, because no additional systematics were applied to the Asimov dataset the true and expected value of $\alpha$ was set to 1, with the same uncertainty of $\pm0.0022$ as before.
 
-Using this baseline set of assumptions, fake datasets were generated and fit over a series of livetime scenarios between 150 days and 5 years. The results of these MCMC fits, in terms of the 2D and 1D posterior densities for the oscillation parameters are shown in Figs.~\ref{fig:2d_posteriors_projections} and \ref{fig:1d_posteriors_projections}.
+Using this baseline set of assumptions, fake datasets were generated and fit over a series of livetime scenarios between 150 days and 5 years. The results of these MCMC fits, in terms of the 2D and 1D posterior densities for the oscillation parameters are shown in Figs.~\ref{fig:2d_posteriors_projections} and \ref{fig:1d_posteriors_projections}. Note that the length of burn-in was increased to \num{250000} steps for these projections to ensure the convergence of all chains. As can be seen, by $\sim$2 years of livetime, there is sufficient evidence to confidently reject large \dmsq{} values above \SI{2e-4}{\eV\squared}. This leads to a fairly substantial decrease in uncertainty as well as less bias in the 1D HPD value for \tonetwo{}. There does remain some bias, however: this is because of the non-Gaussian ``boomerang'' structure seen in the 2D posterior density plots.
 
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{6_SolarAnalysis/images/steve_style_contours_projections.png}
     \caption[Posterior density posterior distributions marginalised onto the two solar oscillation parameters, for each livetime scenario]
-    {Posterior density posterior distributions marginalised onto the two solar oscillation parameters, for each livetime scenario.}
+    {Posterior density distributions marginalised onto the two solar oscillation parameters, for each livetime scenario in the pure scintillator phase under the current backgrounds.}
     \label{fig:2d_posteriors_projections}
 \end{figure}
 
@@ -864,17 +864,17 @@ Using this baseline set of assumptions, fake datasets were generated and fit ove
     \centering
     \includegraphics[width=\textwidth]{6_SolarAnalysis/images/theta_12_comparison_projections.pdf}
     \caption[Posterior density posterior distributions marginalised onto \tonetwo{}, for each livetime scenario]
-    {Posterior density posterior distributions marginalised onto \tonetwo{}, for each livetime scenario.}
+    {Posterior density distributions marginalised onto \tonetwo{}, for each livetime scenario in the pure scintillator phase under the current backgrounds.}
     \label{fig:1d_posteriors_projections}
 \end{figure}
 
+The general story told by these projections is that, assuming the same conditions and analysis, increasing the livetime of the dataset will lead to a substantial improvement to the precision of the measurement of \tonetwo{}, as well as the beginnings of a measurement of \dmsq{}. However, after $\sim$3 years of livetime the rate of progress slows down somewhat.
 
+The choices of assumptions for this baseline set of projections were deliberately chosen to be fairly conservative. However, they do not account for the loading of BisMSB and TeLS into the detector that is likely to occur in the coming years. For BisMSB, the main impact is expected to be a dramatic increase in the observed light yield in the detector, leading to a smaller energy resolution and hence improved measurement~\cite{}. % cite something
+Once the TeLS is also loaded, the observed light yield will likely decrease back down to levels similar to that of the current LABPPO. The biggest expected impact of the Te phase on this analysis will instead be to the background levels within the detector: the target rate of \ce{^{238}U}-chain backgrounds in the Te phase is $\sim$100 times that of the scintillator phase~\cite{andringaCurrentStatusFuture2016}. % cite target level backgrounds
 
-
-These choices of assumptions for this baseline set of projections were deliberately chosen to be fairly conservative. However, they do not account for the loading of BisMSB and TeLS into the detector that is likely to occur in the coming years. For BisMSB, the main impact is expected to be a dramatic increase in the observed light yield in the detector, leading to a smaller energy resolution and hence improved measurement~\cite{}. % cite something
-Once the TeLS is also loaded, the observed light yield will likely decrease back down to levels similar to that of the current LABPPO. The biggest expected impact of the Te phase on this analysis will instead be to the background levels within the detector: the target rate of \ce{^{238}U}-chain backgrounds in the Te phase is over 100 times that of the scintillator phase~\cite{andringaCurrentStatusFuture2016}. % cite target level backgrounds
-
-
+Because of this, two further scenarios were considered over a period of 1 year of livetime. In one, the internal \ce{^{238}U}- and \ce{^{232}Th}-chain backgrounds were raised to the nominal level expected during the Te-loaded phase~\cite{kroupovaImprovingSensitivityNeutrinoless2020}. % cite tereza
+In the other, the external water backgrounds were set to the level measured by T. Zummo in the water phase, and the internal \ce{^{208}Tl} were reduced by a factor of 10. This latter scenario reflects the possibility of better control of the radioactivity in the external water, as well as a way of using new analysis methods to cut out 90\% of the internal \ce{^{208}Tl} events.
 
 {
     \color{blue}
