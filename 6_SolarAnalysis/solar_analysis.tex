@@ -46,13 +46,14 @@ As can be seen, the dependence is weak, and comes mostly from basic energy conse
 In Fig.~\ref{fig:nu_elec_energy_dependence2} we can see the impact each physical process has on the energy spectrum that we eventually observe. We start with a broad energy distribution of \beight{} electron neutrinos generated in the Sun. These neutrinos then oscillate their flavour state as they propagate to the detector, in an energy-dependent manner. When a (tiny) fraction of these neutrinos interact with the electrons in our detector, there is both an energy- and flavour-dependence on the cross-section. The scattered electrons gain a kinetic energy with some mild dependence on the inciting neutrino's energy, which is then measured by the detector to within some energy resolution.
 
 Let us now consider the dependence of $P_{ee}$ on the individual neutrino oscillation parameters. Recall from Eq.~\ref{eq:pee_msw} %
-that, after considering matter-induced oscillations due to neutrinos passing through the Sun and possibly the Earth, $P_{ee} = P_{ee}\left(\tan2\theta^{M}_{12}, \sin\theta^{M}_{13}, \Delta m^{2}_{21,M}\right) = P_{ee}\left(\theta_{12}, \theta_{13}, \Delta m^{2}_{12}, \Delta m^{2}_{13}\right)$. Fig.~\ref{fig:pee_osc_param_dependence} shows the dependence of each of these four oscillation parameters on $P_{ee}(E)$. We can see that in reality only the two parameters \dmsq{} and \tonetwo{} have a substantial impact on $P_{ee}(E)$ and hence the observed electron energy spectrum. Because of this, for this analysis we will only ever vary these two oscillation parameters, and keep $\theta_{13}$ and $\Delta m^{2}_{13}$ at their current global fit values\footnote{We use the global fit results excluding Super-Kamiokande's atmospheric data, and assuming normal ordering of the neutrino mass hierarchy. This choice has a tiny impact on the magnitudes of these two fixed parameters, the main impact being the sign of $\Delta m^{2}_{13}$.} % Confirm that mass hierarchy has no impact on Pee.
+that, after considering matter-induced oscillations due to neutrinos passing through the Sun and possibly the Earth, $P_{ee} = P_{ee}\left(\tan2\theta^{M}_{12}, \sin\theta^{M}_{13}, \Delta m^{2}_{21,M}\right) = P_{ee}\left(\theta_{12}, \theta_{13}, \Delta m^{2}_{12}, \Delta m^{2}_{13}\right)$. Fig.~\ref{fig:pee_osc_param_dependence} shows the dependence of each of these four oscillation parameters on $P_{ee}(E)$. We can see that in reality only the two parameters \dmsq{} and \tonetwo{} have a substantial impact on $P_{ee}(E)$ and hence the observed electron energy spectrum. Because of this, for this analysis we will only ever vary these two oscillation parameters, and keep $\theta_{13}$ and $\Delta m^{2}_{13}$ at their current ``NuFit 5.1'' global fit values\footnote{We use the global fit results excluding Super-Kamiokande's atmospheric data, and assuming normal ordering of the neutrino mass hierarchy. This choice has a tiny impact on the magnitudes of these two fixed parameters, the main impact being the sign of $\Delta m^{2}_{13}$.} % Confirm that mass hierarchy has no impact on Pee.
 of $\sin^{2}\theta_{13} = 0.0222$ and $\Delta m^{2}_{13} = +\SI{2.515e-3}{\eV\squared}$~\cite{estebanFateHintsUpdated2020}.% nufit citation
 
 \begin{figure}
     \centering
-    % \includegraphics[]{}
-    \caption[]{}
+    \includegraphics[width=0.8\textwidth]{6_SolarAnalysis/images/pee_scan_plots.pdf}
+    \caption[$P_{ee}$ as a function of true neutrino energy, scanned over a variety of oscillation parameter values]
+    {$P_{ee}$ as a function of true neutrino energy, scanned over a variety of oscillation parameter values. For a given oscillation parameter being scanned over, all other oscillation parameters are set at the NuFit 5.1 global fit values. $P_{ee}$ values are calculated using the \texttt{PSelmaa} algorithm, as described in Section~\ref{sec:osc_in_fit}.}
     \label{fig:pee_osc_param_dependence}
 \end{figure}
 
@@ -80,20 +81,21 @@ This very broad coincidence tagging procedure was designed to ensure that the cu
 which try and obtain a highly \textit{pure} sample of \ce{Bi-Po} tags.
 
 Of course, the above delayed coincidence procedure cannot catch any of the in-window \ce{Bi-Po} events. For these, we use a different approach. Because two decays happened in the same event window, we expect to see two distinct peaks in the event's time residual spectrum. In order to look for this event topology, a likelihood-ratio classifier was run over events, first developed by Eric Marzec~\cite{} % Eric's tech note on DocDB
-and re-coordinated for the \SI{2.2}{\gram\per\litre} LABPPO scintillator optics by Ziping Ye~\cite{}. % Ziping's presentation on DocDB
+and re-coordinated for the \SI{2.2}{\gpl} LABPPO scintillator optics by Ziping Ye~\cite{}. % Ziping's presentation on DocDB
 This classifier calculates the likelihood ratio between the null hypothesis of a \onbb{} event (a proxy in this analysis for single-site events such as our \beight{} signal) and the alternative hypothesis of an in-window \ce{Bi-Po} event. The more negative the value of the result, \texttt{alphabeta212}, the greater the evidence there is for rejecting the null hypothesis of a single-site event. Events with $\texttt{alphabeta212} < 0$ % WRITE FINAL CHOICE OF CUT!
 were then rejected.
 
-Combining both out-of-window and in-window \ce{Bi-Po} tagging, the impact on \ce{^{212}Bi-Po}, \ce{^{214}Bi-Po}, and \beight{} $\nu_e$ events can be seen in Fig.~\ref{fig:bipo_tagging_efficiency}. We consider here only events that pass all other cuts used in this analysis: see Section~\ref{sec:event_selection} % link to cuts subsection
-for the specifics of the cuts used. Because of the different lifetimes of the decays, \ce{^{214}Bi-Po} decays predominantly fall out-of-window whilst \ce{^{212}Bi-Po} events are typically in-window. This explains why the out-of-window tagging is substantially better at cutting \ce{^{214}Bi-Po} decays, whereas the in-window tagging far better tags \ce{^{212}Bi-Po} decays. Overall, within the analysis region of interest (ROI), the two combined cuts are able to tag TODO\% % CALCULATE
-of \ce{^{214}Bi-Po} triggered events, TODO\% % CALCULATE
-of \ce{^{212}Bi-Po} triggered events, whilst retaining TODO\% % CALCULATE
+\nomenclature{\textbf{ROI}}{Region of Interest (of a physics analysis)}
+Combining both out-of-window and in-window \ce{Bi-Po} tagging, the impact on \ce{^{212}Bi-Po}, \ce{^{214}Bi-Po}, and \beight{} $\nu_e$ events can be seen in Fig.~\ref{fig:bipo_tagging_efficiency}. We consider here only events that pass all other cuts used in this analysis (other than the cuts for externals defined shortly): see Section~\ref{sec:event_selection} % link to cuts subsection
+for the specifics of the cuts used. Because of the different lifetimes of the decays, \ce{^{214}Bi-Po} decays predominantly fall out-of-window whilst \ce{^{212}Bi-Po} events are typically in-window. This explains why the out-of-window tagging is substantially better at cutting \ce{^{214}Bi-Po} decays, whereas the in-window tagging far better tags \ce{^{212}Bi-Po} decays. Overall, within the analysis region of interest (ROI), the two combined cuts are able to tag 99.77\% % CALCULATE
+of \ce{^{214}Bi-Po} triggered events, 94.84\% % CALCULATE
+of \ce{^{212}Bi-Po} triggered events, whilst retaining 99.85\% % CALCULATE
 of \beight{} $\nu_e$ signal events.
 
 \begin{figure}
     \centering
-    % \includegraphics[]{}
-    \caption[]{}
+    \includegraphics[width=0.8\textwidth]{6_SolarAnalysis/images/bipo_tagging_eff.pdf}
+    \caption[\ce{^{214}Bi-Po}, \ce{^{212}Bi-Po}, and \beight{} observed energy spectra before and after out-of-window and in-window cuts]{\ce{^{214}Bi-Po}, \ce{^{212}Bi-Po}, and \beight{} observed energy spectra in MC before and after out-of-window and in-window cuts. The relative normalisations before these cuts have been applied is arbitrary.}
     \label{fig:bipo_tagging_efficiency}
 \end{figure}
 
@@ -111,12 +113,13 @@ For the prompt signal, there is the light emitted from the $\alpha$ just before,
     \label{fig:alpha_n_drawing}
 \end{figure}
 
-As can be seen in Fig.~\ref{fig:alpha_n_coincidence_cut_impact}, \alphan{} interactions can lead to events reconstructed at a wide variety of energies, which could be an issue for this analysis. However, because they are delayed coincidence events with a typical decay time of $\sim\SI{100}{\nano\second}$, the aforementioned out-of-window \ce{Bi-Po} tagging algorithm also efficiently tags \alphan{} events. Looking again at Fig.~\ref{fig:alpha_n_coincidence_cut_impact}, simply by using the out-of-window \ce{Bi-Po} tagger without any further modifications TODO\% of events in the ROI are cut.
+As can be seen in Fig.~\ref{fig:alpha_n_coincidence_cut_impact}, \alphan{} interactions can lead to events reconstructed at a wide variety of energies, which could be an issue for this analysis. However, because they are delayed coincidence events with a typical decay time of $\sim\SI{100}{\nano\second}$, the aforementioned out-of-window and in-window \ce{Bi-Po} tagging algorithms also efficiently tag \alphan{} events. Looking again at Fig.~\ref{fig:alpha_n_coincidence_cut_impact}, simply by using the out-of-window and in-window \ce{Bi-Po} taggers without any further modifications 99.37\% of events in the ROI are cut.
 
 \begin{figure}
     \centering
-    % \includegraphics[]{}
-    \caption[]{}
+    \includegraphics[width=0.8\textwidth]{6_SolarAnalysis/images/alphan_tagging_eff.pdf}
+    \caption[\alphan{} reconstructed energy spectrum in MC within the analysis ROI, before and after out-of-window cuts have been applied]
+    {\alphan{} reconstructed energy spectrum in MC within the analysis ROI, before and after out-of-window cuts have been applied. The relative normalisation of the distribution before the additional cuts have been applied is arbitrary.}
     \label{fig:alpha_n_coincidence_cut_impact}
 \end{figure}
 
@@ -132,8 +135,9 @@ radiation that can realistically travel far enough into the detector to be able 
 
 \begin{figure}
     \centering
-    % \includegraphics[]{}
-    \caption[]{}
+    \includegraphics[width=0.8\textwidth]{6_SolarAnalysis/images/externals_radial_plot.pdf}
+    \caption[Radial dependence of external backgrounds considered in this analysis, as compared to the \beight{} signal]
+    {Radial dependence of external backgrounds considered in this analysis, as compared to the \beight{} signal. Events for all processes shown here had to pass the first 6 cuts of Table~\ref{tab:ev_selection}.}
     \label{fig:external_radial_dependence}
 \end{figure}
 
