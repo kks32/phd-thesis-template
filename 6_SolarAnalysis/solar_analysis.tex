@@ -144,14 +144,17 @@ radiation that can realistically travel far enough into the detector to be able 
 What this figure also demonstrates is that our solar signal has a completely different radial dependence to these backgrounds. As a result, if one considers not just the energy of events but also their reconstructed radius, then it is possible to get an additional handle on the external backgrounds. The FV cut can then be pushed further out to larger radii, allowing one to gain more signal statistics.
 
 Work by Tereza Kroupova~\cite{kroupovaImprovingSensitivityNeutrinoless2020} % Tereza's thesis & full-scint re-coordination
-allows for additional means of distinguishing external backgrounds from the solar signal. The underlying assumption in the reconstruction of SNO+ events is that there was an electron at a single point, which is entirely valid for \beight{} elastic scattering events. However, external backgrounds can fail this assumption in two ways. Firstly, these radioactive decays often generate $\gamma$ radiation in addition to the main $\alpha$/$\beta$ particle, which creates a multi-site event. Because the \texttt{scintFit} position reconstruction algorithm is not prepared for a distribution of energy depositions in the scintillator, the \tres{} distribution will broaden. This allows an event classifier to be built that distinguishes between the \tres{} distributions of single-site events and externals, known as the ``external background timing classifier''. Secondly, because external backgrounds that do reconstruct close to the centre of the detector typically have a $\gamma$ that travelled a long distance towards the centre of the detector, we expect the earliest light that hits the PMTs to arrive most often along the direction of the reconstructed position vector. A distribution of PMT hits for a given event as a function of their angular distribution relative to the direction of position reconstruction can be built, and compared to the expected distributions for single-site and external background events. This is known as the ``external background topological classifier''. Much like the classifier described in Section~\ref{sec:u_th_internals}, the single-site events used for comparison were \onbb{} events, but these have a similar single-site structure to the solar signal of interest in this analysis.
+allows for additional means of distinguishing external backgrounds from the solar signal. The underlying assumption in the reconstruction of SNO+ events is that there was an electron at a single point, which is entirely valid for \beight{} elastic scattering events. However, external backgrounds can fail this assumption in two ways. Firstly, these radioactive decays often generate $\gamma$ radiation in addition to the main $\alpha$/$\beta$ particle, which creates a multi-site event. Because the \texttt{scintFit} position reconstruction algorithm is not prepared for a distribution of energy depositions in the scintillator, the \tres{} distribution will broaden. This allows an event classifier to be built that distinguishes between the \tres{} distributions of single-site events and externals, known as the ``external background timing classifier''.
+
+Secondly, because external backgrounds that do reconstruct close to the centre of the detector typically have a $\gamma$ that travelled a long distance towards the centre of the detector, we expect the earliest light that hits the PMTs to arrive most often along the direction of the reconstructed position vector. A distribution of PMT hits for a given event as a function of their angular distribution relative to the direction of position reconstruction can be built, and compared to the expected distributions for single-site and external background events. This is known as the ``external background topological classifier''. Much like the classifier described in Section~\ref{sec:u_th_internals}, the single-site events used for comparison were \onbb{} events, but these have a similar single-site structure to the solar signal of interest in this analysis.
 
 Fig.~\ref{fig:external_classifier_corr} shows the correlation between the two classifier results for both a typical external background, and \beight{} $\nu_{e}$ events. % DESCRIPTION OF PLOT, HOW A CUT COULD WORK!!
 
 \begin{figure}
     \centering
-    % \includegraphics[]{}
-    \caption[]{}
+    \includegraphics[width=0.8\textwidth]{6_SolarAnalysis/images/externals_tagging_eff.pdf}
+    \caption[]
+    {Distributions of the two external classifiers, for both the \beight{} signal and acrylic \ce{^{208}Tl} background. Contours indicate lines of equal probability density. All events shown were not just in the analysis ROI, but also below \SI{5}{\MeV}. Grey regions indicate the cuts used in this analysis.}
     \label{fig:external_classifier_corr}
 \end{figure}
 
@@ -797,7 +800,7 @@ One could na\"{i}vely expect that the point in parameter space where each fit pa
         \hline
         AV \ce{^{214}Bi} Events     & 3.66 & 8.49 \\
         Ropes \ce{^{214}Bi} Events  & 0.53 & 0.52 \\
-        AV \ce{^{208}Tl} Events     & 16.71& 19,08 \\
+        AV \ce{^{208}Tl} Events     & 16.71& 19.08 \\
         Ropes \ce{^{208}Tl} Events  & 27.81& 31.20 \\
         External Water \ce{^{214}Bi} Events & 34.09 & 45.93 \\
         External Water \ce{^{208}Tl} Events & 3.71  & 88.03 \\
