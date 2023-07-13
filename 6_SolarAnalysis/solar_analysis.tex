@@ -144,19 +144,27 @@ radiation that can realistically travel far enough into the detector to be able 
 What this figure also demonstrates is that our solar signal has a completely different radial dependence to these backgrounds. As a result, if one considers not just the energy of events but also their reconstructed radius, then it is possible to get an additional handle on the external backgrounds. The FV cut can then be pushed further out to larger radii, allowing one to gain more signal statistics.
 
 Work by Tereza Kroupova~\cite{kroupovaImprovingSensitivityNeutrinoless2020} % Tereza's thesis & full-scint re-coordination
-allows for additional means of distinguishing external backgrounds from the solar signal. The underlying assumption in the reconstruction of SNO+ events is that there was an electron at a single point, which is entirely valid for \beight{} elastic scattering events. However, external backgrounds can fail this assumption in two ways. Firstly, these radioactive decays often generate $\gamma$ radiation in addition to the main $\alpha$/$\beta$ particle, which creates a multi-site event. Because the \texttt{scintFit} position reconstruction algorithm is not prepared for a distribution of energy depositions in the scintillator, the \tres{} distribution will broaden. This allows an event classifier to be built that distinguishes between the \tres{} distributions of single-site events and externals, known as the ``external background timing classifier''.
+allows for additional means of distinguishing external backgrounds from the solar signal. The underlying assumption in the reconstruction of SNO+ events is that there was an electron at a single point, which is entirely valid for \beight{} elastic scattering events. However, external backgrounds can fail this assumption in two ways. Firstly, these radioactive decays often generate $\gamma$ radiation in addition to the main $\alpha$/$\beta$ particle, which creates a multi-site event. Because the \texttt{scintFit} position reconstruction algorithm is not prepared for a distribution of energy depositions in the scintillator, the \tres{} distribution will broaden. This allows an event classifier to be built that distinguishes between the \tres{} distributions of single-site events and externals, known as the ``external background timing classifier'' (\texttt{ext0NuTimeTl208AVNaive}).
 
-Secondly, because external backgrounds that do reconstruct close to the centre of the detector typically have a $\gamma$ that travelled a long distance towards the centre of the detector, we expect the earliest light that hits the PMTs to arrive most often along the direction of the reconstructed position vector. A distribution of PMT hits for a given event as a function of their angular distribution relative to the direction of position reconstruction can be built, and compared to the expected distributions for single-site and external background events. This is known as the ``external background topological classifier''. Much like the classifier described in Section~\ref{sec:u_th_internals}, the single-site events used for comparison were \onbb{} events, but these have a similar single-site structure to the solar signal of interest in this analysis.
+Secondly, because external backgrounds that do reconstruct close to the centre of the detector typically have a $\gamma$ that travelled a long distance towards the centre of the detector, we expect the earliest light that hits the PMTs to arrive most often along the direction of the reconstructed position vector. A distribution of PMT hits for a given event as a function of their angular distribution relative to the direction of position reconstruction can be built, and compared to the expected distributions for single-site and external background events. This is known as the ``external background topological classifier'' (\texttt{ext0NuAngleTl208AV}). Much like the classifier described in Section~\ref{sec:u_th_internals}, the single-site events used for comparison were \onbb{} events, but these have a similar single-site structure to the solar signal of interest in this analysis.
 
-Fig.~\ref{fig:external_classifier_corr} shows the correlation between the two classifier results for both a typical external background, and \beight{} $\nu_{e}$ events. % DESCRIPTION OF PLOT, HOW A CUT COULD WORK!!
+Fig.~\ref{fig:external_classifier_corr} shows the correlation between the two classifier results for both acrylic \ce{^{208}Tl} and \beight{} $\nu_{e}$ events in MC. These events were within the analysis ROI and also below \SI{5}{\MeV}, as external backgrounds never reconstruct above this energy. The other external backgrounds in MC have a similar distribution to that of the acrylic \ce{^{208}Tl}.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{6_SolarAnalysis/images/externals_tagging_eff.pdf}
     \caption[]
-    {Distributions of the two external classifiers, for both the \beight{} signal and acrylic \ce{^{208}Tl} background. Contours indicate lines of equal probability density. All events shown were not just in the analysis ROI, but also below \SI{5}{\MeV}. Grey regions indicate the cuts used in this analysis.}
+    {Distributions of the two external classifiers, for both the \beight{} signal and acrylic \ce{^{208}Tl} background MC. Contours indicate lines of equal probability density. All events shown were not just in the analysis ROI, but also below \SI{5}{\MeV}. Grey regions indicate the cuts used in this analysis.}
     \label{fig:external_classifier_corr}
 \end{figure}
+
+As can be seen, the external background is far more spread out along both axes compared to the signal. This allows for discrimination of external backgrounds from the signal in the \SIrange{2.5}{5.0}{\MeV} range. For this analysis, a cut on both discriminants were used: to pass, an event required $\mathtt{ext0NuTimeTl208AVNaive} > -0.007$ and $\mathtt{ext0NuAngleTl208AV} > -4.7$. By using these cuts, 37.4\% of external acrylic \ce{^{208}Tl} were cut in the analysis ROI in MC, whilst keeping 99.3\% of the \beight{} $\nu_{e}$ signal.
+
+% ~~~~~~~~~~~~~~~~~~~~~~~
+% TODO IF TIME!!!!
+% Look at systematics of classifiers, by comparing data to MC for certain
+% control regions: tagged BiPos, high-r externals, high-E B8 evs.
+%
 
 % \subsubsection{Cosmogenic Isotopes}
 % The final source of background events are radioactive isotopes that form via collisions of cosmic rays with atomic nuclei, known as cosmogenic isotopes. Most of these isotopes are short-lived~\cite{}, % cite Borexino/KamLAND(?) paper handling cosmogenics
@@ -285,12 +293,13 @@ linear algebra package for efficient matrix manipulation.
 
 There is a problem that can arise when considering the impact of systematics near the edge of the analysis ROI. Many systematics such as shifts, scalings, and convolutions use information about the contents of nearby bins to determine the contents of a particular bin. However, for bins near the edge some of that information does not exist --- it has been lost to the cuts that define the ROI. This can lead to a bias in the generation of the modified PDFs, and therefore also the posterior distribution.
 
-As an example, consider the impact of an energy scale systematic on the energy distribution of \ce{^{234m}Pa} events in the detector, shown in Fig.~\ref{fig:energy_scaling_example}. Because the events seen for this process in the ROI are merely the high-energy tail, any systematic energy scaling $E'_{\textrm{reco}} := \beta E_{\textrm{reco}}$ should have a large impact on the number of events observed at the low end of the ROI. However, given that the information about data below $E_{\textrm{min}}$ is lost to the ROI cuts, any energy scaling of $\beta>1$ will not be applied correctly at all.
+As an example, consider the impact of an energy scale systematic on the energy distribution of PMT $\beta-\gamma$ events in the detector, shown in Fig.~\ref{fig:energy_scaling_example}. Because the events seen for this process in the ROI are merely the high-energy tail, any systematic energy scaling $E'_{\textrm{reco}} := \alpha E_{\textrm{reco}}$ should have a large impact on the number of events observed at the low end of the ROI. However, given that the information about data below $E_{\textrm{min}}$ is lost to the ROI cuts, any energy scaling of $\alpha>1$ will not be applied correctly at all.
 
 \begin{figure}
     \centering
-    % \includegraphics[]{}
-    \caption[]{}
+    \includegraphics[width=0.8\textwidth]{6_SolarAnalysis/images/buffer_region_demonstration_PMT_beta_gammas.pdf}
+    \caption[Demonstration of how to handle an energy scaling systematic correctly]
+    {Demonstration of how to handle an energy scaling systematic correctly. The distribution of PMT $\beta-\gamma$ events in the analysis ROI is shown in energy, both before and after an energy scaling of $\alpha = 1.01$ has been applied. If the distribution below \SI{2.5}{\MeV} is not known, then the scaled distribution is biased systematically. This is solved through the use of a buffer region, as indicated.}
     \label{fig:energy_scaling_example}
 \end{figure}
 
@@ -304,7 +313,8 @@ During the MCMC fit, for a given set of parameters $\bm{\theta} = \left(\dmsq{},
 
 Calculations of the survival probability are handled with \texttt{PSelmaa}, an algorithm written by Nuno Barros for the SNO 3-phase Analysis~\cite{}. % Nuno's thesis
 This considers not only the neutrino oscillations through the vacuum of space between the Sun and Earth, but also the impact of matter effects in both the Sun and Earth. This can usually be a very computationally-intensive process, but \texttt{PSelmaa} takes advantage of the assumption that the solar oscillation parameters are in the so-called ``Large Mixing Angle'' regime, making the calculation much faster. As seen in Section~\ref{sec:nu_osc_evidence}, % ref chapter 1
-previous solar oscillation experiments demonstrate that this assumption is reasonable. For this analysis, the standard MSW effect is assumed with neutrinos obeying the Normal Hierarchy, with the Sun following the \texttt{B16\_GS98} metallicity model~\cite{} % CITE
+previous solar oscillation experiments demonstrate that this assumption is reasonable~\cite{}. % CITE!
+For this analysis, the standard MSW effect is assumed with neutrinos obeying the Normal Hierarchy, with the Sun following the \texttt{B16\_GS98} metallicity model~\cite{} % CITE
 and the \texttt{PREM} model being used for the Earth~\cite{}. % CITE
 % Discussion of why these models and not others?
 
@@ -630,7 +640,7 @@ Values of $\alpha$ were scanned over, generating a log-likelihood distribution. 
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{6_SolarAnalysis/images/rafael_tagged_bi_llh_fitted.pdf}
+    \includegraphics[width=\textwidth]{6_SolarAnalysis/images/rafael_tagged_bi214_data_vs_mc_energy_comparison_resized.pdf}
     \caption[Comparison of tagged \ce{^{214}Bi} reconstructed energy distributions between data and MC]
     {Comparison of tagged \ce{^{214}Bi} reconstructed energy distributions between data and MC, after MC has been scaled by the best-fit factor $\alpha = 0.9969$.}
     \label{fig:bi214_escale_calibration}
@@ -708,8 +718,9 @@ Given some initial start point in the parameter space, a given chain will typica
 
 \begin{figure}
     \centering
-    % \includegraphics[width=\textwidth]{6_SolarAnalysis/images/rafael_tagged_bi_llh_fitted.pdf}
-    \caption[]{}
+    \includegraphics[width=0.8\textwidth]{6_SolarAnalysis/images/autocorr_plot_llh_dmsq_theta12.pdf}
+    \caption[Plot showing the auto-correlation as a function of step delay for three variables in a typical chain]
+    {Plot showing the auto-correlation as a function of step delay for three variables in a typical chain: log-likelihood (blue), \dmsq{} (red), and \tonetwo{} (green).}
     \label{fig:auto_corr}
 \end{figure}
 
