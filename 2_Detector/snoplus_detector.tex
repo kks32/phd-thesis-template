@@ -228,23 +228,46 @@ In the water phase, the `Laserball' calibration system was used by Ana Sofia In\
     % \end{itemize}
     % [1/2 page]
 \subsubsection{Surface reflection and refraction}
-When light travels through the boundary of one medium to another, both reflection and refraction can be possible, depending on the relative refractive indices of the two media. The refractive indices of the UPW, acrylic, and LABPPO are shown as a function of wavelength in Figure~\ref{fig:ref_indices_snoplus}. Note that, for most optical wavelengths, LABPPO has a very close refractive index to acrylic, whereas UPW is somewhat farther away. By consequence, negligible refraction is expected in most cases for light travelling between the liquid scintillator and the acrylic; however, substantial refraction is possible for light travelling between acrylic and UPW. Because of this, isotropically-emitting point-like physics events within the AV that are close enough to the acrylic will have some of their light undergo Total Internal Reflection (TIR) at the AV, reflecting back into the AV instead of continuing outward into the outer water.
+\nomenclature{\textbf{TIR}}{Total Internal Reflection}
+When light travels through the boundary of one medium to another, both reflection and refraction can be possible, depending on the relative refractive indices of the two media as well as the angle of incidence. The refractive indices of the UPW, acrylic, and LABPPO are shown as a function of wavelength in Figure~\ref{fig:ref_indices_snoplus}. Note that, for most optical wavelengths, LABPPO has a very close refractive index to acrylic, whereas UPW is somewhat farther away. By consequence, negligible refraction is expected in most cases for light travelling between the liquid scintillator and the acrylic; however, substantial refraction and reflection are possible for light travelling between acrylic and UPW. Because of this, isotropically-emitting point-like physics events within the AV that are close enough to the acrylic will have some of their light undergo Total Internal Reflection (TIR) at the AV, reflecting back into the AV instead of continuing outward into the outer water.
+
+% \begin{figure}
+%     \centering
+%     \includegraphics[width=0.8\linewidth]{2_Detector/Figs/refractive_indices_plot.pdf}
+%     \caption[Refractive indices of acrylic, UPW, and LABPPO as a function of wavelength]
+%     {Refractive indices of acrylic, UPW, and LABPPO as a function of wavelength~\cite{andersonOpticalCalibrationSNO2021,tseungEllipsometricMeasurementsRefractive2011,moffatOpticalCalibrationSudbury2001}. % cite!
+%     }
+%     \label{fig:ref_indices_snoplus}
+% \end{figure}
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\linewidth]{2_Detector/Figs/refractive_indices_plot.pdf}
-    \caption[Refractive indices of acrylic, UPW, and LABPPO as a function of wavelength]
-    {Refractive indices of acrylic, UPW, and LABPPO as a function of wavelength~\cite{andersonOpticalCalibrationSNO2021,tseungEllipsometricMeasurementsRefractive2011,moffatOpticalCalibrationSudbury2001}. % cite!
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=0.95\linewidth]{2_Detector/Figs/refractive_indices_plot.pdf}
+        \caption{}
+        \label{fig:ref_indices_snoplus}
+    \end{subfigure}
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=0.95\linewidth]{2_Detector/Figs/reflectance_vs_angle_plot.pdf}
+        \caption{}
+        \label{fig:reflectance_vs_angle}
+    \end{subfigure}
+    \caption[Refractive indices of acrylic, UPW, and LABPPO as a function of wavelength; also reflectance as a function of incidence angle]
+    {\textbf{(a):} Refractive indices of acrylic, UPW, and LABPPO as a function of wavelength~\cite{andersonOpticalCalibrationSNO2021,tseungEllipsometricMeasurementsRefractive2011,moffatOpticalCalibrationSudbury2001}. \textbf{(b):} Reflectance of an unpolarised beam of light at \SI{450}{\nm} going between UPW and acrylic.
     }
-    \label{fig:ref_indices_snoplus}
+    \label{fig:ref_index_and_reflectance}
 \end{figure}
 
-Even when not undergoing TIR, some light at a boundary can still reflect. The fraction of light that reflects is known as the \textit{reflectance} $R$, compared to that which is able to transmit through the boundary, the \textit{transmittance} $T=1-R$. The \textit{Fresnel Equations} determine the reflectance of an interface~\cite{hechtSectionFresnelEquations2014}:% Fresnel eqs: Hecht?
+Even when not undergoing TIR, some light at a boundary will still reflect. The fraction of light that reflects is known as the \textit{reflectance} $R$, compared to that which is able to transmit through the boundary, the \textit{transmittance} $T=1-R$. The \textit{Fresnel Equations} determine the reflectance of an interface~\cite{hechtSectionFresnelEquations2014}:% Fresnel eqs: Hecht?
 \begin{equation}
     R_{s} = \left|\frac{n_{1}\cos{\theta_{i}}-n_{2}\cos{\theta_{t}}}{n_{1}\cos{\theta_{i}}+n_{2}\cos{\theta_{t}}}\right|^{2},\\
     R_{p} = \left|\frac{n_{1}\cos{\theta_{t}}-n_{2}\cos{\theta_{i}}}{n_{1}\cos{\theta_{t}}+n_{2}\cos{\theta_{i}}}\right|^{2},
 \end{equation}
 where $R_{s}$ and $R_{p}$ are the reflectances of $s$- and $p$-polarised light, $n_{1}$ and $n_{2}$ are the refractive indices of the first and second optical media, and $\theta_{i}$ and $\theta_{t}$ are the angles of incidence and refraction, respectively. For SNO+, we are only interested in unpolarised light, so the total reflectance $R = \left(R_{s}+R_{p}\right)/2$.
+
+The total reflectance going from UPW into acrylic, as well as from acrylic into UPW, for an unpolarised beam of light with wavelength \SI{450}{\nm} is shown in Fig.~\ref{fig:reflectance_vs_angle}. For the latter case, the critical angle at which TIR occurs is clear.
 
     % \begin{itemize}
     %     \item State that boundaries between media can induce reflections and refraction, as governed by the Fresnel transmission and reflection formulae. These formulae are worth mentioning because I use them in my SMELLIE extinction length analysis.
@@ -252,7 +275,7 @@ where $R_{s}$ and $R_{p}$ are the reflectances of $s$- and $p$-polarised light, 
     % [1/2 page]
 \subsection{Detection by PMTs}\label{sec:pmts}
 The final step for photons in our journey is detection by a PMT. Almost all PMTs in SNO+ are of the Hamamatsu R1408 design~\cite{BOGER2000172}. % cite
-These PMTs within SNO+ are housed within a reflecting cone known as a `concentrator'. The combined PMT--concentrator `bucket', shown in Fig.~\ref{fig:pmt_conc_diagram}, is designed to maximise the collection efficiency of light emanating from within the AV, whilst minimising the collection efficiency of light outside the AV~\cite{moorheadReflectorsCherenkovDetectors1992}. % cite Moorhead
+These PMTs within SNO+ are housed within an 18-segment reflecting Winston cone known as a `concentrator'. The combined PMT--concentrator `bucket', shown in Fig.~\ref{fig:pmt_conc_diagram}, is designed to maximise the collection efficiency of light emanating from within the AV, whilst minimising the collection efficiency of light outside the AV~\cite{moorheadReflectorsCherenkovDetectors1992}. % cite Moorhead
 The so-called `angular response' of the PMT buckets has been measured in both SNO and SNO+ using the Laserball, which describes the relative collection efficiency as a function of the polar angle of the incident light ray relative to the direction in which the PMT bucket points. The results of this can be seen in Fig.~\ref{fig:pmt_angular_response}.
 
 \begin{figure}
@@ -277,24 +300,24 @@ The so-called `angular response' of the PMT buckets has been measured in both SN
 \nomenclature{\textbf{QE}}{Quantum efficiency (of a PMT)}
 \nomenclature{\textbf{TTS}}{Transit time spread (of a PMT)}
 % \nomenclature{\textbf{FWHM}}{Full-width at half-maximum (of a distribution)}
-Once a photon is incident on the PMT's photocathode, it is possible for that photon to be absorbed and generate a photoelectron. The probability of this happening is governed by the photocathode's Quantum Efficiency (QE) at the photon's wavelength, as well as the collection efficiency of a photoelectron onto the first dynode of the PMT. The combined measured efficiency of PMTs tested \textit{ex-situ} for SNO can be seen in Fig~\ref{fig:qe_pmts}. Once this photoelectron has been created, the dynodes within the PMT generate a cascade of electrons that allow for an observable voltage signal to be produced. The dynamics of this cascade are such that there is a natural spread of possible times between the creation of a photoelectron and the generation of the voltage signal pulse in the PMT's wire. This is known as the `Transit Time Spread' (TTS) of the PMTs: for SNO+, the RMS timing resolution of the TTS for the R1408-type PMTs is \SI{1.7}{\ns}~\cite{BOGER2000172}. % cite SNO-era papers
+Once a photon is incident on the PMT's photocathode, it is possible for that photon to be absorbed and generate a photoelectron. The probability of this happening is governed by the photocathode's Quantum Efficiency (QE) at the photon's wavelength, as well as the collection efficiency of a photoelectron onto the first dynode of the PMT. The combined measured efficiency of PMTs tested \textit{ex-situ} for SNO can be seen in Fig~\ref{fig:qe_pmts}. Once this photoelectron has been created, the dynodes within the PMT generate a cascade of electrons that produce an observable voltage signal. The dynamics of this cascade are such that there is a natural spread of possible times between the creation of a photoelectron and the generation of the voltage pulse in the PMT's anode. This is known as the `Transit Time Spread' (TTS) of the PMTs: for SNO+, the RMS of the TTS for the R1408-type PMTs is $\sim\SI{1.7}{\ns}$~\cite{BOGER2000172}. % cite SNO-era papers
 
 \begin{figure}
     \centering
     \includegraphics[width=0.8\linewidth]{2_Detector/Figs/efficiencies_PMTs_biller1999.png}
-    \caption[Efficiencies of the R1408-type PMTs used as standard within SNO+]{Efficiencies of the R1408-type PMTs used as standard within SNO+~\cite{billerMeasurementsPhotomultiplierSingle1999}. % cite
+    \caption[Efficiencies of the R1408-type PMTs used as standard within SNO+]{Efficiencies of the R1408-type PMTs used as standard within SNO+. Figure taken from~\cite{billerMeasurementsPhotomultiplierSingle1999}. % cite
     }
     \label{fig:qe_pmts}
 \end{figure}
 
 \nomenclature{\textbf{npe}}{Number of photoelectrons}
-Finally, if multiple photons generate photoelectrons on the same PMT close enough in time, the detector's front-end electronics (described in Section~\ref{sec:daq}) is unable to tell. However, the amount of charge generated increases in proportion to the number of photoelectrons (npe). Much like with the transit time, the strength of the signal observed by the PMT is governed by a distribution, a function of the npe generated. Examples of these distributions can be seen in Fig.~\ref{fig:charge_dists_pmt}. % cite
+Finally, if multiple photons generate photoelectrons on the same PMT close enough in time, the amount of charge generated increases in proportion to the number of photoelectrons (npe). Much like with the transit time, the strength of the signal observed by the PMT is governed by a distribution, a function of the npe generated. Examples of these distributions can be seen in Fig.~\ref{fig:charge_dists_pmt}. % cite
 The relatively large widths of these charge distributions precludes the ability to straightforwardly determine the npe purely from charge when the npe is small. To work around this, various techniques can be employed to try and estimate the npe in a given PMT --- an example of one such method can be seen in Section~\ref{sect:new_beam_profiles}.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.8\linewidth]{2_Detector/Figs/charge_spectra.png}
-    \caption[Example charge spectra for a PMT as a function of the true npe generated]{Example charge spectra for a PMT as a function of the true npe generated~\cite{dungerOccupancyAnalysisMultipleHit2016}. % cite whom?
+    \caption[Example charge spectra for a PMT as a function of the true npe generated]{Example charge spectra for a PMT as a function of the true npe generated. Figure taken from~\cite{dungerOccupancyAnalysisMultipleHit2016}. % cite whom?
     }
     \label{fig:charge_dists_pmt}
 \end{figure}
