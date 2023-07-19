@@ -45,14 +45,15 @@ Fig.~\ref{fig:smellie_timeline} shows a timeline of the hardware upgrades as wel
 
 \begin{figure}
     \centering
-    % \includegraphics[]{}
-    \caption[]{}
+    \includegraphics[width=0.95\linewidth]{3_SMELLIEHardware/images/smellie_hardware_schematic.pdf}
+    \caption[Diagram of the connections between the various bits of SMELLIE hardware and the rest of the SNO+ detector]
+    {Diagram of the connections between the various bits of SMELLIE hardware and the rest of the SNO+ detector, after the changes made in the Summer of 2022. Adapted from~\cite{turnerMeasurementScatteringCharacteristics2022}.}
     \label{fig:smellie_diagram_detailed}
 \end{figure}
 
 \subsection{Lasers}\label{sec:smellie_lasers}
 \nomenclature{\textbf{PQ}}{PicoQuant}
-Fundamental to the SMELLIE calibration system are 5 optical-wavelength lasers. Four of these are fixed-wavelength pulsed-diode laser heads from the company PicoQuant. These `PQ' laser heads each emit with a different narrow wavelength spectrum, peaking at \SI{375}{\nm}, \SI{407}{\nm}, \SI{446}{\nm}, and \SI{495}{\nm}. These are referred to as the PQ375, PQ407, PQ446, and PQ495 lasers,respectively. In addition to these lasers, a SuperK Compact laser made by NKT Photonics (hereafter referred to as the SuperK laser) is also used\footnote{
+Fundamental to the SMELLIE calibration system are 5 optical-wavelength lasers. Four of these are fixed-wavelength pulsed-diode laser heads from the company PicoQuant. These `PQ' laser heads each emit with a different narrow wavelength spectrum, peaking at \SI{375}{\nm}, \SI{407}{\nm}, \SI{446}{\nm}, and \SI{495}{\nm}. These are referred to as the PQ375, PQ407, PQ446, and PQ495 lasers, respectively. In addition to these lasers, a SuperK Compact laser made by NKT Photonics (hereafter referred to as the SuperK laser) is also used\footnote{
     Apologies to those more familiar with `SuperK' referring to the SuperKamiokande experiment based in Japan: this laser bears no relation.
 }. Unlike the PQ laser heads, the SuperK is a super-continuum laser able to produce laser light over the whole optical wavelength spectrum. Because we are almost always interested in determining optical properties at specific wavelengths, a variable bandpass filter also built by NKT Photonics known as the SuperK Varia has been included. This allows the user to select any wavelength interval between \SIrange{400}{700}{\nm}, with a minimum bandwidth of \SI{10}{\nm}. The wavelength and emission timing characteristics of all five lasers are shown in Fig.~\ref{fig:smellie_emission_wav_timing}. The $\mathcal{O}(\SI{1}{\ns})$ time widths for the lasers are essential for scattering analyses as they allow for much greater precision in knowing when photons should arrive at PMTs in the detector than with an LED source. This is why SMELLIE uses lasers for its light generation, unlike the LEDs used for AMELLIE and TELLIE.
 
