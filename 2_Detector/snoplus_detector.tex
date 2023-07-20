@@ -503,7 +503,7 @@ All Physics data runs, as well as certain calibration data such as AmBe and \ce{
     %     \item `Physics' runs have their events reconstructed in a third pass of data processing, resulting in a `fully-processed' RATDS file as well as a simplified NTUPLE file used in high-level physics analyses (such as my solar analysis).
     % \end{itemize}
     % [2 pages]
-\subsection{Event Simulation}
+\subsection{Event Simulation}\label{sec:ev_simulation}
 \nomenclature{\texttt{RAT}}{Reactor Analysis Tool}
 Simulations of events in SNO+ are performed using the software \texttt{RAT}~\cite{albaneseSNOExperiment2021}. % cite
 Built on the \texttt{GEANT4} particle physics software framework, \texttt{RAT} is capable of simulating all aspects of the physics of an event within the detector via a Monte Carlo (MC) approach. This includes any particle physics that defines an event's generation, propagation and interactions of those particles in the detector media, the generation of light by both scintillation and Cherenkov processes, the propagation of that light, as well as the detection of that light by PMTs and simulation of the expected DAQ response. \texttt{RAT} is then used to process both simulation and data in the same way. In addition to being highly customisable, \texttt{RAT} can use the \texttt{RATDB} tables generated from a given data run when simulating to try and match those particular run conditions as closely as possible. \texttt{RAT} also offers a suite of tools to assist with analysis of data. The software is constantly being updated with new features --- the work done in this thesis uses \texttt{RAT} versions between 6.18.8 and 7.0.9, inclusive.

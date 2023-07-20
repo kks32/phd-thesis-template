@@ -194,7 +194,7 @@ Alongside the installation of the new hardware, the settings in ORCA for the CAE
 As mentioned in Section~\ref{sec:daq}, it is possible to trigger the SNO+ detector electronics via an external asynchronous trigger, EXTA. Taking data with SMELLIE takes advantage of this capability: instead of waiting for the normal `physics' triggers such as N100 to pick up the event, because we know when we are firing the laser we can send an EXTA signal to trigger the detector precisely when a light pulse is within the detector.
 
 \nomenclature{\textbf{NI Unit}}{National Instruments DAQ Unit (for SMELLIE)}
-Trigger signal pulses are created by the National Instruments DAQ Unit (the `NI Unit'), in place alongside the rest of the SMELLIE electronics. These trigger pulses are sent to either the PQ's SEPIA controller or the SuperK laser to induce the firing of the relevant laser. If a PQ laser was fired, a trigger pulse is simultaneously sent to TUBii, which after a delay sends an EXTA trigger signal to the MTCD, which then issues a GT. In contrast, the SuperK has a substantial variation in the emission time of laser light relative to a given driving pulse. Instead of sending the trigger signal to TUBii in parallel to the SuperK laser, a photodiode contained within the SuperK laser system is able to detect any generated light, and from that detection a new trigger signal is sent to TUBii.
+Trigger signal pulses are created by the National Instruments DAQ Unit (the `NI Unit'), in place alongside the rest of the SMELLIE electronics. These trigger pulses are sent to either the PQ's SEPIA controller or the SuperK laser to induce the firing of the relevant laser. If a PQ laser was fired, a trigger pulse is simultaneously sent to TUBii, which after a delay sends an EXTA trigger signal to the MTC/D, which then issues a GT. In contrast, the SuperK has a substantial variation in the emission time of laser light relative to a given driving pulse. Instead of sending the trigger signal to TUBii in parallel to the SuperK laser, a photodiode contained within the SuperK laser system is able to detect any generated light, and from that detection a new trigger signal is sent to TUBii.
 
 A major problem with the handling of the trigger signal delay by TUBii was present throughout the collection of water phase SMELLIE data. This delay was `latched' to the \SI{100}{\MHz} clock present within the electronics of TUBii. As a result, the observed hit times of PMTs in the detector (which are relative to the GT time) was a convolution of the hit times without the latching and a top hat function of width \SI{10}{\ns}.
 
@@ -208,7 +208,7 @@ by E. Turner in June 2018, during the water phase. Looking only at PMTs that wer
     \label{fig:smellie_beam_tres_tubii_comparison}
 \end{figure}
 
-During the partial fill phase, Tony Zummo updated the firmware of TUBii so that this latching would no longer occur, and the arrival times to the MTCD were truly asynchronous to any clocks. The results are also shown in Fig.~\ref{fig:smellie_beam_tres_tubii_comparison}: notice how the width of the peak is now much sharper. This width is determined by the TTS of the hit PMTs, with the width of the PQ495 timing pulse being a subdominant effect.
+During the partial fill phase, Tony Zummo updated the firmware of TUBii so that this latching would no longer occur, and the arrival times to the MTC/D were truly asynchronous to any clocks. The results are also shown in Fig.~\ref{fig:smellie_beam_tres_tubii_comparison}: notice how the width of the peak is now much sharper. This width is determined by the TTS of the hit PMTs, with the width of the PQ495 timing pulse being a subdominant effect.
 
 Because this fix to TUBii was not in place until after all water phase data taking had been completed, any analysis of SMELLIE data from the water phase had to contend with this \SI{10}{\ns} trigger `jitter'. Fortunately, this jitter was global to all hit times of a given event, so if measured a correction could be made.
 
@@ -229,6 +229,7 @@ A clear double-peaked structure can be seen. Also shown on the plot is the distr
 
 The origin of this double-peaked structure for SuperK events remains unresolved. However, the fact that events from the PQ lasers do not see this effect indicates that the issue likely lies somewhere in the part of the triggering system unique to the SuperK laser. For work within this thesis, it was decided to continue to use an event-by-event approach to $t_{\mathrm{emm}}$ for data from all phases and lasers, to ensure consistency.
 
+% TALK ABOUT PULSEGT????
 
 % \begin{itemize}
 %     \item Describe the existing hardware, post-upgrade made in Summer 2022. For pre-upgrade hardware, can simply cite previous SMELLIE theses. This includes the path of light into the detector, as well as the path of the trigger signal.
@@ -236,18 +237,33 @@ The origin of this double-peaked structure for SuperK events remains unresolved.
 % \end{itemize}
 % [7 pages]
 \section{Software for SMELLIE Data-taking}
+The process of taking data with SMELLIE is largely automated. The user begins by deciding on the settings --- the number of laser pulses and their frequency, as well as which fibre, laser, wavelength, intensity, and attenuation (if relevant) --- that will be used for each subrun. One run of SMELLIE data taking can have an arbitrary number of subruns within it, each with their own setting. This is organised into a ``run plan'' \texttt{JSON} file for that run, and uploaded to a central CouchDB server for storage.
+
+To begin data taking, ORCA is used to put the DAQ into a `SMELLIE' run type, which disables almost all the usual `Physics' triggers such as N100 and N20. The only triggers still masked into the MTC/D are:
+\begin{itemize}
+    \item EXTA: This is obviously needed to capture the trigger signals sent from SMELLIE.
+    \item ESUMHI: This residual physics trigger is kept in with a high threshold, to capture any high-\texttt{nhit} events not coming from SMELLIE, e.g. if a supernova were to go off whilst SMELLIE data taking was occurring.
+    \item PULSEGT: This is a special trigger that fires at a rate of \SI{50}{\Hz} independent of all other systems. Using this trigger the noise rate can be calculated on a run-by-run basis for each channel.
+\end{itemize}
+The noise rates derived from the PULSEGT triggers are automatically calculated during the processing of runs, and are stored in \texttt{RATDB} tables. As mentioned in Section~\ref{sec:ev_simulation}, \texttt{RAT} can use these tables to replicate the noise levels in each PMT when generating simulations to match data. When performing analysis on SMELLIE data, only events from an EXTA trigger are usually considered.
+
+With ORCA, one can then load in any run plan already uploaded to the CouchDB server, and then execute it. ORCA then sends commands describing the instructions laid out in the run plan to a server running on a computer called SNODROP, which is housed in the same pair of electronic racks as the rest of the SMELLIE hardware. This server converts these high-level commands into the low level instructions understood by the specific pieces of SMELLIE hardware needed to actually send the correct number of pulses of laser light of the right wavelength and intensity through the correct fibre.
+
+Whilst SMELLIE data is being taken, a ``run description'' \texttt{JSON} file is generated and then uploaded to the SMELLIE CouchDB server, describing the settings of the SMELLIE run actually executed. This differs from the run plan slightly in two main ways: firstly, the same run plan can be run on multiple occasions. However, a run description file is associated to exactly one run of data that was actually taken. Secondly, if a SMELLIE run was terminated early either by the detector operator, or from a hardware problem, the run description file will correctly show only the subruns that were actually performed. The code repository used in all SMELLIE analysis has been updated by myself to use a given run description file in concert with the associated SMELLIE data file, so that the subrun-level metadata can be known during analysis.
+
+
+% \begin{itemize}
+%     \item Can be brief here! Little has changed since previous theses, so can mostly just summarise and cite.
+%     \item Server running on SNODROP machine, which converts high-level commands into low-level ones that the hardware can interpret.
+%     \item Run plan files written in JSON handed to ORCA which then sends relevant commands to SNODROP which fires as appropriate.
+%     \item Operator interacts with ORCA to perform SMELLIE calibration runs.
+%     \item After SMELLIE data taken, run description file created, containing metadata about the run conditions, used in analysis.
+% \end{itemize}
+% [2 pages]
+\section[Commissioning SMELLIE in the Scintillator Phase]{Commissioning SMELLIE in the\\ Scintillator Phase}
 
 {
 \color{blue}
-\begin{itemize}
-    \item Can be brief here! Little has changed since previous theses, so can mostly just summarise and cite.
-    \item Server running on SNODROP machine, which converts high-level commands into low-level ones that the hardware can interpret.
-    \item Run plan files written in JSON handed to ORCA which then sends relevant commands to SNODROP which fires as appropriate.
-    \item Operator interacts with ORCA to perform SMELLIE calibration runs.
-    \item After SMELLIE data taken, run description file created, containing metadata about the run conditions, used in analysis.
-\end{itemize}
-[2 pages]
-\section[Commissioning SMELLIE in the Scintillator Phase]{Commissioning SMELLIE in the\\ Scintillator Phase}
 \begin{itemize}
     \item Explain why commissioning of SMELLIE is needed: Need to confirm that SMELLIE is working as expected; determine intensity "set-points" for different use cases.
     \item Commissioning originally performed by Esther and JeffL back in the water phase; explain why this needed to be re-done for both the scintillator phase and after the hardware upgrades.
