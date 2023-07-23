@@ -8,8 +8,9 @@ As mentioned in Section~\ref{sec:eo_calibs}, one of the principal systems for ca
 
 \begin{figure}
     \centering
-    % \includegraphics[]{}
-    \caption[]{}
+    \includegraphics[width=0.48\textwidth]{3_SMELLIEHardware/images/SMELLIE_picture_corrected.png}
+    \caption[Diagram of the SMELLIE calibration system within SNO+]
+    {Diagram of the SMELLIE calibration system within SNO+. Modified from~\cite{sinclairPositioningTimingCalibration2015}.}
     \label{fig:smellie_diagram}
 \end{figure}
 
@@ -61,17 +62,18 @@ Fundamental to the SMELLIE calibration system are 5 optical-wavelength lasers. F
     \centering
     \begin{subfigure}{0.98\textwidth}
         \centering
-        % \includegraphics[width=0.9\textwidth]{2_Detector/Figs/WaterAbsorption.png}
+        \includegraphics[width=0.98\textwidth]{3_SMELLIEHardware/images/smellie_laser_wavelengths.pdf}
         \caption{}
         \label{fig:smellie_emission_wavelengths}
     \end{subfigure}
     \begin{subfigure}{0.98\textwidth}
         \centering
-        % \includegraphics[width=0.85\textwidth]{2_Detector/Figs/AcrylicAttenuation.png}
+        \includegraphics[width=0.98\textwidth]{3_SMELLIEHardware/images/smellie_laser_timings.pdf}
         \caption{}
         \label{fig:smellie_emission_timing}
     \end{subfigure}
-    \caption{}
+    \caption[Emission wavelength and timing spectra of the lasers used in SMELLIE]
+    {Emission wavelength (a) and timing (b) spectra of the lasers used in SMELLIE. PQ spectral information taken from the manufacturer~\cite{}; SuperK information measured by J. Lidgard~\cite{}.}
     \label{fig:smellie_emission_wav_timing}
 \end{figure}
 
@@ -82,15 +84,17 @@ For the PQ lasers, a PicoQuant-brand SEPIA II laser driver is used to set the ra
 
 \begin{figure}
     \centering
-    % \includegraphics[]{}
-    \caption[]{}
+    \includegraphics[width=0.8\textwidth]{3_SMELLIEHardware/images/smellie_intensity_scan_pq446_old.pdf}
+    \caption[Typical impact of driving voltage intensity for PQ446 laser on observed maximum occupancy in the detector]
+    {Typical impact of driving voltage intensity for PQ446 laser on observed maximum occupancy in the detector. Data taken on February 22\textsuperscript{nd}, 2021.}
     \label{fig:pq_old_intensity_dependence}
 \end{figure}
 
 \begin{figure}
     \centering
-    % \includegraphics[]{}
-    \caption[]{}
+    \includegraphics[width=0.8\textwidth]{3_SMELLIEHardware/images/run_268221_8_nhit_dist.pdf}
+    \caption[Distribution of the number of PMT hits observed per event for laser PQ446]
+    {Distribution of the number of PMT hits observed per event for laser PQ446 when the driving intensity is 280. Data taken on February 22\textsuperscript{nd}, 2021.}
     \label{fig:pq_threshold_intensity_variation}
 \end{figure}
 
@@ -103,12 +107,13 @@ Following ex-situ testing by Jeff Lidgard and Jasmine Simms, the VFA was install
 
 \begin{figure}
     \centering
-    % \includegraphics[]{}
-    \caption[]{}
+    \includegraphics[width=0.8\textwidth]{3_SMELLIEHardware/images/VFA_MPU_picture.png}
+    \caption[Picture of the VFA during installation into the ELLIE hardware rack]
+    {Picture of the VFA during installation into the ELLIE hardware rack. The VFA box rests beneath the fibres connecting to the beamsplitters, as well as the newly-installed Monitoring PMT Unit (see Section~\ref{sec:smellie_mpu} for details).}
     \label{fig:vfa_picture}
 \end{figure}
 
-During testing of the VFA in-situ, it was discovered that the inherent attenuation of the variable attenuator at the minimum setting of \SI{0}{\dB} for the PQ375 laser was so strong that negligible light was ever observed in the detector. Because of this, the PQ375 was not hooked up to the VFA, and kept its original attenuator setup. After fixing the driving voltage settings for PQ407, PQ446, and PQ495 to be XXX, XXX, and XXX respectively, % add in numbers!
+During testing of the VFA in-situ, it was discovered that the inherent attenuation of the variable attenuator at the minimum setting of \SI{0}{\dB} for the PQ375 laser was so strong that negligible light was ever observed in the detector. Because of this, the PQ375 was not hooked up to the VFA, and kept its original attenuator setup. After fixing the driving voltage settings for PQ407, PQ446, and PQ495 to be 1000, 750, and 750 respectively, % add in numbers!
 the observed npe in the detector was once again compared to the input intensity setting. For PQ375 this input parameter remained the driving voltage; for the others, the attenuation setting was now used. The results can be seen in Fig.~\ref{fig:pq_new_intensity_dependence}. As hoped for, the three PQ lasers hooked up to the VFA can now have stable intensities of light observed in the detector over multiple orders of magnitude of observed intensity.
 
 \begin{figure}
@@ -260,15 +265,18 @@ Whilst SMELLIE data is being taken, a ``run description'' \texttt{JSON} file is 
 %     \item After SMELLIE data taken, run description file created, containing metadata about the run conditions, used in analysis.
 % \end{itemize}
 % [2 pages]
-\section[Commissioning SMELLIE in the Scintillator Phase]{Commissioning SMELLIE in the\\ Scintillator Phase}
 
-{
-\color{blue}
-\begin{itemize}
-    \item Explain why commissioning of SMELLIE is needed: Need to confirm that SMELLIE is working as expected; determine intensity "set-points" for different use cases.
-    \item Commissioning originally performed by Esther and JeffL back in the water phase; explain why this needed to be re-done for both the scintillator phase and after the hardware upgrades.
-    \item No need to describe the Tesseract in detail here - that can be in Jeff L's thesis. But, I do want to show the results of both commissioning campaigns in scintillator-fill, one before the new hardware was added, and one after.
-\end{itemize}
-[5 pages]
-[15 PAGES TOTAL]
-}
+% MAYBE DO NOT INCLUDE SMELLIE COMMISSIONING SECTION????
+
+% \section[Commissioning SMELLIE in the Scintillator Phase]{Commissioning SMELLIE in the\\ Scintillator Phase}
+
+% {
+% \color{blue}
+% \begin{itemize}
+%     \item Explain why commissioning of SMELLIE is needed: Need to confirm that SMELLIE is working as expected; determine intensity "set-points" for different use cases.
+%     \item Commissioning originally performed by Esther and JeffL back in the water phase; explain why this needed to be re-done for both the scintillator phase and after the hardware upgrades.
+%     \item No need to describe the Tesseract in detail here - that can be in Jeff L's thesis. But, I do want to show the results of both commissioning campaigns in scintillator-fill, one before the new hardware was added, and one after.
+% \end{itemize}
+% [5 pages]
+% [15 PAGES TOTAL]
+% }
