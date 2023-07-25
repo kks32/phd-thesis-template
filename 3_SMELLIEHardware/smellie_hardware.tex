@@ -206,13 +206,13 @@ Trigger signal pulses are created by the National Instruments DAQ Unit (the `NI 
 
 A major problem with the handling of the trigger signal delay by TUBii was present throughout the collection of water phase SMELLIE data. This delay was `latched' to the \SI{100}{\MHz} clock present within the electronics of TUBii. As a result, the observed hit times of PMTs in the detector (which are relative to the GT time) was a convolution of the hit times without the latching and a top hat function of width \SI{10}{\ns}.
 
-An example of this effect in action can be seen in Fig.~\ref{fig:smellie_beam_tres_tubii_comparison}. Light from the PQ495 laser was fired through fibre FSXXX % DETERMINE!
-by E. Turner in June 2018, during the water phase. Looking only at PMTs that were hit in the beamspot, defined here as PMTs with $\alpha<\ang{3}$, the trigger times can be fit to the convolution of a Gaussian with a \SI{10}{\ns} top hat.
+An example of this effect in action can be seen in Fig.~\ref{fig:smellie_beam_tres_tubii_comparison}. Light from the PQ495 laser was fired through fibre FS007 by E. Turner in June 2018, during the water phase. Looking only at PMTs that were hit in the beamspot, defined here as PMTs with $\alpha<\ang{3}$, the trigger times can be fit to the convolution of a Gaussian with a \SI{10}{\ns} top hat.
 
 \begin{figure}
     \centering
-    % \includegraphics[]{}
-    \caption[]{}
+    \includegraphics[width=0.8\textwidth]{3_SMELLIEHardware/images/time_plots_comparison_114018_vs_302634_FS007_nice.pdf}
+    \caption[Comparison of observed hit times in beamspot before and after TUBii firmware update]
+    {Comparison of observed hit times in beamspot for laser PQ495 through fibre FS007, before and after T. Zummo's firmware update to TUBii. The initial data was taken by E. Turner June 20\textsuperscript{th} 2018 during the water phase, whilst the data post-fix was taken by myself on July 24\textsuperscript{th} 2023 during the scintillator phase. The peak of the former is fit to the convolution of a Gaussian with a top-hat function, whilst the latter is just fit with a Gaussian function.}
     \label{fig:smellie_beam_tres_tubii_comparison}
 \end{figure}
 
