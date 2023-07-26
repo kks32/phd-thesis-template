@@ -225,13 +225,13 @@ and in Chapter~\ref{chap:beam_profiling} of this thesis, $t_{\mathrm{emm}}$ is m
 
 Alternatively, in the ``$t_{\mathrm{emm}} = t_{\mathrm{med}}$'' approach, the median value of $t_{\mathrm{hit}}-t_{\mathrm{TOF}}$ in the beamspot is used. We shall see in Chapter~\ref{chap:smellie_analysis} that using $t_{2}$ has a bias as a function of the number of hits in the beamspot in a given event, whereas $t_{\mathrm{med}}$ does not.
 
-This event-by-event approach to reconstructing $t_{\mathrm{emm}}$ is only necessary when the trigger system has unresolved problems. Because of the fix to the TUBii firmware, data taken using the PQ lasers during the scintillator phase did not in theory require using either of the $t_{\mathrm{emm}}$ reconstruction methods described above. However, for the SuperK laser a new problem was made clear. In Fig.~\ref{fig:smellie_superk_double_peaks} one can see the hit times of beamspot PMTs for SuperK light of wavelengths in the interval $[490,500]\si{\nm}$ from fibre FSXXX, taken in XXXDATEXXX. % COMPLETE!
+This event-by-event approach to reconstructing $t_{\mathrm{emm}}$ is only necessary when the trigger system has unresolved problems. Because of the fix to the TUBii firmware, data taken using the PQ lasers during the scintillator phase did not in theory require using either of the $t_{\mathrm{emm}}$ reconstruction methods described above. However, for the SuperK laser a new problem was made clear. In Fig.~\ref{fig:smellie_superk_double_peaks} one can see the hit times of beamspot PMTs for SuperK light of wavelengths in the interval $[490,500]\;\si{\nm}$ from fibre FS125, taken on June 17\textsuperscript{th} 2023. % COMPLETE!
 A clear double-peaked structure can be seen. Also shown on the plot is the distribution of $t_{2}$ values. If the laser light were being emitted in two pulses for a given event, then we would expect to see only one bump in this distribution. However, the shape of the $t_{2}$ is clearly bimodal in a manner matching that of the overall timing distribution: this indicates that the actual emission times of light from the fibre can come at two different times relative to the GT time.
 
 \begin{figure}
     \centering
-    % \includegraphics[]{}
-    \caption[]{}
+    \includegraphics[width=0.8\textwidth]{3_SMELLIEHardware/images/time_t2_plot_310303_SK495_FS125.pdf}
+    \caption[]{Hit time and $t_{2}$ distributions for a subrun of SMELLIE data taken with the SuperK laser in the $[490,500]\;\si{\nm}$ range through fibre FS125 on June 17\textsuperscript{th} 2023. The double-peaked structure is clear in both distributions.}
     \label{fig:smellie_superk_double_peaks}
 \end{figure}
 
