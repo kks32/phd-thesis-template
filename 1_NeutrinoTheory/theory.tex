@@ -33,28 +33,45 @@ One class of particles in the SM are known as the neutrinos, $\nu$: these are sp
 
 \nomenclature{\textbf{EW}}{Electroweak (Theory)}
 Crucial to understanding the nature of neutrinos is their interactions with other particles. Within the SM, the weak nuclear force and electromagnetism are unified into the Electroweak (EW) Theory by the work of Glashow, Salam, and Weinberg~\cite{}. % Cite foundational EW papers
-This is a so-called \textit{chiral gauge field theory}. A quantum field theory is defined in terms of a Lagrangian density, from which one can determine the equations of motion of the fields and their associated particles. Gauge field theories are a special type of field theory which demand that the Lagrangian be invariant under certain kinds of transformation, beyond the basic requirement that the theory satisfies the requirements of special relativity. For EW, the Lagrangian is invariant under `local' transformations of the fields' internal degrees of freedom, defined by the `gauge' group $SU(2)_{L}\times U(1)_{Y}$, where $L$ and $Y$ are known as the left-handed weak and weak hypercharge, respectively.
+This is a so-called \textit{chiral gauge field theory}. A quantum field theory is defined in terms of a Lagrangian density $\mathcal{L}$, from which one can determine the equations of motion of the fields and their associated particles. Gauge field theories are a special type of field theory which demand that the Lagrangian be invariant under certain kinds of transformation, beyond the basic requirement that the theory satisfies the requirements of special relativity. For EW, the Lagrangian is invariant under `local' transformations of the fields' internal degrees of freedom, defined by the `gauge' group $SU(2)_{L}\times U(1)_{Y}$, where $L$ and $Y$ are known as the left-handed weak and weak hypercharge, respectively.
 
 A local transformation is one which changes values of the fields at all points in spacetime. By demanding invariance under these gauge transformations, as well as Lorentz invariance, the theory naturally predicts the existence of vector (spin-1) boson particles. These are known as the `gauge' bosons of the theory, and they mediate the interactions defined by the gauge group. The massive $W^{\pm}$ and $Z$ bosons, discovered by XXXXX in XXXX~\cite{}, % CITE!!!
 mediate the weak nuclear force, whilst the massless photon $\gamma$ mediates the electromagnetic force.
 
-The theory of EW interactions is also \textit{chiral}. Any spinor that defines the wavefunction of a spin-$1/2$ field can be split into its left- and right-handed `chiral' components, defined through the projection operators $P_{L,R} = \frac{1\mp\gamma^{5}}{2}$. The force associated with the $SU(2)_{L}$ part of the EW gauge group only interacts with the left-handed components of particles.
+The theory of EW interactions is also \textit{chiral}. Any spinor that defines the wavefunction of a spin-$1/2$ field can be split into its left- and right-handed `chiral' components, defined through the projection operators $P_{L,R} = \frac{1\mp\gamma^{5}}{2}$. The force associated with the $SU(2)_{L}$ part of the EW gauge group only interacts with the left-handed components of particles, denoted with the subscript $L$ on their wavefunction.
 
-The chirality of this theory carries with it very important implications.
-
-{
-    \color{blue}
-\begin{itemize}
-    \item Basic description of where neutrinos fit into SM: 3 kinds of neutral fermion, the counterparts to the charged fermions. Interacts with the weak force only.
-    \item Summary of the experimental evidence for this picture: mainly, the discovery of electron anti-neutrinos by Cowan and Reines, the muon neutrino by Lederman, Schwartz, and Steinberger, and the tau neutrino by the DONUT Collaboration. Further critical experiments include the first measurement of a neutrino's helicity by Goldhaber et al. as well as Danby et al.'s demonstration that $\nu_{\mu}$ are distinct from $\nu_{e}$.
-    \item More detailed description, via Feynman diagrams, of the two fundamental modes of interaction by neutrinos with the weak force: charged- and neutral-current interactions. A brief mention of the quantitative theory that underlies description: Gashow, Salam, and Weinberg's Electroweak Theory. This explains not only the V--A structure of charged-current interactions, but also predicted accurately the nature of neutral-current interactions. (Given space constraints, I see no reason to go into much of the details of the theory, or the many experimental tests of its structure.)
-\end{itemize}
-\begin{equation}\label{eq:enu_es_xsec}
-    \frac{d\sigma_{\nu_{i}}}{dT} = BLAH
+\nomenclature{\textbf{NC}}{Neutral Current (weak interaction)}
+\nomenclature{\textbf{CC}}{Charged Current (weak interaction)}
+The Lagrangian that defines the weak interactions of neutrinos is:
+\begin{equation}
+    -\mathcal{L} = \frac{g}{2\cos{\theta_{W}}}\sum_{\ell,L}\bar{\nu}_{\ell,L}\gamma^{\mu}\nu_{\ell,L}Z^{0}_{\mu}
+    +\frac{g}{\sqrt{2}}\sum_{\ell}\bar{\nu}_{\ell,L}\gamma^{\mu}\ell^{-}_{L}W^{+}_{\mu} + \mathrm{h.c.}.
 \end{equation}
-[4 pages]
+Here, $g$ is the dimensionless coupling constant associated with $SU(2)_{L}$, and $\theta_{W}$ is the Weinberg angle. The three lepton flavour fields are denoted by $\ell=e,\mu,\tau$, with their associated neutrino fields being given by $\nu_{\ell}$. Similarly, the fields associated with the weak gauge bosons are given by $W^{\pm}$ and $Z^{0}$. The two components of this Lagrangian are known as the Neutral Current (NC) and Charged Current (CC) weak interactions of neutrinos, respectively. Similar Lagrangians exist that define the NC and CC interactions of quarks, as well as the NC interactions of the charged leptons.
+
+Solidifying this theoretical picture are decades-worth of experimental tests of neutrinos and their place in the SM. The first neutrinos to be detected were electron anti-neutrinos, by Cowan and Reines in 1956~\cite{cowanDetectionFreeNeutrino1956,reinesNeutrino1956}. % cite Reines and Cowen.
+These neutrinos were generated in the $\beta$-decay of radioactive isotopes within the Savannah River nuclear reactor: \ce{n \to p + e^{-} + \bar{\nu}_{e}}. This decay arises from a down quark within the neutron of an atom converting into an up quark via a CC interaction, generating a virtual $W^{-}$ boson that promptly decays into an electron and $\bar{\nu}_{e}$. The method by which Cowen and Reines detected these anti-neutrinos was through \textit{inverse $\beta$-decay}: \ce{\bar{\nu}_{e} + p \to e^{+} + n}. This process also originates from CC interactions. Analogous CC interactions allowed Danby \textit{et al} to discover the muon neutrino in 1962~\cite{danbyObservationHighEnergyNeutrino1962}, % cite Lederman, Schwarts, Steinberger
+and the DONUT Collaboration to discover the tau neutrino in 2000~\cite{kodamaObservationTauNeutrino2001}. % cite DONUT Collaboration
+
+The existence of NC interactions with neutrinos and anti-neutrinos was first demonstrated by the Gargamelle experiment in 1974~\cite{hasertObservationNeutrinolikeInteractions1973,hasertSearchElasticMuonneutrino1973,hasertObservationNeutrinolikeInteractions1974,blietschauEvidenceLeptonicNeutral1976}. % cite gargamelle
+In particular, the observation of anti-muon neutrino electron elastic scattering, \ce{\bar{\nu}_{\mu} + e^{-} \to \bar{\nu}_{\mu} + e^{-}} by the experiment was an unambiguous demonstration of NC interactions. Further experiments, such as CHARM2, demonstrated the consistency of observed NC interactions with EW theory~\cite{}. % cite CHARM2 relevant paper(s)
+
+No flavours of neutrino beyond the electron, muon, or tau types have been discovered. A combined analysis of data from the four LEP experiments looking at the decay width of the $Z$ boson was able to indirectly measure the number of neutrino species that could undergo NC interactions and had masses less than one half of the $Z$ boson: $N_{\nu} = 2.9963\pm0.0074$~\cite{}. % cite LEP papers, including update with correction!
+This measurement is very strong evidence that no other `light' neutrinos exist.
+
+
+% \begin{itemize}
+%     \item Basic description of where neutrinos fit into SM: 3 kinds of neutral fermion, the counterparts to the charged fermions. Interacts with the weak force only.
+%     \item Summary of the experimental evidence for this picture: mainly, the discovery of electron anti-neutrinos by Cowan and Reines, the muon neutrino by Lederman, Schwartz, and Steinberger, and the tau neutrino by the DONUT Collaboration. Further critical experiments include the first measurement of a neutrino's helicity by Goldhaber et al. as well as Danby et al.'s demonstration that $\nu_{\mu}$ are distinct from $\nu_{e}$.
+%     \item More detailed description, via Feynman diagrams, of the two fundamental modes of interaction by neutrinos with the weak force: charged- and neutral-current interactions. A brief mention of the quantitative theory that underlies description: Gashow, Salam, and Weinberg's Electroweak Theory. This explains not only the V--A structure of charged-current interactions, but also predicted accurately the nature of neutral-current interactions. (Given space constraints, I see no reason to go into much of the details of the theory, or the many experimental tests of its structure.)
+% \end{itemize}
+
+% [4 pages]
 \section{Neutrino Oscillations and Neutrino Masses}
 \subsection{The Evidence for Neutrino Oscillations}\label{sec:nu_osc_evidence}
+
+{
+\color{blue}
 \begin{itemize}
     \item Describe status quo ante of massless nature of neutrinos: BEH mechanism as exists cannot allow for neutrinos to have mass as only left-handed neutrinos have been observed.
     \item Furthermore, strong experimental limits on neutrino masses, from e.g. tritium-decay endpoint measurements by the KATRIN experiment and cosmological inferences from the CMB by the Planck satellite.
@@ -71,6 +88,9 @@ The chirality of this theory carries with it very important implications.
     \item Describe also the MSW effect, which is critical for explaining solar neutrino oscillations.
     \item Show the formula for solar neutrino oscillations, given this MSW effect in both the Sun and Earth. Note the dependence of solar neutrino oscillations on only the ``solar'' oscillation parameters. This is all particularly useful for the solar analysis chapter.
 \end{itemize}
+\begin{equation}\label{eq:enu_es_xsec}
+    \frac{d\sigma_{\nu_{i}}}{dT} = BLAH
+\end{equation}
 \begin{equation}\label{eq:pee_msw}
     P_{ee}\left(\tan2\theta^{M}_{12}, \sin\theta^{M}_{13}, \Delta m^{2}_{21,M}\right) = BLAH
 \end{equation}
